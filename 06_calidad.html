@@ -387,6 +387,6 @@ setInterval(()=>{
   }
 },5000);
 </script>
-<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');</script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),5*60*1000);</script>
 </body>
 </html>
