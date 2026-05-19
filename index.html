@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Centro de Inteligencia Ejecutiva</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'app-bg': '#030712',
+                        'card-bg': '#0a101d',
+                        'card-border': '#1e2b44',
+                        'neon-blue': '#1e90ff',
+                        'neon-cyan': '#00f0ff',
+                        'neon-green': '#00ffaa',
+                        'neon-red': '#ff3b3b',
+                        'text-muted': '#8ca3c4',
+                        'text-bright': '#ffffff'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="app.js" defer></script>
+</head>
+<body class="p-4 gap-4 box-border">
+
+    <header class="flex justify-between items-end shrink-0 pl-2 pr-2">
+        <div class="flex flex-col gap-1">
+            <h2 class="text-[#4e6b99] text-[10px] font-bold tracking-[0.3em] uppercase">Red de Operaciones Global</h2>
+            <h1 class="text-text-bright text-4xl font-extrabold tracking-tight">Centro de Inteligencia Ejecutiva</h1>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2 bg-[#0a101d] border border-card-border rounded-md px-3 py-1.5">
+                <span class="material-symbols-outlined text-neon-blue text-[18px]">location_on</span>
+                <span class="text-[10px] font-bold tracking-wider uppercase text-text-muted">Red de Plantas México</span>
+            </div>
+            
+            <div class="flex flex-col items-end gap-1">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_8px_#00ffaa]"></div>
+                    <span class="text-[9px] font-bold tracking-widest uppercase text-text-muted">Sistemas Operativos</span>
+                </div>
+                <div class="flex items-center gap-3 text-[9px] font-bold tracking-widest uppercase">
+                    <span class="text-[#4e6b99]">Turno: 1º</span>
+                    <span class="text-neon-blue">IA Activa</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="grid grid-cols-5 gap-4 shrink-0 mt-4">
+        
+        <div class="bg-card-bg border border-card-border rounded-lg p-4 flex flex-col justify-between h-[110px]">
+            <div class="flex justify-between items-center text-text-muted">
+                <span class="text-[10px] font-bold tracking-wider uppercase">OEE Global</span>
+                <span class="material-symbols-outlined text-[16px] text-neon-blue">bar_chart</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative w-10 h-10">
+                    <svg class="w-full h-full" viewBox="0 0 36 36">
+                        <path stroke="#1e2b44" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path id="oee-circle" class="progress-circle stroke-neon-green" stroke-width="3" fill="none" stroke-linecap="round" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                </div>
+                <span id="oee-value" class="text-3xl font-bold">84.2%</span>
+            </div>
+        </div>
+
+        <div class="bg-card-bg border border-card-border rounded-lg p-4 flex flex-col justify-between h-[110px]">
+            <div class="flex justify-between items-center text-text-muted">
+                <span class="text-[10px] font-bold tracking-wider uppercase">Cumplimiento</span>
+                <span class="material-symbols-outlined text-[16px] text-neon-blue">check_circle</span>
+            </div>
+            <div>
+                <div id="cumplimiento-value" class="text-3xl font-bold mb-2">98%</div>
+                <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden">
+                    <div id="cumplimiento-bar" class="h-full bg-neon-blue w-[98%] shadow-[0_0_8px_#1e90ff] transition-all duration-1000 ease-in-out"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-card-bg border border-card-border rounded-lg p-4 flex flex-col justify-between h-[110px]">
+            <div class="flex justify-between items-center text-text-muted">
+                <span class="text-[10px] font-bold tracking-wider uppercase">Calidad</span>
+                <span class="material-symbols-outlined text-[16px] text-neon-cyan">verified</span>
+            </div>
+            <div>
+                <div class="text-3xl font-bold mb-2">99.1%</div>
+                <div class="flex gap-1 h-[6px] items-end">
+                    <div class="bg-neon-cyan w-full h-[80%] rounded-sm"></div>
+                    <div class="bg-neon-cyan w-full h-[90%] rounded-sm"></div>
+                    <div class="bg-neon-cyan w-full h-[100%] rounded-sm shadow-[0_0_5px_#00f0ff]"></div>
+                    <div class="bg-neon-cyan w-full h-[95%] rounded-sm"></div>
+                    <div class="bg-neon-cyan w-full h-[85%] rounded-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-card-bg border border-card-border rounded-lg p-4 flex flex-col justify-between h-[110px]">
+            <div class="flex justify-between items-center text-text-muted">
+                <span class="text-[10px] font-bold tracking-wider uppercase">Resp. Mant.</span>
+                <span class="material-symbols-outlined text-[16px] text-neon-blue">timer</span>
+            </div>
+            <div class="flex flex-col">
+                <div class="text-3xl font-bold">14 <span class="text-sm font-semibold text-text-muted">MIN</span></div>
+                <span class="text-[9px] font-bold text-neon-blue tracking-wide uppercase mt-1">-2M VS PROMEDIO</span>
+            </div>
+        </div>
+
+        <div class="bg-card-bg border border-card-border border-l-2 border-l-neon-green rounded-lg p-4 flex flex-col justify-between h-[110px]">
+            <div class="flex justify-between items-center">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-neon-green">Perfil de Riesgo</span>
+                <span class="material-symbols-outlined text-[16px] text-neon-green">shield</span>
+            </div>
+            <div class="text-4xl font-bold text-neon-green glow-green">BAJO</div>
+        </div>
+
+    </section>
+
+    <section class="flex-1 grid grid-cols-12 gap-4 min-h-0 mt-4">
+        
+        <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+            <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+                <span class="material-symbols-outlined text-neon-red text-[20px]">warning</span>
+                <h3 class="font-bold text-[12px] tracking-widest uppercase">Prioridades Críticas</h3>
+            </div>
+            <div class="p-4 flex flex-col gap-4 overflow-y-auto">
+                <div class="bg-[#121827] border border-card-border border-l-2 border-l-neon-red p-3 rounded flex flex-col gap-2">
+                    <div class="flex justify-between items-start">
+                        <span class="text-sm font-semibold text-white">Ensamblaje Línea 4</span>
+                        <span class="text-[8px] font-bold text-neon-red border border-neon-red/50 px-1 py-0.5 rounded uppercase tracking-wider">Crítico</span>
+                    </div>
+                    <span class="text-[11px] text-text-muted">Impacto Proyectado: <span class="text-neon-red font-bold">-$12.4k/hr</span></span>
+                    <button class="mt-2 w-full border border-card-border bg-[#0a101d] text-neon-blue text-[9px] font-bold py-1.5 rounded uppercase tracking-wider hover:bg-neon-blue/10 transition-colors flex items-center justify-center gap-1">
+                        Ver Análisis <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+                    </button>
+                </div>
+                
+                <div class="bg-[#121827] border border-card-border border-l-2 border-l-neon-blue p-3 rounded flex flex-col gap-3">
+                    <span class="text-sm font-semibold text-white">Cabina de Pintura</span>
+                    <div>
+                        <div class="flex justify-between items-end mb-1">
+                            <span class="text-[9px] font-bold text-text-muted uppercase tracking-wider">Estabilidad</span>
+                            <span class="text-[9px] font-bold text-neon-blue uppercase tracking-wider">Óptima</span>
+                        </div>
+                        <div class="w-full h-[2px] bg-card-border rounded-full">
+                            <div class="h-full bg-neon-blue w-[85%] shadow-[0_0_5px_#1e90ff]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-6 bg-card-bg border border-card-border rounded-lg flex flex-col relative overflow-hidden">
+            <div class="p-4 flex justify-between items-center shrink-0 z-10 relative">
+                <h3 class="font-bold text-[12px] tracking-widest uppercase">Mapa Consolidado de Procesos</h3>
+                <div class="flex gap-2">
+                    <button class="w-7 h-7 flex items-center justify-center border border-card-border rounded hover:bg-white/5"><span class="material-symbols-outlined text-[16px] text-neon-blue">search</span></button>
+                    <button class="w-7 h-7 flex items-center justify-center border border-card-border rounded hover:bg-white/5"><span class="material-symbols-outlined text-[16px] text-neon-blue">fullscreen</span></button>
+                </div>
+            </div>
+
+            <div class="flex-1 relative flex items-center justify-center mt-[-20px]">
+                <svg class="absolute inset-0 w-full h-full pointer-events-none z-0">
+                    <line x1="35%" y1="40%" x2="65%" y2="40%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="65%" y1="40%" x2="65%" y2="65%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="35%" y1="40%" x2="35%" y2="65%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <line x1="35%" y1="65%" x2="65%" y2="65%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4" />
+                    <circle cx="35%" cy="40%" r="3" fill="#1e90ff" class="box-glow-blue" />
+                    <circle cx="65%" cy="40%" r="3" fill="#00f0ff" />
+                    <circle cx="35%" cy="65%" r="3" fill="#ff3b3b" class="box-glow-red" />
+                    <circle cx="65%" cy="65%" r="3" fill="#8ca3c4" />
+                </svg>
+
+                <div class="grid grid-cols-2 gap-x-32 gap-y-16 z-10 relative">
+                    <div class="flex flex-col items-center gap-2 text-neon-blue text-center">
+                        <div class="w-14 h-14 border border-card-border rounded-xl bg-[#0d1627] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[28px]">precision_manufacturing</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Producción</span>
+                            <span class="block text-[9px] font-bold uppercase tracking-wide text-neon-blue">88% Capacidad</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-2 text-neon-cyan text-center">
+                        <div class="w-14 h-14 border border-card-border rounded-xl bg-[#0d1627] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[28px]">verified</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Calidad</span>
+                            <span class="block text-[9px] font-bold uppercase tracking-wide text-neon-cyan">Optimizado</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-2 text-neon-red text-center relative">
+                        <div class="w-14 h-14 border border-neon-red/30 rounded-xl bg-[#1a1118] flex items-center justify-center box-glow-red">
+                            <span class="material-symbols-outlined text-[28px]">build</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Mantenimiento</span>
+                            <span class="block text-[9px] font-bold uppercase tracking-wide text-neon-red glow-red">Revisión Requerida</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col items-center gap-2 text-text-bright text-center">
+                        <div class="w-14 h-14 border border-card-border rounded-xl bg-[#0d1627] flex items-center justify-center text-text-muted">
+                            <span class="material-symbols-outlined text-[28px]">local_shipping</span>
+                        </div>
+                        <div>
+                            <span class="block text-[9px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Logística</span>
+                            <span class="block text-[9px] font-bold uppercase tracking-wide">En Tránsito</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-3 bg-[#0a101d] border border-card-border rounded-lg flex flex-col overflow-hidden relative">
+            <div class="p-4 border-b border-card-border flex justify-between items-center shrink-0">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-neon-blue text-[20px]">psychology</span>
+                    <h3 class="font-bold text-[12px] tracking-widest uppercase text-white">Copiloto IA</h3>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <div class="w-1.5 h-1.5 rounded-full bg-neon-blue animate-pulse"></div>
+                    <span class="text-[9px] font-bold text-neon-blue tracking-widest uppercase">En Vivo</span>
+                </div>
+            </div>
+            
+            <div class="flex-1 p-5 flex flex-col overflow-y-auto">
+                <p class="text-[13px] text-text-muted leading-relaxed mb-4">
+                    "Análisis en tiempo real detecta que el rendimiento operacional ha experimentado una mejora significativa del <span class="text-neon-green font-bold glow-green">1.6% respecto al baseline</span>."
+                </p>
+                <p class="text-[13px] text-text-muted leading-relaxed mb-auto">
+                    "Sin embargo, se han identificado <span class="text-neon-red font-bold">anomalías térmicas críticas</span> en Centro de Mecanizado. Recomendación: <span class="text-white font-semibold">Programar mantenimiento preventivo</span> inmediato."
+                </p>
+                
+                <div class="mt-4 pt-4 shrink-0">
+                    <span class="block text-[9px] font-bold text-text-muted uppercase tracking-widest mb-2">Acción Ejecutiva Sugerida</span>
+                    <button class="w-full bg-neon-blue text-white font-bold py-3.5 rounded flex items-center justify-center gap-2 uppercase tracking-widest text-[11px] box-glow-blue hover:brightness-110 transition-all">
+                        <span class="material-symbols-outlined text-[18px]">bolt</span>
+                        Programar M-402
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-card-bg border border-card-border rounded-lg p-5 shrink-0 relative mt-4">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="font-bold text-[12px] tracking-[0.2em] uppercase">Cronología Operativa</h3>
+            <div class="flex items-center gap-4">
+                <span id="realtime-clock" class="bg-[#121827] text-text-bright text-[10px] font-bold px-3 py-1 rounded border border-card-border">10:24 AM GMT-6</span>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-neon-blue shadow-[0_0_8px_#1e90ff]"></div>
+                    <span class="text-[9px] font-bold text-neon-blue uppercase tracking-widest">Datos en tiempo real</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative px-8">
+            <div class="absolute top-3 left-0 right-0 h-[2px] bg-card-border z-0"></div>
+            <div class="absolute top-3 left-0 w-[80%] h-[2px] bg-neon-blue z-0 shadow-[0_0_5px_#1e90ff]"></div>
+
+            <div class="grid grid-cols-4 gap-4 relative z-10 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-[#4e6b99] flex items-center justify-center mb-3">
+                        <div class="w-2 h-2 rounded-full bg-[#4e6b99]"></div>
+                    </div>
+                    <span class="block text-[14px] font-bold text-text-muted mb-0.5">06:00</span>
+                    <span class="block text-[8px] font-bold uppercase tracking-widest text-text-muted">Inicio de Turno</span>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-[#4e6b99] flex items-center justify-center mb-3">
+                        <div class="w-2 h-2 rounded-full bg-[#4e6b99]"></div>
+                    </div>
+                    <span class="block text-[14px] font-bold text-text-muted mb-0.5">08:15</span>
+                    <span class="block text-[8px] font-bold uppercase tracking-widest text-text-muted">Auditoría Calidad</span>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-neon-red flex items-center justify-center mb-3 box-glow-red relative">
+                        <div class="absolute -inset-2 border border-neon-red/30 rounded-full animate-ping"></div>
+                        <div class="w-2 h-2 rounded-full bg-neon-red glow-red"></div>
+                    </div>
+                    <span class="block text-[14px] font-bold text-neon-red mb-0.5">09:42</span>
+                    <span class="block text-[8px] font-bold uppercase tracking-widest text-neon-red">Anomalía Detectada</span>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-neon-blue flex items-center justify-center mb-3 box-glow-blue relative">
+                        <div class="absolute -inset-1.5 border border-neon-blue/40 rounded-full"></div>
+                        <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
+                    </div>
+                    <span class="block text-[14px] font-bold text-neon-blue mb-0.5">10:05</span>
+                    <span class="block text-[8px] font-bold uppercase tracking-widest text-neon-blue">Corrección IA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
