@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estación 03 · InstantMES</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+  'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44',
+  'neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa',
+  'neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'
+}}}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
+.glow-green{text-shadow:0 0 10px rgba(0,255,170,.7)}
+.glow-blue{text-shadow:0 0 10px rgba(30,144,255,.7)}
+.glow-cyan{text-shadow:0 0 10px rgba(0,240,255,.7)}
+.glow-red{text-shadow:0 0 10px rgba(255,59,59,.7)}
+.glow-amber{text-shadow:0 0 10px rgba(255,179,0,.7)}
+.box-glow-blue{box-shadow:0 0 20px rgba(30,144,255,.4)}
+.box-glow-green{box-shadow:0 0 15px rgba(0,255,170,.3)}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.pulse-dot{animation:pulse-dot 2s infinite}
+</style>
+</head>
+<body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
+
+<!-- HEADER -->
+<div class="flex items-center justify-between shrink-0 border-b border-card-border pb-4">
+  <div class="flex items-center gap-4">
+    <div class="flex flex-col">
+      <span class="text-[11px] font-mono text-text-muted tracking-widest uppercase">Estación 03 · NCTECH Showroom 2026</span>
+      <h1 class="text-5xl font-extrabold text-white leading-none">InstantMES</h1>
+      <span class="text-[14px] text-text-muted mt-1">Interfaz de operador · Monitoreo · Históricos · Parámetros</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="flex flex-col items-center">
+      <span class="text-[28px] font-extrabold text-neon-cyan glow-cyan" id="hdr-units">1,847</span>
+      <span class="text-[11px] text-text-muted uppercase tracking-wider">Unidades / turno</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="text-[28px] font-extrabold text-yellow-400">86.3%</span>
+      <span class="text-[11px] text-text-muted uppercase tracking-wider">Eficiencia línea</span>
+    </div>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
+      <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
+      <span class="text-[13px] text-neon-green font-semibold">EN LÍNEA</span>
+    </div>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
+      <span class="material-symbols-outlined text-[18px] text-text-muted">schedule</span>
+      <span class="text-[15px] font-mono text-neon-cyan" id="clock">--:--:--</span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="grid grid-cols-5 gap-4 shrink-0">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Órdenes activas</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">assignment</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">3</div>
+    <div class="text-[12px] text-text-muted">2 en producción, 1 setup</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades confirmadas</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green" id="kpi-units">1,847</div>
+    <div class="text-[12px] text-text-muted">Turno actual</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia línea</span>
+      <span class="material-symbols-outlined text-[18px] text-yellow-400">speed</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-yellow-400 glow-amber">86.3%</div>
+    <div class="text-[12px] text-text-muted">↑ 2.1% vs ayer</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Scrap rate</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">delete_sweep</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">0.8%</div>
+    <div class="text-[12px] text-neon-green">Meta: &lt;1% ✓</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Tiempo ciclo</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">timer</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green">42s</div>
+    <div class="text-[12px] text-text-muted">Nominal: 45s</div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="flex-1 grid grid-cols-12 gap-4 min-h-0">
+
+  <!-- COL 1: PLC / Botonera -->
+  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col gap-4 overflow-hidden">
+    <div class="flex items-center gap-2 border-b border-card-border pb-3">
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">memory</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">PLC Allen Bradley</span>
+    </div>
+
+    <!-- Status boxes -->
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-[#030712] border border-neon-green/30 rounded-lg p-3 flex flex-col items-center gap-1">
+        <span class="material-symbols-outlined text-[28px] text-neon-green">radio_button_checked</span>
+        <span class="text-[12px] font-bold text-white">Botonera</span>
+        <span class="text-[10px] text-neon-green">Inicio/Paro</span>
+      </div>
+      <div class="bg-[#030712] border border-neon-green/30 rounded-lg p-3 flex flex-col items-center gap-1">
+        <span class="material-symbols-outlined text-[28px] text-yellow-400">warning_amber</span>
+        <span class="text-[12px] font-bold text-white">Torreta</span>
+        <span class="text-[10px] text-neon-green">Verde · Normal</span>
+      </div>
+      <div class="bg-[#030712] border border-neon-cyan/30 rounded-lg p-3 flex flex-col items-center gap-1">
+        <span class="material-symbols-outlined text-[28px] text-neon-cyan">bolt</span>
+        <span class="text-[12px] font-bold text-white">PLC</span>
+        <span class="text-[10px] text-neon-cyan">AB · OK</span>
+      </div>
+    </div>
+
+    <!-- Metrics bars -->
+    <div class="flex-1 flex flex-col gap-3">
+      <span class="text-[12px] font-bold text-white uppercase tracking-wider">Métricas en tiempo real</span>
+      <div class="flex flex-col gap-3">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Eficiencia de línea</span>
+            <span class="text-[12px] font-mono text-neon-cyan">86.3%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:86.3%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Cumplimiento orden</span>
+            <span class="text-[12px] font-mono text-neon-green">84.6%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:84.6%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Disponibilidad línea</span>
+            <span class="text-[12px] font-mono text-neon-cyan">92.0%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:92%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Calidad FPY</span>
+            <span class="text-[12px] font-mono text-neon-green">99.1%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:99.1%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COL 2: Tabs panel -->
+  <div class="col-span-6 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col overflow-hidden">
+    <div class="flex items-center gap-2 border-b border-card-border pb-3 mb-4">
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">view_list</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Vista por interfaz</span>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-1 mb-4 bg-[#030712] p-1 rounded-lg border border-card-border">
+      <button id="tab-op" onclick="showTab('op')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all bg-card-border text-white">Operador</button>
+      <button id="tab-mon" onclick="showTab('mon')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Monitoreo</button>
+      <button id="tab-his" onclick="showTab('his')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Históricos</button>
+      <button id="tab-par" onclick="showTab('par')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Parámetros</button>
+    </div>
+
+    <!-- Tab: Operador -->
+    <div id="pane-op" class="flex-1 flex flex-col gap-3 overflow-auto">
+      <span class="text-[12px] text-text-muted">Acciones del operador en línea</span>
+      <div class="flex items-center gap-3 p-4 border border-neon-green/30 rounded-lg bg-neon-green/5">
+        <span class="material-symbols-outlined text-[22px] text-neon-green">circle</span>
+        <div class="flex-1">
+          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-142</div>
+          <div class="text-[12px] text-text-muted">Motor 5HP · 500 pzs · 423/500 completadas</div>
+        </div>
+        <div class="w-36 mr-2">
+          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-neon-green">84.6%</span></div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:84.6%"></div></div>
+        </div>
+        <span class="text-[11px] px-2 py-1 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold uppercase tracking-wider">ACTIVA</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 border border-neon-green/30 rounded-lg bg-neon-green/5">
+        <span class="material-symbols-outlined text-[22px] text-neon-green">check_circle</span>
+        <div class="flex-1">
+          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-141</div>
+          <div class="text-[12px] text-text-muted">Motor 3HP · 300 pzs · 300/300 completadas</div>
+        </div>
+        <div class="w-36 mr-2">
+          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-neon-green">100%</span></div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:100%"></div></div>
+        </div>
+        <span class="text-[11px] px-2 py-1 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold uppercase tracking-wider">CERRADA</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 border border-yellow-400/30 rounded-lg bg-yellow-400/5">
+        <span class="material-symbols-outlined text-[22px] text-yellow-400">pending</span>
+        <div class="flex-1">
+          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-143</div>
+          <div class="text-[12px] text-text-muted">Motor 10HP · 200 pzs · Setup en proceso</div>
+        </div>
+        <div class="w-36 mr-2">
+          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-yellow-400">0%</span></div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-yellow-400 rounded-full" style="width:0%"></div></div>
+        </div>
+        <span class="text-[11px] px-2 py-1 bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 rounded font-bold uppercase tracking-wider">SETUP</span>
+      </div>
+    </div>
+
+    <!-- Tab: Monitoreo -->
+    <div id="pane-mon" class="flex-1 flex-col gap-3 overflow-auto hidden">
+      <span class="text-[12px] text-text-muted mb-2 block">Indicadores y alertas en tiempo real</span>
+      <div class="flex items-center gap-3 p-3 border border-neon-green/25 rounded-lg bg-neon-green/5 mb-2">
+        <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
+        <span class="text-[13px] text-neon-green">Línea principal operando dentro de parámetros</span>
+      </div>
+      <div class="flex items-center gap-3 p-3 border border-yellow-400/25 rounded-lg bg-yellow-400/5 mb-2">
+        <span class="material-symbols-outlined text-[18px] text-yellow-400">warning</span>
+        <span class="text-[13px] text-yellow-400">Velocidad de alimentación en Línea 2 al 72% de nominal</span>
+      </div>
+      <div class="flex items-center gap-3 p-3 border border-neon-green/25 rounded-lg bg-neon-green/5 mb-2">
+        <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
+        <span class="text-[13px] text-neon-green">Calidad de soldadura aprobada — 99.1% FPY</span>
+      </div>
+      <div class="flex items-center gap-3 p-3 border border-yellow-400/25 rounded-lg bg-yellow-400/5">
+        <span class="material-symbols-outlined text-[18px] text-yellow-400">schedule</span>
+        <span class="text-[13px] text-yellow-400">Cambio de turno en 45 min — preparar relevo</span>
+      </div>
+    </div>
+
+    <!-- Tab: Históricos -->
+    <div id="pane-his" class="flex-1 flex-col overflow-auto hidden">
+      <span class="text-[12px] text-text-muted mb-3 block">Histórico de producción por turno</span>
+      <table class="w-full text-[13px]">
+        <thead>
+          <tr class="border-b border-card-border">
+            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Turno</th>
+            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Fecha</th>
+            <th class="text-right text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Unidades</th>
+            <th class="text-right text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2">OEE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4 text-white">Matutino</td>
+            <td class="py-3 pr-4 text-text-muted">18/05/26</td>
+            <td class="py-3 pr-4 text-right font-mono text-white">1,847</td>
+            <td class="py-3 text-right font-mono text-neon-cyan">86%</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4 text-white">Vespertino</td>
+            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
+            <td class="py-3 pr-4 text-right font-mono text-white">2,312</td>
+            <td class="py-3 text-right font-mono text-neon-green">91%</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4 text-white">Nocturno</td>
+            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
+            <td class="py-3 pr-4 text-right font-mono text-white">1,950</td>
+            <td class="py-3 text-right font-mono text-neon-green">88%</td>
+          </tr>
+          <tr class="hover:bg-white/[.02]">
+            <td class="py-3 pr-4 text-white">Matutino</td>
+            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
+            <td class="py-3 pr-4 text-right font-mono text-white">2,100</td>
+            <td class="py-3 text-right font-mono text-neon-green">89%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tab: Parámetros -->
+    <div id="pane-par" class="flex-1 flex-col gap-4 overflow-auto hidden">
+      <span class="text-[12px] text-text-muted mb-1 block">Ajuste de parámetros de producción</span>
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-4">
+          <span class="text-[13px] text-text-muted w-52">Vel. nominal (pzs/min)</span>
+          <input type="range" min="60" max="120" value="98" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">98</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-[13px] text-text-muted w-52">Temp. soldadura (°C)</span>
+          <input type="range" min="180" max="260" value="220" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=this.value">
+          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">220</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-[13px] text-text-muted w-52">Tolerancia scrap (%)</span>
+          <input type="range" min="0" max="5" value="1" step="0.1" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=parseFloat(this.value).toFixed(1)">
+          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">1.0</span>
+        </div>
+        <button class="self-start mt-2 px-5 py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
+          Aplicar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COL 3: AI Copilot -->
+  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between p-5 border-b border-card-border">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px] text-neon-blue">smart_toy</span>
+        <span class="text-[13px] font-bold text-white uppercase tracking-wider">InstantMES AI</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
+        <span class="text-[11px] text-neon-green">En Vivo</span>
+      </div>
+    </div>
+    <div class="flex-1 p-5 flex flex-col gap-3 overflow-auto">
+      <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+        <div class="text-[11px] text-text-muted mb-1 uppercase tracking-wider">Análisis turno actual</div>
+        <div class="text-[13px] text-white">Producción +2.1% vs ayer. Orden OT-2026-142 en 84.6% de avance. Estimado: completar a las 12:45.</div>
+      </div>
+      <div class="p-3 bg-yellow-400/5 rounded-lg border border-yellow-400/20">
+        <div class="text-[11px] text-yellow-400 mb-1 uppercase tracking-wider flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">warning</span> Alerta
+        </div>
+        <div class="text-[13px] text-yellow-300">Línea 2 al 72% de velocidad nominal. Revisar alimentador antes de siguiente turno.</div>
+      </div>
+      <div class="p-3 bg-neon-green/5 rounded-lg border border-neon-green/20">
+        <div class="text-[11px] text-neon-green mb-1 uppercase tracking-wider">Calidad</div>
+        <div class="text-[13px] text-white">FPY 99.1% — scrap 0.8%. Parámetros de soldadura estables. Sin acción requerida.</div>
+      </div>
+      <div class="mt-auto grid grid-cols-2 gap-2 text-center">
+        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+          <div class="text-[22px] font-extrabold text-neon-cyan glow-cyan">42s</div>
+          <div class="text-[10px] text-text-muted uppercase tracking-wider">Ciclo actual</div>
+        </div>
+        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+          <div class="text-[22px] font-extrabold text-neon-green glow-green">99.1%</div>
+          <div class="text-[10px] text-text-muted uppercase tracking-wider">FPY</div>
+        </div>
+      </div>
+    </div>
+    <div class="p-5 border-t border-card-border">
+      <button class="w-full py-3 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
+        <span class="material-symbols-outlined text-[16px] align-middle mr-1">open_in_new</span>
+        Ver InstantMES
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function tick(){
+  const t=new Date().toLocaleTimeString('es-MX');
+  document.getElementById('clock').textContent=t;
+}
+setInterval(tick,1000);tick();
+
+function showTab(id){
+  ['op','mon','his','par'].forEach(t=>{
+    const pane=document.getElementById('pane-'+t);
+    const btn=document.getElementById('tab-'+t);
+    if(t===id){
+      pane.classList.remove('hidden');
+      pane.classList.add('flex');
+      btn.classList.add('bg-card-border','text-white');
+      btn.classList.remove('text-text-muted');
+    } else {
+      pane.classList.add('hidden');
+      pane.classList.remove('flex');
+      btn.classList.remove('bg-card-border','text-white');
+      btn.classList.add('text-text-muted');
+    }
+  });
+}
+
+let units=1847;
+setInterval(()=>{
+  units+=Math.floor(Math.random()*2);
+  const fmt=units.toLocaleString('es-MX');
+  document.getElementById('kpi-units').textContent=fmt;
+  document.getElementById('hdr-units').textContent=fmt;
+},4000);
+</script>
+</body>
+</html>

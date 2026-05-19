@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mantenimiento — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF1744;--red2:#FF6E75;--red3:rgba(255,23,68,.12);
+  --purple:#7C4DFF;--purple3:rgba(124,77,255,.12);
+  --border:rgba(0,229,255,.12);--border3:rgba(0,229,255,.06);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-brand{display:flex;align-items:center;gap:10px;margin-right:8px}
+.tb-logo{width:28px;height:28px;background:var(--cyan);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:14px;color:#060E1A}
+.tb-name{font-family:var(--display);font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px}
+.tb-exp{font-size:12px;color:rgba(0,229,255,.6);background:var(--cyan4);border:1px solid var(--border);padding:2px 10px;border-radius:20px;font-family:var(--mono)}
+.tb-sep{width:1px;height:32px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:80px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,229,255,.5)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 12px rgba(0,230,118,.4)}
+.tb-kpi-val.amber{color:var(--amber);text-shadow:0 0 12px rgba(255,179,0,.4)}
+.tb-kpi-val.red{color:var(--red2);text-shadow:0 0 12px rgba(255,23,68,.4)}
+.tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
+.tb-time{margin-left:auto;font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
+.tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 8px var(--green);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* LAYOUT */
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 380px;gap:0;overflow:hidden}
+.left-col{display:flex;flex-direction:column;padding:20px 16px 20px 20px;gap:14px;overflow:hidden}
+.right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:14px;overflow-y:auto}
+
+/* METRICS */
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0}
+.mc.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.mc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
+.mc-lbl{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:7px}
+.mc-val{font-family:var(--display);font-size:48px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 20px rgba(0,229,255,.4)}
+.mc-val.green{color:var(--green);text-shadow:0 0 16px rgba(0,230,118,.3)}
+.mc-val.amber{color:var(--amber);text-shadow:0 0 16px rgba(255,179,0,.3)}
+.mc-val.red{color:var(--red2);text-shadow:0 0 16px rgba(255,23,68,.3)}
+.mc-sub{font-size:11px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
+
+/* EQUIPMENT LIST */
+.equip-list{display:flex;flex-direction:column;gap:8px;flex:1;overflow:auto}
+.equip-row{display:grid;grid-template-columns:40px 1fr 130px 100px 90px;align-items:center;gap:12px;padding:10px 14px;background:var(--panel);border:1px solid var(--border3);border-radius:8px;transition:background .2s}
+.equip-row:hover{background:var(--panel2);border-color:var(--border)}
+.equip-row.alert{border-color:rgba(255,23,68,.3);background:rgba(255,23,68,.04)}
+.equip-row.warn{border-color:rgba(255,179,0,.25);background:rgba(255,179,0,.03)}
+.equip-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.equip-info .equip-id{font-family:var(--mono);font-size:11px;color:rgba(0,229,255,.6);margin-bottom:1px}
+.equip-info .equip-name{font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
+.equip-health{display:flex;flex-direction:column;gap:3px}
+.health-lbl{font-size:9px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px}
+.health-track{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.health-fill{height:100%;border-radius:3px}
+.health-fill.good{background:linear-gradient(90deg,var(--green2),var(--green))}
+.health-fill.mid{background:linear-gradient(90deg,var(--amber2),var(--amber))}
+.health-fill.bad{background:linear-gradient(90deg,var(--red2),var(--red))}
+.health-pct{font-family:var(--mono);font-size:11px;margin-top:2px}
+.equip-next{text-align:right}
+.next-lbl{font-size:9px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px}
+.next-val{font-family:var(--mono);font-size:12px;color:rgba(224,240,255,.7);margin-top:2px}
+.equip-status-badge{padding:4px 10px;border-radius:6px;font-size:11px;font-family:var(--mono);font-weight:600;white-space:nowrap;text-align:center}
+.sb-ok{background:var(--green3);color:var(--green2);border:1px solid rgba(0,230,118,.2)}
+.sb-warn{background:var(--amber3);color:var(--amber2);border:1px solid rgba(255,179,0,.2)}
+.sb-crit{background:var(--red3);color:var(--red2);border:1px solid rgba(255,23,68,.2);animation:blink 1.5s ease-in-out infinite}
+.sb-maint{background:var(--purple3);color:#B39DDB;border:1px solid rgba(124,77,255,.2)}
+
+/* ARCH */
+.arch-stack{display:flex;flex-direction:column;gap:6px}
+.arch-layer{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;border:1px solid transparent}
+.arch-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.arch-info{flex:1;min-width:0}
+.arch-name{font-family:var(--display);font-size:13px;font-weight:700;color:#fff}
+.arch-desc{font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);margin-top:1px}
+.arch-badge{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px}
+
+/* PANEL BLOCKS */
+.panel-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+.panel-title{font-family:var(--display);font-size:14px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+
+/* ALERTS */
+.alert-list{display:flex;flex-direction:column;gap:7px}
+.alert-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;border:1px solid transparent}
+.alert-item.crit{background:var(--red3);border-color:rgba(255,23,68,.25)}
+.alert-item.warn{background:var(--amber3);border-color:rgba(255,179,0,.2)}
+.alert-item.ok{background:var(--green3);border-color:rgba(0,230,118,.15)}
+.alert-icon{font-size:16px;margin-top:1px;flex-shrink:0}
+.alert-info .alert-title{font-family:var(--display);font-size:14px;font-weight:700}
+.alert-info .alert-title.crit{color:var(--red2)}
+.alert-info .alert-title.warn{color:var(--amber2)}
+.alert-info .alert-title.ok{color:var(--green2)}
+.alert-info .alert-sub{font-size:11px;color:rgba(224,240,255,.45);font-family:var(--mono);margin-top:2px}
+.alert-time{margin-left:auto;font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.35);white-space:nowrap;padding-top:2px}
+
+/* SCHEDULE TABLE */
+.sched-table{width:100%;border-collapse:collapse}
+.sched-table th{font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;padding:5px 8px;border-bottom:1px solid var(--border3);text-align:left}
+.sched-table td{padding:7px 8px;border-bottom:1px solid var(--border3);font-size:12px}
+.sched-table tr:last-child td{border-bottom:none}
+.sched-table tr:hover td{background:var(--cyan4)}
+.sched-eq{font-family:var(--mono);font-size:11px;color:var(--cyan)}
+.sched-badge{padding:2px 7px;border-radius:4px;font-size:10px;font-family:var(--mono)}
+.sb-today{background:var(--amber3);color:var(--amber2);border:1px solid rgba(255,179,0,.2)}
+.sb-week{background:var(--cyan3);color:var(--cyan);border:1px solid var(--border)}
+.sb-month{background:rgba(255,255,255,.04);color:rgba(224,240,255,.35);border:1px solid var(--border3)}
+
+/* METRICS BARS */
+.bar-list{display:flex;flex-direction:column;gap:8px}
+.bar-item{display:flex;align-items:center;gap:8px}
+.bar-label{font-size:11px;color:rgba(224,240,255,.5);font-family:var(--mono);width:90px;flex-shrink:0}
+.bar-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+.bar-val{font-family:var(--display);font-size:14px;font-weight:700;width:55px;text-align:right}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">N</div>
+    <span class="tb-name">NCTECH</span>
+  </div>
+  <span class="tb-exp">07 / Mantenimiento</span>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val red">2</span>
+    <span class="tb-kpi-lbl">Alertas</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green">91.7%</span>
+    <span class="tb-kpi-lbl">Disponibilidad</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val">847 h</span>
+    <span class="tb-kpi-lbl">MTBF</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-live">LIVE</div>
+  <span class="tb-time" id="tb-clock">--:--:--</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- LEFT -->
+  <div class="left-col">
+    <!-- METRICS -->
+    <div class="metrics-row">
+      <div class="mc cyan">
+        <div class="mc-lbl">MTBF</div>
+        <div class="mc-val">847 h</div>
+        <div class="mc-sub">Tiempo medio entre fallas</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-lbl">Disponibilidad</div>
+        <div class="mc-val green">91.7%</div>
+        <div class="mc-sub">Equipos operativos</div>
+      </div>
+      <div class="mc amber">
+        <div class="mc-lbl">MTTR</div>
+        <div class="mc-val amber">2.4 h</div>
+        <div class="mc-sub">Tiempo medio de reparación</div>
+      </div>
+      <div class="mc red">
+        <div class="mc-lbl">Alertas activas</div>
+        <div class="mc-val red">2</div>
+        <div class="mc-sub">1 crítica · 1 advertencia</div>
+      </div>
+    </div>
+
+    <!-- EQUIPMENT LIST -->
+    <div class="equip-list">
+      <div class="equip-row alert">
+        <div class="equip-icon" style="background:var(--red3)">⚙️</div>
+        <div class="equip-info">
+          <div class="equip-id">M-03</div>
+          <div class="equip-name">Compresor Principal</div>
+        </div>
+        <div class="equip-health">
+          <span class="health-lbl">Salud</span>
+          <div class="health-track"><div class="health-fill bad" style="width:23%"></div></div>
+          <span class="health-pct" style="color:var(--red2)">23%</span>
+        </div>
+        <div class="equip-next">
+          <div class="next-lbl">Próx. mant.</div>
+          <div class="next-val" style="color:var(--red2)">HOY</div>
+        </div>
+        <span class="equip-status-badge sb-crit">CRÍTICO</span>
+      </div>
+      <div class="equip-row warn">
+        <div class="equip-icon" style="background:var(--amber3)">🔩</div>
+        <div class="equip-info">
+          <div class="equip-id">M-07</div>
+          <div class="equip-name">Banda Transportadora</div>
+        </div>
+        <div class="equip-health">
+          <span class="health-lbl">Salud</span>
+          <div class="health-track"><div class="health-fill mid" style="width:58%"></div></div>
+          <span class="health-pct" style="color:var(--amber)">58%</span>
+        </div>
+        <div class="equip-next">
+          <div class="next-lbl">Próx. mant.</div>
+          <div class="next-val" style="color:var(--amber)">3 días</div>
+        </div>
+        <span class="equip-status-badge sb-warn">ADVERTENCIA</span>
+      </div>
+      <div class="equip-row">
+        <div class="equip-icon" style="background:var(--green3)">🤖</div>
+        <div class="equip-info">
+          <div class="equip-id">R-01</div>
+          <div class="equip-name">Robot Ensamble ABB</div>
+        </div>
+        <div class="equip-health">
+          <span class="health-lbl">Salud</span>
+          <div class="health-track"><div class="health-fill good" style="width:87%"></div></div>
+          <span class="health-pct" style="color:var(--green)">87%</span>
+        </div>
+        <div class="equip-next">
+          <div class="next-lbl">Próx. mant.</div>
+          <div class="next-val">21 días</div>
+        </div>
+        <span class="equip-status-badge sb-ok">NORMAL</span>
+      </div>
+      <div class="equip-row">
+        <div class="equip-icon" style="background:var(--cyan4)">⚡</div>
+        <div class="equip-info">
+          <div class="equip-id">E-02</div>
+          <div class="equip-name">Variador Frecuencia</div>
+        </div>
+        <div class="equip-health">
+          <span class="health-lbl">Salud</span>
+          <div class="health-track"><div class="health-fill good" style="width:94%"></div></div>
+          <span class="health-pct" style="color:var(--green)">94%</span>
+        </div>
+        <div class="equip-next">
+          <div class="next-lbl">Próx. mant.</div>
+          <div class="next-val">45 días</div>
+        </div>
+        <span class="equip-status-badge sb-ok">NORMAL</span>
+      </div>
+      <div class="equip-row">
+        <div class="equip-icon" style="background:var(--purple3)">🔧</div>
+        <div class="equip-info">
+          <div class="equip-id">C-04</div>
+          <div class="equip-name">CNC Fresadora</div>
+        </div>
+        <div class="equip-health">
+          <span class="health-lbl">Salud</span>
+          <div class="health-track"><div class="health-fill good" style="width:76%"></div></div>
+          <span class="health-pct" style="color:var(--green)">76%</span>
+        </div>
+        <div class="equip-next">
+          <div class="next-lbl">Próx. mant.</div>
+          <div class="next-val">7 días</div>
+        </div>
+        <span class="equip-status-badge sb-maint">PROGRAMADO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-col">
+    <!-- ALERTS -->
+    <div class="panel-block">
+      <div class="panel-title">Alertas Activas</div>
+      <div class="alert-list">
+        <div class="alert-item crit">
+          <span class="alert-icon">🚨</span>
+          <div class="alert-info">
+            <div class="alert-title crit">Temperatura alta — M-03</div>
+            <div class="alert-sub">Compresor · 94°C (límite: 80°C)</div>
+          </div>
+          <span class="alert-time">hace 8 min</span>
+        </div>
+        <div class="alert-item warn">
+          <span class="alert-icon">⚠️</span>
+          <div class="alert-info">
+            <div class="alert-title warn">Vibración elevada — M-07</div>
+            <div class="alert-sub">Banda · 12.4 mm/s (límite: 10)</div>
+          </div>
+          <span class="alert-time">hace 1.2 h</span>
+        </div>
+        <div class="alert-item ok">
+          <span class="alert-icon">✅</span>
+          <div class="alert-info">
+            <div class="alert-title ok">R-01 — PM completado</div>
+            <div class="alert-sub">Robot ABB · Mantenimiento preventivo OK</div>
+          </div>
+          <span class="alert-time">hace 3 h</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- METRICS BARS -->
+    <div class="panel-block">
+      <div class="panel-title">Indicadores Clave</div>
+      <div class="bar-list">
+        <div class="bar-item">
+          <span class="bar-label">Disponibilidad</span>
+          <div class="bar-track"><div class="bar-fill" style="width:91.7%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div>
+          <span class="bar-val" style="color:var(--green)">91.7%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-label">Confiabilidad</span>
+          <div class="bar-track"><div class="bar-fill" style="width:87%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val" style="color:var(--cyan)">87.0%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-label">PM cumplidas</span>
+          <div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+          <span class="bar-val" style="color:var(--amber)">78%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-label">Equip. sanos</span>
+          <div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div>
+          <span class="bar-val" style="color:var(--green)">3 / 5</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="panel-block">
+      <div class="panel-title">Mantenimientos Programados</div>
+      <table class="sched-table">
+        <thead>
+          <tr><th>Equipo</th><th>Tipo</th><th>Cuándo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="sched-eq">M-03</td>
+            <td style="font-size:12px;color:rgba(224,240,255,.6)">Correctivo urgente</td>
+            <td><span class="sched-badge sb-today">HOY</span></td>
+          </tr>
+          <tr>
+            <td class="sched-eq">M-07</td>
+            <td style="font-size:12px;color:rgba(224,240,255,.6)">Preventivo banda</td>
+            <td><span class="sched-badge sb-today">3 días</span></td>
+          </tr>
+          <tr>
+            <td class="sched-eq">C-04</td>
+            <td style="font-size:12px;color:rgba(224,240,255,.6)">Cambio de herramienta</td>
+            <td><span class="sched-badge sb-week">7 días</span></td>
+          </tr>
+          <tr>
+            <td class="sched-eq">R-01</td>
+            <td style="font-size:12px;color:rgba(224,240,255,.6)">PM semestral</td>
+            <td><span class="sched-badge sb-month">21 días</span></td>
+          </tr>
+          <tr>
+            <td class="sched-eq">E-02</td>
+            <td style="font-size:12px;color:rgba(224,240,255,.6)">Inspección eléctrica</td>
+            <td><span class="sched-badge sb-month">45 días</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ARCH -->
+    <div class="panel-block">
+      <div class="panel-title">deviceWISE Predictivo</div>
+      <div class="arch-stack">
+        <div class="arch-layer" style="background:rgba(0,229,255,.05);border-color:rgba(0,229,255,.2)">
+          <div class="arch-icon" style="background:rgba(0,229,255,.15)">🧠</div>
+          <div class="arch-info">
+            <div class="arch-name">ML Predictivo</div>
+            <div class="arch-desc">Modelos de vida útil · anomalías</div>
+          </div>
+          <span class="arch-badge" style="background:var(--cyan3);color:var(--cyan);border:1px solid var(--border)">CLOUD</span>
+        </div>
+        <div class="arch-layer" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.2)">
+          <div class="arch-icon" style="background:rgba(0,230,118,.15)">⚙️</div>
+          <div class="arch-info">
+            <div class="arch-name">deviceWISE EDGE</div>
+            <div class="arch-desc">Reglas de umbral · alertas locales</div>
+          </div>
+          <span class="arch-badge" style="background:var(--green3);color:var(--green2);border:1px solid rgba(0,230,118,.2)">EDGE</span>
+        </div>
+        <div class="arch-layer" style="background:rgba(255,179,0,.05);border-color:rgba(255,179,0,.2)">
+          <div class="arch-icon" style="background:rgba(255,179,0,.15)">📡</div>
+          <div class="arch-info">
+            <div class="arch-name">Sensores IoT</div>
+            <div class="arch-desc">Temperatura · vibración · corriente</div>
+          </div>
+          <span class="arch-badge" style="background:var(--amber3);color:var(--amber2);border:1px solid rgba(255,179,0,.2)">47 pts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateClock(){
+  document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+}
+updateClock();setInterval(updateClock,1000);
+</script>
+</body>
+</html>

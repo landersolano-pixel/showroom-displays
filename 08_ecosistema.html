@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ecosistema — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF1744;--red2:#FF6E75;--red3:rgba(255,23,68,.12);
+  --purple:#7C4DFF;--purple3:rgba(124,77,255,.12);
+  --border:rgba(0,229,255,.12);--border3:rgba(0,229,255,.06);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-brand{display:flex;align-items:center;gap:10px;margin-right:8px}
+.tb-logo{width:28px;height:28px;background:var(--cyan);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:14px;color:#060E1A}
+.tb-name{font-family:var(--display);font-size:18px;font-weight:700;color:#fff;letter-spacing:.5px}
+.tb-exp{font-size:12px;color:rgba(0,229,255,.6);background:var(--cyan4);border:1px solid var(--border);padding:2px 10px;border-radius:20px;font-family:var(--mono)}
+.tb-sep{width:1px;height:32px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:80px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,229,255,.5)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 12px rgba(0,230,118,.4)}
+.tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
+.tb-time{margin-left:auto;font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* LAYOUT */
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:320px 1fr;gap:0;overflow:hidden}
+
+/* LEFT — LAYER CARDS */
+.layer-col{display:flex;flex-direction:column;padding:20px 12px 20px 20px;gap:10px;border-right:1px solid var(--border)}
+.layer-intro{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.layer-intro-sub{font-size:11px;color:rgba(224,240,255,.3);font-family:var(--mono)}
+
+.layer-card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--panel);border:1px solid var(--border3);border-radius:10px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.layer-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px;background:transparent;transition:background .25s}
+.layer-card:hover{background:var(--panel2);border-color:var(--border)}
+.layer-card.active{border-color:rgba(0,229,255,.3);background:var(--cyan4)}
+.layer-card.active::before{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.layer-num{font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.3);width:16px;flex-shrink:0}
+.layer-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:all .25s}
+.layer-info{flex:1;min-width:0}
+.layer-name{font-family:var(--display);font-size:16px;font-weight:700;color:#fff;transition:color .25s}
+.layer-tag{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:1px}
+.layer-card.active .layer-name{color:var(--cyan)}
+.layer-arrow{font-size:14px;color:rgba(224,240,255,.2);transition:all .25s}
+.layer-card.active .layer-arrow{color:var(--cyan)}
+
+/* RIGHT — DETAIL PANEL */
+.detail-col{display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:16px;overflow-y:auto}
+.detail-header{display:flex;align-items:center;gap:16px}
+.detail-icon-big{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.detail-title{font-family:var(--display);font-size:32px;font-weight:700;color:#fff;line-height:1}
+.detail-subtitle{font-size:13px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
+
+.detail-desc{font-size:13px;color:rgba(224,240,255,.6);line-height:1.7;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.detail-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.detail-card-val{font-family:var(--display);font-size:22px;font-weight:700;color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.3)}
+.detail-card-lbl{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+
+.detail-features-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px}
+.feature-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.f-chip{padding:5px 12px;border-radius:6px;font-size:11px;font-family:var(--mono);border:1px solid}
+.fc-cyan{background:var(--cyan4);color:var(--cyan);border-color:var(--border)}
+.fc-green{background:var(--green3);color:var(--green2);border-color:rgba(0,230,118,.2)}
+.fc-amber{background:var(--amber3);color:var(--amber2);border-color:rgba(255,179,0,.2)}
+.fc-purple{background:var(--purple3);color:#B39DDB;border-color:rgba(124,77,255,.2)}
+
+/* USE CASES */
+.uc-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.uc-card{background:var(--panel);border:1px solid var(--border3);border-radius:8px;padding:12px}
+.uc-icon{font-size:20px;margin-bottom:6px}
+.uc-name{font-family:var(--display);font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.uc-desc{font-size:11px;color:rgba(224,240,255,.4);line-height:1.5;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">N</div>
+    <span class="tb-name">NCTECH</span>
+  </div>
+  <span class="tb-exp">08 / Tablero de Ecosistema</span>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val">5</span>
+    <span class="tb-kpi-lbl">Capas</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green">4</span>
+    <span class="tb-kpi-lbl">Casos de uso</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val">deviceWISE</span>
+    <span class="tb-kpi-lbl">Plataforma</span>
+  </div>
+  <span class="tb-time" id="tb-clock">--:--:--</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- LAYER CARDS -->
+  <div class="layer-col">
+    <div style="margin-bottom:6px">
+      <div class="layer-intro">Arquitectura ISA-95</div>
+      <div class="layer-intro-sub">Selecciona una capa para ver detalles</div>
+    </div>
+    <div class="layer-card active" onclick="selLayer(0,this)">
+      <span class="layer-num">L5</span>
+      <div class="layer-icon" style="background:rgba(0,229,255,.12)">☁️</div>
+      <div class="layer-info">
+        <div class="layer-name">Cloud / ERP</div>
+        <div class="layer-tag">Nivel empresarial</div>
+      </div>
+      <span class="layer-arrow">▶</span>
+    </div>
+    <div class="layer-card" onclick="selLayer(1,this)">
+      <span class="layer-num">L4</span>
+      <div class="layer-icon" style="background:rgba(0,230,118,.1)">🏭</div>
+      <div class="layer-info">
+        <div class="layer-name">MES</div>
+        <div class="layer-tag">Ejecución de manufactura</div>
+      </div>
+      <span class="layer-arrow">▶</span>
+    </div>
+    <div class="layer-card" onclick="selLayer(2,this)">
+      <span class="layer-num">L3</span>
+      <div class="layer-icon" style="background:rgba(255,179,0,.1)">🖥️</div>
+      <div class="layer-info">
+        <div class="layer-name">HMI / SCADA</div>
+        <div class="layer-tag">Supervisión local</div>
+      </div>
+      <span class="layer-arrow">▶</span>
+    </div>
+    <div class="layer-card" onclick="selLayer(3,this)">
+      <span class="layer-num">L2</span>
+      <div class="layer-icon" style="background:rgba(124,77,255,.1)">⚙️</div>
+      <div class="layer-info">
+        <div class="layer-name">PLC / DCS</div>
+        <div class="layer-tag">Control automático</div>
+      </div>
+      <span class="layer-arrow">▶</span>
+    </div>
+    <div class="layer-card" onclick="selLayer(4,this)">
+      <span class="layer-num">L1</span>
+      <div class="layer-icon" style="background:rgba(255,23,68,.08)">📡</div>
+      <div class="layer-info">
+        <div class="layer-name">Sensores / Field</div>
+        <div class="layer-tag">Instrumentación</div>
+      </div>
+      <span class="layer-arrow">▶</span>
+    </div>
+  </div>
+
+  <!-- DETAIL -->
+  <div class="detail-col" id="detail-col">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+<script>
+const layers=[
+  {
+    icon:'☁️',iconBg:'rgba(0,229,255,.15)',color:'var(--cyan)',
+    title:'Cloud / ERP',sub:'Nivel 5 — Planificación empresarial · ISA-95',
+    desc:'El nivel Cloud integra los datos operativos en tiempo real con los sistemas empresariales (SAP, Oracle, Infor). deviceWISE actúa como puente de integración, normalizando los datos de planta y enviándolos al ERP para planificación de materiales, costos y KPIs ejecutivos.',
+    stats:[{v:'99.9%',l:'Uptime SLA'},{v:'< 2s',l:'Latencia sync'},{v:'12 TB',l:'Datos/año'}],
+    chips:['SAP S/4HANA','Oracle ERP','REST API','HTTPS/TLS','ISO 27001'],
+    chipClass:'fc-cyan',
+    usecases:[
+      {icon:'📊',n:'KPI Ejecutivo',d:'Dashboards de OEE, calidad y costos en tiempo real para directivos.'},
+      {icon:'🔄',n:'Sync materiales',d:'Actualización automática de órdenes y consumo al ERP.'},
+      {icon:'🔔',n:'Alertas críticas',d:'Push notifications al móvil del gerente ante paros no planeados.'},
+      {icon:'📦',n:'Supply chain',d:'Visibilidad de inventario de planta conectado a supply chain.'},
+    ]
+  },
+  {
+    icon:'🏭',iconBg:'rgba(0,230,118,.15)',color:'var(--green)',
+    title:'MES',sub:'Nivel 4 — Ejecución de manufactura · InstantMES',
+    desc:'El Sistema de Ejecución de Manufactura (MES) gestiona en tiempo real las órdenes de producción, trazabilidad, calidad y eficiencia. InstantMES — producto de NCTECH — permite desplegar un MES en horas sobre cualquier infraestructura, con integración nativa al piso de planta via deviceWISE.',
+    stats:[{v:'< 4 h',l:'Despliegue'},{v:'100%',l:'Trazabilidad'},{v:'3 turnos',l:'Visibilidad'}],
+    chips:['InstantMES','Órdenes de trabajo','Trazabilidad','Calidad','Reportes'],
+    chipClass:'fc-green',
+    usecases:[
+      {icon:'📋',n:'Órdenes WO',d:'Creación y seguimiento de órdenes desde ERP hasta línea de producción.'},
+      {icon:'🔍',n:'Trazabilidad',d:'Historial completo de cada pieza: materiales, proceso, operador, calidad.'},
+      {icon:'📈',n:'OEE en vivo',d:'Cálculo automático de OEE por turno, línea y producto.'},
+      {icon:'⚠️',n:'Control calidad',d:'Reglas de calidad ejecutadas en tiempo real por deviceWISE EDGE.'},
+    ]
+  },
+  {
+    icon:'🖥️',iconBg:'rgba(255,179,0,.15)',color:'var(--amber)',
+    title:'HMI / SCADA',sub:'Nivel 3 — Supervisión y monitoreo local',
+    desc:'Las interfaces HMI y los sistemas SCADA proveen al operador visibilidad y control del proceso en tiempo real. deviceWISE EDGE actúa como servidor de datos OPC-UA para alimentar cualquier SCADA (iFIX, Wonderware, FactoryTalk) con datos unificados de toda la planta.',
+    stats:[{v:'< 1s',l:'Refresco HMI'},{v:'OPC-UA',l:'Protocolo'},{v:'∞',l:'Tags/seg'}],
+    chips:['OPC-UA Server','iFIX','Wonderware','FactoryTalk','HTML5 HMI'],
+    chipClass:'fc-amber',
+    usecases:[
+      {icon:'🖥️',n:'Panel operador',d:'Pantallas táctiles con estado de máquinas, alarmas y controles.'},
+      {icon:'📡',n:'SCADA remoto',d:'Monitoreo desde sala de control con SCADA centralizado.'},
+      {icon:'⚡',n:'Alarmas',d:'Sistema de alarmas con escalación y registro de eventos.'},
+      {icon:'📊',n:'Tendencias',d:'Históricos de variables de proceso para análisis de causa raíz.'},
+    ]
+  },
+  {
+    icon:'⚙️',iconBg:'rgba(124,77,255,.15)',color:'var(--purple)',
+    title:'PLC / DCS',sub:'Nivel 2 — Control automático · Lógica de procesos',
+    desc:'Los PLCs y sistemas de control distribuido (DCS) ejecutan la lógica de automatización del proceso. deviceWISE se conecta nativamente a más de 200 tipos de PLCs (Allen-Bradley, Siemens, Schneider, Mitsubishi) sin necesidad de middleware adicional, eliminando silos de datos.',
+    stats:[{v:'+200',l:'Drivers PLC'},{v:'< 10ms',l:'Ciclo lectura'},{v:'Nativo',l:'Sin OPC client'}],
+    chips:['Allen-Bradley','Siemens S7','Schneider','Mitsubishi','Omron'],
+    chipClass:'fc-purple',
+    usecases:[
+      {icon:'🔌',n:'Conexión nativa',d:'Sin OPC client: deviceWISE habla el protocolo nativo de cada PLC.'},
+      {icon:'📥',n:'Lectura masiva',d:'Miles de tags leídos por segundo desde múltiples PLCs en simultáneo.'},
+      {icon:'✍️',n:'Escritura segura',d:'Escritura de setpoints con autenticación y registro de auditoría.'},
+      {icon:'🔄',n:'Bidireccional',d:'Recibe comandos desde MES/ERP y los ejecuta en PLC automáticamente.'},
+    ]
+  },
+  {
+    icon:'📡',iconBg:'rgba(255,23,68,.1)',color:'var(--red2)',
+    title:'Sensores / Field',sub:'Nivel 1 — Instrumentación y actuadores',
+    desc:'El nivel de campo incluye todos los dispositivos físicos: sensores de temperatura, presión, vibración, flujo, cámaras, lectores de código, robots colaborativos y actuadores. deviceWISE unifica todos estos datos en un único bus de datos industrial, independiente del fabricante.',
+    stats:[{v:'+127',l:'Sensores activos'},{v:'47 ms',l:'Latencia promedio'},{v:'12',l:'Protocolos'}],
+    chips:['Modbus RTU/TCP','PROFINET','EtherNet/IP','IO-Link','Wireless ISA100'],
+    chipClass:'fc-amber',
+    usecases:[
+      {icon:'🌡️',n:'Temperatura/Presión',d:'Monitoreo continuo de variables de proceso con alertas de umbral.'},
+      {icon:'📷',n:'Visión industrial',d:'Cámaras de inspección integradas con reglas de calidad en EDGE.'},
+      {icon:'🤖',n:'Cobots',d:'Lectura de estado y producción de brazos robóticos colaborativos.'},
+      {icon:'📶',n:'Wireless',d:'Sensores inalámbricos para equipos móviles o de difícil acceso.'},
+    ]
+  },
+];
+
+let activeLayers=0;
+function selLayer(i,card){
+  activeLayers=i;
+  document.querySelectorAll('.layer-card').forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+  renderDetail(layers[i]);
+}
+
+function renderDetail(l){
+  const colorRaw=l.color.replace('var(','').replace(')','');
+  document.getElementById('detail-col').innerHTML=`
+    <div class="detail-header">
+      <div class="detail-icon-big" style="background:${l.iconBg}">${l.icon}</div>
+      <div>
+        <div class="detail-title" style="color:${l.color}">${l.title}</div>
+        <div class="detail-subtitle">${l.sub}</div>
+      </div>
+    </div>
+    <div class="detail-desc">${l.desc}</div>
+    <div class="detail-grid">
+      ${l.stats.map(s=>`<div class="detail-card"><div class="detail-card-val" style="color:${l.color}">${s.v}</div><div class="detail-card-lbl">${s.l}</div></div>`).join('')}
+    </div>
+    <div>
+      <div class="detail-features-title">Tecnologías y protocolos</div>
+      <div class="feature-chips">
+        ${l.chips.map(c=>`<span class="f-chip ${l.chipClass}">${c}</span>`).join('')}
+      </div>
+    </div>
+    <div>
+      <div class="uc-title">Casos de uso</div>
+      <div class="uc-grid">
+        ${l.usecases.map(u=>`<div class="uc-card"><div class="uc-icon">${u.icon}</div><div class="uc-name">${u.n}</div><div class="uc-desc">${u.d}</div></div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+renderDetail(layers[0]);
+
+function updateClock(){
+  document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+}
+updateClock();setInterval(updateClock,1000);
+</script>
+</body>
+</html>

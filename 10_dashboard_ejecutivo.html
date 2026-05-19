@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Ejecutivo — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF3B3B;--red2:#FF6E75;--red3:rgba(255,59,59,.12);
+  --purple:#7C4DFF;--purple3:rgba(124,77,255,.12);
+  --border:rgba(0,229,255,.14);--border3:rgba(0,229,255,.07);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{
+  background-color:var(--navy);
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-brand{display:flex;align-items:center;gap:12px;margin-right:8px}
+.tb-logo{width:34px;height:34px;background:var(--cyan);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:17px;color:#030712}
+.tb-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:.5px}
+.tb-exp{font-size:14px;color:rgba(0,229,255,.65);background:var(--cyan4);border:1px solid var(--border);padding:3px 14px;border-radius:20px;font-family:var(--mono)}
+.tb-sep{width:1px;height:36px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:90px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,229,255,.5)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 14px rgba(0,255,170,.5)}
+.tb-kpi-val.amber{color:var(--amber);text-shadow:0 0 14px rgba(255,179,0,.5)}
+.tb-kpi-lbl{font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
+.tb-time{margin-left:auto;font-family:var(--mono);font-size:15px;color:rgba(0,229,255,.75);letter-spacing:1px}
+.tb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* LAYOUT */
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:flex;flex-direction:column;z-index:1;overflow:hidden}
+
+/* VIEW NAV */
+.view-nav{display:flex;align-items:center;gap:0;padding:0 24px;background:rgba(6,14,26,.7);border-bottom:1px solid var(--border3)}
+.view-btn{flex:1;padding:12px 20px;border:none;background:transparent;color:rgba(224,240,255,.45);font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase}
+.view-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,.4)}
+.view-btn:hover:not(.active){color:rgba(224,240,255,.7)}
+.auto-indicator{margin-left:auto;display:flex;align-items:center;gap:8px;padding:0 8px}
+.auto-dots{display:flex;gap:5px}
+.auto-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
+.auto-dot.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.auto-btn{padding:5px 12px;border:1px solid var(--border);background:transparent;color:rgba(224,240,255,.5);font-size:12px;font-family:var(--mono);cursor:pointer;border-radius:5px;transition:all .2s}
+.auto-btn:hover{background:var(--cyan4);color:var(--cyan);border-color:var(--border)}
+
+/* VIEWS */
+.view-pane{display:none;flex:1;padding:20px 24px;gap:16px;overflow:hidden}
+.view-pane.active{display:grid}
+
+/* VIEW 1: Resumen Operativo — 4 big KPIs + chart area + table */
+#view-0{grid-template-columns:repeat(4,1fr);grid-template-rows:auto 1fr;align-content:start;gap:16px}
+.kpi-big{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:14px;padding:22px 24px;position:relative;overflow:hidden;text-align:center}
+.kpi-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
+.kpi-big.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.kpi-big.green::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.kpi-big.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
+.kpi-big.red::before{background:linear-gradient(90deg,transparent,var(--red2),transparent)}
+.kpi-big-lbl{font-size:13px;color:rgba(224,240,255,.45);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
+.kpi-big-val{font-family:var(--display);font-size:56px;font-weight:700;line-height:1;text-shadow:0 0 24px}
+.kpi-big-val.cyan{color:var(--cyan);text-shadow:0 0 24px rgba(0,229,255,.4)}
+.kpi-big-val.green{color:var(--green);text-shadow:0 0 24px rgba(0,255,170,.4)}
+.kpi-big-val.amber{color:var(--amber);text-shadow:0 0 24px rgba(255,179,0,.4)}
+.kpi-big-val.red{color:var(--red2);text-shadow:0 0 24px rgba(255,59,59,.4)}
+.kpi-big-sub{font-size:14px;color:rgba(224,240,255,.35);margin-top:6px;font-family:var(--mono)}
+.kpi-big-delta{font-size:13px;margin-top:4px;font-weight:600}
+.kpi-big-delta.up{color:var(--green)}
+.kpi-big-delta.dn{color:var(--red2)}
+.kpi-big-delta.nt{color:rgba(224,240,255,.35)}
+
+.v1-bottom{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.panel-block{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px}
+.panel-title{font-family:var(--display);font-size:15px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.mini-kpi-list{display:flex;flex-direction:column;gap:10px}
+.mk-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border3)}
+.mk-row:last-child{border-bottom:none}
+.mk-lbl{font-size:13px;color:rgba(224,240,255,.5);font-family:var(--mono)}
+.mk-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
+.mk-val.green{color:var(--green)}
+.mk-val.amber{color:var(--amber)}
+.mk-val.red{color:var(--red2)}
+.bar-list{display:flex;flex-direction:column;gap:10px}
+.bar-item{display:flex;align-items:center;gap:10px}
+.bar-lbl{font-size:12px;color:rgba(224,240,255,.5);font-family:var(--mono);width:100px;flex-shrink:0}
+.bar-track{flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+.bar-val-txt{font-family:var(--display);font-size:16px;font-weight:700;width:50px;text-align:right}
+.line-chart{width:100%;height:70px;overflow:hidden;position:relative}
+.line-chart svg{width:100%;height:100%}
+
+/* VIEW 2: Calidad y Trazabilidad */
+#view-1{grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto 1fr;align-content:start;gap:16px}
+.v2-top{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kpi-mid{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-align:center;position:relative;overflow:hidden}
+.kpi-mid::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
+.kpi-mid.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.kpi-mid.green::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.kpi-mid.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
+.kpi-mid-lbl{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:6px;font-weight:600}
+.kpi-mid-val{font-family:var(--display);font-size:44px;font-weight:700;line-height:1}
+.kpi-mid-val.cyan{color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.4)}
+.kpi-mid-val.green{color:var(--green);text-shadow:0 0 20px rgba(0,255,170,.4)}
+.kpi-mid-val.amber{color:var(--amber);text-shadow:0 0 20px rgba(255,179,0,.4)}
+.kpi-mid-sub{font-size:13px;color:rgba(224,240,255,.35);margin-top:5px;font-family:var(--mono)}
+
+/* VIEW 3: ROI y Digitalización */
+#view-2{grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr;align-content:start;gap:16px}
+.v3-kpi-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.v3-bottom{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.roi-card{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;position:relative;overflow:hidden}
+.roi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
+.roi-card.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.roi-card.green::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.roi-card.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
+.roi-label{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
+.roi-val{font-family:var(--display);font-size:48px;font-weight:700;line-height:1}
+.roi-val.cyan{color:var(--cyan);text-shadow:0 0 22px rgba(0,229,255,.4)}
+.roi-val.green{color:var(--green);text-shadow:0 0 22px rgba(0,255,170,.4)}
+.roi-val.amber{color:var(--amber);text-shadow:0 0 22px rgba(255,179,0,.4)}
+.roi-sub{font-size:13px;color:rgba(224,240,255,.35);margin-top:6px;font-family:var(--mono)}
+.maturity-stack{display:flex;flex-direction:column;gap:8px}
+.mat-row{display:flex;align-items:center;gap:10px}
+.mat-lbl{font-size:13px;color:rgba(224,240,255,.5);font-family:var(--mono);width:110px;flex-shrink:0}
+.mat-track{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.mat-fill{height:100%;border-radius:4px;transition:width 1s ease}
+.mat-pct{font-family:var(--display);font-size:16px;font-weight:700;width:46px;text-align:right}
+.benefit-list{display:flex;flex-direction:column;gap:10px}
+.ben-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(3,7,18,.6);border:1px solid var(--border3);border-radius:8px}
+.ben-icon{font-size:20px;flex-shrink:0}
+.ben-name{font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
+.ben-val{font-family:var(--mono);font-size:13px;color:var(--green);margin-top:1px}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">N</div>
+    <span class="tb-name">NCTECH</span>
+  </div>
+  <span class="tb-exp">10 / Dashboard Ejecutivo</span>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val">84.2%</span>
+    <span class="tb-kpi-lbl">OEE</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green">99.1%</span>
+    <span class="tb-kpi-lbl">Calidad</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val amber">14 min</span>
+    <span class="tb-kpi-lbl">Resp. Mant.</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-live">AUTO</div>
+  <span class="tb-time" id="tb-clock">--:--:--</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- VIEW NAV -->
+  <div class="view-nav">
+    <button class="view-btn active" onclick="showView(0,this)">Resumen Operativo</button>
+    <button class="view-btn" onclick="showView(1,this)">Calidad y Trazabilidad</button>
+    <button class="view-btn" onclick="showView(2,this)">ROI y Digitalización</button>
+    <div class="auto-indicator">
+      <div class="auto-dots">
+        <div class="auto-dot active" id="ad0"></div>
+        <div class="auto-dot" id="ad1"></div>
+        <div class="auto-dot" id="ad2"></div>
+      </div>
+      <button class="auto-btn" id="auto-btn" onclick="toggleAuto()">⏸ Pausar</button>
+    </div>
+  </div>
+
+  <!-- VIEW 0: Resumen Operativo -->
+  <div class="view-pane active" id="view-0">
+    <div class="kpi-big cyan">
+      <div class="kpi-big-lbl">OEE Global</div>
+      <div class="kpi-big-val cyan">84.2%</div>
+      <div class="kpi-big-sub">Meta: 80%</div>
+      <div class="kpi-big-delta up">▲ +4.2pp sobre meta</div>
+    </div>
+    <div class="kpi-big green">
+      <div class="kpi-big-lbl">Unidades / turno</div>
+      <div class="kpi-big-val green" id="v1-units">2,847</div>
+      <div class="kpi-big-sub">Meta: 2,700</div>
+      <div class="kpi-big-delta up">▲ +147 uds</div>
+    </div>
+    <div class="kpi-big amber">
+      <div class="kpi-big-lbl">Disponibilidad</div>
+      <div class="kpi-big-val amber">91.2%</div>
+      <div class="kpi-big-sub">5 líneas activas</div>
+      <div class="kpi-big-delta nt">↔ estable</div>
+    </div>
+    <div class="kpi-big red">
+      <div class="kpi-big-lbl">Resp. Mantenimiento</div>
+      <div class="kpi-big-val red">14 min</div>
+      <div class="kpi-big-sub">MTTR promedio</div>
+      <div class="kpi-big-delta up">▲ -6 min vs mes ant.</div>
+    </div>
+    <div class="v1-bottom">
+      <div class="panel-block">
+        <div class="panel-title">KPIs por línea</div>
+        <div class="mini-kpi-list">
+          <div class="mk-row"><span class="mk-lbl">Línea A — OEE</span><span class="mk-val">88.4%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea B — OEE</span><span class="mk-val green">91.2%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea C — OEE</span><span class="mk-val amber">74.1%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea D — OEE</span><span class="mk-val">82.3%</span></div>
+        </div>
+      </div>
+      <div class="panel-block">
+        <div class="panel-title">Desempeño OEE</div>
+        <div class="bar-list">
+          <div class="bar-item">
+            <span class="bar-lbl">Disponibilidad</span>
+            <div class="bar-track"><div class="bar-fill" style="width:91.2%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+            <span class="bar-val-txt" style="color:var(--green)">91.2%</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-lbl">Rendimiento</span>
+            <div class="bar-track"><div class="bar-fill" style="width:85.7%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="bar-val-txt" style="color:var(--cyan)">85.7%</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-lbl">Calidad</span>
+            <div class="bar-track"><div class="bar-fill" style="width:99.1%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+            <span class="bar-val-txt" style="color:var(--green)">99.1%</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-lbl">OEE</span>
+            <div class="bar-track"><div class="bar-fill" style="width:84.2%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="bar-val-txt" style="color:var(--cyan)">84.2%</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-block">
+        <div class="panel-title">Alertas del día</div>
+        <div class="mini-kpi-list">
+          <div class="mk-row"><span class="mk-lbl">Paros no planeados</span><span class="mk-val amber">3</span></div>
+          <div class="mk-row"><span class="mk-lbl">Alertas críticas</span><span class="mk-val red">1</span></div>
+          <div class="mk-row"><span class="mk-lbl">Órdenes completadas</span><span class="mk-val green">14</span></div>
+          <div class="mk-row"><span class="mk-lbl">En proceso</span><span class="mk-val">2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 1: Calidad y Trazabilidad -->
+  <div class="view-pane" id="view-1">
+    <div class="v2-top">
+      <div class="kpi-mid cyan">
+        <div class="kpi-mid-lbl">Piezas inspeccionadas</div>
+        <div class="kpi-mid-val cyan">2,481</div>
+        <div class="kpi-mid-sub">Turno actual</div>
+      </div>
+      <div class="kpi-mid green">
+        <div class="kpi-mid-lbl">Índice de calidad</div>
+        <div class="kpi-mid-val green">99.1%</div>
+        <div class="kpi-mid-sub">Meta: 97%</div>
+      </div>
+      <div class="kpi-mid amber">
+        <div class="kpi-mid-lbl">Defectos detectados</div>
+        <div class="kpi-mid-val amber">7</div>
+        <div class="kpi-mid-sub">Todos interceptados en línea</div>
+      </div>
+    </div>
+    <div class="panel-block">
+      <div class="panel-title">Cobertura por etapa</div>
+      <div class="bar-list">
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Recepción MP</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+          <span class="bar-val-txt" style="color:var(--green)">100%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">En proceso</span>
+          <div class="bar-track"><div class="bar-fill" style="width:98.4%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val-txt" style="color:var(--cyan)">98.4%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Producto final</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+          <span class="bar-val-txt" style="color:var(--green)">100%</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Trazabilidad</span>
+          <div class="bar-track"><div class="bar-fill" style="width:99.5%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val-txt" style="color:var(--cyan)">99.5%</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-block">
+      <div class="panel-title">Defectos por tipo</div>
+      <div class="bar-list">
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Dimensión</span>
+          <div class="bar-track"><div class="bar-fill" style="width:57%;background:linear-gradient(90deg,rgba(255,59,59,.4),var(--red))"></div></div>
+          <span class="bar-val-txt" style="color:var(--red2)">4 uds</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Superficie</span>
+          <div class="bar-track"><div class="bar-fill" style="width:29%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+          <span class="bar-val-txt" style="color:var(--amber)">2 uds</span>
+        </div>
+        <div class="bar-item">
+          <span class="bar-lbl" style="width:130px">Conector</span>
+          <div class="bar-track"><div class="bar-fill" style="width:14%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val-txt" style="color:var(--cyan)">1 ud</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-block">
+      <div class="panel-title">Últimas 5 alertas</div>
+      <div class="mini-kpi-list">
+        <div class="mk-row"><span class="mk-lbl">MX-24-0042 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
+        <div class="mk-row"><span class="mk-lbl">MX-24-0038 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
+        <div class="mk-row"><span class="mk-lbl">MX-24-0031 — Revisión</span><span class="mk-val amber" style="font-size:14px">⚠ Conn</span></div>
+        <div class="mk-row"><span class="mk-lbl">MX-24-0027 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
+        <div class="mk-row"><span class="mk-lbl">MX-24-0021 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 2: ROI y Digitalización -->
+  <div class="view-pane" id="view-2">
+    <div class="v3-kpi-row">
+      <div class="roi-card cyan">
+        <div class="roi-label">ROI proyectado</div>
+        <div class="roi-val cyan">340%</div>
+        <div class="roi-sub">en 24 meses</div>
+      </div>
+      <div class="roi-card green">
+        <div class="roi-label">Ahorro anual</div>
+        <div class="roi-val green">$2.4M</div>
+        <div class="roi-sub">Eficiencia operativa</div>
+      </div>
+      <div class="roi-card amber">
+        <div class="roi-label">Payback</div>
+        <div class="roi-val amber">8 meses</div>
+        <div class="roi-sub">Tiempo de retorno</div>
+      </div>
+    </div>
+    <div class="v3-bottom">
+      <div class="panel-block">
+        <div class="panel-title">Madurez Digital</div>
+        <div class="maturity-stack">
+          <div class="mat-row">
+            <span class="mat-lbl">Conectividad</span>
+            <div class="mat-track"><div class="mat-fill" style="width:90%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="mat-pct" style="color:var(--cyan)">90%</span>
+          </div>
+          <div class="mat-row">
+            <span class="mat-lbl">Visibilidad</span>
+            <div class="mat-track"><div class="mat-fill" style="width:85%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="mat-pct" style="color:var(--cyan)">85%</span>
+          </div>
+          <div class="mat-row">
+            <span class="mat-lbl">Integración</span>
+            <div class="mat-track"><div class="mat-fill" style="width:70%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+            <span class="mat-pct" style="color:var(--green)">70%</span>
+          </div>
+          <div class="mat-row">
+            <span class="mat-lbl">Predicción</span>
+            <div class="mat-track"><div class="mat-fill" style="width:55%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+            <span class="mat-pct" style="color:var(--amber)">55%</span>
+          </div>
+          <div class="mat-row">
+            <span class="mat-lbl">Autonomía</span>
+            <div class="mat-track"><div class="mat-fill" style="width:30%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+            <span class="mat-pct" style="color:var(--amber)">30%</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-block">
+        <div class="panel-title">Beneficios clave</div>
+        <div class="benefit-list">
+          <div class="ben-item">
+            <span class="ben-icon">⚡</span>
+            <div>
+              <div class="ben-name">Reducción de paros</div>
+              <div class="ben-val">↓ 45% fallas no planeadas</div>
+            </div>
+          </div>
+          <div class="ben-item">
+            <span class="ben-icon">🎯</span>
+            <div>
+              <div class="ben-name">Calidad mejorada</div>
+              <div class="ben-val">↑ +4.2pp índice de calidad</div>
+            </div>
+          </div>
+          <div class="ben-item">
+            <span class="ben-icon">🔄</span>
+            <div>
+              <div class="ben-name">Ciclos más rápidos</div>
+              <div class="ben-val">↓ 18% tiempo de ciclo</div>
+            </div>
+          </div>
+          <div class="ben-item">
+            <span class="ben-icon">👁️</span>
+            <div>
+              <div class="ben-name">Trazabilidad 100%</div>
+              <div class="ben-val">Auditorías en < 30 seg</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-block">
+        <div class="panel-title">vs. Antes de NCTECH</div>
+        <div class="mini-kpi-list">
+          <div class="mk-row"><span class="mk-lbl">OEE anterior</span><span class="mk-val amber">62%</span></div>
+          <div class="mk-row"><span class="mk-lbl">OEE actual</span><span class="mk-val green">84.2%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Paros/mes antes</span><span class="mk-val red">28</span></div>
+          <div class="mk-row"><span class="mk-lbl">Paros/mes ahora</span><span class="mk-val green">7</span></div>
+          <div class="mk-row"><span class="mk-lbl">MTTR antes</span><span class="mk-val amber">4.2 h</span></div>
+          <div class="mk-row"><span class="mk-lbl">MTTR ahora</span><span class="mk-val green">14 min</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Clock
+function updateClock(){
+  document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+}
+updateClock();setInterval(updateClock,1000);
+
+// View rotation
+let curView=0,autoPlay=true,autoTimer;
+const totalViews=3;
+const btns=document.querySelectorAll('.view-btn');
+const panes=document.querySelectorAll('.view-pane');
+
+function showView(i,btn){
+  curView=i;
+  panes.forEach(p=>p.classList.remove('active'));
+  btns.forEach(b=>b.classList.remove('active'));
+  panes[i].classList.add('active');
+  if(btn)btn.classList.add('active'); else btns[i].classList.add('active');
+  for(let d=0;d<3;d++){
+    const dot=document.getElementById('ad'+d);
+    dot.classList.toggle('active',d===i);
+  }
+}
+
+function advance(){
+  showView((curView+1)%totalViews,null);
+}
+
+function toggleAuto(){
+  autoPlay=!autoPlay;
+  const btn=document.getElementById('auto-btn');
+  if(autoPlay){
+    btn.textContent='⏸ Pausar';
+    autoTimer=setInterval(advance,6000);
+  } else {
+    btn.textContent='▶ Auto';
+    clearInterval(autoTimer);
+  }
+}
+autoTimer=setInterval(advance,6000);
+
+// Unit counter animation
+let units=2847;
+setInterval(()=>{
+  units+=Math.floor(Math.random()*3);
+  document.getElementById('v1-units').textContent=units.toLocaleString('es-MX');
+},3500);
+</script>
+</body>
+</html>

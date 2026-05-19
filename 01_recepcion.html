@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Recepción — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44','neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa','neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'}}}}
+</script>
+<style>
+body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
+.glow-green{text-shadow:0 0 10px rgba(0,255,170,.7)}
+.glow-blue{text-shadow:0 0 10px rgba(30,144,255,.7)}
+.glow-cyan{text-shadow:0 0 10px rgba(0,240,255,.7)}
+.glow-red{text-shadow:0 0 10px rgba(255,59,59,.7)}
+.box-glow-blue{box-shadow:0 0 20px rgba(30,144,255,.4)}
+.box-glow-red{box-shadow:0 0 15px rgba(255,59,59,.3)}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
+</style>
+</head>
+<body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
+
+<!-- HEADER -->
+<header class="flex justify-between items-end shrink-0">
+  <div class="flex flex-col gap-1">
+    <h2 class="text-[#4e6b99] text-[12px] font-bold tracking-[0.3em] uppercase">NCTECH · Showroom 2026 · Estación 01</h2>
+    <h1 class="text-white text-5xl font-extrabold tracking-tight">Recepción</h1>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
+      <span class="material-symbols-outlined text-neon-blue text-[20px]">location_on</span>
+      <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Showroom NCTECH</span>
+    </div>
+    <div class="flex flex-col items-end gap-1">
+      <div class="flex items-center gap-2">
+        <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_8px_#00ffaa] animate-pulse"></div>
+        <span class="text-[11px] font-bold tracking-widest uppercase text-text-muted">Agente Activo</span>
+      </div>
+      <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<!-- KPI CARDS -->
+<section class="grid grid-cols-5 gap-4 shrink-0">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Visitantes hoy</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">group</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-white" id="k-vis">47</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Completados</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
+    </div>
+    <div>
+      <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green" id="k-comp">32</div>
+    </div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">En espera</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-cyan">schedule</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan" id="k-esp">3</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">T. atención</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">timer</span>
+    </div>
+    <div class="flex flex-col">
+      <div class="text-[56px] font-extrabold leading-none text-white">4.2<span class="text-[22px] font-semibold text-text-muted"> min</span></div>
+    </div>
+  </div>
+  <div class="bg-card-bg border border-l-2 border-neon-green border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center">
+      <span class="text-[12px] font-bold tracking-wider uppercase text-neon-green">Satisfacción</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">star</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green">4.8<span class="text-[22px] font-semibold"> ★</span></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<section class="flex-1 grid grid-cols-12 gap-4 min-h-0">
+
+  <!-- LEFT: Chat Agent -->
+  <div class="col-span-4 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-blue text-[22px]">psychology</span>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Agente Conversacional</h3>
+      <div class="ml-auto flex items-center gap-1.5">
+        <div class="w-2 h-2 rounded-full bg-neon-blue animate-pulse"></div>
+        <span class="text-[10px] font-bold text-neon-blue tracking-widest uppercase">En vivo</span>
+      </div>
+    </div>
+    <div class="flex-1 p-5 flex flex-col gap-3 overflow-y-auto" id="chat-box">
+      <div class="flex gap-3 items-start">
+        <div class="w-9 h-9 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-neon-blue text-[18px]">smart_toy</span>
+        </div>
+        <div class="bg-[#121827] border border-card-border rounded-lg rounded-tl-none p-3 max-w-[85%]">
+          <p class="text-[14px] text-text-muted leading-relaxed">¡Bienvenido a NCTECH! Soy tu guía para el Showroom 2026. ¿Cómo puedo ayudarte hoy?</p>
+        </div>
+      </div>
+      <div class="flex gap-3 items-start flex-row-reverse">
+        <div class="w-9 h-9 rounded-full bg-card-border flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-text-muted text-[18px]">person</span>
+        </div>
+        <div class="bg-neon-blue/10 border border-neon-blue/30 rounded-lg rounded-tr-none p-3 max-w-[85%]">
+          <p class="text-[14px] text-white leading-relaxed">¿Qué experiencias tiene el showroom?</p>
+        </div>
+      </div>
+      <div class="flex gap-3 items-start">
+        <div class="w-9 h-9 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-neon-blue text-[18px]">smart_toy</span>
+        </div>
+        <div class="bg-[#121827] border border-card-border rounded-lg rounded-tl-none p-3 max-w-[85%]">
+          <p class="text-[14px] text-text-muted leading-relaxed">Tenemos <span class="text-neon-green font-bold glow-green">10 estaciones</span>: Digital Factory, InstantMES, Trazabilidad, Producción, Calidad, Mantenimiento, Ecosistema, Edge IoT y Dashboard Ejecutivo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="p-4 border-t border-card-border shrink-0">
+      <div class="flex gap-2">
+        <input id="chat-in" type="text" placeholder="Escribe tu pregunta..." class="flex-1 bg-[#121827] border border-card-border rounded-lg px-4 py-2.5 text-[14px] text-white placeholder-text-muted focus:outline-none focus:border-neon-blue/50 transition-colors"/>
+        <button onclick="sendMsg()" class="w-11 h-11 bg-neon-blue rounded-lg flex items-center justify-center box-glow-blue hover:brightness-110 transition-all">
+          <span class="material-symbols-outlined text-white text-[20px]">send</span>
+        </button>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <button onclick="quickMsg('¿Qué es deviceWISE?')" class="text-[11px] border border-card-border bg-[#121827] text-neon-blue px-3 py-1 rounded-full hover:bg-neon-blue/10 transition-colors">deviceWISE</button>
+        <button onclick="quickMsg('¿Cuál es el ROI?')" class="text-[11px] border border-card-border bg-[#121827] text-neon-blue px-3 py-1 rounded-full hover:bg-neon-blue/10 transition-colors">ROI</button>
+        <button onclick="quickMsg('Quiero registrarme')" class="text-[11px] border border-card-border bg-[#121827] text-neon-blue px-3 py-1 rounded-full hover:bg-neon-blue/10 transition-colors">Registrarse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER: QR + Mapa -->
+  <div class="col-span-4 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border shrink-0">
+      <h3 class="font-bold text-[14px] tracking-widest uppercase">Acceso al Showroom</h3>
+    </div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-6 p-6">
+      <!-- QR simulation -->
+      <div class="relative">
+        <div class="w-48 h-48 bg-white rounded-xl flex items-center justify-center p-3 shadow-[0_0_30px_rgba(30,144,255,.2)]">
+          <canvas id="qr-canvas" width="172" height="172"></canvas>
+        </div>
+        <div class="absolute -top-2 -right-2 w-8 h-8 bg-neon-blue rounded-full flex items-center justify-center box-glow-blue">
+          <span class="material-symbols-outlined text-white text-[16px]">qr_code_scanner</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <p class="text-[13px] text-text-muted tracking-wider uppercase font-bold mb-1">Escanea para registrarte</p>
+        <p class="text-[12px] text-[#4e6b99]">showroom.nctech.mx/registro</p>
+      </div>
+      <div class="w-full border-t border-card-border pt-5">
+        <p class="text-[12px] font-bold tracking-widest uppercase text-text-muted mb-3">Recorrido sugerido</p>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="flex items-center gap-2 bg-[#121827] border border-card-border rounded-lg px-3 py-2">
+            <span class="text-neon-blue font-bold text-[12px] font-mono">01</span>
+            <span class="text-[13px] text-text-muted">Digital Factory</span>
+          </div>
+          <div class="flex items-center gap-2 bg-[#121827] border border-card-border rounded-lg px-3 py-2">
+            <span class="text-neon-blue font-bold text-[12px] font-mono">02</span>
+            <span class="text-[13px] text-text-muted">InstantMES</span>
+          </div>
+          <div class="flex items-center gap-2 bg-[#121827] border border-card-border rounded-lg px-3 py-2">
+            <span class="text-neon-blue font-bold text-[12px] font-mono">03</span>
+            <span class="text-[13px] text-text-muted">Trazabilidad</span>
+          </div>
+          <div class="flex items-center gap-2 bg-[#121827] border border-card-border rounded-lg px-3 py-2">
+            <span class="text-neon-blue font-bold text-[12px] font-mono">04</span>
+            <span class="text-[13px] text-text-muted">Edge IoT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Visitantes -->
+  <div class="col-span-4 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-green text-[22px]">assignment_ind</span>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase">Registro del Día</h3>
+    </div>
+    <div class="flex-1 overflow-y-auto p-4">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-card-border">
+            <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Visitante</th>
+            <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Empresa</th>
+            <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Hora</th>
+            <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Estado</th>
+          </tr>
+        </thead>
+        <tbody id="visitor-table">
+          <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-3 text-[14px] font-semibold text-white">Carlos Méndez</td>
+            <td class="py-3 px-3 text-[13px] text-text-muted">Automotive MX</td>
+            <td class="py-3 px-3 text-[13px] font-mono text-neon-blue">09:15</td>
+            <td class="py-3 px-3"><span class="text-[11px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">Completado</span></td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-3 text-[14px] font-semibold text-white">Ana Reyes</td>
+            <td class="py-3 px-3 text-[13px] text-text-muted">CEMEX</td>
+            <td class="py-3 px-3 text-[13px] font-mono text-neon-blue">10:02</td>
+            <td class="py-3 px-3"><span class="text-[11px] font-bold bg-neon-blue/10 text-neon-blue border border-neon-blue/30 px-2 py-0.5 rounded uppercase">En tour</span></td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-3 text-[14px] font-semibold text-white">Luis Torres</td>
+            <td class="py-3 px-3 text-[13px] text-text-muted">GRUMA</td>
+            <td class="py-3 px-3 text-[13px] font-mono text-neon-blue">10:18</td>
+            <td class="py-3 px-3"><span class="text-[11px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 px-2 py-0.5 rounded uppercase">Recepción</span></td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-3 text-[14px] font-semibold text-white">María García</td>
+            <td class="py-3 px-3 text-[13px] text-text-muted">PEMEX</td>
+            <td class="py-3 px-3 text-[13px] font-mono text-neon-blue">10:31</td>
+            <td class="py-3 px-3"><span class="text-[11px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">Completado</span></td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
+            <td class="py-3 px-3 text-[14px] font-semibold text-white">Javier Cruz</td>
+            <td class="py-3 px-3 text-[13px] text-text-muted">Bachoco</td>
+            <td class="py-3 px-3 text-[13px] font-mono text-neon-blue">11:05</td>
+            <td class="py-3 px-3"><span class="text-[11px] font-bold bg-[#1e2b44]/80 text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Espera</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="p-4 border-t border-card-border shrink-0">
+      <button class="w-full bg-neon-blue text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 uppercase tracking-widest text-[13px] box-glow-blue hover:brightness-110 transition-all">
+        <span class="material-symbols-outlined text-[20px]">person_add</span>
+        Nuevo Registro
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<script>
+// Clock
+setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false})},1000);
+document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+
+// QR canvas pattern
+(function(){
+  const c=document.getElementById('qr-canvas'),ctx=c.getContext('2d');
+  const size=172,cells=17,cell=Math.floor(size/cells);
+  ctx.fillStyle='#030712';ctx.fillRect(0,0,size,size);
+  const pat=[[0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,0],[1,6],[2,0],[2,2],[2,3],[2,4],[2,6],[3,0],[3,2],[3,3],[3,4],[3,6],[4,0],[4,2],[4,3],[4,4],[4,6],[5,0],[5,6],[6,0],[6,1],[6,2],[6,3],[6,4],[6,5],[6,6],
+  [10,0],[10,1],[10,2],[10,3],[10,4],[10,5],[10,6],[11,0],[11,6],[12,0],[12,2],[12,3],[12,4],[12,6],[13,0],[13,2],[13,3],[13,4],[13,6],[14,0],[14,2],[14,3],[14,4],[14,6],[15,0],[15,6],[16,0],[16,1],[16,2],[16,3],[16,4],[16,5],[16,6],
+  [0,10],[0,11],[0,12],[0,13],[0,14],[0,15],[0,16],[1,10],[1,16],[2,10],[2,12],[2,13],[2,14],[2,16],[3,10],[3,12],[3,13],[3,14],[3,16],[4,10],[4,12],[4,13],[4,14],[4,16],[5,10],[5,16],[6,10],[6,11],[6,12],[6,13],[6,14],[6,15],[6,16]];
+  // fill random data modules
+  ctx.fillStyle='#030712';ctx.fillRect(0,0,size,size);
+  ctx.fillStyle='#1a2540';
+  for(let r=0;r<cells;r++)for(let co=0;co<cells;co++){if(Math.random()>.5)ctx.fillRect(co*cell+1,r*cell+1,cell-2,cell-2);}
+  ctx.fillStyle='#030712';
+  // draw finders
+  pat.forEach(([r,co])=>{ctx.fillStyle='#1a2540';ctx.fillRect(co*cell+1,r*cell+1,cell-2,cell-2)});
+  // draw actual finder squares
+  [[0,0],[0,10],[10,0]].forEach(([r,co])=>{
+    ctx.strokeStyle='#1e90ff';ctx.lineWidth=1.5;ctx.strokeRect(co*cell+1,r*cell+1,7*cell-2,7*cell-2);
+    ctx.fillStyle='#1e90ff';ctx.fillRect(co*cell+cell*2,r*cell+cell*2,cell*3,cell*3);
+  });
+})();
+
+// Chat
+const replies={
+  'devicewise':['deviceWISE EDGE es la plataforma de integración IIoT de NCTECH, capaz de conectar más de 200 tipos de PLCs y dispositivos industriales sin necesidad de middleware adicional.'],
+  'roi':['Los clientes de NCTECH reportan un ROI promedio del 340% en 24 meses, con reducción del 45% en paros no planeados y mejoras de +4pp en calidad.'],
+  'registrarme':['¡Perfecto! Por favor comparte tu nombre y empresa. También puedes escanear el código QR para registro automático.'],
+  'default':['Gracias por tu pregunta. Nuestro equipo puede brindarte más información. ¿Te gustaría agendar una demo personalizada?']
+};
+function sendMsg(){
+  const inp=document.getElementById('chat-in');
+  const txt=inp.value.trim();if(!txt)return;
+  addMsg(txt,'user');inp.value='';
+  setTimeout(()=>{
+    const k=Object.keys(replies).find(k=>txt.toLowerCase().includes(k))||'default';
+    addMsg(replies[k][0],'bot');
+  },800);
+}
+function quickMsg(t){document.getElementById('chat-in').value=t;sendMsg();}
+function addMsg(txt,role){
+  const box=document.getElementById('chat-box');
+  const isBot=role==='bot';
+  const div=document.createElement('div');
+  div.className='flex gap-3 items-start'+(isBot?'':' flex-row-reverse');
+  div.innerHTML=`
+    <div class="w-9 h-9 rounded-full ${isBot?'bg-neon-blue/20 border border-neon-blue/40':'bg-card-border'} flex items-center justify-center shrink-0">
+      <span class="material-symbols-outlined text-${isBot?'neon-blue':'text-muted'} text-[18px]">${isBot?'smart_toy':'person'}</span>
+    </div>
+    <div class="${isBot?'bg-[#121827] border border-card-border rounded-lg rounded-tl-none':'bg-neon-blue/10 border border-neon-blue/30 rounded-lg rounded-tr-none'} p-3 max-w-[85%]">
+      <p class="text-[14px] ${isBot?'text-text-muted':'text-white'} leading-relaxed">${txt}</p>
+    </div>`;
+  box.appendChild(div);box.scrollTop=box.scrollHeight;
+}
+document.getElementById('chat-in').addEventListener('keydown',e=>{if(e.key==='Enter')sendMsg();});
+</script>
+</body>
+</html>

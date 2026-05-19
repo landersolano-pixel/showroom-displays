@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Edge IoT Gateway — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF3B3B;--red2:#FF6E75;--red3:rgba(255,59,59,.12);
+  --purple:#7C4DFF;--purple3:rgba(124,77,255,.12);
+  --border:rgba(0,229,255,.14);--border3:rgba(0,229,255,.07);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{
+  background-color:var(--navy);
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-brand{display:flex;align-items:center;gap:12px;margin-right:8px}
+.tb-logo{width:34px;height:34px;background:var(--cyan);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:17px;color:#030712}
+.tb-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:.5px}
+.tb-exp{font-size:14px;color:rgba(0,229,255,.65);background:var(--cyan4);border:1px solid var(--border);padding:3px 14px;border-radius:20px;font-family:var(--mono)}
+.tb-sep{width:1px;height:36px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:90px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,229,255,.5)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 14px rgba(0,255,170,.5)}
+.tb-kpi-val.amber{color:var(--amber);text-shadow:0 0 14px rgba(255,179,0,.5)}
+.tb-kpi-lbl{font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
+.tb-time{margin-left:auto;font-family:var(--mono);font-size:15px;color:rgba(0,229,255,.75);letter-spacing:1px}
+.tb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* LAYOUT */
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 400px;z-index:1;overflow:hidden}
+.left-col{display:flex;flex-direction:column;padding:24px 18px 24px 24px;gap:18px;overflow:hidden}
+.right-col{border-left:1px solid var(--border);background:rgba(6,14,26,.6);display:flex;flex-direction:column;padding:24px 24px 24px 18px;gap:16px;overflow-y:auto}
+
+/* METRICS */
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mc{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
+.mc.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.mc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc-lbl{font-size:13px;color:rgba(224,240,255,.45);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
+.mc-val{font-family:var(--display);font-size:48px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 20px rgba(0,229,255,.35)}
+.mc-val.green{color:var(--green);text-shadow:0 0 20px rgba(0,255,170,.35)}
+.mc-val.amber{color:var(--amber);text-shadow:0 0 20px rgba(255,179,0,.35)}
+.mc-sub{font-size:14px;color:rgba(224,240,255,.4);margin-top:6px;font-family:var(--mono)}
+
+/* PROTOCOL GRID */
+.proto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.proto-card{background:rgba(8,17,32,.9);border:1px solid var(--border3);border-radius:12px;padding:16px 18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.proto-card::after{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .25s}
+.proto-card:hover{border-color:var(--border);transform:translateY(-2px)}
+.proto-card.active{border-color:rgba(0,229,255,.35);box-shadow:0 0 20px rgba(0,229,255,.1);background:var(--cyan4)}
+.proto-icon{font-size:26px;margin-bottom:10px}
+.proto-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;margin-bottom:4px}
+.proto-desc{font-size:13px;color:rgba(224,240,255,.45);font-family:var(--mono);line-height:1.5}
+.proto-badge{margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-family:var(--mono)}
+.proto-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.5s infinite}
+.proto-badge-txt{color:var(--green)}
+
+/* ARCH STACK */
+.section-title{font-family:var(--display);font-size:16px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.arch-stack{display:flex;flex-direction:column;gap:8px}
+.arch-layer{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:10px;border:1px solid transparent}
+.arch-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.arch-name{font-family:var(--display);font-size:18px;font-weight:700;color:#fff}
+.arch-desc{font-size:12px;color:rgba(224,240,255,.4);font-family:var(--mono);margin-top:2px}
+.arch-badge{font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:5px;margin-left:auto}
+
+/* PANEL BLOCKS */
+.panel-block{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px}
+.panel-title{font-family:var(--display);font-size:16px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+
+/* FEATURES */
+.feature-list{display:flex;flex-direction:column;gap:10px}
+.feat-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:rgba(3,7,18,.6);border:1px solid var(--border3);border-radius:8px}
+.feat-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.feat-name{font-family:var(--display);font-size:16px;font-weight:700;color:#fff;margin-bottom:2px}
+.feat-desc{font-size:12px;color:rgba(224,240,255,.45);font-family:var(--mono);line-height:1.5}
+
+/* LIVE METRICS */
+.live-metrics{display:flex;flex-direction:column;gap:10px}
+.lm-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border3)}
+.lm-row:last-child{border-bottom:none}
+.lm-lbl{font-size:13px;color:rgba(224,240,255,.5);font-family:var(--mono)}
+.lm-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
+.lm-val.green{color:var(--green)}
+.lm-val.amber{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">N</div>
+    <span class="tb-name">NCTECH</span>
+  </div>
+  <span class="tb-exp">09 / Edge IoT Gateway</span>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val">47</span>
+    <span class="tb-kpi-lbl">Dispositivos</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green">8</span>
+    <span class="tb-kpi-lbl">Protocolos</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val amber">12 ms</span>
+    <span class="tb-kpi-lbl">Latencia</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-live">LIVE</div>
+  <span class="tb-time" id="tb-clock">--:--:--</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <!-- LEFT -->
+  <div class="left-col">
+    <!-- METRICS -->
+    <div class="metrics-row">
+      <div class="mc cyan">
+        <div class="mc-lbl">Dispositivos conectados</div>
+        <div class="mc-val" id="mc-dev">47</div>
+        <div class="mc-sub">Activos en tiempo real</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-lbl">Protocolos activos</div>
+        <div class="mc-val green">8</div>
+        <div class="mc-sub">de 12 disponibles</div>
+      </div>
+      <div class="mc amber">
+        <div class="mc-lbl">Latencia promedio</div>
+        <div class="mc-val amber" id="mc-lat">12 ms</div>
+        <div class="mc-sub">Ciclo de polling</div>
+      </div>
+    </div>
+
+    <!-- PROTOCOLS -->
+    <div class="section-title">Protocolos industriales soportados</div>
+    <div class="proto-grid">
+      <div class="proto-card active" onclick="selProto(this)">
+        <div class="proto-icon">🔗</div>
+        <div class="proto-name">OPC-UA</div>
+        <div class="proto-desc">Estándar industrial IIoT · seguridad integrada</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">23 dispositivos</span></div>
+      </div>
+      <div class="proto-card" onclick="selProto(this)">
+        <div class="proto-icon">🔌</div>
+        <div class="proto-name">Modbus</div>
+        <div class="proto-desc">RTU / TCP · PLCs legacy y sensores</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">8 dispositivos</span></div>
+      </div>
+      <div class="proto-card" onclick="selProto(this)">
+        <div class="proto-icon">📡</div>
+        <div class="proto-name">MQTT</div>
+        <div class="proto-desc">Broker IoT · pub/sub · QoS 0-2</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">6 dispositivos</span></div>
+      </div>
+      <div class="proto-card" onclick="selProto(this)">
+        <div class="proto-icon">⚙️</div>
+        <div class="proto-name">EtherNet/IP</div>
+        <div class="proto-desc">Allen-Bradley · Rockwell nativo</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">4 PLCs</span></div>
+      </div>
+      <div class="proto-card" onclick="selProto(this)">
+        <div class="proto-icon">🏭</div>
+        <div class="proto-name">PROFINET</div>
+        <div class="proto-desc">Siemens S7 · IO controlado en RT</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">3 PLCs</span></div>
+      </div>
+      <div class="proto-card" onclick="selProto(this)">
+        <div class="proto-icon">🌐</div>
+        <div class="proto-name">REST / HTTP</div>
+        <div class="proto-desc">APIs web · webhooks · cloud endpoints</div>
+        <div class="proto-badge"><span class="proto-dot"></span><span class="proto-badge-txt">3 servicios</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-col">
+    <!-- ARCH STACK -->
+    <div class="panel-block">
+      <div class="panel-title">Arquitectura EDGE</div>
+      <div class="arch-stack">
+        <div class="arch-layer" style="background:rgba(0,229,255,.05);border-color:rgba(0,229,255,.2)">
+          <div class="arch-icon" style="background:rgba(0,229,255,.15)">☁️</div>
+          <div style="flex:1">
+            <div class="arch-name">Cloud / MES</div>
+            <div class="arch-desc">Datos normalizados hacia arriba</div>
+          </div>
+          <span class="arch-badge" style="background:var(--cyan3);color:var(--cyan);border:1px solid var(--border)">MQTT · REST</span>
+        </div>
+        <div style="text-align:center;font-size:20px;color:rgba(0,229,255,.3);margin:2px 0">↕</div>
+        <div class="arch-layer" style="background:rgba(0,229,255,.08);border-color:rgba(0,229,255,.35);box-shadow:0 0 20px rgba(0,229,255,.08)">
+          <div class="arch-icon" style="background:rgba(0,229,255,.2)">⚡</div>
+          <div style="flex:1">
+            <div class="arch-name" style="color:var(--cyan)">deviceWISE EDGE</div>
+            <div class="arch-desc">Motor de integración · reglas · transformaciones</div>
+          </div>
+          <span class="arch-badge" style="background:var(--cyan3);color:var(--cyan);border:1px solid var(--border)">CORE</span>
+        </div>
+        <div style="text-align:center;font-size:20px;color:rgba(0,229,255,.3);margin:2px 0">↕</div>
+        <div class="arch-layer" style="background:rgba(255,179,0,.05);border-color:rgba(255,179,0,.2)">
+          <div class="arch-icon" style="background:rgba(255,179,0,.15)">🔌</div>
+          <div style="flex:1">
+            <div class="arch-name">Dispositivos de campo</div>
+            <div class="arch-desc">PLCs · Sensores · Robots · HMIs</div>
+          </div>
+          <span class="arch-badge" style="background:var(--amber3);color:var(--amber2);border:1px solid rgba(255,179,0,.2)">47 devs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="panel-block">
+      <div class="panel-title">Capacidades deviceWISE</div>
+      <div class="feature-list">
+        <div class="feat-item">
+          <span class="feat-icon">🔄</span>
+          <div>
+            <div class="feat-name">Traducción de protocolos</div>
+            <div class="feat-desc">Modbus → MQTT → REST en una sola regla, sin código</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">⚡</span>
+          <div>
+            <div class="feat-name">Procesamiento en EDGE</div>
+            <div class="feat-desc">Filtros, agregaciones y alertas sin latencia de red</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">🛡️</span>
+          <div>
+            <div class="feat-name">Seguridad IIoT</div>
+            <div class="feat-desc">TLS 1.3 · Certificados X.509 · Firewalling de OT</div>
+          </div>
+        </div>
+        <div class="feat-item">
+          <span class="feat-icon">📦</span>
+          <div>
+            <div class="feat-name">Almacenamiento local</div>
+            <div class="feat-desc">Store & forward: datos locales si pierde conectividad cloud</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE -->
+    <div class="panel-block">
+      <div class="panel-title">Métricas en vivo</div>
+      <div class="live-metrics">
+        <div class="lm-row">
+          <span class="lm-lbl">Tags/segundo</span>
+          <span class="lm-val" id="lm-tps">1,284</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl">CPU EDGE</span>
+          <span class="lm-val green" id="lm-cpu">34%</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl">RAM usada</span>
+          <span class="lm-val green" id="lm-ram">1.2 GB</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl">Uptime</span>
+          <span class="lm-val">47 días</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl">Mensajes encolados</span>
+          <span class="lm-val amber" id="lm-q">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateClock(){
+  document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+}
+updateClock();setInterval(updateClock,1000);
+
+function selProto(card){
+  document.querySelectorAll('.proto-card').forEach(c=>c.classList.remove('active'));
+  card.classList.add('active');
+}
+
+// Animate live metrics
+let tps=1284;
+setInterval(()=>{
+  tps=1200+Math.floor(Math.random()*200);
+  document.getElementById('lm-tps').textContent=tps.toLocaleString('es-MX');
+  const lat=10+Math.floor(Math.random()*6);
+  document.getElementById('mc-lat').textContent=lat+' ms';
+  document.getElementById('lm-cpu').textContent=(30+Math.floor(Math.random()*15))+'%';
+},3000);
+</script>
+</body>
+</html>
