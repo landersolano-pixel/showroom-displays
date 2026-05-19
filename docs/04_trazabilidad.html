@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estación 04 · Trazabilidad</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{
+  'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44',
+  'neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa',
+  'neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'
+}}}}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
+.glow-green{text-shadow:0 0 10px rgba(0,255,170,.7)}
+.glow-blue{text-shadow:0 0 10px rgba(30,144,255,.7)}
+.glow-cyan{text-shadow:0 0 10px rgba(0,240,255,.7)}
+.glow-red{text-shadow:0 0 10px rgba(255,59,59,.7)}
+.box-glow-blue{box-shadow:0 0 20px rgba(30,144,255,.4)}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.pulse-dot{animation:pulse-dot 2s infinite}
+@keyframes blink-node{0%,100%{opacity:1}50%{opacity:.3}}
+.blink-node{animation:blink-node 1.5s infinite}
+</style>
+</head>
+<body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
+
+<!-- HEADER -->
+<div class="flex items-center justify-between shrink-0 border-b border-card-border pb-4">
+  <div class="flex items-center gap-4">
+    <div class="flex flex-col">
+      <span class="text-[11px] font-mono text-text-muted tracking-widest uppercase">Estación 04 · NCTECH Showroom 2026</span>
+      <h1 class="text-5xl font-extrabold text-white leading-none">Trazabilidad</h1>
+      <span class="text-[14px] text-text-muted mt-1">Visibilidad en tiempo real · Base de datos de seriales · Métricas</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="flex flex-col items-center">
+      <span class="text-[28px] font-extrabold text-neon-cyan glow-cyan">2,481</span>
+      <span class="text-[11px] text-text-muted uppercase tracking-wider">Unidades trazadas</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="text-[28px] font-extrabold text-neon-green glow-green">99.5%</span>
+      <span class="text-[11px] text-text-muted uppercase tracking-wider">Cobertura</span>
+    </div>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
+      <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
+      <span class="text-[13px] text-neon-green font-semibold">EN OPERACIÓN</span>
+    </div>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
+      <span class="material-symbols-outlined text-[18px] text-text-muted">schedule</span>
+      <span class="text-[15px] font-mono text-neon-cyan" id="clock">--:--:--</span>
+    </div>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="grid grid-cols-5 gap-4 shrink-0">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades trazadas</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">qr_code_scanner</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">2,481</div>
+    <div class="text-[12px] text-neon-green">↑ 3.2% vs ayer</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Seriales registrados</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">inventory_2</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green">2,469</div>
+    <div class="text-[12px] text-text-muted">12 pendientes</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Defectos detectados</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-red">bug_report</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-red glow-red">7</div>
+    <div class="text-[12px] text-text-muted">0.28% tasa</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">Cobertura</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">verified</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green">99.5%</div>
+    <div class="text-[12px] text-neon-green">Meta: 99% ✓</div>
+  </div>
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+    <div class="flex justify-between items-center text-text-muted">
+      <span class="text-[12px] font-bold tracking-wider uppercase">FPY</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">workspace_premium</span>
+    </div>
+    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">97.2%</div>
+    <div class="text-[12px] text-text-muted">First Pass Yield</div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="flex-1 grid grid-cols-12 gap-4 min-h-0">
+
+  <!-- COL 1: Timeline + Architecture -->
+  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col gap-4 overflow-auto">
+    <div class="flex items-center gap-2 border-b border-card-border pb-3">
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">timeline</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Avance del proceso</span>
+    </div>
+
+    <!-- Timeline -->
+    <div class="flex flex-col gap-0">
+      <!-- Done -->
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full bg-neon-cyan mt-1 shrink-0" style="box-shadow:0 0 8px rgba(0,240,255,.6)"></div>
+          <div class="w-px flex-1 bg-card-border mt-1 mb-1"></div>
+        </div>
+        <div class="pb-4">
+          <div class="text-[13px] text-white font-medium">Recepción de materia prima</div>
+          <div class="text-[11px] text-text-muted">Completado · 07:15 · 240 uds</div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full bg-neon-cyan mt-1 shrink-0" style="box-shadow:0 0 8px rgba(0,240,255,.6)"></div>
+          <div class="w-px flex-1 bg-card-border mt-1 mb-1"></div>
+        </div>
+        <div class="pb-4">
+          <div class="text-[13px] text-white font-medium">Ensamble — Etapa 1</div>
+          <div class="text-[11px] text-text-muted">Completado · 08:40 · 238 uds</div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full bg-neon-cyan mt-1 shrink-0" style="box-shadow:0 0 8px rgba(0,240,255,.6)"></div>
+          <div class="w-px flex-1 bg-card-border mt-1 mb-1"></div>
+        </div>
+        <div class="pb-4">
+          <div class="text-[13px] text-white font-medium">Ensamble — Etapa 2</div>
+          <div class="text-[11px] text-text-muted">Completado · 09:55 · 235 uds</div>
+        </div>
+      </div>
+      <!-- Active -->
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full bg-yellow-400 mt-1 shrink-0 blink-node" style="box-shadow:0 0 10px rgba(255,179,0,.7)"></div>
+          <div class="w-px flex-1 bg-card-border mt-1 mb-1"></div>
+        </div>
+        <div class="pb-4">
+          <div class="text-[13px] text-yellow-400 font-medium">Inspección de calidad ●</div>
+          <div class="text-[11px] text-yellow-400/70">En proceso · 10:12 · 189/235</div>
+        </div>
+      </div>
+      <!-- Pending -->
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full border border-card-border bg-app-bg mt-1 shrink-0"></div>
+          <div class="w-px flex-1 bg-card-border mt-1 mb-1"></div>
+        </div>
+        <div class="pb-4">
+          <div class="text-[13px] text-text-muted">Empaque y etiquetado</div>
+          <div class="text-[11px] text-text-muted/60">Pendiente</div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="w-3 h-3 rounded-full border border-card-border bg-app-bg mt-1 shrink-0"></div>
+        </div>
+        <div>
+          <div class="text-[13px] text-text-muted">Despacho</div>
+          <div class="text-[11px] text-text-muted/60">Pendiente</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="border-t border-card-border pt-4">
+      <div class="text-[12px] font-bold text-text-muted uppercase tracking-wider mb-3">Arquitectura</div>
+      <div class="flex flex-col gap-1">
+        <div class="flex items-center gap-2 p-2.5 bg-[#030712] border border-card-border rounded-lg">
+          <span class="material-symbols-outlined text-[18px] text-neon-cyan">factory</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-semibold text-white">Sensores &amp; PLCs</div>
+            <div class="text-[10px] text-text-muted">OPC-UA / Modbus</div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold">OK</span>
+        </div>
+        <div class="flex justify-center text-text-muted text-[11px] font-mono">↓</div>
+        <div class="flex items-center gap-2 p-2.5 bg-[#030712] border border-card-border rounded-lg">
+          <span class="material-symbols-outlined text-[18px] text-neon-cyan">router</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-semibold text-white">Edge IoT Gateway</div>
+            <div class="text-[10px] text-text-muted">deviceWISE EDGE</div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold">OK</span>
+        </div>
+        <div class="flex justify-center text-text-muted text-[11px] font-mono">↓</div>
+        <div class="flex items-center gap-2 p-2.5 bg-[#030712] border border-card-border rounded-lg">
+          <span class="material-symbols-outlined text-[18px] text-neon-blue">storage</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-semibold text-white">Base de datos seriales</div>
+            <div class="text-[10px] text-text-muted">Registro único por unidad</div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 rounded font-bold">Cloud</span>
+        </div>
+        <div class="flex justify-center text-text-muted text-[11px] font-mono">↓</div>
+        <div class="flex items-center gap-2 p-2.5 bg-[#030712] border border-card-border rounded-lg">
+          <span class="material-symbols-outlined text-[18px] text-neon-blue">bar_chart</span>
+          <div class="flex-1 min-w-0">
+            <div class="text-[12px] font-semibold text-white">Dashboard trazabilidad</div>
+            <div class="text-[10px] text-text-muted">Operador · Monitor · Admin</div>
+          </div>
+          <span class="text-[10px] px-1.5 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 rounded font-bold">Web</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COL 2: Serial search + table -->
+  <div class="col-span-6 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col gap-4 overflow-hidden">
+    <div class="flex items-center gap-2 border-b border-card-border pb-3">
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">search</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Consulta de seriales</span>
+    </div>
+
+    <!-- Search input -->
+    <div class="flex gap-3">
+      <input id="serial-inp" type="text" placeholder="Ej. SN-20260482"
+        class="flex-1 bg-[#030712] border border-card-border rounded-lg px-4 py-2.5 text-[14px] text-white placeholder-text-muted outline-none focus:border-neon-blue transition-colors font-mono"
+        onkeydown="if(event.key==='Enter')srchSerial()">
+      <button onclick="srchSerial()" class="px-5 py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
+        Buscar
+      </button>
+    </div>
+    <div id="serial-res" class="min-h-[36px]"></div>
+
+    <!-- Serials table -->
+    <div class="flex-1 overflow-auto">
+      <table class="w-full text-[13px]">
+        <thead class="sticky top-0 bg-card-bg">
+          <tr class="border-b border-card-border">
+            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-3 pr-4">Serial</th>
+            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-3 pr-4">Etapa</th>
+            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-3 pr-4">Estado</th>
+            <th class="text-right text-[11px] font-bold text-text-muted uppercase tracking-wider pb-3">Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260482</span></td>
+            <td class="py-3 pr-4 text-white">Despacho</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">09:41</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260481</span></td>
+            <td class="py-3 pr-4 text-white">Empaque</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">10:02</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260479</span></td>
+            <td class="py-3 pr-4 text-white">Inspección</td>
+            <td class="py-3 pr-4"><span class="text-yellow-400">Revisión</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">10:18</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260476</span></td>
+            <td class="py-3 pr-4 text-white">Inspección</td>
+            <td class="py-3 pr-4"><span class="text-neon-red">Defecto</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">10:09</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260473</span></td>
+            <td class="py-3 pr-4 text-white">Despacho</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">09:38</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260470</span></td>
+            <td class="py-3 pr-4 text-white">Despacho</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">09:22</td>
+          </tr>
+          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260467</span></td>
+            <td class="py-3 pr-4 text-white">Empaque</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">10:31</td>
+          </tr>
+          <tr class="hover:bg-white/[.02]">
+            <td class="py-3 pr-4"><span class="font-mono text-[12px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260464</span></td>
+            <td class="py-3 pr-4 text-white">Ensamble 2</td>
+            <td class="py-3 pr-4"><span class="text-neon-green">OK</span></td>
+            <td class="py-3 text-right font-mono text-text-muted">10:44</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COL 3: Metrics + AI Copilot -->
+  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between p-5 border-b border-card-border">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px] text-neon-blue">analytics</span>
+        <span class="text-[13px] font-bold text-white uppercase tracking-wider">Trazabilidad AI</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
+        <span class="text-[11px] text-neon-green">En Vivo</span>
+      </div>
+    </div>
+    <div class="flex-1 p-5 flex flex-col gap-4 overflow-auto">
+      <!-- Metrics bars -->
+      <div class="flex flex-col gap-3">
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Cobertura seriales</span>
+            <span class="text-[12px] font-mono text-neon-green">99.5%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:99.5%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">FPY</span>
+            <span class="text-[12px] font-mono text-neon-cyan">97.2%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:97.2%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Avance de turno</span>
+            <span class="text-[12px] font-mono text-yellow-400">80.4%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-yellow-400 rounded-full" style="width:80.4%"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-1">
+            <span class="text-[12px] text-text-muted">Trazabilidad completa</span>
+            <span class="text-[12px] font-mono text-neon-green">99.5%</span>
+          </div>
+          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:99.5%"></div></div>
+        </div>
+      </div>
+
+      <!-- Analysis cards -->
+      <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+        <div class="text-[11px] text-text-muted mb-1 uppercase tracking-wider">Análisis automático</div>
+        <div class="text-[13px] text-white">Cobertura 99.5% — superando meta de 99%. 12 unidades pendientes de registro en Etapa 4.</div>
+      </div>
+      <div class="p-3 bg-neon-red/5 rounded-lg border border-neon-red/20">
+        <div class="text-[11px] text-neon-red mb-1 uppercase tracking-wider flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">bug_report</span> Defectos
+        </div>
+        <div class="text-[13px] text-white">7 defectos detectados (0.28%). SN-20260476 en cuarentena. Causa raíz: soldadura F3.</div>
+      </div>
+
+      <!-- Summary KPIs -->
+      <div class="mt-auto grid grid-cols-2 gap-2 text-center">
+        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+          <div class="text-[22px] font-extrabold text-neon-red glow-red">7</div>
+          <div class="text-[10px] text-text-muted uppercase tracking-wider">Defectos</div>
+        </div>
+        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
+          <div class="text-[22px] font-extrabold text-neon-green glow-green">99.5%</div>
+          <div class="text-[10px] text-text-muted uppercase tracking-wider">Cobertura</div>
+        </div>
+      </div>
+    </div>
+    <div class="p-5 border-t border-card-border">
+      <button class="w-full py-3 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
+        <span class="material-symbols-outlined text-[16px] align-middle mr-1">open_in_new</span>
+        Ver trazabilidad completa
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function tick(){
+  const t=new Date().toLocaleTimeString('es-MX');
+  document.getElementById('clock').textContent=t;
+}
+setInterval(tick,1000);tick();
+
+const sDB={
+  'SN-20260482':{etapa:'Despacho',estado:'OK'},
+  'SN-20260481':{etapa:'Empaque',estado:'OK'},
+  'SN-20260479':{etapa:'Inspección',estado:'Revisión'},
+  'SN-20260476':{etapa:'Inspección',estado:'Defecto'},
+  'SN-20260473':{etapa:'Despacho',estado:'OK'}
+};
+function srchSerial(){
+  const v=document.getElementById('serial-inp').value.trim().toUpperCase();
+  const r=document.getElementById('serial-res');
+  if(!v)return;
+  r.innerHTML='<div class="text-[12px] text-text-muted font-mono px-3">Buscando...</div>';
+  setTimeout(()=>{
+    const d=sDB[v];
+    let cls,txt;
+    if(d){
+      cls=d.estado==='OK'?'border-neon-green/30 bg-neon-green/5 text-neon-green':d.estado==='Revisión'?'border-yellow-400/30 bg-yellow-400/5 text-yellow-400':'border-neon-red/30 bg-neon-red/5 text-neon-red';
+      txt=v+' · Línea A · Etapa: '+d.etapa+' · Estado: '+d.estado;
+    } else if(v.startsWith('SN-')){
+      cls='border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan';
+      txt=v+' · Línea A · Etapa: Empaque · Estado: OK';
+    } else {
+      cls='border-yellow-400/30 bg-yellow-400/5 text-yellow-400';
+      txt='Serial no encontrado';
+    }
+    r.innerHTML='<div class="p-3 border rounded-lg font-mono text-[13px] text-center '+cls+'">'+txt+'</div>';
+  },400);
+}
+</script>
+</body>
+</html>
