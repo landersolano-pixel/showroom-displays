@@ -149,46 +149,63 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">fullscreen</span></button>
       </div>
     </div>
-    <div class="flex-1 relative flex items-center justify-center">
-      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <line x1="33%" y1="38%" x2="67%" y2="38%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <line x1="67%" y1="38%" x2="67%" y2="68%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <line x1="33%" y1="38%" x2="33%" y2="68%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <line x1="33%" y1="68%" x2="67%" y2="68%" stroke="#1e2b44" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <circle cx="33%" cy="38%" r="4" fill="#1e90ff"/>
-        <circle cx="67%" cy="38%" r="4" fill="#00f0ff"/>
-        <circle cx="33%" cy="68%" r="4" fill="#ff3b3b"/>
-        <circle cx="67%" cy="68%" r="4" fill="#00ffaa"/>
-      </svg>
-      <div class="grid grid-cols-2 gap-x-36 gap-y-16 z-10 relative">
-        <div class="flex flex-col items-center gap-2 text-neon-blue text-center">
-          <div class="w-16 h-16 border border-card-border rounded-xl bg-[#0d1627] flex items-center justify-center hover:border-neon-blue/50 transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[32px]">precision_manufacturing</span>
+    <div class="flex-1 flex items-center justify-center px-6">
+      <div class="w-full flex items-center justify-between gap-2">
+
+        <!-- Etapa 1 -->
+        <div class="flex flex-col items-center gap-2 text-neon-blue text-center flex-1">
+          <div class="w-14 h-14 border border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[28px]">conveyor_belt</span>
           </div>
-          <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Producción</span>
-          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-blue">88% Capacidad</span></div>
+          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Ensamble</span>
+          <span class="text-[11px] font-bold text-neon-blue">88%</span>
         </div>
-        <div class="flex flex-col items-center gap-2 text-neon-cyan text-center">
-          <div class="w-16 h-16 border border-card-border rounded-xl bg-[#0d1627] flex items-center justify-center hover:border-neon-cyan/50 transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[32px]">verified</span>
+
+        <!-- Flecha -->
+        <div class="flex flex-col items-center gap-1 shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
+          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+        </div>
+
+        <!-- Etapa 2 -->
+        <div class="flex flex-col items-center gap-2 text-neon-cyan text-center flex-1">
+          <div class="w-14 h-14 border border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[28px]">biotech</span>
           </div>
-          <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Calidad</span>
-          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-cyan">99%</span></div>
+          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Inspección</span>
+          <span class="text-[11px] font-bold text-neon-cyan">99%</span>
         </div>
-        <div class="flex flex-col items-center gap-2 text-neon-red text-center">
-          <div class="w-16 h-16 border border-neon-red/30 rounded-xl bg-[#1a1118] flex items-center justify-center" style="box-shadow:0 0 6px rgba(255,59,59,0.08)">
-            <span class="material-symbols-outlined text-[32px]">build</span>
+
+        <!-- Flecha -->
+        <div class="flex flex-col items-center gap-1 shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
+          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+        </div>
+
+        <!-- Etapa 3 -->
+        <div class="flex flex-col items-center gap-2 text-neon-red text-center flex-1">
+          <div class="w-14 h-14 border border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[28px]">plumbing</span>
           </div>
-          <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Mantenimiento</span>
-          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-red">Revisión Req.</span></div>
+          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Soporte</span>
+          <span class="text-[11px] font-bold text-neon-red">Rev. Req.</span>
         </div>
-        <div class="flex flex-col items-center gap-2 text-neon-green text-center">
-          <div class="w-16 h-16 border border-neon-green/30 rounded-xl bg-[#0d1f17] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[32px]">local_shipping</span>
+
+        <!-- Flecha -->
+        <div class="flex flex-col items-center gap-1 shrink-0">
+          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
+          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+        </div>
+
+        <!-- Etapa 4 -->
+        <div class="flex flex-col items-center gap-2 text-neon-green text-center flex-1">
+          <div class="w-14 h-14 border border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[28px]">package_2</span>
           </div>
-          <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Logística</span>
-          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-green">En Tránsito</span></div>
+          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Despacho</span>
+          <span class="text-[11px] font-bold text-neon-green">En Ruta</span>
         </div>
+
       </div>
     </div>
   </div>
