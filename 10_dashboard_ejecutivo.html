@@ -33,13 +33,13 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-exp{font-size:14px;color:rgba(0,229,255,.65);background:var(--cyan4);border:1px solid var(--border);padding:3px 14px;border-radius:20px;font-family:var(--mono)}
 .tb-sep{width:1px;height:36px;background:var(--border);margin:0 4px}
 .tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:90px}
-.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 14px rgba(0,229,255,.5)}
-.tb-kpi-val.green{color:var(--green);text-shadow:0 0 14px rgba(0,255,170,.5)}
-.tb-kpi-val.amber{color:var(--amber);text-shadow:0 0 14px rgba(255,179,0,.5)}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,0.14)}
+.tb-kpi-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,0.14)}
 .tb-kpi-lbl{font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
 .tb-time{margin-left:auto;font-family:var(--mono);font-size:15px;color:rgba(0,229,255,.75);letter-spacing:1px}
 .tb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-family:var(--mono)}
-.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pulse 1.5s ease-in-out infinite}
+.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green);animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* LAYOUT */
@@ -48,12 +48,12 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 /* VIEW NAV */
 .view-nav{display:flex;align-items:center;gap:0;padding:0 24px;background:rgba(6,14,26,.7);border-bottom:1px solid var(--border3)}
 .view-btn{flex:1;padding:12px 20px;border:none;background:transparent;color:rgba(224,240,255,.45);font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase}
-.view-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,.4)}
+.view-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);text-shadow:0 0 4px rgba(0,229,255,0.11)}
 .view-btn:hover:not(.active){color:rgba(224,240,255,.7)}
 .auto-indicator{margin-left:auto;display:flex;align-items:center;gap:8px;padding:0 8px}
 .auto-dots{display:flex;gap:5px}
 .auto-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
-.auto-dot.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.auto-dot.active{background:var(--cyan);box-shadow:0 0 3px var(--cyan)}
 .auto-btn{padding:5px 12px;border:1px solid var(--border);background:transparent;color:rgba(224,240,255,.5);font-size:12px;font-family:var(--mono);cursor:pointer;border-radius:5px;transition:all .2s}
 .auto-btn:hover{background:var(--cyan4);color:var(--cyan);border-color:var(--border)}
 
@@ -71,10 +71,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .kpi-big.red::before{background:linear-gradient(90deg,transparent,var(--red2),transparent)}
 .kpi-big-lbl{font-size:13px;color:rgba(224,240,255,.45);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
 .kpi-big-val{font-family:var(--display);font-size:56px;font-weight:700;line-height:1;text-shadow:0 0 24px}
-.kpi-big-val.cyan{color:var(--cyan);text-shadow:0 0 24px rgba(0,229,255,.4)}
-.kpi-big-val.green{color:var(--green);text-shadow:0 0 24px rgba(0,255,170,.4)}
-.kpi-big-val.amber{color:var(--amber);text-shadow:0 0 24px rgba(255,179,0,.4)}
-.kpi-big-val.red{color:var(--red2);text-shadow:0 0 24px rgba(255,59,59,.4)}
+.kpi-big-val.cyan{color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,0.11)}
+.kpi-big-val.green{color:var(--green);text-shadow:0 0 10px rgba(0,255,170,0.11)}
+.kpi-big-val.amber{color:var(--amber);text-shadow:0 0 10px rgba(255,179,0,0.11)}
+.kpi-big-val.red{color:var(--red2);text-shadow:0 0 10px rgba(255,59,59,0.11)}
 .kpi-big-sub{font-size:14px;color:rgba(224,240,255,.35);margin-top:6px;font-family:var(--mono)}
 .kpi-big-delta{font-size:13px;margin-top:4px;font-weight:600}
 .kpi-big-delta.up{color:var(--green)}
@@ -111,9 +111,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .kpi-mid.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
 .kpi-mid-lbl{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:6px;font-weight:600}
 .kpi-mid-val{font-family:var(--display);font-size:44px;font-weight:700;line-height:1}
-.kpi-mid-val.cyan{color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.4)}
-.kpi-mid-val.green{color:var(--green);text-shadow:0 0 20px rgba(0,255,170,.4)}
-.kpi-mid-val.amber{color:var(--amber);text-shadow:0 0 20px rgba(255,179,0,.4)}
+.kpi-mid-val.cyan{color:var(--cyan);text-shadow:0 0 8px rgba(0,229,255,0.11)}
+.kpi-mid-val.green{color:var(--green);text-shadow:0 0 8px rgba(0,255,170,0.11)}
+.kpi-mid-val.amber{color:var(--amber);text-shadow:0 0 8px rgba(255,179,0,0.11)}
 .kpi-mid-sub{font-size:13px;color:rgba(224,240,255,.35);margin-top:5px;font-family:var(--mono)}
 
 /* VIEW 3: ROI y Digitalización */
@@ -127,9 +127,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .roi-card.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
 .roi-label{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
 .roi-val{font-family:var(--display);font-size:48px;font-weight:700;line-height:1}
-.roi-val.cyan{color:var(--cyan);text-shadow:0 0 22px rgba(0,229,255,.4)}
-.roi-val.green{color:var(--green);text-shadow:0 0 22px rgba(0,255,170,.4)}
-.roi-val.amber{color:var(--amber);text-shadow:0 0 22px rgba(255,179,0,.4)}
+.roi-val.cyan{color:var(--cyan);text-shadow:0 0 9px rgba(0,229,255,0.11)}
+.roi-val.green{color:var(--green);text-shadow:0 0 9px rgba(0,255,170,0.11)}
+.roi-val.amber{color:var(--amber);text-shadow:0 0 9px rgba(255,179,0,0.11)}
 .roi-sub{font-size:13px;color:rgba(224,240,255,.35);margin-top:6px;font-family:var(--mono)}
 .maturity-stack{display:flex;flex-direction:column;gap:8px}
 .mat-row{display:flex;align-items:center;gap:10px}
@@ -155,12 +155,12 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
   <span class="tb-exp">10 / Dashboard Ejecutivo</span>
   <div class="tb-sep"></div>
   <div class="tb-kpi">
-    <span class="tb-kpi-val">84.2%</span>
+    <span class="tb-kpi-val">84%</span>
     <span class="tb-kpi-lbl">OEE</span>
   </div>
   <div class="tb-sep"></div>
   <div class="tb-kpi">
-    <span class="tb-kpi-val green">99.1%</span>
+    <span class="tb-kpi-val green">99%</span>
     <span class="tb-kpi-lbl">Calidad</span>
   </div>
   <div class="tb-sep"></div>
@@ -194,7 +194,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
   <div class="view-pane active" id="view-0">
     <div class="kpi-big cyan">
       <div class="kpi-big-lbl">OEE Global</div>
-      <div class="kpi-big-val cyan">84.2%</div>
+      <div class="kpi-big-val cyan">84%</div>
       <div class="kpi-big-sub">Meta: 80%</div>
       <div class="kpi-big-delta up">▲ +4.2pp sobre meta</div>
     </div>
@@ -206,7 +206,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     </div>
     <div class="kpi-big amber">
       <div class="kpi-big-lbl">Disponibilidad</div>
-      <div class="kpi-big-val amber">91.2%</div>
+      <div class="kpi-big-val amber">91%</div>
       <div class="kpi-big-sub">5 líneas activas</div>
       <div class="kpi-big-delta nt">↔ estable</div>
     </div>
@@ -220,10 +220,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       <div class="panel-block">
         <div class="panel-title">KPIs por línea</div>
         <div class="mini-kpi-list">
-          <div class="mk-row"><span class="mk-lbl">Línea A — OEE</span><span class="mk-val">88.4%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea B — OEE</span><span class="mk-val green">91.2%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea C — OEE</span><span class="mk-val amber">74.1%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea D — OEE</span><span class="mk-val">82.3%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea A — OEE</span><span class="mk-val">88%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea B — OEE</span><span class="mk-val green">91%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea C — OEE</span><span class="mk-val amber">74%</span></div>
+          <div class="mk-row"><span class="mk-lbl">Línea D — OEE</span><span class="mk-val">82%</span></div>
         </div>
       </div>
       <div class="panel-block">
@@ -231,23 +231,23 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         <div class="bar-list">
           <div class="bar-item">
             <span class="bar-lbl">Disponibilidad</span>
-            <div class="bar-track"><div class="bar-fill" style="width:91.2%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-            <span class="bar-val-txt" style="color:var(--green)">91.2%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:91%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+            <span class="bar-val-txt" style="color:var(--green)">91%</span>
           </div>
           <div class="bar-item">
             <span class="bar-lbl">Rendimiento</span>
-            <div class="bar-track"><div class="bar-fill" style="width:85.7%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="bar-val-txt" style="color:var(--cyan)">85.7%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:86%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="bar-val-txt" style="color:var(--cyan)">86%</span>
           </div>
           <div class="bar-item">
             <span class="bar-lbl">Calidad</span>
-            <div class="bar-track"><div class="bar-fill" style="width:99.1%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-            <span class="bar-val-txt" style="color:var(--green)">99.1%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:99%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+            <span class="bar-val-txt" style="color:var(--green)">99%</span>
           </div>
           <div class="bar-item">
             <span class="bar-lbl">OEE</span>
-            <div class="bar-track"><div class="bar-fill" style="width:84.2%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="bar-val-txt" style="color:var(--cyan)">84.2%</span>
+            <div class="bar-track"><div class="bar-fill" style="width:84%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            <span class="bar-val-txt" style="color:var(--cyan)">84%</span>
           </div>
         </div>
       </div>
@@ -273,7 +273,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       </div>
       <div class="kpi-mid green">
         <div class="kpi-mid-lbl">Índice de calidad</div>
-        <div class="kpi-mid-val green">99.1%</div>
+        <div class="kpi-mid-val green">99%</div>
         <div class="kpi-mid-sub">Meta: 97%</div>
       </div>
       <div class="kpi-mid amber">
@@ -292,8 +292,8 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         </div>
         <div class="bar-item">
           <span class="bar-lbl" style="width:130px">En proceso</span>
-          <div class="bar-track"><div class="bar-fill" style="width:98.4%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val-txt" style="color:var(--cyan)">98.4%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:98%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val-txt" style="color:var(--cyan)">98%</span>
         </div>
         <div class="bar-item">
           <span class="bar-lbl" style="width:130px">Producto final</span>
@@ -302,8 +302,8 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         </div>
         <div class="bar-item">
           <span class="bar-lbl" style="width:130px">Trazabilidad</span>
-          <div class="bar-track"><div class="bar-fill" style="width:99.5%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val-txt" style="color:var(--cyan)">99.5%</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+          <span class="bar-val-txt" style="color:var(--cyan)">100%</span>
         </div>
       </div>
     </div>
@@ -426,7 +426,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         <div class="panel-title">vs. Antes de NCTECH</div>
         <div class="mini-kpi-list">
           <div class="mk-row"><span class="mk-lbl">OEE anterior</span><span class="mk-val amber">62%</span></div>
-          <div class="mk-row"><span class="mk-lbl">OEE actual</span><span class="mk-val green">84.2%</span></div>
+          <div class="mk-row"><span class="mk-lbl">OEE actual</span><span class="mk-val green">84%</span></div>
           <div class="mk-row"><span class="mk-lbl">Paros/mes antes</span><span class="mk-val red">28</span></div>
           <div class="mk-row"><span class="mk-lbl">Paros/mes ahora</span><span class="mk-val green">7</span></div>
           <div class="mk-row"><span class="mk-lbl">MTTR antes</span><span class="mk-val amber">4.2 h</span></div>

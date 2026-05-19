@@ -12,9 +12,9 @@ tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','
 </script>
 <style>
 body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
-.glow-green{text-shadow:0 0 10px rgba(0,255,170,.7)}
-.glow-blue{text-shadow:0 0 10px rgba(30,144,255,.7)}
-.box-glow-blue{box-shadow:0 0 20px rgba(30,144,255,.4)}
+.glow-green{text-shadow:0 0 4px rgba(0,255,170,0.2)}
+.glow-blue{text-shadow:0 0 4px rgba(30,144,255,0.2)}
+.box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
 </style>
@@ -34,7 +34,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     </div>
     <div class="flex flex-col items-end gap-1">
       <div class="flex items-center gap-2">
-        <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_8px_#00ffaa] animate-pulse"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
         <span class="text-[11px] font-bold tracking-widest uppercase text-text-muted">Interactivo</span>
       </div>
       <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
@@ -56,7 +56,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <path stroke="#1e90ff" stroke-width="3" fill="none" stroke-linecap="round" style="stroke-dasharray:78.4 100;transform:rotate(-90deg);transform-origin:50% 50%" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
         </svg>
       </div>
-      <span class="text-[46px] font-extrabold leading-none text-white">78.4%</span>
+      <span class="text-[46px] font-extrabold leading-none text-white">78%</span>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -65,8 +65,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
     </div>
     <div>
-      <div class="text-[46px] font-extrabold leading-none text-neon-green glow-green">91.2%</div>
-      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2"><div class="h-full bg-neon-green shadow-[0_0_8px_#00ffaa]" style="width:91.2%"></div></div>
+      <div class="text-[46px] font-extrabold leading-none text-neon-green glow-green">91%</div>
+      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2"><div class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa]" style="width:91%"></div></div>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -84,7 +84,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia</span>
       <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
     </div>
-    <div class="text-[46px] font-extrabold leading-none text-white">85.7%</div>
+    <div class="text-[46px] font-extrabold leading-none text-white">86%</div>
   </div>
   <div class="bg-card-bg border border-l-2 border-neon-blue border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
     <div class="flex justify-between items-center">
@@ -102,7 +102,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
     <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
       <span class="material-symbols-outlined text-neon-cyan text-[22px]">stairs</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-neon-green glow-green">Niveles de Madurez</h3>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase">Niveles de Madurez</h3>
     </div>
     <div class="p-4 flex flex-col gap-3 overflow-y-auto flex-1">
       <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
@@ -143,7 +143,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   <!-- CENTER: Process Map -->
   <div class="col-span-6 bg-card-bg border border-card-border rounded-lg flex flex-col relative overflow-hidden">
     <div class="p-4 flex justify-between items-center shrink-0 z-10">
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-neon-red glow-red">Mapa de Planta Digital</h3>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase">Mapa de Planta Digital</h3>
       <div class="flex gap-2">
         <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">refresh</span></button>
         <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">fullscreen</span></button>
@@ -173,10 +173,10 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <span class="material-symbols-outlined text-[32px]">verified</span>
           </div>
           <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Calidad</span>
-          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-cyan">99.1%</span></div>
+          <span class="block text-[12px] font-bold uppercase tracking-wide text-neon-cyan">99%</span></div>
         </div>
         <div class="flex flex-col items-center gap-2 text-neon-red text-center">
-          <div class="w-16 h-16 border border-neon-red/30 rounded-xl bg-[#1a1118] flex items-center justify-center" style="box-shadow:0 0 15px rgba(255,59,59,.3)">
+          <div class="w-16 h-16 border border-neon-red/30 rounded-xl bg-[#1a1118] flex items-center justify-center" style="box-shadow:0 0 6px rgba(255,59,59,0.08)">
             <span class="material-symbols-outlined text-[32px]">build</span>
           </div>
           <div><span class="block text-[11px] text-text-muted font-bold tracking-widest uppercase mb-0.5">Mantenimiento</span>
