@@ -102,7 +102,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
     <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
       <span class="material-symbols-outlined text-neon-cyan text-[22px]">stairs</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase">Niveles de Madurez</h3>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase text-neon-green glow-green">Niveles de Madurez</h3>
     </div>
     <div class="p-4 flex flex-col gap-3 overflow-y-auto flex-1">
       <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
@@ -143,7 +143,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   <!-- CENTER: Process Map -->
   <div class="col-span-6 bg-card-bg border border-card-border rounded-lg flex flex-col relative overflow-hidden">
     <div class="p-4 flex justify-between items-center shrink-0 z-10">
-      <h3 class="font-bold text-[14px] tracking-widest uppercase">Mapa de Planta Digital</h3>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase text-neon-red glow-red">Mapa de Planta Digital</h3>
       <div class="flex gap-2">
         <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">refresh</span></button>
         <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">fullscreen</span></button>
@@ -257,5 +257,6 @@ function selLevel(i){
     </div>`).join('');
 }
 </script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');</script>
 </body>
 </html>
