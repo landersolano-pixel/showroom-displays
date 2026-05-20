@@ -108,7 +108,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Niveles de Madurez</h3>
     </div>
     <div class="p-3 flex flex-col gap-2 overflow-hidden flex-1">
-      <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-3 cursor-pointer transition-all">
+      <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 1 — Básico</span>
           <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Inicial</span>
@@ -271,9 +271,9 @@ function selLevel(i){
   document.getElementById('detail-desc').textContent=l.desc;
   document.getElementById('detail-btn').textContent=l.btn;
   document.getElementById('detail-metrics').innerHTML=l.metrics.map(([lbl,val,color])=>`
-    <div class="flex justify-between items-center py-2 border-b border-card-border/50 last:border-b-0">
-      <span class="text-[13px] text-text-muted font-mono uppercase">${lbl}</span>
-      <span class="text-[18px] font-bold text-${color}">${val}</span>
+    <div class="flex justify-between items-center py-1.5 border-b border-card-border/50 last:border-b-0">
+      <span class="text-[12px] text-text-muted font-mono uppercase">${lbl}</span>
+      <span class="text-[16px] font-bold text-${color}">${val}</span>
     </div>`).join('');
   // sync KPI Nivel card
   const lbls=['Básico','Conectado','Integrado','Autónomo'];
