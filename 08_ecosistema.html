@@ -42,6 +42,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
 .tb-time{margin-left:auto;font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
 .tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-heading{display:flex;flex-direction:column;line-height:1.1;gap:0}
+.tb-station{font-size:11px;color:rgba(0,229,255,.5);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono)}
+.tb-title{font-family:var(--display);font-size:26px;font-weight:700;color:#fff;letter-spacing:.3px;line-height:1}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
 .tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
 
 /* LAYOUT */
@@ -63,18 +67,18 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .nd-header{display:flex;align-items:center;gap:12px}
 .nd-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .nd-title{font-family:var(--display);font-size:24px;font-weight:700;color:#fff}
-.nd-sub{font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.4);margin-top:2px}
+.nd-sub{font-size:14px;font-family:var(--mono);color:rgba(224,240,255,.4);margin-top:2px}
 .nd-desc{font-size:13px;color:rgba(224,240,255,.55);line-height:1.7;background:var(--navy);border:1px solid var(--border3);border-radius:8px;padding:12px}
 .nd-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .nd-stat{background:var(--navy);border:1px solid var(--border3);border-radius:7px;padding:10px;text-align:center}
 .nd-stat-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
-.nd-stat-lbl{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+.nd-stat-lbl{font-size:13px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 
 /* LIVE METRICS */
 .lm-list{display:flex;flex-direction:column;gap:8px}
 .lm-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border3)}
 .lm-row:last-child{border-bottom:none}
-.lm-lbl{font-size:12px;color:rgba(224,240,255,.5);font-family:var(--mono);display:flex;align-items:center;gap:6px}
+.lm-lbl{font-size:14px;color:rgba(224,240,255,.5);font-family:var(--mono);display:flex;align-items:center;gap:6px}
 .lm-val{font-family:var(--display);font-size:18px;font-weight:700;color:var(--cyan)}
 .lm-val.green{color:var(--green)}
 .lm-val.amber{color:var(--amber)}
@@ -84,8 +88,33 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="tb-brand">
-    <div class="tb-logo">N</div>
+  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
+  <div class="tb-sep" style="height:40px;margin:0 8px"></div>
+  <div class="tb-heading">
+    <span class="tb-station">Showroom 2026 · Estación 08</span>
+    <span class="tb-title">Ecosistema IoT</span>
+  </div>
+  <div class="tb-right">
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val">6</span>
+      <span class="tb-kpi-lbl">Nodos activos</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val green">47</span>
+      <span class="tb-kpi-lbl">Dispositivos</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val amber">12 ms</span>
+      <span class="tb-kpi-lbl">Latencia</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-live">LIVE</div>
+    <span class="tb-time" id="tb-clock">--:--:--</span>
+  </div>
+</div>
     <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:30px;object-fit:contain;" alt="NCTECH">
   </div>
   <span class="tb-exp">08 / Ecosistema IoT</span>

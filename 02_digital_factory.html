@@ -22,13 +22,14 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
 
 <!-- HEADER -->
-<header class="flex justify-between items-end shrink-0">
-  <div class="flex flex-col gap-1">
-    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain self-start" alt="NCTECH">
-    <h2 class="text-[#4e6b99] text-[12px] font-bold tracking-[0.3em] uppercase">Showroom 2026 · Estación 02</h2>
-    <h1 class="text-white text-5xl font-extrabold tracking-tight">Digital Factory</h1>
+<header class="flex items-center gap-5 shrink-0 pb-3 border-b border-card-border">
+  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-9 object-contain shrink-0" alt="NCTECH">
+  <div class="w-px h-12 bg-card-border shrink-0"></div>
+  <div class="flex flex-col leading-tight">
+    <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 02</span>
+    <h1 class="text-white text-4xl font-extrabold tracking-tight leading-none">Digital Factory</h1>
   </div>
-  <div class="flex items-center gap-6">
+  <div class="ml-auto flex items-center gap-6">
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
       <span class="material-symbols-outlined text-neon-blue text-[20px]">factory</span>
       <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Maqueta Escala 1:20</span>
@@ -36,7 +37,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div class="flex flex-col items-end gap-1">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
-        <span class="text-[11px] font-bold tracking-widest uppercase text-text-muted">Interactivo</span>
+        <span class="text-[14px] font-bold tracking-widest uppercase text-text-muted">Interactivo</span>
       </div>
       <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
     </div>
@@ -77,7 +78,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     </div>
     <div>
       <div class="text-[46px] font-extrabold leading-none text-neon-cyan">2 <span class="text-[18px] font-semibold text-text-muted">/ 4</span></div>
-      <span class="text-[11px] font-bold text-neon-cyan uppercase tracking-wide">Conectado</span>
+      <span class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">Conectado</span>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -109,34 +110,34 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 1 — Básico</span>
-          <span class="text-[11px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Inicial</span>
+          <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Inicial</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">Equipos aislados sin conectividad. Datos en papel, reportes manuales.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[11px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Sin sensores</span><span class="text-[11px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Manual</span></div>
+        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Sin sensores</span><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Manual</span></div>
       </div>
       <div onclick="selLevel(1)" id="lvl1" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 2 — Conectado</span>
-          <span class="text-[11px] font-bold text-neon-blue border border-neon-blue/50 px-2 py-0.5 rounded uppercase">Actual</span>
+          <span class="text-[14px] font-bold text-neon-blue border border-neon-blue/50 px-2 py-0.5 rounded uppercase">Actual</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">Sensores básicos, datos en tiempo real, visibilidad de KPIs.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[11px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">IoT básico</span><span class="text-[11px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">KPIs live</span></div>
+        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">IoT básico</span><span class="text-[14px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">KPIs live</span></div>
       </div>
       <div onclick="selLevel(2)" id="lvl2" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 3 — Integrado</span>
-          <span class="text-[11px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Meta</span>
+          <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Meta</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">MES integrado, trazabilidad completa, calidad automatizada.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[11px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">MES</span><span class="text-[11px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">ERP sync</span></div>
+        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">MES</span><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">ERP sync</span></div>
       </div>
       <div onclick="selLevel(3)" id="lvl3" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 4 — Autónomo</span>
-          <span class="text-[11px] font-bold text-[#a855f7] border border-[#a855f7]/50 px-2 py-0.5 rounded uppercase">Avanzado</span>
+          <span class="text-[14px] font-bold text-[#a855f7] border border-[#a855f7]/50 px-2 py-0.5 rounded uppercase">Avanzado</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">IA predictiva, mantenimiento autónomo, planta auto-optimizante.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[11px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">ML/AI</span><span class="text-[11px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">Autónomo</span></div>
+        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">ML/AI</span><span class="text-[14px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">Autónomo</span></div>
       </div>
     </div>
   </div>
@@ -154,57 +155,57 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <div class="w-full flex items-center justify-between gap-2">
 
         <!-- Etapa 1 -->
-        <div class="flex flex-col items-center gap-2 text-neon-blue text-center flex-1">
-          <div class="w-14 h-14 border border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[28px]">conveyor_belt</span>
+        <div class="flex flex-col items-center gap-3 text-neon-blue text-center flex-1">
+          <div class="w-24 h-24 border-2 border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[48px]">conveyor_belt</span>
           </div>
-          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Ensamble</span>
-          <span class="text-[11px] font-bold text-neon-blue">88%</span>
+          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Ensamble</span>
+          <span class="text-[16px] font-bold text-neon-blue">88%</span>
         </div>
 
         <!-- Flecha -->
         <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
-          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
+          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
         </div>
 
         <!-- Etapa 2 -->
-        <div class="flex flex-col items-center gap-2 text-neon-cyan text-center flex-1">
-          <div class="w-14 h-14 border border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[28px]">biotech</span>
+        <div class="flex flex-col items-center gap-3 text-neon-cyan text-center flex-1">
+          <div class="w-24 h-24 border-2 border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[48px]">biotech</span>
           </div>
-          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Inspección</span>
-          <span class="text-[11px] font-bold text-neon-cyan">99%</span>
+          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Inspección</span>
+          <span class="text-[16px] font-bold text-neon-cyan">99%</span>
         </div>
 
         <!-- Flecha -->
         <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
-          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
+          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
         </div>
 
         <!-- Etapa 3 -->
-        <div class="flex flex-col items-center gap-2 text-neon-red text-center flex-1">
-          <div class="w-14 h-14 border border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[28px]">plumbing</span>
+        <div class="flex flex-col items-center gap-3 text-neon-red text-center flex-1">
+          <div class="w-24 h-24 border-2 border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[48px]">plumbing</span>
           </div>
-          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Soporte</span>
-          <span class="text-[11px] font-bold text-neon-red">Rev. Req.</span>
+          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Soporte</span>
+          <span class="text-[16px] font-bold text-neon-red">Rev. Req.</span>
         </div>
 
         <!-- Flecha -->
         <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[18px] text-[#1e2b44]">arrow_forward</span>
-          <span class="text-[9px] text-[#1e2b44] font-mono tracking-wider">OK</span>
+          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
+          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
         </div>
 
         <!-- Etapa 4 -->
-        <div class="flex flex-col items-center gap-2 text-neon-green text-center flex-1">
-          <div class="w-14 h-14 border border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[28px]">package_2</span>
+        <div class="flex flex-col items-center gap-3 text-neon-green text-center flex-1">
+          <div class="w-24 h-24 border-2 border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[48px]">package_2</span>
           </div>
-          <span class="text-[10px] text-text-muted font-bold tracking-widest uppercase">Despacho</span>
-          <span class="text-[11px] font-bold text-neon-green">En Ruta</span>
+          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Despacho</span>
+          <span class="text-[16px] font-bold text-neon-green">En Ruta</span>
         </div>
 
       </div>
@@ -236,7 +237,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         </div>
       </div>
       <div class="mt-2 pt-4 border-t border-card-border">
-        <span class="block text-[11px] font-bold text-text-muted uppercase tracking-widest mb-3">Siguiente paso</span>
+        <span class="block text-[14px] font-bold text-text-muted uppercase tracking-widest mb-3">Siguiente paso</span>
         <button class="w-full bg-neon-blue text-white font-bold py-3.5 rounded-lg flex items-center justify-center gap-2 uppercase tracking-widest text-[12px] box-glow-blue hover:brightness-110 transition-all">
           <span class="material-symbols-outlined text-[20px]">bolt</span>
           <span id="detail-btn">Activar Sensores</span>

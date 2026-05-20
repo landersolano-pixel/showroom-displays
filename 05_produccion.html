@@ -30,13 +30,14 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
 
 <!-- HEADER -->
-<header class="flex justify-between items-end shrink-0">
-  <div class="flex flex-col gap-1">
-    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain self-start" alt="NCTECH">
-    <h2 class="text-[#4e6b99] text-[12px] font-bold tracking-[0.3em] uppercase">Showroom 2026 · Estación 05</h2>
-    <h1 class="text-white text-5xl font-extrabold tracking-tight">Producción</h1>
+<header class="flex items-center gap-5 shrink-0 pb-3 border-b border-card-border">
+  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-9 object-contain shrink-0" alt="NCTECH">
+  <div class="w-px h-12 bg-card-border shrink-0"></div>
+  <div class="flex flex-col leading-tight">
+    <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 05</span>
+    <h1 class="text-white text-4xl font-extrabold tracking-tight leading-none">Producción</h1>
   </div>
-  <div class="flex items-center gap-6">
+  <div class="ml-auto flex items-center gap-6">
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
       <span class="material-symbols-outlined text-neon-green text-[20px]">developer_board</span>
       <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Turno B · 14:00–22:00</span>
@@ -44,7 +45,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div class="flex flex-col items-end gap-1">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
-        <span class="text-[11px] font-bold tracking-widest uppercase text-text-muted">Líneas Activas</span>
+        <span class="text-[14px] font-bold tracking-widest uppercase text-text-muted">Líneas Activas</span>
       </div>
       <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
     </div>
@@ -82,7 +83,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="material-symbols-outlined text-[18px] text-neon-cyan">settings_input_antenna</span>
     </div>
     <div><div class="text-[42px] font-extrabold leading-none text-white">91%</div>
-    <span class="text-[11px] font-bold text-neon-cyan uppercase tracking-wide">4 líneas activas</span></div>
+    <span class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">4 líneas activas</span></div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
@@ -108,7 +109,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div class="flex items-center gap-2 px-1 shrink-0">
       <span class="material-symbols-outlined text-neon-blue text-[20px]">developer_board</span>
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Estado de Máquinas</h3>
-      <span class="text-[11px] text-text-muted ml-auto">4 activas · 1 mant · 1 espera</span>
+      <span class="text-[14px] text-text-muted ml-auto">4 activas · 1 mant · 1 espera</span>
     </div>
     <div class="flex-1 grid grid-cols-3 grid-rows-2 gap-3 min-h-0">
 
@@ -119,15 +120,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-neon-green text-[22px]">developer_board</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">M-01</div>
+              <div class="text-[14px] font-mono text-neon-blue">M-01</div>
               <div class="text-[14px] font-bold text-white">Ensamble A</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
+          <span class="text-[14px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m01-out">312</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-white">92%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m01-out">312</div><div class="text-[14px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">92%</div><div class="text-[14px] text-text-muted">eficiencia</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-green rounded-full" id="m01-bar" style="width:78%"></div></div>
       </div>
@@ -139,15 +140,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-neon-cyan text-[22px]">memory</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">M-02</div>
+              <div class="text-[14px] font-mono text-neon-blue">M-02</div>
               <div class="text-[14px] font-bold text-white">Soldadura B</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
+          <span class="text-[14px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m02-out">287</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-white">88%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m02-out">287</div><div class="text-[14px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">88%</div><div class="text-[14px] text-text-muted">eficiencia</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-cyan rounded-full" id="m02-bar" style="width:75%"></div></div>
       </div>
@@ -159,15 +160,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-[#b39ddb] text-[22px] spin-slow">cyclone</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">M-03</div>
+              <div class="text-[14px] font-mono text-neon-blue">M-03</div>
               <div class="text-[14px] font-bold text-white">Pintura C</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/30 px-2 py-0.5 rounded uppercase">Mant.</span>
+          <span class="text-[14px] font-bold bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/30 px-2 py-0.5 rounded uppercase">Mant.</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-[#b39ddb]">0</div><div class="text-[10px] text-text-muted">en pausa</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-text-muted">—</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+          <div><div class="text-[24px] font-extrabold text-[#b39ddb]">0</div><div class="text-[14px] text-text-muted">en pausa</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-text-muted">—</div><div class="text-[14px] text-text-muted">eficiencia</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-[#7c4dff]/40 rounded-full" style="width:0%"></div></div>
       </div>
@@ -179,15 +180,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-neon-blue text-[22px]">settings_input_antenna</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">M-04</div>
+              <div class="text-[14px] font-mono text-neon-blue">M-04</div>
               <div class="text-[14px] font-bold text-white">Prueba D</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-neon-blue/10 text-neon-blue border border-neon-blue/30 px-2 py-0.5 rounded uppercase">OK</span>
+          <span class="text-[14px] font-bold bg-neon-blue/10 text-neon-blue border border-neon-blue/30 px-2 py-0.5 rounded uppercase">OK</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-neon-blue glow-blue" id="m04-out">198</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-white">79%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+          <div><div class="text-[24px] font-extrabold text-neon-blue glow-blue" id="m04-out">198</div><div class="text-[14px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">79%</div><div class="text-[14px] text-text-muted">eficiencia</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-blue rounded-full" id="m04-bar" style="width:70%"></div></div>
       </div>
@@ -199,15 +200,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-neon-amber text-[22px]">thermostat</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">M-05</div>
+              <div class="text-[14px] font-mono text-neon-blue">M-05</div>
               <div class="text-[14px] font-bold text-white">Empaque E</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-neon-amber/10 text-neon-amber border border-neon-amber/30 px-2 py-0.5 rounded uppercase">Espera</span>
+          <span class="text-[14px] font-bold bg-neon-amber/10 text-neon-amber border border-neon-amber/30 px-2 py-0.5 rounded uppercase">Espera</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-neon-amber glow-amber">450</div><div class="text-[10px] text-text-muted">uds previas</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-neon-amber">45%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+          <div><div class="text-[24px] font-extrabold text-neon-amber glow-amber">450</div><div class="text-[14px] text-text-muted">uds previas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-neon-amber">45%</div><div class="text-[14px] text-text-muted">eficiencia</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-amber rounded-full" style="width:45%"></div></div>
       </div>
@@ -219,15 +220,15 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="flex items-center gap-2">
             <span class="material-symbols-outlined text-neon-cyan text-[22px]">speed</span>
             <div>
-              <div class="text-[11px] font-mono text-neon-blue">QS-01</div>
+              <div class="text-[14px] font-mono text-neon-blue">QS-01</div>
               <div class="text-[14px] font-bold text-white">Control QA</div>
             </div>
           </div>
-          <span class="text-[10px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 px-2 py-0.5 rounded uppercase pulse-dot">Activo</span>
+          <span class="text-[14px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 px-2 py-0.5 rounded uppercase pulse-dot">Activo</span>
         </div>
         <div class="flex justify-between items-end">
-          <div><div class="text-[24px] font-extrabold text-neon-cyan glow-cyan">99%</div><div class="text-[10px] text-text-muted">FPY logrado</div></div>
-          <div class="text-right"><div class="text-[18px] font-bold text-white">7</div><div class="text-[10px] text-text-muted">defectos</div></div>
+          <div><div class="text-[24px] font-extrabold text-neon-cyan glow-cyan">99%</div><div class="text-[14px] text-text-muted">FPY logrado</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">7</div><div class="text-[14px] text-text-muted">defectos</div></div>
         </div>
         <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-cyan rounded-full" style="width:99%"></div></div>
       </div>
@@ -242,7 +243,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Producción por Turno</h3>
       <div class="ml-auto flex items-center gap-1.5">
         <div class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></div>
-        <span class="text-[10px] font-bold text-neon-green">Live</span>
+        <span class="text-[14px] font-bold text-neon-green">Live</span>
       </div>
     </div>
     <div class="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
@@ -255,8 +256,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-green/80 to-neon-green/30 rounded-t-md transition-all duration-1000" id="bh1" style="height:100%"></div>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-mono text-neon-blue">M-01</div>
-            <div class="text-[9px] text-text-muted">Ensamble</div>
+            <div class="text-[14px] font-mono text-neon-blue">M-01</div>
+            <div class="text-[13px] text-text-muted">Ensamble</div>
           </div>
         </div>
         <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
@@ -265,8 +266,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-cyan/80 to-neon-cyan/30 rounded-t-md transition-all duration-1000" id="bh2" style="height:100%"></div>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-mono text-neon-blue">M-02</div>
-            <div class="text-[9px] text-text-muted">Soldadura</div>
+            <div class="text-[14px] font-mono text-neon-blue">M-02</div>
+            <div class="text-[13px] text-text-muted">Soldadura</div>
           </div>
         </div>
         <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
@@ -275,8 +276,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#7c4dff]/60 to-[#7c4dff]/20 rounded-t-md" style="height:100%"></div>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-mono text-neon-blue">M-03</div>
-            <div class="text-[9px] text-text-muted">Pintura</div>
+            <div class="text-[14px] font-mono text-neon-blue">M-03</div>
+            <div class="text-[13px] text-text-muted">Pintura</div>
           </div>
         </div>
         <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
@@ -285,8 +286,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-blue/80 to-neon-blue/30 rounded-t-md transition-all duration-1000" id="bh4" style="height:100%"></div>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-mono text-neon-blue">M-04</div>
-            <div class="text-[9px] text-text-muted">Prueba</div>
+            <div class="text-[14px] font-mono text-neon-blue">M-04</div>
+            <div class="text-[13px] text-text-muted">Prueba</div>
           </div>
         </div>
         <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
@@ -295,8 +296,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-amber/80 to-neon-amber/30 rounded-t-md" style="height:100%"></div>
           </div>
           <div class="text-center">
-            <div class="text-[10px] font-mono text-neon-blue">M-05</div>
-            <div class="text-[9px] text-text-muted">Empaque</div>
+            <div class="text-[14px] font-mono text-neon-blue">M-05</div>
+            <div class="text-[13px] text-text-muted">Empaque</div>
           </div>
         </div>
       </div>

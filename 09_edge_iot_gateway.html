@@ -42,6 +42,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-kpi-lbl{font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
 .tb-time{margin-left:auto;font-family:var(--mono);font-size:15px;color:rgba(0,229,255,.75);letter-spacing:1px}
 .tb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-family:var(--mono)}
+.tb-heading{display:flex;flex-direction:column;line-height:1.1;gap:0}
+.tb-station{font-size:11px;color:rgba(0,229,255,.5);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono)}
+.tb-title{font-family:var(--display);font-size:26px;font-weight:700;color:#fff;letter-spacing:.3px;line-height:1}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
 .tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green);animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
@@ -59,14 +63,14 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .kc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
 .kc-icon{font-size:28px;flex-shrink:0}
 .kc-body{}
-.kc-lbl{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);font-weight:600}
+.kc-lbl{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);font-weight:600}
 .kc-val{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1}
 .kc-val.cyan{color:var(--cyan);text-shadow:0 0 6px rgba(0,229,255,.1)}
 .kc-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,.1)}
 .kc-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,.1)}
 .kc-val.purple{color:var(--purple);text-shadow:0 0 6px rgba(124,77,255,.1)}
 .kc-val.red{color:var(--red2);text-shadow:0 0 6px rgba(255,59,59,.1)}
-.kc-sub{font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:2px}
+.kc-sub{font-size:13px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:2px}
 
 /* PIPELINE AREA */
 .pipeline-area{flex:1;display:flex;flex-direction:column;gap:14px;min-height:0}
@@ -88,14 +92,14 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .stage-icon-wrap.green .material-symbols-outlined{color:var(--green);font-size:30px}
 .stage-icon-wrap.purple .material-symbols-outlined{color:var(--purple)}
 .stage-title-block{flex:1}
-.stage-label{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono);font-weight:600}
+.stage-label{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono);font-weight:600}
 .stage-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;line-height:1.2}
 .stage-name.cyan{color:var(--cyan)}
 .stage-name.green{color:var(--green)}
 .stage-name.purple{color:var(--purple)}
 .stage-throughput{display:flex;flex-direction:column;align-items:flex-end}
 .stage-thr-val{font-family:var(--display);font-size:26px;font-weight:700}
-.stage-thr-lbl{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px}
+.stage-thr-lbl{font-size:13px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px}
 
 .stage-body{flex:1;padding:16px 20px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
 
@@ -104,8 +108,8 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .dev-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .dev-dot.online{background:var(--green);box-shadow:0 0 4px var(--green);animation:pulse 2s infinite}
 .dev-dot.warn{background:var(--amber);box-shadow:0 0 4px var(--amber)}
-.dev-name{font-family:var(--mono);font-size:12px;color:rgba(224,240,255,.7);flex:1}
-.dev-proto{font-size:11px;font-family:var(--mono);padding:2px 7px;border-radius:4px;background:var(--cyan4);color:var(--cyan);border:1px solid rgba(0,229,255,.15)}
+.dev-name{font-family:var(--mono);font-size:14px;color:rgba(224,240,255,.7);flex:1}
+.dev-proto{font-size:13px;font-family:var(--mono);padding:2px 7px;border-radius:4px;background:var(--cyan4);color:var(--cyan);border:1px solid rgba(0,229,255,.15)}
 .dev-rate{font-family:var(--display);font-size:14px;font-weight:700;color:rgba(224,240,255,.6);width:52px;text-align:right}
 
 /* Processing blocks in GATEWAY stage */
@@ -114,7 +118,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .gw-block-title{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:15px;font-weight:700;color:var(--green)}
 .gw-block-title .material-symbols-outlined{font-size:18px;color:var(--green)}
 .gw-metric-row{display:flex;justify-content:space-between;align-items:center}
-.gw-metric-lbl{font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)}
+.gw-metric-lbl{font-size:13px;color:rgba(224,240,255,.4);font-family:var(--mono)}
 .gw-metric-val{font-family:var(--display);font-size:16px;font-weight:700;color:var(--green)}
 .gw-bar-track{height:4px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:4px}
 .gw-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green));transition:width .8s}
@@ -124,10 +128,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .cloud-ep-icon .material-symbols-outlined{font-size:20px;color:var(--purple)}
 .cloud-ep-body{flex:1}
 .cloud-ep-name{font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
-.cloud-ep-desc{font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)}
+.cloud-ep-desc{font-size:13px;color:rgba(224,240,255,.4);font-family:var(--mono)}
 .cloud-ep-status{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .cloud-ep-val{font-family:var(--display);font-size:16px;font-weight:700;color:var(--purple)}
-.cloud-ep-lat{font-size:10px;color:rgba(224,240,255,.3);font-family:var(--mono)}
+.cloud-ep-lat{font-size:13px;color:rgba(224,240,255,.3);font-family:var(--mono)}
 
 /* CONNECTORS */
 .connector{width:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex-shrink:0;position:relative}
@@ -140,16 +144,16 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 @keyframes flow-h-cyan{0%{left:-18px}100%{left:100%}}
 @keyframes flow-h-purple{0%{left:-18px}100%{left:100%}}
 .conn-arrow{font-size:22px;color:rgba(224,240,255,.2)}
-.conn-label{font-size:10px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;text-align:center;line-height:1.3}
+.conn-label{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;text-align:center;line-height:1.3}
 
 /* BOTTOM LOG */
 .pipeline-log{flex-shrink:0;background:rgba(8,17,32,.9);border:1px solid var(--border3);border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:16px;overflow:hidden}
-.log-label{font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.log-label{font-size:13px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
 .log-feed{display:flex;gap:18px;overflow:hidden;flex:1}
 .log-entry{display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0}
-.log-time{font-family:var(--mono);font-size:11px;color:rgba(0,229,255,.5)}
-.log-msg{font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.65)}
-.log-tag{padding:1px 7px;border-radius:4px;font-size:10px;font-family:var(--mono)}
+.log-time{font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.5)}
+.log-msg{font-size:14px;font-family:var(--mono);color:rgba(224,240,255,.65)}
+.log-tag{padding:1px 7px;border-radius:4px;font-size:13px;font-family:var(--mono)}
 .log-tag.ok{background:var(--green3);color:var(--green);border:1px solid rgba(0,255,170,.18)}
 .log-tag.warn{background:var(--amber3);color:var(--amber);border:1px solid rgba(255,179,0,.2)}
 .log-tag.info{background:var(--cyan4);color:var(--cyan);border:1px solid var(--border)}
@@ -159,9 +163,33 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="tb-brand">
-    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:28px;object-fit:contain;" alt="NCTECH">
+  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
+  <div class="tb-sep" style="height:40px;margin:0 8px"></div>
+  <div class="tb-heading">
+    <span class="tb-station">Showroom 2026 · Estación 09</span>
+    <span class="tb-title">Edge IoT Gateway</span>
   </div>
+  <div class="tb-right">
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val" id="tb-dev">47</span>
+      <span class="tb-kpi-lbl">Dispositivos</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val green" id="tb-tps">1,284</span>
+      <span class="tb-kpi-lbl">Tags/seg</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-kpi">
+      <span class="tb-kpi-val amber" id="tb-lat">12 ms</span>
+      <span class="tb-kpi-lbl">Latencia</span>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-live">LIVE</div>
+    <span class="tb-time" id="tb-clock">--:--:--</span>
+  </div>
+</div>
   <span class="tb-exp">09 / Edge IoT Gateway</span>
   <div class="tb-sep"></div>
   <div class="tb-kpi">

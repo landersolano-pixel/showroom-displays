@@ -31,13 +31,14 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
 
 <!-- HEADER -->
-<header class="flex justify-between items-end shrink-0">
-  <div class="flex flex-col gap-1">
-    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain self-start" alt="NCTECH">
-    <h2 class="text-[#4e6b99] text-[12px] font-bold tracking-[0.3em] uppercase">Showroom 2026 · Estación 01</h2>
-    <h1 class="text-white text-5xl font-extrabold tracking-tight">Recepción</h1>
+<header class="flex items-center gap-5 shrink-0 pb-3 border-b border-card-border">
+  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-9 object-contain shrink-0" alt="NCTECH">
+  <div class="w-px h-12 bg-card-border shrink-0"></div>
+  <div class="flex flex-col leading-tight">
+    <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 01</span>
+    <h1 class="text-white text-4xl font-extrabold tracking-tight leading-none">Recepción</h1>
   </div>
-  <div class="flex items-center gap-6">
+  <div class="ml-auto flex items-center gap-6">
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
       <span class="material-symbols-outlined text-neon-cyan text-[20px]">door_front</span>
       <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Showroom NCTECH</span>
@@ -45,7 +46,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div class="flex flex-col items-end gap-1">
       <div class="flex items-center gap-2">
         <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
-        <span class="text-[11px] font-bold tracking-widest uppercase text-text-muted">Recepción Activa</span>
+        <span class="text-[14px] font-bold tracking-widest uppercase text-text-muted">Recepción Activa</span>
       </div>
       <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
     </div>
@@ -101,18 +102,18 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Registro de Visitantes — Tiempo Real</h3>
       <div class="ml-auto flex items-center gap-2">
         <div class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></div>
-        <span class="text-[10px] font-bold text-neon-green tracking-widest uppercase">En vivo</span>
+        <span class="text-[14px] font-bold text-neon-green tracking-widest uppercase">En vivo</span>
       </div>
     </div>
     <!-- Table header -->
     <div class="px-4 pt-3 shrink-0">
       <div class="grid grid-cols-12 gap-2 px-3 pb-2 border-b border-card-border">
-        <div class="col-span-1 text-[10px] font-bold tracking-widest uppercase text-text-muted">#</div>
-        <div class="col-span-3 text-[10px] font-bold tracking-widest uppercase text-text-muted">Visitante</div>
-        <div class="col-span-2 text-[10px] font-bold tracking-widest uppercase text-text-muted">Empresa</div>
-        <div class="col-span-2 text-[10px] font-bold tracking-widest uppercase text-text-muted">Acceso</div>
-        <div class="col-span-2 text-[10px] font-bold tracking-widest uppercase text-text-muted">Hora</div>
-        <div class="col-span-2 text-[10px] font-bold tracking-widest uppercase text-text-muted">Estado</div>
+        <div class="col-span-1 text-[14px] font-bold tracking-widest uppercase text-text-muted">#</div>
+        <div class="col-span-3 text-[14px] font-bold tracking-widest uppercase text-text-muted">Visitante</div>
+        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Empresa</div>
+        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Acceso</div>
+        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Hora</div>
+        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Estado</div>
       </div>
     </div>
     <div class="flex-1 overflow-y-auto px-4 pb-4" id="visitor-log">
@@ -143,7 +144,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     </div>
     <!-- Access control panel -->
     <div class="p-4 border-t border-card-border shrink-0">
-      <div class="text-[11px] font-bold text-text-muted uppercase tracking-widest mb-3">Control de acceso rápido</div>
+      <div class="text-[14px] font-bold text-text-muted uppercase tracking-widest mb-3">Control de acceso rápido</div>
       <div class="grid grid-cols-2 gap-2">
         <button class="flex items-center justify-center gap-2 bg-neon-green/10 border border-neon-green/30 text-neon-green font-bold py-2.5 rounded-lg text-[12px] uppercase tracking-wider hover:bg-neon-green/20 transition-all box-glow-green">
           <span class="material-symbols-outlined text-[18px]">meeting_room</span>Abrir puerta
@@ -186,15 +187,15 @@ function renderVisitors(){
   log.innerHTML=visitors.map((v,i)=>{
     const s=statusMap[v.status];
     return `<div class="grid grid-cols-12 gap-2 items-center px-3 py-3 rounded-lg hover:bg-white/[0.02] transition-colors border-b border-card-border/40 slide-in">
-      <div class="col-span-1 text-[11px] font-mono text-text-muted">${String(i+40).padStart(2,'0')}</div>
+      <div class="col-span-1 text-[14px] font-mono text-text-muted">${String(i+40).padStart(2,'0')}</div>
       <div class="col-span-3">
         <div class="text-[13px] font-semibold text-white">${v.name}</div>
-        <div class="text-[10px] font-mono text-neon-cyan">${v.id}</div>
+        <div class="text-[14px] font-mono text-neon-cyan">${v.id}</div>
       </div>
       <div class="col-span-2 text-[12px] text-text-muted truncate">${v.company}</div>
-      <div class="col-span-2 text-[11px] text-text-muted truncate">${v.access}</div>
+      <div class="col-span-2 text-[14px] text-text-muted truncate">${v.access}</div>
       <div class="col-span-2 text-[12px] font-mono text-neon-blue">${v.time}</div>
-      <div class="col-span-2"><span class="inline-flex items-center gap-1 text-[10px] font-bold border px-2 py-0.5 rounded ${s.bg} ${s.color}"><span class="w-1.5 h-1.5 rounded-full ${s.dot}"></span>${s.label}</span></div>
+      <div class="col-span-2"><span class="inline-flex items-center gap-1 text-[14px] font-bold border px-2 py-0.5 rounded ${s.bg} ${s.color}"><span class="w-1.5 h-1.5 rounded-full ${s.dot}"></span>${s.label}</span></div>
     </div>`;
   }).join('');
 }
