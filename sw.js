@@ -1,5 +1,5 @@
-const CACHE = 'showroom-2026-v5';
-const OLD_CACHES = ['showroom-2026-v1','showroom-2026-v2','showroom-2026-v3','showroom-2026-v4'];
+const CACHE = 'showroom-2026-v6';
+const OLD_CACHES = ['showroom-2026-v1','showroom-2026-v2','showroom-2026-v3','showroom-2026-v4','showroom-2026-v5'];
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(
@@ -10,6 +10,20 @@ self.addEventListener('activate', e => e.waitUntil(
 
 self.addEventListener('fetch', e => {
     if (e.request.method !== 'GET') return;
+
+    // HTML navigation: network-first so every reload shows the latest version.
+    // Falls back to cache only when offline.
+    if (e.request.mode === 'navigate') {
+        e.respondWith(
+            fetch(e.request).then(res => {
+                caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+                return res;
+            }).catch(() => caches.match(e.request))
+        );
+        return;
+    }
+
+    // Assets (fonts, CSS, JS, images): stale-while-revalidate for fast loads.
     e.respondWith(
         caches.open(CACHE).then(cache =>
             cache.match(e.request).then(cached => {
