@@ -38,14 +38,6 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <h1 class="text-white text-5xl font-extrabold tracking-tight leading-none">Trazabilidad</h1>
   </div>
   <div class="ml-auto flex items-center gap-6">
-    <div class="flex flex-col items-center">
-      <span class="text-[28px] font-extrabold text-neon-cyan glow-cyan">2,481</span>
-      <span class="text-[14px] text-text-muted uppercase tracking-wider">Unidades trazadas</span>
-    </div>
-    <div class="flex flex-col items-center">
-      <span class="text-[28px] font-extrabold text-neon-green glow-green">100%</span>
-      <span class="text-[14px] text-text-muted uppercase tracking-wider">Cobertura</span>
-    </div>
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
       <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
       <span class="text-[13px] text-neon-green font-semibold">EN OPERACIÓN</span>
@@ -364,7 +356,6 @@ setInterval(function(){
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
 // Fade in on load
 (function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
-// Smooth reload (10s testing / production: 5*60*1000)
-var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},10*1000);</script>
+var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},5*60*1000);</script>
 </body>
 </html>
