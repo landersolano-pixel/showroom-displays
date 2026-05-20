@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" style="background:#030712">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1920">
-<title>Edge IoT Gateway — NCTECH Showroom 2026</title>
+<title>Portafolio IIoT — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 <style>
@@ -30,11 +30,6 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
-.tb-brand{display:flex;align-items:center;gap:12px;margin-right:8px}
-.tb-logo{width:34px;height:34px;background:var(--cyan);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:17px;color:#030712}
-.tb-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:.5px}
-.tb-sub{font-size:11px;color:rgba(224,240,255,.4);letter-spacing:1px;font-family:var(--mono)}
-.tb-exp{font-size:14px;color:rgba(0,229,255,.65);background:var(--cyan4);border:1px solid var(--border);padding:3px 14px;border-radius:20px;font-family:var(--mono)}
 .tb-sep{width:1px;height:36px;background:var(--border);margin:0 4px}
 .tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:90px}
 .tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
@@ -43,15 +38,15 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-kpi-lbl{font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:2px;font-family:var(--mono)}
 .tb-time{font-family:var(--mono);font-size:15px;color:rgba(0,229,255,.75);letter-spacing:1px}
 .tb-live{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green);animation:pulse 1.5s ease-in-out infinite}
 .tb-heading{display:flex;flex-direction:column;gap:2px}
 .tb-station{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
 .tb-title{font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
-.tb-live::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green);animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* LAYOUT */
-.main{position:fixed;top:72px;left:0;right:0;bottom:0;display:flex;flex-direction:column;padding:20px 24px;gap:16px;z-index:1;overflow:hidden}
+.main{position:fixed;top:72px;left:0;right:0;bottom:0;display:flex;flex-direction:column;padding:20px 24px;gap:14px;z-index:1;overflow:hidden}
 
 /* KPI ROW */
 .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;flex-shrink:0}
@@ -61,94 +56,62 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .kc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
 .kc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
 .kc.purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
-.kc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
 .kc-icon{font-size:28px;flex-shrink:0}
-.kc-body{}
 .kc-lbl{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);font-weight:600}
 .kc-val{font-family:var(--display);font-size:28px;font-weight:700;line-height:1.1}
 .kc-val.cyan{color:var(--cyan);text-shadow:0 0 6px rgba(0,229,255,.1)}
 .kc-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,.1)}
 .kc-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,.1)}
 .kc-val.purple{color:var(--purple);text-shadow:0 0 6px rgba(124,77,255,.1)}
-.kc-val.red{color:var(--red2);text-shadow:0 0 6px rgba(255,59,59,.1)}
 .kc-sub{font-size:13px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:2px}
 
-/* PIPELINE AREA */
-.pipeline-area{flex:1;display:flex;flex-direction:column;gap:14px;min-height:0}
+/* SOLUTION GRID */
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;min-height:0}
+.sol-card{background:rgba(8,17,32,.9);border:1px solid var(--border3);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.sol-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:14px 14px 0 0}
+.sol-card.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.sol-card.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.sol-card.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.sol-card.purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
+.sol-card-header{padding:14px 18px 12px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.sol-icon-wrap{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sol-icon-wrap.cyan{background:rgba(0,229,255,.12);box-shadow:0 0 10px rgba(0,229,255,.08)}
+.sol-icon-wrap.green{background:rgba(0,255,170,.12);box-shadow:0 0 10px rgba(0,255,170,.08)}
+.sol-icon-wrap.amber{background:rgba(255,179,0,.12);box-shadow:0 0 10px rgba(255,179,0,.08)}
+.sol-icon-wrap.purple{background:rgba(124,77,255,.12);box-shadow:0 0 10px rgba(124,77,255,.08)}
+.sol-icon-wrap .material-symbols-outlined{font-size:24px}
+.sol-icon-wrap.cyan .material-symbols-outlined{color:var(--cyan)}
+.sol-icon-wrap.green .material-symbols-outlined{color:var(--green)}
+.sol-icon-wrap.amber .material-symbols-outlined{color:var(--amber)}
+.sol-icon-wrap.purple .material-symbols-outlined{color:var(--purple)}
+.sol-title-block{flex:1}
+.sol-num{font-size:11px;color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono)}
+.sol-name{font-family:var(--display);font-size:19px;font-weight:700;color:#fff;line-height:1.2}
+.sol-live-val{font-family:var(--display);font-size:22px;font-weight:700;line-height:1;text-align:right}
+.sol-live-val.cyan{color:var(--cyan)}
+.sol-live-val.green{color:var(--green)}
+.sol-live-val.amber{color:var(--amber)}
+.sol-live-val.purple{color:var(--purple)}
+.sol-live-lbl{font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono);text-align:right;text-transform:uppercase;letter-spacing:.5px}
+.sol-body{padding:12px 18px;flex:1;display:flex;flex-direction:column;gap:7px}
+.sol-cap{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:rgba(224,240,255,.68);line-height:1.4}
+.sol-cap-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.sol-cap-dot.cyan{background:var(--cyan)}
+.sol-cap-dot.green{background:var(--green)}
+.sol-cap-dot.amber{background:var(--amber)}
+.sol-cap-dot.purple{background:var(--purple)}
+.sol-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.05)}
+.sol-m{display:flex;flex-direction:column}
+.sol-m-val{font-family:var(--display);font-size:19px;font-weight:700;line-height:1}
+.sol-m-val.cyan{color:var(--cyan)}
+.sol-m-val.green{color:var(--green)}
+.sol-m-val.amber{color:var(--amber)}
+.sol-m-val.purple{color:var(--purple)}
+.sol-m-val.white{color:#fff}
+.sol-m-lbl{font-size:11px;color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.5px;font-family:var(--mono);margin-top:2px}
 
-/* 3-STAGE PIPELINE */
-.pipeline{display:flex;align-items:stretch;gap:0;flex:1;min-height:0}
-.stage{display:flex;flex-direction:column;border-radius:16px;border:1px solid var(--border3);background:rgba(8,17,32,.85);overflow:hidden;position:relative;transition:all .3s}
-.stage.sensors{flex:1;border-color:rgba(0,229,255,.2)}
-.stage.gateway{flex:1.5;border-color:rgba(0,255,170,.35);box-shadow:0 0 28px rgba(0,255,170,.04),0 0 0 1px rgba(0,255,170,.12);background:rgba(6,22,14,.9)}
-.stage.cloud{flex:1;border-color:rgba(124,77,255,.2)}
-
-.stage-header{padding:18px 20px 14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.06)}
-.stage-icon-wrap{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.stage-icon-wrap.cyan{background:rgba(0,229,255,.12);box-shadow:0 0 10px rgba(0,229,255,.08)}
-.stage-icon-wrap.green{background:rgba(0,255,170,.14);box-shadow:0 0 14px rgba(0,255,170,.1)}
-.stage-icon-wrap.purple{background:rgba(124,77,255,.12);box-shadow:0 0 10px rgba(124,77,255,.08)}
-.stage-icon-wrap .material-symbols-outlined{font-size:28px}
-.stage-icon-wrap.cyan .material-symbols-outlined{color:var(--cyan)}
-.stage-icon-wrap.green .material-symbols-outlined{color:var(--green);font-size:30px}
-.stage-icon-wrap.purple .material-symbols-outlined{color:var(--purple)}
-.stage-title-block{flex:1}
-.stage-label{font-size:13px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono);font-weight:600}
-.stage-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;line-height:1.2}
-.stage-name.cyan{color:var(--cyan)}
-.stage-name.green{color:var(--green)}
-.stage-name.purple{color:var(--purple)}
-.stage-throughput{display:flex;flex-direction:column;align-items:flex-end}
-.stage-thr-val{font-family:var(--display);font-size:26px;font-weight:700}
-.stage-thr-lbl{font-size:13px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px}
-
-.stage-body{flex:1;padding:16px 20px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
-
-/* Device rows in SENSORS stage */
-.dev-row{display:flex;align-items:center;gap:10px;padding:8px 10px;background:rgba(3,7,18,.5);border:1px solid var(--border3);border-radius:8px}
-.dev-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.dev-dot.online{background:var(--green);box-shadow:0 0 4px var(--green);animation:pulse 2s infinite}
-.dev-dot.warn{background:var(--amber);box-shadow:0 0 4px var(--amber)}
-.dev-name{font-family:var(--mono);font-size:14px;color:rgba(224,240,255,.7);flex:1}
-.dev-proto{font-size:13px;font-family:var(--mono);padding:2px 7px;border-radius:4px;background:var(--cyan4);color:var(--cyan);border:1px solid rgba(0,229,255,.15)}
-.dev-rate{font-family:var(--display);font-size:14px;font-weight:700;color:rgba(224,240,255,.6);width:52px;text-align:right}
-
-/* Processing blocks in GATEWAY stage */
-.gw-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1}
-.gw-block{background:rgba(0,255,170,.04);border:1px solid rgba(0,255,170,.12);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
-.gw-block-title{display:flex;align-items:center;gap:7px;font-family:var(--display);font-size:15px;font-weight:700;color:var(--green)}
-.gw-block-title .material-symbols-outlined{font-size:18px;color:var(--green)}
-.gw-metric-row{display:flex;justify-content:space-between;align-items:center}
-.gw-metric-lbl{font-size:13px;color:rgba(224,240,255,.4);font-family:var(--mono)}
-.gw-metric-val{font-family:var(--display);font-size:16px;font-weight:700;color:var(--green)}
-.gw-bar-track{height:4px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:4px}
-.gw-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green));transition:width .8s}
-
-/* Cloud endpoints in CLOUD stage */
-.cloud-endpoint{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(3,7,18,.5);border:1px solid var(--border3);border-radius:8px}
-.cloud-ep-icon .material-symbols-outlined{font-size:20px;color:var(--purple)}
-.cloud-ep-body{flex:1}
-.cloud-ep-name{font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
-.cloud-ep-desc{font-size:13px;color:rgba(224,240,255,.4);font-family:var(--mono)}
-.cloud-ep-status{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.cloud-ep-val{font-family:var(--display);font-size:16px;font-weight:700;color:var(--purple)}
-.cloud-ep-lat{font-size:13px;color:rgba(224,240,255,.3);font-family:var(--mono)}
-
-/* CONNECTORS */
-.connector{width:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex-shrink:0;position:relative}
-.conn-line{position:relative;width:100%;height:3px;border-radius:2px;overflow:hidden}
-.conn-line.left{background:rgba(0,229,255,.15)}
-.conn-line.right{background:rgba(124,77,255,.15)}
-.conn-particle{position:absolute;top:50%;transform:translateY(-50%);width:18px;height:3px;border-radius:2px;animation:flow-h 1.8s linear infinite}
-.conn-particle.left{background:linear-gradient(90deg,transparent,var(--cyan));animation-name:flow-h-cyan}
-.conn-particle.right{background:linear-gradient(90deg,transparent,var(--purple));animation-name:flow-h-purple}
-@keyframes flow-h-cyan{0%{left:-18px}100%{left:100%}}
-@keyframes flow-h-purple{0%{left:-18px}100%{left:100%}}
-.conn-arrow{font-size:22px;color:rgba(224,240,255,.2)}
-.conn-label{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;text-align:center;line-height:1.3}
-
-/* BOTTOM LOG */
-.pipeline-log{flex-shrink:0;background:rgba(8,17,32,.9);border:1px solid var(--border3);border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:16px;overflow:hidden}
+/* LOG BAR */
+.pipeline-log{flex-shrink:0;background:rgba(8,17,32,.9);border:1px solid var(--border3);border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:16px;overflow:hidden}
 .log-label{font-size:13px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
 .log-feed{display:flex;gap:18px;overflow:hidden;flex:1}
 .log-entry{display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0}
@@ -166,329 +129,288 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 <div class="topbar">
   <div class="tb-heading">
     <span class="tb-station">Showroom 2026 · Estación 09</span>
-    <span class="tb-title">Edge IoT Gateway</span>
+    <span class="tb-title">Portafolio IIoT</span>
   </div>
   <div class="tb-right">
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val" id="tb-dev">47</span>
-      <span class="tb-kpi-lbl">Dispositivos</span>
-    </div>
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val green" id="tb-tps">1,284</span>
-      <span class="tb-kpi-lbl">Tags/seg</span>
-    </div>
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val amber" id="tb-lat">12 ms</span>
-      <span class="tb-kpi-lbl">Latencia</span>
-    </div>
-    <div class="tb-sep"></div>
     <div class="tb-live">LIVE</div>
     <span class="tb-time" id="tb-clock">--:--:--</span>
     <div class="tb-sep" style="height:40px;margin:0 8px"></div>
     <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
   </div>
-</div><!-- MAIN -->
+</div>
+
+<!-- MAIN -->
 <div class="main">
 
   <!-- KPI ROW -->
   <div class="kpi-row">
     <div class="kc cyan">
-      <span class="kc-icon material-symbols-outlined" style="color:var(--cyan)">sensors</span>
-      <div class="kc-body">
-        <div class="kc-lbl">Sensores activos</div>
-        <div class="kc-val cyan" id="kc-sens">32</div>
-        <div class="kc-sub">de 36 disponibles</div>
-      </div>
-    </div>
-    <div class="kc green">
-      <span class="kc-icon material-symbols-outlined" style="color:var(--green)">router</span>
-      <div class="kc-body">
-        <div class="kc-lbl">Gateway CPU</div>
-        <div class="kc-val green" id="kc-cpu">34%</div>
-        <div class="kc-sub">deviceWISE EDGE</div>
+      <span class="kc-icon material-symbols-outlined" style="color:var(--cyan)">bar_chart</span>
+      <div>
+        <div class="kc-lbl">OEE Monitoring</div>
+        <div class="kc-val cyan" id="kc-oee">78%</div>
+        <div class="kc-sub">Eficiencia productiva</div>
       </div>
     </div>
     <div class="kc amber">
-      <span class="kc-icon material-symbols-outlined" style="color:var(--amber)">data_object</span>
-      <div class="kc-body">
-        <div class="kc-lbl">Mensajes/seg</div>
-        <div class="kc-val amber" id="kc-msg">1,284</div>
-        <div class="kc-sub">Flujo total</div>
-      </div>
-    </div>
-    <div class="kc purple">
-      <span class="kc-icon material-symbols-outlined" style="color:var(--purple)">cloud_upload</span>
-      <div class="kc-body">
-        <div class="kc-lbl">Uplink cloud</div>
-        <div class="kc-val purple" id="kc-up">98.7%</div>
-        <div class="kc-sub">Disponibilidad</div>
+      <span class="kc-icon material-symbols-outlined" style="color:var(--amber)">notifications_active</span>
+      <div>
+        <div class="kc-lbl">Digital Andon</div>
+        <div class="kc-val amber" id="kc-andon">3</div>
+        <div class="kc-sub">Alertas activas</div>
       </div>
     </div>
     <div class="kc green">
-      <span class="kc-icon material-symbols-outlined" style="color:var(--green)">storage</span>
-      <div class="kc-body">
-        <div class="kc-lbl">Buffer local</div>
-        <div class="kc-val green">1.2 GB</div>
-        <div class="kc-sub">Store &amp; forward</div>
+      <span class="kc-icon material-symbols-outlined" style="color:var(--green)">qr_code_scanner</span>
+      <div>
+        <div class="kc-lbl">Trazabilidad</div>
+        <div class="kc-val green" id="kc-traz">2,481</div>
+        <div class="kc-sub">Piezas trazadas hoy</div>
+      </div>
+    </div>
+    <div class="kc purple">
+      <span class="kc-icon material-symbols-outlined" style="color:var(--purple)">network_node</span>
+      <div>
+        <div class="kc-lbl">Conectividad M2M</div>
+        <div class="kc-val purple" id="kc-dev">47</div>
+        <div class="kc-sub">Dispositivos online</div>
+      </div>
+    </div>
+    <div class="kc cyan">
+      <span class="kc-icon material-symbols-outlined" style="color:var(--cyan)">visibility</span>
+      <div>
+        <div class="kc-lbl">Visión IA</div>
+        <div class="kc-val cyan" id="kc-ia">99.2%</div>
+        <div class="kc-sub">Precisión inspección</div>
       </div>
     </div>
   </div>
 
-  <!-- PIPELINE AREA -->
-  <div class="pipeline-area">
+  <!-- SOLUTIONS GRID -->
+  <div class="sol-grid">
 
-    <!-- 3-STAGE PIPELINE -->
-    <div class="pipeline">
-
-      <!-- STAGE 1: SENSORS -->
-      <div class="stage sensors">
-        <div class="stage-header">
-          <div class="stage-icon-wrap cyan">
-            <span class="material-symbols-outlined">sensors</span>
-          </div>
-          <div class="stage-title-block">
-            <div class="stage-label">Etapa 1</div>
-            <div class="stage-name cyan">Sensores</div>
-          </div>
-          <div class="stage-throughput">
-            <div class="stage-thr-val" style="color:var(--cyan)" id="s1-thr">847</div>
-            <div class="stage-thr-lbl">Tags/seg</div>
-          </div>
+    <!-- 1. OEE MONITORING -->
+    <div class="sol-card cyan">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap cyan">
+          <span class="material-symbols-outlined">bar_chart</span>
         </div>
-        <div class="stage-body">
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">PLC-01 Ensamble</span>
-            <span class="dev-proto">OPC-UA</span>
-            <span class="dev-rate" id="d1-r">128/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">PLC-02 Soldadura</span>
-            <span class="dev-proto">Modbus</span>
-            <span class="dev-rate" id="d2-r">64/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">HMI Línea A</span>
-            <span class="dev-proto">EtherNet/IP</span>
-            <span class="dev-rate">48/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot warn"></div>
-            <span class="dev-name">Sensor Temp-07</span>
-            <span class="dev-proto">MQTT</span>
-            <span class="dev-rate">32/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">Cámara QA-01</span>
-            <span class="dev-proto">REST</span>
-            <span class="dev-rate">12/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">Robot Soldador R3</span>
-            <span class="dev-proto">PROFINET</span>
-            <span class="dev-rate">96/s</span>
-          </div>
-          <div class="dev-row">
-            <div class="dev-dot online"></div>
-            <span class="dev-name">Encoder CNC-04</span>
-            <span class="dev-proto">OPC-UA</span>
-            <span class="dev-rate" id="d7-r">56/s</span>
-          </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 01</div>
+          <div class="sol-name">OEE Monitoring</div>
+        </div>
+        <div>
+          <div class="sol-live-val cyan" id="s1-oee">78%</div>
+          <div class="sol-live-lbl">OEE live</div>
         </div>
       </div>
-
-      <!-- CONNECTOR LEFT -->
-      <div class="connector">
-        <div class="conn-line left">
-          <div class="conn-particle left"></div>
-        </div>
-        <span class="conn-arrow" style="color:rgba(0,229,255,.4)">&#8250;</span>
-        <div class="conn-line left">
-          <div class="conn-particle left" style="animation-delay:.6s"></div>
-        </div>
-        <div class="conn-label" style="color:rgba(0,229,255,.4)">OPC<br>MQTT<br>Modbus</div>
-      </div>
-
-      <!-- STAGE 2: EDGE GATEWAY (center, larger) -->
-      <div class="stage gateway">
-        <div class="stage-header">
-          <div class="stage-icon-wrap green">
-            <span class="material-symbols-outlined">router</span>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>OEE = Disponibilidad × Rendimiento × Calidad capturado directo de PLCs</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>Dashboards interactivos por turno, hora, línea o máquina</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>Elimina registros manuales en papel y errores de captura en Excel</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val cyan" id="s1-disp">91%</div>
+            <div class="sol-m-lbl">Disponibilidad</div>
           </div>
-          <div class="stage-title-block">
-            <div class="stage-label">Etapa 2 — Núcleo</div>
-            <div class="stage-name green">Edge Gateway</div>
+          <div class="sol-m">
+            <div class="sol-m-val cyan" id="s1-rend">86%</div>
+            <div class="sol-m-lbl">Rendimiento</div>
           </div>
-          <div class="stage-throughput">
-            <div class="stage-thr-val" style="color:var(--green)" id="s2-thr">1,284</div>
-            <div class="stage-thr-lbl">Tags/seg</div>
-          </div>
-        </div>
-        <div class="stage-body">
-          <div class="gw-grid">
-            <div class="gw-block">
-              <div class="gw-block-title">
-                <span class="material-symbols-outlined">network_node</span>
-                Traducción
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Protocolos activos</span>
-                <span class="gw-metric-val">8</span>
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Conversiones/min</span>
-                <span class="gw-metric-val" id="gw-conv">4,823</span>
-              </div>
-              <div class="gw-bar-track"><div class="gw-bar-fill" style="width:80%"></div></div>
-            </div>
-            <div class="gw-block">
-              <div class="gw-block-title">
-                <span class="material-symbols-outlined">data_object</span>
-                Normalización
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Reglas activas</span>
-                <span class="gw-metric-val">124</span>
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">CPU uso</span>
-                <span class="gw-metric-val" id="gw-cpu">34%</span>
-              </div>
-              <div class="gw-bar-track"><div class="gw-bar-fill" id="gw-cpu-bar" style="width:34%"></div></div>
-            </div>
-            <div class="gw-block">
-              <div class="gw-block-title">
-                <span class="material-symbols-outlined">storage</span>
-                Buffer local
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Almacenado</span>
-                <span class="gw-metric-val">1.2 GB</span>
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Pendientes</span>
-                <span class="gw-metric-val" id="gw-q">0</span>
-              </div>
-              <div class="gw-bar-track"><div class="gw-bar-fill" style="width:12%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--amber))"></div></div>
-            </div>
-            <div class="gw-block">
-              <div class="gw-block-title">
-                <span class="material-symbols-outlined">api</span>
-                API Gateway
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Endpoints</span>
-                <span class="gw-metric-val">12</span>
-              </div>
-              <div class="gw-metric-row">
-                <span class="gw-metric-lbl">Req/min</span>
-                <span class="gw-metric-val" id="gw-req">386</span>
-              </div>
-              <div class="gw-bar-track"><div class="gw-bar-fill" style="width:64%"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CONNECTOR RIGHT -->
-      <div class="connector">
-        <div class="conn-line right">
-          <div class="conn-particle right"></div>
-        </div>
-        <span class="conn-arrow" style="color:rgba(124,77,255,.5)">&#8250;</span>
-        <div class="conn-line right">
-          <div class="conn-particle right" style="animation-delay:.9s"></div>
-        </div>
-        <div class="conn-label" style="color:rgba(124,77,255,.5)">MQTT<br>REST<br>gRPC</div>
-      </div>
-
-      <!-- STAGE 3: CLOUD -->
-      <div class="stage cloud">
-        <div class="stage-header">
-          <div class="stage-icon-wrap purple">
-            <span class="material-symbols-outlined">cloud_upload</span>
-          </div>
-          <div class="stage-title-block">
-            <div class="stage-label">Etapa 3</div>
-            <div class="stage-name purple">Cloud / MES</div>
-          </div>
-          <div class="stage-throughput">
-            <div class="stage-thr-val" style="color:var(--purple)" id="s3-thr">437</div>
-            <div class="stage-thr-lbl">Msgs/seg</div>
-          </div>
-        </div>
-        <div class="stage-body">
-          <div class="cloud-endpoint">
-            <div class="cloud-ep-icon"><span class="material-symbols-outlined">cloud_upload</span></div>
-            <div class="cloud-ep-body">
-              <div class="cloud-ep-name">Azure IoT Hub</div>
-              <div class="cloud-ep-desc">Telemetría principal · TLS 1.3</div>
-            </div>
-            <div class="cloud-ep-status">
-              <span class="cloud-ep-val" id="c1-val">312</span>
-              <span class="cloud-ep-lat">msg/s · 18 ms</span>
-            </div>
-          </div>
-          <div class="cloud-endpoint">
-            <div class="cloud-ep-icon"><span class="material-symbols-outlined">storage</span></div>
-            <div class="cloud-ep-body">
-              <div class="cloud-ep-name">Data Lake</div>
-              <div class="cloud-ep-desc">Históricos · ADLS Gen2</div>
-            </div>
-            <div class="cloud-ep-status">
-              <span class="cloud-ep-val">Batch</span>
-              <span class="cloud-ep-lat">5 min flush</span>
-            </div>
-          </div>
-          <div class="cloud-endpoint">
-            <div class="cloud-ep-icon"><span class="material-symbols-outlined">api</span></div>
-            <div class="cloud-ep-body">
-              <div class="cloud-ep-name">MES / ERP</div>
-              <div class="cloud-ep-desc">REST webhooks · OAuth 2.0</div>
-            </div>
-            <div class="cloud-ep-status">
-              <span class="cloud-ep-val" id="c3-val">94</span>
-              <span class="cloud-ep-lat">req/s · 24 ms</span>
-            </div>
-          </div>
-          <div class="cloud-endpoint">
-            <div class="cloud-ep-icon"><span class="material-symbols-outlined">network_node</span></div>
-            <div class="cloud-ep-body">
-              <div class="cloud-ep-name">Dashboard SCADA</div>
-              <div class="cloud-ep-desc">WebSocket · streaming RT</div>
-            </div>
-            <div class="cloud-ep-status">
-              <span class="cloud-ep-val" style="color:var(--green)">LIVE</span>
-              <span class="cloud-ep-lat">8 ms RTT</span>
-            </div>
-          </div>
-          <div class="cloud-endpoint">
-            <div class="cloud-ep-icon"><span class="material-symbols-outlined">data_object</span></div>
-            <div class="cloud-ep-body">
-              <div class="cloud-ep-name">Analytics Engine</div>
-              <div class="cloud-ep-desc">ML inference · predicción</div>
-            </div>
-            <div class="cloud-ep-status">
-              <span class="cloud-ep-val" id="c5-val">31</span>
-              <span class="cloud-ep-lat">events/s</span>
-            </div>
+          <div class="sol-m">
+            <div class="sol-m-val cyan" id="s1-cal">98%</div>
+            <div class="sol-m-lbl">Calidad</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- LOG BAR -->
-    <div class="pipeline-log">
-      <span class="log-label">Event log</span>
-      <div class="log-feed" id="log-feed"></div>
+    <!-- 2. DIGITAL ANDON -->
+    <div class="sol-card amber">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap amber">
+          <span class="material-symbols-outlined">notifications_active</span>
+        </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 02</div>
+          <div class="sol-name">Digital Andon</div>
+        </div>
+        <div>
+          <div class="sol-live-val amber" id="s2-alertas">3</div>
+          <div class="sol-live-lbl">Alertas activas</div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>Alertas manuales y automáticas vía IIoT a responsables de área</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>MTBF y MTTR en tiempo real para gestión de mantenimiento</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>Clasificación de paros por tipo de fallo, identifica cuellos de botella</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val amber" id="s2-mtbf">847 h</div>
+            <div class="sol-m-lbl">MTBF</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val amber" id="s2-mttr">2.4 h</div>
+            <div class="sol-m-lbl">MTTR</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val white" id="s2-resp">18 min</div>
+            <div class="sol-m-lbl">T. respuesta</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- 3. TRAZABILIDAD -->
+    <div class="sol-card green">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap green">
+          <span class="material-symbols-outlined">qr_code_scanner</span>
+        </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 03</div>
+          <div class="sol-name">Trazabilidad</div>
+        </div>
+        <div>
+          <div class="sol-live-val green" id="s3-piezas">2,481</div>
+          <div class="sol-live-lbl">Piezas trazadas</div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot green"></div><span>N.º de serie vinculado a proceso, máquina, operador y tiempo de fabricación</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot green"></div><span>Control de recetas: muestra al operador la configuración correcta por modelo</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot green"></div><span>Prevención de recalls y base de datos para auditorías de calidad</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val green" id="s3-series">12</div>
+            <div class="sol-m-lbl">Series activas</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val green" id="s3-cob">94%</div>
+            <div class="sol-m-lbl">Cobertura</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val white">0</div>
+            <div class="sol-m-lbl">Recalls</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CONECTIVIDAD M2M -->
+    <div class="sol-card purple">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap purple">
+          <span class="material-symbols-outlined">network_node</span>
+        </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 04</div>
+          <div class="sol-name">Conectividad M2M</div>
+        </div>
+        <div>
+          <div class="sol-live-val purple" id="s4-tps">1,284</div>
+          <div class="sol-live-lbl">Tags / seg</div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot purple"></div><span>OPC UA · MQTT · Modbus · PROFINET · EtherNet/IP — cualquier protocolo industrial</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot purple"></div><span>Integración OT-IT: SAP, Oracle, MES, ERP, SQL, MongoDB sin fricción</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot purple"></div><span>Sincronización de parámetros entre máquinas para flujo continuo de datos</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val purple" id="s4-dev">47</div>
+            <div class="sol-m-lbl">Dispositivos</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val purple">8</div>
+            <div class="sol-m-lbl">Protocolos</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val white" id="s4-lat">12 ms</div>
+            <div class="sol-m-lbl">Latencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. VISIÓN ARTIFICIAL IA -->
+    <div class="sol-card cyan">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap cyan">
+          <span class="material-symbols-outlined">visibility</span>
+        </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 05</div>
+          <div class="sol-name">Visión Artificial IA</div>
+        </div>
+        <div>
+          <div class="sol-live-val cyan" id="s5-prec">99.2%</div>
+          <div class="sol-live-lbl">Precisión IA</div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>Detección en tiempo real de piezas faltantes, mal posicionadas o con daños superficiales</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>Control de Interlock: bloquea el siguiente paso del PLC si la pieza falla inspección</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot cyan"></div><span>Registro fotográfico de defectos para análisis histórico y mejora continua</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val cyan" id="s5-insp">238</div>
+            <div class="sol-m-lbl">Insp/hora</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val cyan" id="s5-def">4</div>
+            <div class="sol-m-lbl">Defectos hoy</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val white" id="s5-scrap">1.7%</div>
+            <div class="sol-m-lbl">Scrap</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. VARIABLES CRÍTICAS -->
+    <div class="sol-card amber">
+      <div class="sol-card-header">
+        <div class="sol-icon-wrap amber">
+          <span class="material-symbols-outlined">speed</span>
+        </div>
+        <div class="sol-title-block">
+          <div class="sol-num">Solución 06</div>
+          <div class="sol-name">Variables Críticas</div>
+        </div>
+        <div>
+          <div class="sol-live-val amber" id="s6-vars">32</div>
+          <div class="sol-live-lbl">Vars activas</div>
+        </div>
+      </div>
+      <div class="sol-body">
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>Temperatura, vibración, presión, flujo y consumo eléctrico por máquina o línea</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>Alertas automáticas ante desviaciones de valores óptimos preconfigurados</span></div>
+        <div class="sol-cap"><div class="sol-cap-dot amber"></div><span>Base de datos histórica para estrategias de mantenimiento predictivo</span></div>
+        <div class="sol-metrics">
+          <div class="sol-m">
+            <div class="sol-m-val amber" id="s6-alertas">7</div>
+            <div class="sol-m-lbl">Alertas hoy</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val amber" id="s6-energia">142 kW</div>
+            <div class="sol-m-lbl">Consumo</div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-m-val white" id="s6-uptime">99.9%</div>
+            <div class="sol-m-lbl">Uptime</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOG BAR -->
+  <div class="pipeline-log">
+    <span class="log-label">Actividad</span>
+    <div class="log-feed" id="log-feed"></div>
   </div>
 </div>
 
@@ -498,65 +420,86 @@ function updateClock(){
 }
 updateClock();setInterval(updateClock,1000);
 
-// Live data
-let tps=1284;
 function rand(min,max){return min+Math.floor(Math.random()*(max-min+1));}
+function randf(min,max,dec){return (min+Math.random()*(max-min)).toFixed(dec);}
 
-setInterval(()=>{
-  tps=rand(1180,1360);
-  document.getElementById('tb-tps').textContent=tps.toLocaleString('es-MX');
-  document.getElementById('kc-msg').textContent=tps.toLocaleString('es-MX');
-  const lat=rand(9,16);
-  document.getElementById('tb-lat').textContent=lat+' ms';
-  const cpu=rand(28,44);
-  document.getElementById('kc-cpu').textContent=cpu+'%';
-  document.getElementById('gw-cpu').textContent=cpu+'%';
-  document.getElementById('gw-cpu-bar').style.width=cpu+'%';
-  document.getElementById('s1-thr').textContent=rand(780,920);
-  document.getElementById('s2-thr').textContent=tps.toLocaleString('es-MX');
-  document.getElementById('s3-thr').textContent=rand(400,480);
-  document.getElementById('gw-conv').textContent=rand(4500,5200).toLocaleString('es-MX');
-  document.getElementById('gw-req').textContent=rand(340,420);
-  document.getElementById('c1-val').textContent=rand(280,350);
-  document.getElementById('c3-val').textContent=rand(80,110);
-  document.getElementById('c5-val').textContent=rand(25,40);
-  document.getElementById('d1-r').textContent=rand(110,145)+'/s';
-  document.getElementById('d2-r').textContent=rand(55,75)+'/s';
-  document.getElementById('d7-r').textContent=rand(48,68)+'/s';
-},2800);
+// Live data fluctuations
+setInterval(function(){
+  // OEE
+  var oee=rand(75,83),disp=rand(88,94),rend=rand(83,90),cal=rand(97,99);
+  document.getElementById('kc-oee').textContent=oee+'%';
+  document.getElementById('s1-oee').textContent=oee+'%';
+  document.getElementById('s1-disp').textContent=disp+'%';
+  document.getElementById('s1-rend').textContent=rend+'%';
+  document.getElementById('s1-cal').textContent=cal+'%';
 
-// Event log feed
-const logEvents=[
-  {msg:'OPC-UA tag batch recibido',tag:'ok'},
-  {msg:'Modbus RTU poll completado',tag:'ok'},
-  {msg:'Azure IoT Hub · chunk enviado',tag:'ok'},
-  {msg:'Temp-07 fuera de umbral',tag:'warn'},
-  {msg:'Regla ETL #47 ejecutada',tag:'info'},
-  {msg:'MQTT broker reconectado',tag:'ok'},
-  {msg:'Buffer flush a Data Lake',tag:'info'},
-  {msg:'API /telemetry 200 OK',tag:'ok'},
-  {msg:'Certificado X.509 renovado',tag:'info'},
-  {msg:'PROFINET scan completado',tag:'ok'},
+  // Andon
+  var alertas=rand(1,5),mtbf=rand(820,880),mttr=parseFloat(randf(1.8,3.2,1));
+  document.getElementById('kc-andon').textContent=alertas;
+  document.getElementById('s2-alertas').textContent=alertas;
+  document.getElementById('s2-mtbf').textContent=mtbf+' h';
+  document.getElementById('s2-mttr').textContent=mttr+' h';
+  document.getElementById('s2-resp').textContent=rand(12,28)+' min';
+
+  // Trazabilidad
+  var piezas=2481+rand(0,8);
+  document.getElementById('kc-traz').textContent=piezas.toLocaleString('es-MX');
+  document.getElementById('s3-piezas').textContent=piezas.toLocaleString('es-MX');
+  document.getElementById('s3-series').textContent=rand(10,14);
+  document.getElementById('s3-cob').textContent=rand(92,96)+'%';
+
+  // M2M
+  var dev=rand(44,50),tps=rand(1150,1380),lat=rand(9,16);
+  document.getElementById('kc-dev').textContent=dev;
+  document.getElementById('s4-dev').textContent=dev;
+  document.getElementById('s4-tps').textContent=tps.toLocaleString('es-MX');
+  document.getElementById('s4-lat').textContent=lat+' ms';
+
+  // Visión IA
+  var prec=parseFloat(randf(98.8,99.5,1)),insp=rand(220,255),def=rand(2,7),scrap=parseFloat(randf(1.2,2.4,1));
+  document.getElementById('kc-ia').textContent=prec+'%';
+  document.getElementById('s5-prec').textContent=prec+'%';
+  document.getElementById('s5-insp').textContent=insp;
+  document.getElementById('s5-def').textContent=def;
+  document.getElementById('s5-scrap').textContent=scrap+'%';
+
+  // Variables críticas
+  var vars=rand(30,34),ale=rand(5,10),ener=rand(135,155);
+  document.getElementById('s6-vars').textContent=vars;
+  document.getElementById('s6-alertas').textContent=ale;
+  document.getElementById('s6-energia').textContent=ener+' kW';
+  document.getElementById('s6-uptime').textContent=parseFloat(randf(99.7,99.9,1))+'%';
+},3500);
+
+// Event log
+var logEvents=[
+  {msg:'OEE Monitoring · batch recibido PLC-01',tag:'ok'},
+  {msg:'Andon · alerta fallo en Línea B Area 3',tag:'warn'},
+  {msg:'Trazabilidad · SN-20260482 despachado OK',tag:'ok'},
+  {msg:'M2M · OPC-UA handshake completado',tag:'ok'},
+  {msg:'Visión IA · defecto detectado SN-20260479',tag:'warn'},
+  {msg:'Variables · Temp-07 fuera de umbral 72°C',tag:'warn'},
+  {msg:'Trazabilidad · receta actualizada modelo B',tag:'info'},
+  {msg:'M2M · buffer flush a MES/ERP completado',tag:'ok'},
+  {msg:'OEE · turno nocturno: OEE 81% registrado',tag:'info'},
+  {msg:'Visión IA · 238 inspecciones sin defecto',tag:'ok'},
+  {msg:'Andon · MTTR 2.1 h — bajo histórico',tag:'info'},
+  {msg:'Variables · consumo energético normalizado',tag:'ok'},
 ];
-let logIdx=0;
+var logIdx=0;
 function addLog(){
-  const ev=logEvents[logIdx%logEvents.length];
-  logIdx++;
-  const feed=document.getElementById('log-feed');
-  const t=new Date().toLocaleTimeString('es-MX',{hour12:false});
-  const el=document.createElement('div');
-  el.className='log-entry';
-  el.innerHTML=`<span class="log-time">${t}</span><span class="log-msg">${ev.msg}</span><span class="log-tag ${ev.tag}">${ev.tag.toUpperCase()}</span>`;
+  var ev=logEvents[logIdx%logEvents.length];logIdx++;
+  var feed=document.getElementById('log-feed');
+  var t=new Date().toLocaleTimeString('es-MX',{hour12:false});
+  var el=document.createElement('div');el.className='log-entry';
+  el.innerHTML='<span class="log-time">'+t+'</span><span class="log-msg">'+ev.msg+'</span><span class="log-tag '+ev.tag+'">'+ev.tag.toUpperCase()+'</span>';
   feed.prepend(el);
-  // Keep max 6 entries
   while(feed.children.length>6)feed.removeChild(feed.lastChild);
 }
-addLog();setInterval(addLog,2200);
+addLog();setInterval(addLog,2500);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
-// Fade in on load
 (function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
-// Smooth reload (10s testing / production: 5*60*1000)
-var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},10*1000);</script>
+var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},5*60*1000);</script>
 </body>
 </html>

@@ -212,22 +212,6 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     <span class="tb-title">Dashboard Ejecutivo</span>
   </div>
   <div class="tb-right">
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val">84%</span>
-      <span class="tb-kpi-lbl">OEE</span>
-    </div>
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val green">99%</span>
-      <span class="tb-kpi-lbl">Calidad</span>
-    </div>
-    <div class="tb-sep"></div>
-    <div class="tb-kpi">
-      <span class="tb-kpi-val amber">14 min</span>
-      <span class="tb-kpi-lbl">Resp. Mant.</span>
-    </div>
-    <div class="tb-sep"></div>
     <div class="tb-live">AUTO</div>
     <span class="tb-time" id="tb-clock">--:--:--</span>
     <div class="tb-sep" style="height:40px;margin:0 8px"></div>
@@ -776,6 +760,6 @@ setInterval(()=>{
 // Fade in on load
 (function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
 // Smooth reload (10s testing / production: 5*60*1000)
-var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},10*1000);</script>
+var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},5*60*1000);</script>
 </body>
 </html>
