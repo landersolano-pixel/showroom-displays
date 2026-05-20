@@ -356,30 +356,41 @@ function srchSerial(){
 let traced=2481;
 setInterval(()=>{traced++;document.getElementById('kpi-traced').textContent=traced.toLocaleString('es-MX');},6000);
 
-// Advance pipeline: inspection → empaque (−7) → entrega (−8 from empaque)
-let inspected=189,packed=182,shipped=174;
+// Continuous production loop — never stops (showroom kiosk)
+const BATCH=238;
+let insp=189,pack=182,ship=174,transitioning=false;
+
+function setStage(id,val,total){
+  const pct=Math.round(val/total*100);
+  const ce=document.getElementById(id+'-count');
+  const pe=document.getElementById(id+'-pct');
+  const be=document.getElementById(id+'-bar');
+  if(ce)ce.textContent=val;
+  if(pe)pe.textContent=pct+'%';
+  if(be)be.style.width=pct+'%';
+}
+
+function newBatch(){
+  insp=Math.floor(Math.random()*6)+4; // 4–9 uds al iniciar
+  pack=0; ship=0;
+  setStage('insp',insp,BATCH);
+  setStage('pack',pack,BATCH);
+  setStage('ship',ship,BATCH);
+  transitioning=false;
+}
+
 setInterval(function(){
-  if(inspected>=238)return;
-  inspected++;
-  const pct=Math.round(inspected/238*100);
-  document.getElementById('insp-count').textContent=inspected;
-  document.getElementById('insp-pct').textContent=pct+'%';
-  document.getElementById('insp-bar').style.width=pct+'%';
-  // empaque advances every 2 inspection ticks
-  if(inspected%2===0&&packed<231){
-    packed++;
-    const pp=Math.round(packed/238*100);
-    document.getElementById('pack-count').textContent=packed;
-    document.getElementById('pack-pct').textContent=pp+'%';
-    document.getElementById('pack-bar').style.width=pp+'%';
+  if(transitioning)return;
+  if(insp<BATCH){
+    insp++;
+    setStage('insp',insp,BATCH);
   }
-  // entrega advances every 3 inspection ticks
-  if(inspected%3===0&&shipped<packed-6){
-    shipped++;
-    const sp=Math.round(shipped/238*100);
-    document.getElementById('ship-count').textContent=shipped;
-    document.getElementById('ship-pct').textContent=sp+'%';
-    document.getElementById('ship-bar').style.width=sp+'%';
+  if(insp%2===0&&pack<231){pack++;setStage('pack',pack,BATCH);}
+  if(insp%3===0&&ship<pack-6){ship++;setStage('ship',ship,BATCH);}
+  // Lote completo → pausa 4s y arranca nuevo lote
+  if(insp>=BATCH&&pack>=230&&ship>=222){
+    transitioning=true;
+    setTimeout(newBatch,4500);
   }
 },3500);
 </script>
