@@ -1,5 +1,5 @@
-const CACHE = 'showroom-2026-v3';
-const OLD_CACHES = ['showroom-2026-v1','showroom-2026-v2'];
+const CACHE = 'showroom-2026-v4';
+const OLD_CACHES = ['showroom-2026-v1','showroom-2026-v2','showroom-2026-v3'];
 
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(
