@@ -1,7 +1,12 @@
-const CACHE = 'showroom-2026-v1';
+const CACHE = 'showroom-2026-v3';
+const OLD_CACHES = ['showroom-2026-v1','showroom-2026-v2'];
 
 self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', e => e.waitUntil(clients.claim()));
+self.addEventListener('activate', e => e.waitUntil(
+    caches.keys().then(keys =>
+        Promise.all(keys.filter(k => OLD_CACHES.includes(k)).map(k => caches.delete(k)))
+    ).then(() => clients.claim())
+));
 
 self.addEventListener('fetch', e => {
     if (e.request.method !== 'GET') return;
