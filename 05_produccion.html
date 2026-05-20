@@ -8,17 +8,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44','neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa','neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'}}}}
+tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44','neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa','neon-red':'#ff3b3b','neon-amber':'#f59e0b','text-muted':'#8ca3c4','text-bright':'#ffffff'}}}}
 </script>
 <style>
 body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
 .glow-green{text-shadow:0 0 4px rgba(0,255,170,0.2)}
 .glow-blue{text-shadow:0 0 4px rgba(30,144,255,0.2)}
+.glow-cyan{text-shadow:0 0 4px rgba(0,240,255,0.2)}
 .glow-red{text-shadow:0 0 4px rgba(255,59,59,0.2)}
+.glow-amber{text-shadow:0 0 4px rgba(245,158,11,0.2)}
 .box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
 .box-glow-red{box-shadow:0 0 6px rgba(255,59,59,0.08)}
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
+@keyframes spin-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.spin-slow{animation:spin-slow 4s linear infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.pulse-dot{animation:pulse-dot 2s infinite}
 </style>
 </head>
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
@@ -31,7 +37,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   </div>
   <div class="flex items-center gap-6">
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
-      <span class="material-symbols-outlined text-neon-blue text-[20px]">precision_manufacturing</span>
+      <span class="material-symbols-outlined text-neon-green text-[20px]">developer_board</span>
       <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Turno B · 14:00–22:00</span>
     </div>
     <div class="flex flex-col items-end gap-1">
@@ -46,322 +52,280 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
 <!-- KPI CARDS -->
 <section class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">OEE Global</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">bar_chart</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
     </div>
     <div class="flex items-center gap-3">
-      <div class="relative w-12 h-12">
+      <div class="relative w-10 h-10 shrink-0">
         <svg class="w-full h-full" viewBox="0 0 36 36">
           <path stroke="#1e2b44" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
           <path stroke="#1e90ff" stroke-width="3" fill="none" stroke-linecap="round" style="stroke-dasharray:84.2 100;stroke-dashoffset:0;transform:rotate(-90deg);transform-origin:50% 50%" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
         </svg>
       </div>
-      <span class="text-[46px] font-extrabold leading-none text-white glow-blue">84%</span>
+      <span class="text-[42px] font-extrabold leading-none text-white glow-blue">84%</span>
     </div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Unidades / turno</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">inventory_2</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">cyclone</span>
     </div>
-    <div>
-      <div class="text-[46px] font-extrabold leading-none text-neon-green glow-green" id="k-units">1,247</div>
-      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2">
-        <div id="units-bar" class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa] transition-all duration-1000" style="width:83%"></div>
-      </div>
-    </div>
+    <div><div class="text-[42px] font-extrabold leading-none text-neon-green glow-green" id="k-units">1,247</div>
+    <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-1"><div id="units-bar" class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa] transition-all duration-1000" style="width:83%"></div></div></div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Disponibilidad</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-cyan">check_circle</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-cyan">settings_input_antenna</span>
     </div>
-    <div>
-      <div class="text-[46px] font-extrabold leading-none text-white">91%</div>
-      <span class="text-[11px] font-bold text-neon-cyan uppercase tracking-wide">4 líneas activas</span>
-    </div>
+    <div><div class="text-[42px] font-extrabold leading-none text-white">91%</div>
+    <span class="text-[11px] font-bold text-neon-cyan uppercase tracking-wide">4 líneas activas</span></div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Rendimiento</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
+      <span class="text-[12px] font-bold tracking-wider uppercase">Temperatura</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-amber">thermostat</span>
     </div>
-    <div class="text-[46px] font-extrabold leading-none text-white">86%</div>
+    <div class="text-[42px] font-extrabold leading-none text-neon-amber glow-amber">76°C</div>
   </div>
-  <div class="bg-card-bg border border-l-2 border-neon-red border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-l-2 border-neon-red border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center">
       <span class="text-[12px] font-bold tracking-wider uppercase text-neon-red">Paros hoy</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-red">warning</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-red">memory</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-red glow-red">3</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-red glow-red">3</div>
   </div>
 </section>
 
-<!-- MAIN -->
+<!-- MAIN: 55% machines grid / 45% output chart -->
 <section class="flex-1 grid grid-cols-12 gap-4 min-h-0">
 
-  <!-- LEFT: Prioridades -->
-  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
-      <span class="material-symbols-outlined text-neon-red text-[22px]">warning</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Prioridades</h3>
-    </div>
-    <div class="p-4 flex flex-col gap-3 overflow-y-auto flex-1">
-      <div class="bg-[#121827] border border-card-border border-l-2 border-l-neon-red p-4 rounded-lg flex flex-col gap-2">
-        <div class="flex justify-between items-start">
-          <span class="text-[15px] font-semibold text-white">Pintura C — Parada</span>
-          <span class="text-[10px] font-bold text-neon-red border border-neon-red/50 px-2 py-0.5 rounded uppercase">Crítico</span>
-        </div>
-        <span class="text-[13px] text-text-muted">En mantenimiento correctivo urgente</span>
-        <button class="mt-1 w-full border border-card-border bg-card-bg text-neon-blue text-[11px] font-bold py-2 rounded uppercase tracking-wider hover:bg-neon-blue/10 transition-colors flex items-center justify-center gap-1">
-          Ver análisis <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-        </button>
-      </div>
-      <div class="bg-[#121827] border border-card-border border-l-2 border-l-[#f59e0b] p-4 rounded-lg flex flex-col gap-2">
-        <div class="flex justify-between items-start">
-          <span class="text-[15px] font-semibold text-white">Empaque E — Espera</span>
-          <span class="text-[10px] font-bold text-[#f59e0b] border border-[#f59e0b]/50 px-2 py-0.5 rounded uppercase">Atención</span>
-        </div>
-        <span class="text-[13px] text-text-muted">Velocidad reducida al 45%</span>
-      </div>
-      <div class="bg-[#121827] border border-card-border border-l-2 border-l-neon-green p-4 rounded-lg">
-        <div class="flex justify-between items-center">
-          <span class="text-[15px] font-semibold text-white">Ensamble A — OK</span>
-          <span class="text-[10px] font-bold text-neon-green border border-neon-green/50 px-2 py-0.5 rounded uppercase">Óptimo</span>
-        </div>
-        <div class="mt-2">
-          <div class="flex justify-between items-end mb-1">
-            <span class="text-[11px] font-bold text-text-muted uppercase tracking-wider">Eficiencia</span>
-            <span class="text-[11px] font-bold text-neon-green uppercase tracking-wider">92%</span>
-          </div>
-          <div class="w-full h-[3px] bg-card-border rounded-full">
-            <div class="h-full bg-neon-green w-[92%] shadow-[0_0_2px_#00ffaa]"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CENTER: Máquinas -->
-  <div class="col-span-6 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex justify-between items-center shrink-0">
+  <!-- LEFT 55%: 3×2 Machine Status Cards -->
+  <div class="col-span-7 flex flex-col overflow-hidden gap-3">
+    <div class="flex items-center gap-2 px-1 shrink-0">
+      <span class="material-symbols-outlined text-neon-blue text-[20px]">developer_board</span>
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Estado de Máquinas</h3>
-      <div class="flex gap-2">
-        <button onclick="showTab('maquinas')" id="btn-maquinas" class="px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider border border-neon-blue/40 bg-neon-blue/10 text-neon-blue rounded-lg transition-all">Máquinas</button>
-        <button onclick="showTab('progreso')" id="btn-progreso" class="px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider border border-card-border text-text-muted rounded-lg hover:bg-white/5 transition-all">Progreso</button>
-        <button onclick="showTab('ordenes')" id="btn-ordenes" class="px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider border border-card-border text-text-muted rounded-lg hover:bg-white/5 transition-all">Órdenes</button>
-      </div>
+      <span class="text-[11px] text-text-muted ml-auto">4 activas · 1 mant · 1 espera</span>
     </div>
-    <div class="flex-1 p-5 overflow-y-auto">
-      <!-- MAQUINAS TAB -->
-      <div id="tab-maquinas">
-        <table class="w-full">
-          <thead>
-            <tr class="border-b border-card-border">
-              <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">ID</th>
-              <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Máquina</th>
-              <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Estado</th>
-              <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Eficiencia</th>
-              <th class="text-left py-2 px-3 text-[11px] font-bold tracking-widest uppercase text-text-muted">Producción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
-              <td class="py-3 px-3 text-[13px] font-mono font-bold text-neon-blue">M-01</td>
-              <td class="py-3 px-3 text-[14px] font-semibold text-white">Ensamble A</td>
-              <td class="py-3 px-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_2px_#00ffaa]"></span><span class="text-[13px] text-neon-green font-bold">Ejecutando</span></span></td>
-              <td class="py-3 px-3"><div class="flex items-center gap-2"><div class="w-20 h-1.5 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-green" style="width:92%"></div></div><span class="text-[13px] font-mono text-neon-green">92%</span></div></td>
-              <td class="py-3 px-3 text-[14px] font-bold text-neon-green" id="p1">312 uds</td>
-            </tr>
-            <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
-              <td class="py-3 px-3 text-[13px] font-mono font-bold text-neon-blue">M-02</td>
-              <td class="py-3 px-3 text-[14px] font-semibold text-white">Soldadura B</td>
-              <td class="py-3 px-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_2px_#00ffaa]"></span><span class="text-[13px] text-neon-green font-bold">Ejecutando</span></span></td>
-              <td class="py-3 px-3"><div class="flex items-center gap-2"><div class="w-20 h-1.5 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-green" style="width:88%"></div></div><span class="text-[13px] font-mono text-neon-green">88%</span></div></td>
-              <td class="py-3 px-3 text-[14px] font-bold text-neon-green" id="p2">287 uds</td>
-            </tr>
-            <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
-              <td class="py-3 px-3 text-[13px] font-mono font-bold text-neon-blue">M-03</td>
-              <td class="py-3 px-3 text-[14px] font-semibold text-white">Pintura C</td>
-              <td class="py-3 px-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#7c4dff] shadow-[0_0_2px_#7c4dff]"></span><span class="text-[13px] text-[#b39ddb] font-bold">Mantenimiento</span></span></td>
-              <td class="py-3 px-3"><div class="flex items-center gap-2"><div class="w-20 h-1.5 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-[#7c4dff]" style="width:0%"></div></div><span class="text-[13px] font-mono text-text-muted">—</span></div></td>
-              <td class="py-3 px-3 text-[14px] text-text-muted">En pausa</td>
-            </tr>
-            <tr class="border-b border-card-border/50 hover:bg-white/[0.02] transition-colors">
-              <td class="py-3 px-3 text-[13px] font-mono font-bold text-neon-blue">M-04</td>
-              <td class="py-3 px-3 text-[14px] font-semibold text-white">Prueba D</td>
-              <td class="py-3 px-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-green shadow-[0_0_2px_#00ffaa]"></span><span class="text-[13px] text-neon-green font-bold">Ejecutando</span></span></td>
-              <td class="py-3 px-3"><div class="flex items-center gap-2"><div class="w-20 h-1.5 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-blue" style="width:79%"></div></div><span class="text-[13px] font-mono text-neon-blue">79%</span></div></td>
-              <td class="py-3 px-3 text-[14px] font-bold text-neon-green" id="p4">198 uds</td>
-            </tr>
-            <tr class="hover:bg-white/[0.02] transition-colors">
-              <td class="py-3 px-3 text-[13px] font-mono font-bold text-neon-blue">M-05</td>
-              <td class="py-3 px-3 text-[14px] font-semibold text-white">Empaque E</td>
-              <td class="py-3 px-3"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#f59e0b] shadow-[0_0_2px_#f59e0b]"></span><span class="text-[13px] text-[#f59e0b] font-bold">Espera</span></span></td>
-              <td class="py-3 px-3"><div class="flex items-center gap-2"><div class="w-20 h-1.5 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-[#f59e0b]" style="width:45%"></div></div><span class="text-[13px] font-mono text-[#f59e0b]">45%</span></div></td>
-              <td class="py-3 px-3 text-[14px] text-text-muted">450 uds</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="flex-1 grid grid-cols-3 grid-rows-2 gap-3 min-h-0">
+
+      <!-- M-01 -->
+      <div class="bg-card-bg border border-neon-green/30 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-neon-green opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neon-green text-[22px]">developer_board</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">M-01</div>
+              <div class="text-[14px] font-bold text-white">Ensamble A</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
+        </div>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m01-out">312</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">92%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-green rounded-full" id="m01-bar" style="width:78%"></div></div>
       </div>
-      <!-- PROGRESO TAB -->
-      <div id="tab-progreso" class="hidden flex flex-col gap-4">
-        <div class="flex flex-col gap-2">
-          <div class="flex justify-between items-center"><span class="text-[14px] font-semibold text-white">M-01 Ensamble A</span><span class="text-[14px] font-bold text-neon-green font-mono" id="pg1">312</span></div>
-          <div class="w-full h-3 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-green rounded-full shadow-[0_0_3px_#00ffaa] transition-all duration-500" id="pf1" style="width:78%"></div></div>
-          <span class="text-[12px] text-text-muted">Meta: 400 uds</span>
+
+      <!-- M-02 -->
+      <div class="bg-card-bg border border-neon-green/30 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-neon-green opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neon-cyan text-[22px]">memory</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">M-02</div>
+              <div class="text-[14px] font-bold text-white">Soldadura B</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase">OK</span>
         </div>
-        <div class="flex flex-col gap-2">
-          <div class="flex justify-between items-center"><span class="text-[14px] font-semibold text-white">M-02 Soldadura B</span><span class="text-[14px] font-bold text-neon-green font-mono" id="pg2">287</span></div>
-          <div class="w-full h-3 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-green rounded-full shadow-[0_0_3px_#00ffaa] transition-all duration-500" id="pf2" style="width:75%"></div></div>
-          <span class="text-[12px] text-text-muted">Meta: 380 uds</span>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-neon-green glow-green" id="m02-out">287</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">88%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
         </div>
-        <div class="flex flex-col gap-2">
-          <div class="flex justify-between items-center"><span class="text-[14px] font-semibold text-white">M-03 Pintura C</span><span class="text-[14px] font-bold text-[#f59e0b] font-mono">0</span></div>
-          <div class="w-full h-3 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-[#f59e0b] rounded-full" style="width:0%"></div></div>
-          <span class="text-[12px] text-text-muted">En mantenimiento · Meta: 300 uds</span>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div class="flex justify-between items-center"><span class="text-[14px] font-semibold text-white">M-04 Prueba D</span><span class="text-[14px] font-bold text-neon-blue font-mono" id="pg4">198</span></div>
-          <div class="w-full h-3 bg-[#1e2b44] rounded-full overflow-hidden"><div class="h-full bg-neon-blue rounded-full shadow-[0_0_3px_#1e90ff] transition-all duration-500" id="pf4" style="width:70%"></div></div>
-          <span class="text-[12px] text-text-muted">Meta: 280 uds</span>
-        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-cyan rounded-full" id="m02-bar" style="width:75%"></div></div>
       </div>
-      <!-- ORDENES TAB -->
-      <div id="tab-ordenes" class="hidden flex flex-col gap-3">
-        <div class="bg-[#121827] border border-card-border rounded-lg p-4 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-neon-green/10 border border-neon-green/30 flex items-center justify-center"><span class="material-symbols-outlined text-neon-green text-[20px]">assignment</span></div>
-          <div class="flex-1"><div class="text-[14px] font-bold text-neon-blue font-mono">OP-2024-0847</div><div class="text-[13px] text-text-muted mt-0.5">Motor Serie MX — Ensamble completo</div></div>
-          <span class="text-[11px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-3 py-1 rounded uppercase">En Curso</span>
+
+      <!-- M-03 — MAINTENANCE -->
+      <div class="bg-card-bg border border-[#7c4dff]/40 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-[#7c4dff] opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#b39ddb] text-[22px] spin-slow">cyclone</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">M-03</div>
+              <div class="text-[14px] font-bold text-white">Pintura C</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/30 px-2 py-0.5 rounded uppercase">Mant.</span>
         </div>
-        <div class="bg-[#121827] border border-card-border rounded-lg p-4 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-[#f59e0b]/10 border border-[#f59e0b]/30 flex items-center justify-center"><span class="material-symbols-outlined text-[#f59e0b] text-[20px]">assignment</span></div>
-          <div class="flex-1"><div class="text-[14px] font-bold text-neon-blue font-mono">OP-2024-0848</div><div class="text-[13px] text-text-muted mt-0.5">Variador de frecuencia — Lote 500 uds</div></div>
-          <span class="text-[11px] font-bold bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/30 px-3 py-1 rounded uppercase">Pendiente</span>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-[#b39ddb]">0</div><div class="text-[10px] text-text-muted">en pausa</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-text-muted">—</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
         </div>
-        <div class="bg-[#121827] border border-card-border rounded-lg p-4 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-card-border/30 flex items-center justify-center"><span class="material-symbols-outlined text-text-muted text-[20px]">assignment</span></div>
-          <div class="flex-1"><div class="text-[14px] font-bold text-text-muted font-mono">OP-2024-0846</div><div class="text-[13px] text-text-muted mt-0.5">Sensor presión — Lote 200 uds</div></div>
-          <span class="text-[11px] font-bold bg-card-bg text-text-muted border border-card-border px-3 py-1 rounded uppercase">Completada</span>
-        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-[#7c4dff]/40 rounded-full" style="width:0%"></div></div>
       </div>
+
+      <!-- M-04 -->
+      <div class="bg-card-bg border border-neon-blue/30 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-neon-blue opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neon-blue text-[22px]">settings_input_antenna</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">M-04</div>
+              <div class="text-[14px] font-bold text-white">Prueba D</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-blue/10 text-neon-blue border border-neon-blue/30 px-2 py-0.5 rounded uppercase">OK</span>
+        </div>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-neon-blue glow-blue" id="m04-out">198</div><div class="text-[10px] text-text-muted">uds producidas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">79%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-blue rounded-full" id="m04-bar" style="width:70%"></div></div>
+      </div>
+
+      <!-- M-05 — WAIT -->
+      <div class="bg-card-bg border border-neon-amber/30 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-neon-amber opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neon-amber text-[22px]">thermostat</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">M-05</div>
+              <div class="text-[14px] font-bold text-white">Empaque E</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-amber/10 text-neon-amber border border-neon-amber/30 px-2 py-0.5 rounded uppercase">Espera</span>
+        </div>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-neon-amber glow-amber">450</div><div class="text-[10px] text-text-muted">uds previas</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-neon-amber">45%</div><div class="text-[10px] text-text-muted">eficiencia</div></div>
+        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-amber rounded-full" style="width:45%"></div></div>
+      </div>
+
+      <!-- M-06 — new: QUALITY STATION -->
+      <div class="bg-card-bg border border-neon-green/25 rounded-xl p-4 flex flex-col gap-2 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-0.5 bg-neon-cyan opacity-60"></div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-neon-cyan text-[22px]">speed</span>
+            <div>
+              <div class="text-[11px] font-mono text-neon-blue">QS-01</div>
+              <div class="text-[14px] font-bold text-white">Control QA</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 px-2 py-0.5 rounded uppercase pulse-dot">Activo</span>
+        </div>
+        <div class="flex justify-between items-end">
+          <div><div class="text-[24px] font-extrabold text-neon-cyan glow-cyan">99%</div><div class="text-[10px] text-text-muted">FPY logrado</div></div>
+          <div class="text-right"><div class="text-[18px] font-bold text-white">7</div><div class="text-[10px] text-text-muted">defectos</div></div>
+        </div>
+        <div class="h-1 bg-card-border rounded-full overflow-hidden"><div class="h-full bg-neon-cyan rounded-full" style="width:99%"></div></div>
+      </div>
+
     </div>
   </div>
 
-  <!-- RIGHT: Resumen + KPIs -->
-  <div class="col-span-3 bg-[#0a101d] border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex justify-between items-center shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-neon-blue text-[22px]">analytics</span>
-        <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">KPIs Turno</h3>
-      </div>
-      <div class="flex items-center gap-1.5">
-        <div class="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse"></div>
-        <span class="text-[10px] font-bold text-neon-green tracking-widest uppercase">Live</span>
+  <!-- RIGHT 45%: Production Output Chart (vertical bars) -->
+  <div class="col-span-5 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-cyan text-[22px]">developer_board</span>
+      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Producción por Turno</h3>
+      <div class="ml-auto flex items-center gap-1.5">
+        <div class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></div>
+        <span class="text-[10px] font-bold text-neon-green">Live</span>
       </div>
     </div>
-    <div class="flex-1 p-5 flex flex-col gap-4 overflow-y-auto">
-      <div class="flex justify-between items-center py-2 border-b border-card-border/50">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Calidad (Q)</span>
-        <span class="text-[22px] font-bold text-neon-cyan">92%</span>
+    <div class="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
+      <!-- Bar chart -->
+      <div class="flex-1 flex items-end gap-3 min-h-0 pb-2">
+        <!-- Each bar: label below -->
+        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+          <span class="text-[12px] font-mono text-neon-green glow-green font-bold" id="bv1">312</span>
+          <div class="w-full bg-card-border rounded-t-md relative overflow-hidden flex-none" style="height:78%" >
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-green/80 to-neon-green/30 rounded-t-md transition-all duration-1000" id="bh1" style="height:100%"></div>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-mono text-neon-blue">M-01</div>
+            <div class="text-[9px] text-text-muted">Ensamble</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+          <span class="text-[12px] font-mono text-neon-cyan glow-cyan font-bold" id="bv2">287</span>
+          <div class="w-full bg-card-border rounded-t-md relative overflow-hidden flex-none" style="height:72%">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-cyan/80 to-neon-cyan/30 rounded-t-md transition-all duration-1000" id="bh2" style="height:100%"></div>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-mono text-neon-blue">M-02</div>
+            <div class="text-[9px] text-text-muted">Soldadura</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+          <span class="text-[12px] font-mono text-text-muted font-bold">0</span>
+          <div class="w-full bg-card-border rounded-t-md relative overflow-hidden flex-none" style="height:4%">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#7c4dff]/60 to-[#7c4dff]/20 rounded-t-md" style="height:100%"></div>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-mono text-neon-blue">M-03</div>
+            <div class="text-[9px] text-text-muted">Pintura</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+          <span class="text-[12px] font-mono text-neon-blue glow-blue font-bold" id="bv4">198</span>
+          <div class="w-full bg-card-border rounded-t-md relative overflow-hidden flex-none" style="height:50%">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-blue/80 to-neon-blue/30 rounded-t-md transition-all duration-1000" id="bh4" style="height:100%"></div>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-mono text-neon-blue">M-04</div>
+            <div class="text-[9px] text-text-muted">Prueba</div>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+          <span class="text-[12px] font-mono text-neon-amber glow-amber font-bold">450</span>
+          <div class="w-full bg-card-border rounded-t-md relative overflow-hidden flex-none" style="height:56%">
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neon-amber/80 to-neon-amber/30 rounded-t-md" style="height:100%"></div>
+          </div>
+          <div class="text-center">
+            <div class="text-[10px] font-mono text-neon-blue">M-05</div>
+            <div class="text-[9px] text-text-muted">Empaque</div>
+          </div>
+        </div>
       </div>
-      <div class="flex justify-between items-center py-2 border-b border-card-border/50">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Disponibilidad (A)</span>
-        <span class="text-[22px] font-bold text-[#f59e0b]">91%</span>
+      <!-- KPI summary below chart -->
+      <div class="border-t border-card-border pt-4 grid grid-cols-2 gap-3 shrink-0">
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">Calidad (Q)</span><span class="text-[18px] font-bold text-neon-cyan">92%</span></div>
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">Disponib. (A)</span><span class="text-[18px] font-bold text-neon-amber">91%</span></div>
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">Rendim. (P)</span><span class="text-[18px] font-bold text-neon-green">86%</span></div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">T. productivo</span><span class="text-[18px] font-bold text-white">6.3 h</span></div>
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">Paros</span><span class="text-[18px] font-bold text-neon-amber">3</span></div>
+          <div class="flex justify-between items-center"><span class="text-[12px] text-text-muted font-mono">Scrap</span><span class="text-[18px] font-bold text-neon-red">2%</span></div>
+        </div>
       </div>
-      <div class="flex justify-between items-center py-2 border-b border-card-border/50">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Rendimiento (P)</span>
-        <span class="text-[22px] font-bold text-neon-green">86%</span>
-      </div>
-      <div class="flex justify-between items-center py-2 border-b border-card-border/50">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Tiempo productivo</span>
-        <span class="text-[22px] font-bold text-white">6.3 h</span>
-      </div>
-      <div class="flex justify-between items-center py-2 border-b border-card-border/50">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Paros no planeados</span>
-        <span class="text-[22px] font-bold text-[#f59e0b]">3</span>
-      </div>
-      <div class="flex justify-between items-center py-2">
-        <span class="text-[13px] text-text-muted font-mono uppercase tracking-wider">Scrap acumulado</span>
-        <span class="text-[22px] font-bold text-neon-red">2%</span>
-      </div>
-      <div class="mt-2 pt-4 border-t border-card-border shrink-0">
-        <span class="block text-[11px] font-bold text-text-muted uppercase tracking-widest mb-2">Acción Sugerida</span>
-        <button class="w-full bg-neon-blue text-white font-bold py-3.5 rounded-lg flex items-center justify-center gap-2 uppercase tracking-widest text-[12px] box-glow-blue hover:brightness-110 transition-all">
-          <span class="material-symbols-outlined text-[20px]">bolt</span>
-          Asignar Técnico M-03
-        </button>
-      </div>
+      <button class="w-full bg-neon-blue text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 uppercase tracking-widest text-[12px] box-glow-blue hover:brightness-110 transition-all shrink-0">
+        <span class="material-symbols-outlined text-[18px]">speed</span>Asignar Técnico M-03
+      </button>
     </div>
   </div>
 
-</section>
-
-<!-- TIMELINE -->
-<section class="bg-card-bg border border-card-border rounded-lg p-5 shrink-0">
-  <div class="flex justify-between items-center mb-6">
-    <h3 class="font-bold text-[13px] tracking-[0.2em] uppercase">Cronología del Turno</h3>
-    <div class="flex items-center gap-3">
-      <span id="realtime-clock" class="bg-[#121827] text-white text-[12px] font-bold px-4 py-1.5 rounded border border-card-border font-mono">--:--:--</span>
-      <div class="flex items-center gap-2">
-        <div class="w-2 h-2 rounded-full bg-neon-blue shadow-[0_0_3px_#1e90ff]"></div>
-        <span class="text-[11px] font-bold text-neon-blue uppercase tracking-widest">Datos en tiempo real</span>
-      </div>
-    </div>
-  </div>
-  <div class="relative px-6">
-    <div class="absolute top-3 left-0 right-0 h-[2px] bg-card-border z-0"></div>
-    <div class="absolute top-3 left-0 w-[75%] h-[2px] bg-neon-blue z-0 shadow-[0_0_2px_#1e90ff]"></div>
-    <div class="grid grid-cols-4 gap-4 relative z-10 text-center">
-      <div class="flex flex-col items-center">
-        <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-[#4e6b99] flex items-center justify-center mb-3"><div class="w-2 h-2 rounded-full bg-[#4e6b99]"></div></div>
-        <span class="block text-[16px] font-bold text-text-muted mb-0.5">14:00</span>
-        <span class="block text-[11px] font-bold uppercase tracking-widest text-text-muted">Inicio Turno B</span>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-[#4e6b99] flex items-center justify-center mb-3"><div class="w-2 h-2 rounded-full bg-[#4e6b99]"></div></div>
-        <span class="block text-[16px] font-bold text-text-muted mb-0.5">15:30</span>
-        <span class="block text-[11px] font-bold uppercase tracking-widest text-text-muted">Meta 500 uds</span>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-neon-red flex items-center justify-center mb-3 box-glow-red relative">
-          <div class="absolute -inset-2 border border-neon-red/30 rounded-full animate-ping"></div>
-          <div class="w-2 h-2 rounded-full bg-neon-red glow-red"></div>
-        </div>
-        <span class="block text-[16px] font-bold text-neon-red mb-0.5">16:22</span>
-        <span class="block text-[11px] font-bold uppercase tracking-widest text-neon-red">Paro M-03</span>
-      </div>
-      <div class="flex flex-col items-center">
-        <div class="w-6 h-6 rounded-full bg-card-bg border-[3px] border-neon-blue flex items-center justify-center mb-3 box-glow-blue relative">
-          <div class="absolute -inset-1.5 border border-neon-blue/40 rounded-full"></div>
-          <div class="w-2 h-2 rounded-full bg-neon-blue"></div>
-        </div>
-        <span class="block text-[16px] font-bold text-neon-blue mb-0.5">16:45</span>
-        <span class="block text-[11px] font-bold uppercase tracking-widest text-neon-blue">Técnico asignado</span>
-      </div>
-    </div>
-  </div>
 </section>
 
 <script>
 function updateClocks(){
   const t=new Date().toLocaleTimeString('es-MX',{hour12:false});
   document.getElementById('clock').textContent=t;
-  document.getElementById('realtime-clock').textContent=t;
 }
 updateClocks();setInterval(updateClocks,1000);
-
-const tabs=['maquinas','progreso','ordenes'];
-function showTab(id){
-  tabs.forEach(t=>{
-    document.getElementById('tab-'+t).classList.add('hidden');
-    document.getElementById('btn-'+t).className='px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider border border-card-border text-text-muted rounded-lg hover:bg-white/5 transition-all';
-  });
-  document.getElementById('tab-'+id).classList.remove('hidden');
-  document.getElementById('btn-'+id).className='px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider border border-neon-blue/40 bg-neon-blue/10 text-neon-blue rounded-lg transition-all';
-}
 
 let p1=312,p2=287,p4=198;
 setInterval(()=>{
@@ -371,15 +335,17 @@ setInterval(()=>{
   const total=p1+p2+p4+450;
   document.getElementById('k-units').textContent=total.toLocaleString('es-MX');
   document.getElementById('units-bar').style.width=Math.min(total/1500*100,100)+'%';
-  document.getElementById('p1').textContent=p1+' uds';
-  document.getElementById('p2').textContent=p2+' uds';
-  document.getElementById('p4').textContent=p4+' uds';
-  document.getElementById('pg1').textContent=p1;
-  document.getElementById('pf1').style.width=(p1/400*100)+'%';
-  document.getElementById('pg2').textContent=p2;
-  document.getElementById('pf2').style.width=(p2/380*100)+'%';
-  document.getElementById('pg4').textContent=p4;
-  document.getElementById('pf4').style.width=(p4/280*100)+'%';
+  document.getElementById('m01-out').textContent=p1;
+  document.getElementById('m02-out').textContent=p2;
+  document.getElementById('m04-out').textContent=p4;
+  document.getElementById('bv1').textContent=p1;
+  document.getElementById('bv2').textContent=p2;
+  document.getElementById('bv4').textContent=p4;
+  // bar heights relative to max 400
+  const maxH=400;
+  document.getElementById('m01-bar').style.width=(p1/maxH*100)+'%';
+  document.getElementById('m02-bar').style.width=(p2/380*100)+'%';
+  document.getElementById('m04-bar').style.width=(p4/280*100)+'%';
 },2800);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>

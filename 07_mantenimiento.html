@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mantenimiento — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
@@ -41,9 +42,31 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
 /* LAYOUT */
-.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 380px;gap:0;overflow:hidden}
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:40% 60%;gap:0;overflow:hidden}
 .left-col{display:flex;flex-direction:column;padding:20px 16px 20px 20px;gap:14px;overflow:hidden}
 .right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:14px;overflow-y:auto}
+
+/* WEEK VIEW */
+.week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.week-col{display:flex;flex-direction:column;gap:6px}
+.week-day-hdr{font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;text-align:center;border:1px solid var(--border3)}
+.week-day-hdr.today{background:rgba(0,229,255,.08);border-color:var(--border);color:var(--cyan)}
+.week-event{padding:8px 10px;border-radius:7px;border:1px solid transparent;font-size:11px;cursor:default;transition:all .2s}
+.week-event:hover{opacity:.85}
+.we-crit{background:var(--red3);border-color:rgba(255,23,68,.25)}
+.we-warn{background:var(--amber3);border-color:rgba(255,179,0,.2)}
+.we-pm{background:var(--cyan4);border-color:var(--border)}
+.we-done{background:var(--green3);border-color:rgba(0,230,118,.15)}
+.we-empty{background:transparent;border-color:var(--border3);opacity:.5}
+.we-title{font-family:var(--display);font-size:13px;font-weight:700;margin-bottom:2px}
+.we-eq{font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.45)}
+.we-time{font-family:var(--mono);font-size:10px;margin-top:4px;display:flex;align-items:center;gap:4px}
+
+/* HEALTH CARDS */
+.health-card{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:var(--panel);border:1px solid var(--border3);border-radius:10px;transition:background .2s}
+.health-card:hover{background:var(--panel2)}
+.health-card.alert{border-color:rgba(255,23,68,.3);background:rgba(255,23,68,.04)}
+.health-card.warn{border-color:rgba(255,179,0,.2);background:rgba(255,179,0,.03)}
 
 /* METRICS */
 .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -165,7 +188,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 <!-- MAIN -->
 <div class="main">
-  <!-- LEFT -->
+  <!-- LEFT 40%: Equipment health list with colored status indicators -->
   <div class="left-col">
     <!-- METRICS -->
     <div class="metrics-row">
@@ -182,7 +205,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       <div class="mc amber">
         <div class="mc-lbl">MTTR</div>
         <div class="mc-val amber">2.4 h</div>
-        <div class="mc-sub">Tiempo medio de reparación</div>
+        <div class="mc-sub">Tiempo medio reparación</div>
       </div>
       <div class="mc red">
         <div class="mc-lbl">Alertas activas</div>
@@ -191,104 +214,161 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       </div>
     </div>
 
-    <!-- EQUIPMENT LIST -->
-    <div class="equip-list">
-      <div class="equip-row alert">
-        <div class="equip-icon" style="background:var(--red3)">⚙️</div>
-        <div class="equip-info">
-          <div class="equip-id">M-03</div>
-          <div class="equip-name">Compresor Principal</div>
+    <!-- EQUIPMENT HEALTH LIST -->
+    <div style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px">
+      <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">handyman</span>
+      Estado de Equipos
+    </div>
+    <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
+
+      <!-- M-03 CRITICAL -->
+      <div class="health-card alert">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--red3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="font-family:'Material Symbols Outlined';font-size:20px;color:var(--red2)">construction</span>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--red2)">M-03</div>
+              <div style="font-family:var(--display);font-size:15px;font-weight:700;color:#fff">Compresor Principal</div>
+            </div>
+          </div>
+          <span class="equip-status-badge sb-crit">CRÍTICO</span>
         </div>
-        <div class="equip-health">
-          <span class="health-lbl">Salud</span>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Salud del equipo</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--red2)">23%</span>
+          </div>
           <div class="health-track"><div class="health-fill bad" style="width:23%"></div></div>
-          <span class="health-pct" style="color:var(--red2)">23%</span>
         </div>
-        <div class="equip-next">
-          <div class="next-lbl">Próx. mant.</div>
-          <div class="next-val" style="color:var(--red2)">HOY</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono)">Último mant.: hace 347 h</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--red2);font-weight:600">Próx: HOY ⚠</span>
         </div>
-        <span class="equip-status-badge sb-crit">CRÍTICO</span>
       </div>
-      <div class="equip-row warn">
-        <div class="equip-icon" style="background:var(--amber3)">🔩</div>
-        <div class="equip-info">
-          <div class="equip-id">M-07</div>
-          <div class="equip-name">Banda Transportadora</div>
+
+      <!-- M-07 WARNING -->
+      <div class="health-card warn">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--amber3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="font-family:'Material Symbols Outlined';font-size:20px;color:var(--amber)">cable</span>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--amber)">M-07</div>
+              <div style="font-family:var(--display);font-size:15px;font-weight:700;color:#fff">Banda Transportadora</div>
+            </div>
+          </div>
+          <span class="equip-status-badge sb-warn">ADVERTENCIA</span>
         </div>
-        <div class="equip-health">
-          <span class="health-lbl">Salud</span>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Salud del equipo</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--amber)">58%</span>
+          </div>
           <div class="health-track"><div class="health-fill mid" style="width:58%"></div></div>
-          <span class="health-pct" style="color:var(--amber)">58%</span>
         </div>
-        <div class="equip-next">
-          <div class="next-lbl">Próx. mant.</div>
-          <div class="next-val" style="color:var(--amber)">3 días</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono)">Último mant.: hace 210 h</span>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--amber)">Próx: 3 días</span>
         </div>
-        <span class="equip-status-badge sb-warn">ADVERTENCIA</span>
       </div>
-      <div class="equip-row">
-        <div class="equip-icon" style="background:var(--green3)">🤖</div>
-        <div class="equip-info">
-          <div class="equip-id">R-01</div>
-          <div class="equip-name">Robot Ensamble ABB</div>
+
+      <!-- R-01 OK -->
+      <div class="health-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--green3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="font-family:'Material Symbols Outlined';font-size:20px;color:var(--green)">settings_suggest</span>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--cyan)">R-01</div>
+              <div style="font-family:var(--display);font-size:15px;font-weight:700;color:#fff">Robot Ensamble ABB</div>
+            </div>
+          </div>
+          <span class="equip-status-badge sb-ok">NORMAL</span>
         </div>
-        <div class="equip-health">
-          <span class="health-lbl">Salud</span>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Salud del equipo</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--green)">87%</span>
+          </div>
           <div class="health-track"><div class="health-fill good" style="width:87%"></div></div>
-          <span class="health-pct" style="color:var(--green)">87%</span>
         </div>
-        <div class="equip-next">
-          <div class="next-lbl">Próx. mant.</div>
-          <div class="next-val">21 días</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono)">Último mant.: hace 12 h (PM)</span>
+          <span style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">Próx: 21 días</span>
         </div>
-        <span class="equip-status-badge sb-ok">NORMAL</span>
       </div>
-      <div class="equip-row">
-        <div class="equip-icon" style="background:var(--cyan4)">⚡</div>
-        <div class="equip-info">
-          <div class="equip-id">E-02</div>
-          <div class="equip-name">Variador Frecuencia</div>
+
+      <!-- E-02 OK -->
+      <div class="health-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--cyan4);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="font-family:'Material Symbols Outlined';font-size:20px;color:var(--cyan)">electrical_services</span>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--cyan)">E-02</div>
+              <div style="font-family:var(--display);font-size:15px;font-weight:700;color:#fff">Variador Frecuencia</div>
+            </div>
+          </div>
+          <span class="equip-status-badge sb-ok">NORMAL</span>
         </div>
-        <div class="equip-health">
-          <span class="health-lbl">Salud</span>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Salud del equipo</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--green)">94%</span>
+          </div>
           <div class="health-track"><div class="health-fill good" style="width:94%"></div></div>
-          <span class="health-pct" style="color:var(--green)">94%</span>
         </div>
-        <div class="equip-next">
-          <div class="next-lbl">Próx. mant.</div>
-          <div class="next-val">45 días</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono)">Último mant.: hace 90 h</span>
+          <span style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">Próx: 45 días</span>
         </div>
-        <span class="equip-status-badge sb-ok">NORMAL</span>
       </div>
-      <div class="equip-row">
-        <div class="equip-icon" style="background:var(--purple3)">🔧</div>
-        <div class="equip-info">
-          <div class="equip-id">C-04</div>
-          <div class="equip-name">CNC Fresadora</div>
+
+      <!-- C-04 SCHEDULED -->
+      <div class="health-card">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:8px;background:var(--purple3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <span style="font-family:'Material Symbols Outlined';font-size:20px;color:#B39DDB">schedule</span>
+            </div>
+            <div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--cyan)">C-04</div>
+              <div style="font-family:var(--display);font-size:15px;font-weight:700;color:#fff">CNC Fresadora</div>
+            </div>
+          </div>
+          <span class="equip-status-badge sb-maint">PROGRAMADO</span>
         </div>
-        <div class="equip-health">
-          <span class="health-lbl">Salud</span>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Salud del equipo</span>
+            <span style="font-family:var(--mono);font-size:12px;color:var(--green)">76%</span>
+          </div>
           <div class="health-track"><div class="health-fill good" style="width:76%"></div></div>
-          <span class="health-pct" style="color:var(--green)">76%</span>
         </div>
-        <div class="equip-next">
-          <div class="next-lbl">Próx. mant.</div>
-          <div class="next-val">7 días</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono)">Último mant.: hace 160 h</span>
+          <span style="font-family:var(--mono);font-size:11px;color:#B39DDB">Próx: 7 días</span>
         </div>
-        <span class="equip-status-badge sb-maint">PROGRAMADO</span>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT -->
+  <!-- RIGHT 60%: Maintenance schedule as 5-column week view -->
   <div class="right-col">
-    <!-- ALERTS -->
+    <!-- ALERTS strip -->
     <div class="panel-block">
-      <div class="panel-title">Alertas Activas</div>
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--red2)">construction</span>
+        Alertas Activas
+      </div>
       <div class="alert-list">
         <div class="alert-item crit">
-          <span class="alert-icon">🚨</span>
+          <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--red2);margin-top:1px;flex-shrink:0">electrical_services</span>
           <div class="alert-info">
             <div class="alert-title crit">Temperatura alta — M-03</div>
             <div class="alert-sub">Compresor · 94°C (límite: 80°C)</div>
@@ -296,7 +376,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
           <span class="alert-time">hace 8 min</span>
         </div>
         <div class="alert-item warn">
-          <span class="alert-icon">⚠️</span>
+          <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--amber);margin-top:1px;flex-shrink:0">cable</span>
           <div class="alert-info">
             <div class="alert-title warn">Vibración elevada — M-07</div>
             <div class="alert-sub">Banda · 12.4 mm/s (límite: 10)</div>
@@ -304,7 +384,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
           <span class="alert-time">hace 1.2 h</span>
         </div>
         <div class="alert-item ok">
-          <span class="alert-icon">✅</span>
+          <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--green);margin-top:1px;flex-shrink:0">handyman</span>
           <div class="alert-info">
             <div class="alert-title ok">R-01 — PM completado</div>
             <div class="alert-sub">Robot ABB · Mantenimiento preventivo OK</div>
@@ -314,98 +394,96 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       </div>
     </div>
 
-    <!-- METRICS BARS -->
-    <div class="panel-block">
-      <div class="panel-title">Indicadores Clave</div>
-      <div class="bar-list">
-        <div class="bar-item">
-          <span class="bar-label">Disponibilidad</span>
-          <div class="bar-track"><div class="bar-fill" style="width:92%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div>
-          <span class="bar-val" style="color:var(--green)">92%</span>
+    <!-- WEEK VIEW SCHEDULE -->
+    <div class="panel-block" style="flex:1;overflow:hidden;display:flex;flex-direction:column">
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">schedule</span>
+        Agenda Semanal de Mantenimientos
+        <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.35)">Sem. 20–24 May 2026</span>
+      </div>
+      <div class="week-grid" style="flex:1;overflow-y:auto">
+        <!-- LUN -->
+        <div class="week-col">
+          <div class="week-day-hdr today">LUN<br>19 May</div>
+          <div class="week-event we-crit">
+            <div class="we-title" style="color:var(--red2)">Correctivo urgente</div>
+            <div class="we-eq">M-03 Compresor</div>
+            <div class="we-time" style="color:var(--red2)"><span style="font-family:'Material Symbols Outlined';font-size:12px">construction</span>08:00–fin</div>
+          </div>
+          <div class="week-event we-warn">
+            <div class="we-title" style="color:var(--amber)">Inspección vibración</div>
+            <div class="we-eq">M-07 Banda</div>
+            <div class="we-time" style="color:var(--amber)"><span style="font-family:'Material Symbols Outlined';font-size:12px">cable</span>14:00</div>
+          </div>
         </div>
-        <div class="bar-item">
-          <span class="bar-label">Confiabilidad</span>
-          <div class="bar-track"><div class="bar-fill" style="width:87%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val" style="color:var(--cyan)">87%</span>
+        <!-- MAR -->
+        <div class="week-col">
+          <div class="week-day-hdr">MAR<br>20 May</div>
+          <div class="week-event we-pm">
+            <div class="we-title" style="color:var(--cyan)">Lubricación rodamientos</div>
+            <div class="we-eq">R-01 Robot ABB</div>
+            <div class="we-time" style="color:var(--cyan)"><span style="font-family:'Material Symbols Outlined';font-size:12px">settings_suggest</span>10:00</div>
+          </div>
+          <div class="week-event we-empty">
+            <div class="we-title" style="color:rgba(224,240,255,.3)">Sin eventos</div>
+            <div class="we-eq">—</div>
+          </div>
         </div>
-        <div class="bar-item">
-          <span class="bar-label">PM cumplidas</span>
-          <div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
-          <span class="bar-val" style="color:var(--amber)">78%</span>
+        <!-- MIE -->
+        <div class="week-col">
+          <div class="week-day-hdr">MIÉ<br>21 May</div>
+          <div class="week-event we-warn">
+            <div class="we-title" style="color:var(--amber)">Preventivo banda</div>
+            <div class="we-eq">M-07 Banda</div>
+            <div class="we-time" style="color:var(--amber)"><span style="font-family:'Material Symbols Outlined';font-size:12px">handyman</span>09:00–12:00</div>
+          </div>
+          <div class="week-event we-pm">
+            <div class="we-title" style="color:var(--cyan)">Inspección eléctrica</div>
+            <div class="we-eq">E-02 Variador</div>
+            <div class="we-time" style="color:var(--cyan)"><span style="font-family:'Material Symbols Outlined';font-size:12px">electrical_services</span>15:00</div>
+          </div>
         </div>
-        <div class="bar-item">
-          <span class="bar-label">Equip. sanos</span>
-          <div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div>
-          <span class="bar-val" style="color:var(--green)">3 / 5</span>
+        <!-- JUE -->
+        <div class="week-col">
+          <div class="week-day-hdr">JUE<br>22 May</div>
+          <div class="week-event we-done">
+            <div class="we-title" style="color:var(--green)">Cambio herramienta</div>
+            <div class="we-eq">C-04 CNC</div>
+            <div class="we-time" style="color:var(--green)"><span style="font-family:'Material Symbols Outlined';font-size:12px">construction</span>08:00–11:00</div>
+          </div>
+          <div class="week-event we-pm">
+            <div class="we-title" style="color:var(--cyan)">Calibración sensores</div>
+            <div class="we-eq">M-07 Banda</div>
+            <div class="we-time" style="color:var(--cyan)"><span style="font-family:'Material Symbols Outlined';font-size:12px">cable</span>14:00</div>
+          </div>
+        </div>
+        <!-- VIE -->
+        <div class="week-col">
+          <div class="week-day-hdr">VIE<br>23 May</div>
+          <div class="week-event we-pm">
+            <div class="we-title" style="color:var(--cyan)">PM semestral</div>
+            <div class="we-eq">R-01 Robot ABB</div>
+            <div class="we-time" style="color:var(--cyan)"><span style="font-family:'Material Symbols Outlined';font-size:12px">settings_suggest</span>07:00–16:00</div>
+          </div>
+          <div class="week-event we-empty">
+            <div class="we-title" style="color:rgba(224,240,255,.3)">Libre</div>
+            <div class="we-eq">—</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- SCHEDULE -->
+    <!-- KPI bars -->
     <div class="panel-block">
-      <div class="panel-title">Mantenimientos Programados</div>
-      <table class="sched-table">
-        <thead>
-          <tr><th>Equipo</th><th>Tipo</th><th>Cuándo</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="sched-eq">M-03</td>
-            <td style="font-size:12px;color:rgba(224,240,255,.6)">Correctivo urgente</td>
-            <td><span class="sched-badge sb-today">HOY</span></td>
-          </tr>
-          <tr>
-            <td class="sched-eq">M-07</td>
-            <td style="font-size:12px;color:rgba(224,240,255,.6)">Preventivo banda</td>
-            <td><span class="sched-badge sb-today">3 días</span></td>
-          </tr>
-          <tr>
-            <td class="sched-eq">C-04</td>
-            <td style="font-size:12px;color:rgba(224,240,255,.6)">Cambio de herramienta</td>
-            <td><span class="sched-badge sb-week">7 días</span></td>
-          </tr>
-          <tr>
-            <td class="sched-eq">R-01</td>
-            <td style="font-size:12px;color:rgba(224,240,255,.6)">PM semestral</td>
-            <td><span class="sched-badge sb-month">21 días</span></td>
-          </tr>
-          <tr>
-            <td class="sched-eq">E-02</td>
-            <td style="font-size:12px;color:rgba(224,240,255,.6)">Inspección eléctrica</td>
-            <td><span class="sched-badge sb-month">45 días</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- ARCH -->
-    <div class="panel-block">
-      <div class="panel-title">deviceWISE Predictivo</div>
-      <div class="arch-stack">
-        <div class="arch-layer" style="background:rgba(0,229,255,.05);border-color:rgba(0,229,255,.2)">
-          <div class="arch-icon" style="background:rgba(0,229,255,.15)">🧠</div>
-          <div class="arch-info">
-            <div class="arch-name">ML Predictivo</div>
-            <div class="arch-desc">Modelos de vida útil · anomalías</div>
-          </div>
-          <span class="arch-badge" style="background:var(--cyan3);color:var(--cyan);border:1px solid var(--border)">CLOUD</span>
-        </div>
-        <div class="arch-layer" style="background:rgba(0,230,118,.05);border-color:rgba(0,230,118,.2)">
-          <div class="arch-icon" style="background:rgba(0,230,118,.15)">⚙️</div>
-          <div class="arch-info">
-            <div class="arch-name">deviceWISE EDGE</div>
-            <div class="arch-desc">Reglas de umbral · alertas locales</div>
-          </div>
-          <span class="arch-badge" style="background:var(--green3);color:var(--green2);border:1px solid rgba(0,230,118,.2)">EDGE</span>
-        </div>
-        <div class="arch-layer" style="background:rgba(255,179,0,.05);border-color:rgba(255,179,0,.2)">
-          <div class="arch-icon" style="background:rgba(255,179,0,.15)">📡</div>
-          <div class="arch-info">
-            <div class="arch-name">Sensores IoT</div>
-            <div class="arch-desc">Temperatura · vibración · corriente</div>
-          </div>
-          <span class="arch-badge" style="background:var(--amber3);color:var(--amber2);border:1px solid rgba(255,179,0,.2)">47 pts</span>
-        </div>
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--green)">schedule</span>
+        Indicadores Clave
+      </div>
+      <div class="bar-list">
+        <div class="bar-item"><span class="bar-label">Disponibilidad</span><div class="bar-track"><div class="bar-fill" style="width:92%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div><span class="bar-val" style="color:var(--green)">92%</span></div>
+        <div class="bar-item"><span class="bar-label">Confiabilidad</span><div class="bar-track"><div class="bar-fill" style="width:87%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div><span class="bar-val" style="color:var(--cyan)">87%</span></div>
+        <div class="bar-item"><span class="bar-label">PM cumplidas</span><div class="bar-track"><div class="bar-fill" style="width:78%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div><span class="bar-val" style="color:var(--amber)">78%</span></div>
+        <div class="bar-item"><span class="bar-label">Equip. sanos</span><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,var(--green2),var(--green))"></div></div><span class="bar-val" style="color:var(--green)">3 / 5</span></div>
       </div>
     </div>
   </div>

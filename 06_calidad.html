@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Calidad — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
@@ -39,7 +40,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* LAYOUT */
-.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 380px;gap:0;overflow:hidden}
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:40% 60%;gap:0;overflow:hidden}
 .left-col{display:flex;flex-direction:column;padding:20px 16px 20px 20px;gap:14px;overflow:hidden}
 .right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:14px;overflow-y:auto}
 
@@ -160,7 +161,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
 <!-- MAIN -->
 <div class="main">
-  <!-- LEFT -->
+  <!-- LEFT 40%: Large FPY Circular Gauge -->
   <div class="left-col">
     <!-- METRICS -->
     <div class="metrics-row">
@@ -184,24 +185,136 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       </div>
     </div>
 
-    <!-- VISION SYSTEM -->
-    <div class="vision-box">
-      <div class="vision-header">
-        <span class="vision-title">Sistema de Visión — Cámara Industrial</span>
-        <span class="vision-status">INSPECCIONANDO</span>
+    <!-- FPY GAUGE -->
+    <div class="vision-box" style="align-items:center;justify-content:center;gap:20px">
+      <div class="vision-header" style="width:100%">
+        <span class="vision-title" style="display:flex;align-items:center;gap:8px">
+          <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">labs</span>
+          FPY — First Pass Yield
+        </span>
+        <span class="vision-status">EN VIVO</span>
       </div>
-      <div class="camera-view">
+
+      <!-- SVG Gauge -->
+      <div style="position:relative;width:200px;height:200px;flex-shrink:0">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <!-- Outer background track -->
+          <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(0,229,255,.08)" stroke-width="20"/>
+          <!-- FPY arc (96% = 345.6 deg of 360) -->
+          <circle cx="100" cy="100" r="85" fill="none" stroke="url(#fpy-grad)" stroke-width="20"
+            stroke-dasharray="534.1 556.0" stroke-dashoffset="0"
+            stroke-linecap="round" transform="rotate(-90 100 100)" id="fpy-ring"/>
+          <!-- Middle track -->
+          <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(0,255,170,.07)" stroke-width="14"/>
+          <!-- Inspection pass arc -->
+          <circle cx="100" cy="100" r="62" fill="none" stroke="var(--green)" stroke-width="14"
+            stroke-dasharray="370.1 389.6" stroke-dashoffset="0"
+            stroke-linecap="round" transform="rotate(-90 100 100)" opacity="0.7"/>
+          <!-- Inner track -->
+          <circle cx="100" cy="100" r="42" fill="none" stroke="rgba(255,179,0,.07)" stroke-width="10"/>
+          <!-- Defect rate arc (4% bad → 4% of circle) -->
+          <circle cx="100" cy="100" r="42" fill="none" stroke="var(--amber)" stroke-width="10"
+            stroke-dasharray="10.5 263.9" stroke-dashoffset="0"
+            stroke-linecap="round" transform="rotate(-90 100 100)" opacity="0.8"/>
+          <defs>
+            <linearGradient id="fpy-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--cyan)"/>
+              <stop offset="100%" stop-color="var(--green)"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center">
+          <div style="font-family:var(--display);font-size:42px;font-weight:700;color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,0.15);line-height:1" id="fpy-pct">96%</div>
+          <div style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px">FPY</div>
+        </div>
+      </div>
+
+      <!-- Gauge legend -->
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--navy);border:1px solid rgba(0,229,255,.1);border-radius:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--cyan);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Pases primer intento</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)">45 / 47</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--navy);border:1px solid rgba(0,229,255,.1);border-radius:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Retrabajos / rechazos</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:700;color:var(--amber)">2 / 47</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--navy);border:1px solid rgba(0,229,255,.1);border-radius:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+          <div style="flex:1">
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Meta del turno</div>
+            <div style="font-family:var(--display);font-size:20px;font-weight:700;color:var(--green)">≥95% ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Camera scan status -->
+      <div class="camera-view" style="width:100%;min-height:80px;flex-shrink:0">
         <div class="cam-grid"></div>
         <div class="cam-scanline"></div>
         <div class="cam-target">
-          <div class="cam-corner tl"></div>
-          <div class="cam-corner tr"></div>
-          <div class="cam-corner bl"></div>
-          <div class="cam-corner br"></div>
+          <div class="cam-corner tl"></div><div class="cam-corner tr"></div>
+          <div class="cam-corner bl"></div><div class="cam-corner br"></div>
           <div class="cam-dot"></div>
         </div>
-        <div class="cam-label">CAM-01 · 4K · 30fps · Motor Serie MX-2400</div>
+        <div class="cam-label">CAM-01 · 4K · Motor Serie MX-2400</div>
         <div class="cam-result pass" id="cam-result">✓ APROBADO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT 60%: Defect category breakdown as horizontal bars + history -->
+  <div class="right-col">
+    <!-- DEFECT BREAKDOWN — prominent -->
+    <div class="panel-block">
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">troubleshoot</span>
+        Categorías de Defecto
+      </div>
+      <div class="defect-list">
+        <div style="margin-bottom:4px;font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.3);text-transform:uppercase;letter-spacing:.6px">Turno actual — 2 defectos / 47 inspeccionados</div>
+        <div class="defect-row" style="margin-bottom:4px">
+          <span class="defect-lbl" style="display:flex;align-items:center;gap:6px">
+            <span style="font-family:'Material Symbols Outlined';font-size:14px;color:var(--red2)">science</span>Dimensión fuera
+          </span>
+          <div class="defect-track" style="height:10px"><div class="defect-fill" style="width:45%;height:100%;background:linear-gradient(90deg,var(--red2),var(--red));border-radius:3px"></div></div>
+          <span class="defect-pct" style="color:var(--red2);font-size:13px">45%</span>
+        </div>
+        <div class="defect-row" style="margin-bottom:4px">
+          <span class="defect-lbl" style="display:flex;align-items:center;gap:6px">
+            <span style="font-family:'Material Symbols Outlined';font-size:14px;color:var(--amber)">fact_check</span>Daño superficie
+          </span>
+          <div class="defect-track" style="height:10px"><div class="defect-fill" style="width:30%;height:100%;background:linear-gradient(90deg,var(--amber2),var(--amber));border-radius:3px"></div></div>
+          <span class="defect-pct" style="color:var(--amber);font-size:13px">30%</span>
+        </div>
+        <div class="defect-row" style="margin-bottom:4px">
+          <span class="defect-lbl" style="display:flex;align-items:center;gap:6px">
+            <span style="font-family:'Material Symbols Outlined';font-size:14px;color:var(--cyan)">microscope</span>Conector mal pos.
+          </span>
+          <div class="defect-track" style="height:10px"><div class="defect-fill" style="width:15%;height:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan));border-radius:3px"></div></div>
+          <span class="defect-pct" style="font-size:13px">15%</span>
+        </div>
+        <div class="defect-row">
+          <span class="defect-lbl" style="display:flex;align-items:center;gap:6px">
+            <span style="font-family:'Material Symbols Outlined';font-size:14px;color:var(--purple)">thumb_up</span>Otros / menor
+          </span>
+          <div class="defect-track" style="height:10px"><div class="defect-fill" style="width:10%;height:100%;background:rgba(124,77,255,.5);border-radius:3px"></div></div>
+          <span class="defect-pct" style="color:var(--purple);font-size:13px">10%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAM SPECS -->
+    <div class="panel-block">
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--green)">fact_check</span>
+        Parámetros de Inspección — Pieza Actual
       </div>
       <div class="cam-specs">
         <div class="cam-spec">
@@ -218,109 +331,24 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- RIGHT -->
-  <div class="right-col">
-    <!-- ASSEMBLY GUIDE -->
-    <div class="panel-block">
-      <div class="panel-title">Guía de Ensamble</div>
-      <div class="step-nav">
-        <button class="step-nav-btn" onclick="prevStep()">◀ Ant</button>
-        <span class="step-counter" id="step-counter">Paso 1 / 6</span>
-        <button class="step-nav-btn" onclick="nextStep()">Sig ▶</button>
-      </div>
-      <div class="step-dots" id="step-dots">
-        <div class="step-dot active" onclick="goStep(0)"></div>
-        <div class="step-dot" onclick="goStep(1)"></div>
-        <div class="step-dot" onclick="goStep(2)"></div>
-        <div class="step-dot" onclick="goStep(3)"></div>
-        <div class="step-dot" onclick="goStep(4)"></div>
-        <div class="step-dot" onclick="goStep(5)"></div>
-      </div>
-      <div class="step-card">
-        <div class="step-num" id="step-num">Paso 01 — Preparación</div>
-        <div class="step-title" id="step-title">Verificar piezas</div>
-        <div class="step-desc" id="step-desc">Confirmar que todas las piezas del motor MX-2400 estén presentes y sin daños visibles antes de iniciar el ensamble.</div>
-        <div class="step-checks" id="step-checks">
-          <div class="step-check"><span class="check-icon">✅</span> Rotor y estator presentes</div>
-          <div class="step-check"><span class="check-icon">✅</span> Carcasa sin golpes</div>
-          <div class="step-check"><span class="check-icon">✅</span> Kit de conectores completo</div>
-        </div>
-      </div>
-    </div>
 
     <!-- HISTORY TABLE -->
     <div class="panel-block">
-      <div class="panel-title">Historial Reciente</div>
+      <div class="panel-title" style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--amber)">labs</span>
+        Historial Reciente
+      </div>
       <table class="hist-table">
-        <thead>
-          <tr>
-            <th>Serie</th>
-            <th>Tiempo</th>
-            <th>Resultado</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Serie</th><th>Tiempo</th><th>Resultado</th><th>Defecto</th></tr></thead>
         <tbody>
-          <tr>
-            <td class="hist-id">MX-24-0047</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.1 min</td>
-            <td><span class="hist-badge hb-pass">APROBADO</span></td>
-          </tr>
-          <tr>
-            <td class="hist-id">MX-24-0046</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.4 min</td>
-            <td><span class="hist-badge hb-pass">APROBADO</span></td>
-          </tr>
-          <tr>
-            <td class="hist-id">MX-24-0045</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">10.1 min</td>
-            <td><span class="hist-badge hb-rev">REVISIÓN</span></td>
-          </tr>
-          <tr>
-            <td class="hist-id">MX-24-0044</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.0 min</td>
-            <td><span class="hist-badge hb-pass">APROBADO</span></td>
-          </tr>
-          <tr>
-            <td class="hist-id">MX-24-0043</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">8.7 min</td>
-            <td><span class="hist-badge hb-pass">APROBADO</span></td>
-          </tr>
-          <tr>
-            <td class="hist-id">MX-24-0042</td>
-            <td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">11.3 min</td>
-            <td><span class="hist-badge hb-fail">RECHAZADO</span></td>
-          </tr>
+          <tr><td class="hist-id">MX-24-0047</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.1 min</td><td><span class="hist-badge hb-pass">APROBADO</span></td><td style="font-size:11px;color:rgba(224,240,255,.35)">—</td></tr>
+          <tr><td class="hist-id">MX-24-0046</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.4 min</td><td><span class="hist-badge hb-pass">APROBADO</span></td><td style="font-size:11px;color:rgba(224,240,255,.35)">—</td></tr>
+          <tr><td class="hist-id">MX-24-0045</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">10.1 min</td><td><span class="hist-badge hb-rev">REVISIÓN</span></td><td style="font-size:11px;color:var(--amber)">Dim ±0.06</td></tr>
+          <tr><td class="hist-id">MX-24-0044</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">9.0 min</td><td><span class="hist-badge hb-pass">APROBADO</span></td><td style="font-size:11px;color:rgba(224,240,255,.35)">—</td></tr>
+          <tr><td class="hist-id">MX-24-0043</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">8.7 min</td><td><span class="hist-badge hb-pass">APROBADO</span></td><td style="font-size:11px;color:rgba(224,240,255,.35)">—</td></tr>
+          <tr><td class="hist-id">MX-24-0042</td><td style="font-family:var(--mono);font-size:11px;color:rgba(224,240,255,.5)">11.3 min</td><td><span class="hist-badge hb-fail">RECHAZADO</span></td><td style="font-size:11px;color:var(--red2)">Superficie rayada</td></tr>
         </tbody>
       </table>
-    </div>
-
-    <!-- DEFECT BREAKDOWN -->
-    <div class="panel-block">
-      <div class="panel-title">Tipos de Defecto</div>
-      <div class="defect-list">
-        <div class="defect-row">
-          <span class="defect-lbl">Dimensión fuera</span>
-          <div class="defect-track"><div class="defect-fill" style="width:45%;background:linear-gradient(90deg,var(--red2),var(--red))"></div></div>
-          <span class="defect-pct" style="color:var(--red2)">45%</span>
-        </div>
-        <div class="defect-row">
-          <span class="defect-lbl">Daño superficie</span>
-          <div class="defect-track"><div class="defect-fill" style="width:30%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
-          <span class="defect-pct" style="color:var(--amber)">30%</span>
-        </div>
-        <div class="defect-row">
-          <span class="defect-lbl">Conector mal pos.</span>
-          <div class="defect-track"><div class="defect-fill" style="width:15%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="defect-pct">15%</span>
-        </div>
-        <div class="defect-row">
-          <span class="defect-lbl">Otros</span>
-          <div class="defect-track"><div class="defect-fill" style="width:10%;background:rgba(124,77,255,.5)"></div></div>
-          <span class="defect-pct" style="color:var(--purple)">10%</span>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -332,36 +360,8 @@ function updateClock(){
 }
 updateClock();setInterval(updateClock,1000);
 
-// Assembly steps
-const steps=[
-  {num:'Paso 01 — Preparación',title:'Verificar piezas',desc:'Confirmar que todas las piezas del motor MX-2400 estén presentes y sin daños visibles antes de iniciar el ensamble.',checks:['✅ Rotor y estator presentes','✅ Carcasa sin golpes','✅ Kit de conectores completo']},
-  {num:'Paso 02 — Lubricación',title:'Aplicar lubricante',desc:'Aplicar lubricante de precisión en rodamientos y ejes según especificación técnica DWG-MX24-002.',checks:['✅ Rodamiento frontal','✅ Rodamiento trasero','⬜ Verificar exceso']},
-  {num:'Paso 03 — Ensamble',title:'Insertar rotor',desc:'Insertar el rotor en el estator alineando las marcas de referencia. Aplicar fuerza uniforme sin impacto.',checks:['✅ Alineación de marcas','✅ Asentamiento completo','✅ Sin juego lateral']},
-  {num:'Paso 04 — Conectores',title:'Cablear conectores',desc:'Conectar los terminales de alimentación y señal según diagrama eléctrico E-MX24-012. Torque 1.5 N·m.',checks:['✅ Terminal U-V-W','✅ Terminal sensores','⬜ Continuidad verificada']},
-  {num:'Paso 05 — Cierre',title:'Cerrar carcasa',desc:'Colocar tapa trasera y aplicar los 8 tornillos M6 en patrón cruzado. Torque final 12 N·m.',checks:['✅ Junta de sellado','✅ Tornillos en patrón','⬜ Torque final']},
-  {num:'Paso 06 — Inspección',title:'Inspección final',desc:'Enviar unidad al sistema de visión para inspección dimensional y verificación de conectores.',checks:['⬜ Inspección dimensional','⬜ Verificación conector','⬜ Registro en sistema']},
-];
-let curStep=0;
-function renderStep(i){
-  const s=steps[i];
-  document.getElementById('step-num').textContent=s.num;
-  document.getElementById('step-title').textContent=s.title;
-  document.getElementById('step-desc').textContent=s.desc;
-  document.getElementById('step-checks').innerHTML=s.checks.map(c=>`<div class="step-check"><span class="check-icon">${c.slice(0,2)}</span>${c.slice(3)}</div>`).join('');
-  document.getElementById('step-counter').textContent=`Paso ${i+1} / 6`;
-  const dots=document.querySelectorAll('.step-dot');
-  dots.forEach((d,idx)=>{
-    d.className='step-dot';
-    if(idx<i)d.classList.add('done');
-    else if(idx===i)d.classList.add('active');
-  });
-}
-function nextStep(){if(curStep<5){curStep++;renderStep(curStep)}}
-function prevStep(){if(curStep>0){curStep--;renderStep(curStep)}}
-function goStep(i){curStep=i;renderStep(i)}
-
 // Camera simulation — alternate pass/fail
-let motorCount=47,camState=0;
+let motorCount=47,camState=0,fpyPct=96;
 const camResults=[
   {result:'pass',text:'✓ APROBADO',dim:'±0.02mm',surf:'Sin defectos',conn:'Posición OK'},
   {result:'pass',text:'✓ APROBADO',dim:'±0.01mm',surf:'Sin defectos',conn:'Posición OK'},
@@ -379,11 +379,18 @@ setInterval(()=>{
   document.getElementById('cs-dim').className='cam-spec-val '+(r.result==='pass'?'ok':'warn');
   document.getElementById('cs-surf').textContent=r.surf;
   document.getElementById('cs-surf').className='cam-spec-val '+(r.surf==='Sin defectos'?'ok':'warn');
-  // count only passes
   if(r.result==='pass'){
     motorCount++;
     document.getElementById('mc-motores').textContent=motorCount;
     document.getElementById('tb-motores').textContent=motorCount;
+    // Recompute FPY
+    const passes=motorCount-Math.round(motorCount*0.04);
+    fpyPct=Math.round(passes/motorCount*100);
+    document.getElementById('fpy-pct').textContent=fpyPct+'%';
+    // Update ring
+    const circumference=2*Math.PI*85;
+    const filled=circumference*(fpyPct/100);
+    document.getElementById('fpy-ring').setAttribute('stroke-dasharray',filled.toFixed(1)+' '+circumference.toFixed(1));
   }
 },5000);
 </script>

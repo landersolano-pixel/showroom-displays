@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ecosistema — NCTECH Showroom 2026</title>
+<title>Ecosistema IoT — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
@@ -20,6 +21,12 @@
 html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
 body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes orbit{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-80}}
+@keyframes node-glow{0%,100%{opacity:.6}50%{opacity:1}}
+.node-pulse{animation:node-glow 2.5s ease-in-out infinite}
+.orbit-line{stroke-dasharray:12 6;animation:orbit 3s linear infinite}
+.orbit-line-slow{stroke-dasharray:8 10;animation:orbit 5s linear infinite}
 
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
@@ -31,61 +38,46 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:80px}
 .tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
 .tb-kpi-val.green{color:var(--green);text-shadow:0 0 5px rgba(0,230,118,0.11)}
+.tb-kpi-val.amber{color:var(--amber)}
 .tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
 .tb-time{margin-left:auto;font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
 
 /* LAYOUT */
-.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:320px 1fr;gap:0;overflow:hidden}
+.main{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 360px;overflow:hidden}
 
-/* LEFT — LAYER CARDS */
-.layer-col{display:flex;flex-direction:column;padding:20px 12px 20px 20px;gap:10px;border-right:1px solid var(--border)}
-.layer-intro{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
-.layer-intro-sub{font-size:11px;color:rgba(224,240,255,.3);font-family:var(--mono)}
+/* RADIAL NETWORK */
+.network-col{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;position:relative;gap:16px;overflow:hidden}
+.network-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.45);text-transform:uppercase;letter-spacing:1.5px;align-self:flex-start;display:flex;align-items:center;gap:8px}
+.network-svg{flex:1;width:100%;max-height:calc(100% - 80px)}
 
-.layer-card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--panel);border:1px solid var(--border3);border-radius:10px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
-.layer-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:10px 0 0 10px;background:transparent;transition:background .25s}
-.layer-card:hover{background:var(--panel2);border-color:var(--border)}
-.layer-card.active{border-color:rgba(0,229,255,.3);background:var(--cyan4)}
-.layer-card.active::before{background:var(--cyan);box-shadow:0 0 3px var(--cyan)}
-.layer-num{font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.3);width:16px;flex-shrink:0}
-.layer-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:all .25s}
-.layer-info{flex:1;min-width:0}
-.layer-name{font-family:var(--display);font-size:16px;font-weight:700;color:#fff;transition:color .25s}
-.layer-tag{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:1px}
-.layer-card.active .layer-name{color:var(--cyan)}
-.layer-arrow{font-size:14px;color:rgba(224,240,255,.2);transition:all .25s}
-.layer-card.active .layer-arrow{color:var(--cyan)}
+/* INFO PANEL */
+.info-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px;gap:14px;overflow-y:auto}
+.panel-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+.panel-title{font-family:var(--display);font-size:14px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 
-/* RIGHT — DETAIL PANEL */
-.detail-col{display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:16px;overflow-y:auto}
-.detail-header{display:flex;align-items:center;gap:16px}
-.detail-icon-big{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
-.detail-title{font-family:var(--display);font-size:32px;font-weight:700;color:#fff;line-height:1}
-.detail-subtitle{font-size:13px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
+/* NODE DETAIL */
+.node-detail{display:none;flex-direction:column;gap:10px}
+.node-detail.active{display:flex}
+.nd-header{display:flex;align-items:center;gap:12px}
+.nd-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nd-title{font-family:var(--display);font-size:24px;font-weight:700;color:#fff}
+.nd-sub{font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.4);margin-top:2px}
+.nd-desc{font-size:13px;color:rgba(224,240,255,.55);line-height:1.7;background:var(--navy);border:1px solid var(--border3);border-radius:8px;padding:12px}
+.nd-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nd-stat{background:var(--navy);border:1px solid var(--border3);border-radius:7px;padding:10px;text-align:center}
+.nd-stat-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
+.nd-stat-lbl{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
 
-.detail-desc{font-size:13px;color:rgba(224,240,255,.6);line-height:1.7;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
-
-.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.detail-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
-.detail-card-val{font-family:var(--display);font-size:22px;font-weight:700;color:var(--cyan);text-shadow:0 0 5px rgba(0,229,255,0.08)}
-.detail-card-lbl{font-size:10px;color:rgba(224,240,255,.35);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
-
-.detail-features-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px}
-.feature-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
-.f-chip{padding:5px 12px;border-radius:6px;font-size:11px;font-family:var(--mono);border:1px solid}
-.fc-cyan{background:var(--cyan4);color:var(--cyan);border-color:var(--border)}
-.fc-green{background:var(--green3);color:var(--green2);border-color:rgba(0,230,118,.2)}
-.fc-amber{background:var(--amber3);color:var(--amber2);border-color:rgba(255,179,0,.2)}
-.fc-purple{background:var(--purple3);color:#B39DDB;border-color:rgba(124,77,255,.2)}
-
-/* USE CASES */
-.uc-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
-.uc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.uc-card{background:var(--panel);border:1px solid var(--border3);border-radius:8px;padding:12px}
-.uc-icon{font-size:20px;margin-bottom:6px}
-.uc-name{font-family:var(--display);font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
-.uc-desc{font-size:11px;color:rgba(224,240,255,.4);line-height:1.5;font-family:var(--mono)}
+/* LIVE METRICS */
+.lm-list{display:flex;flex-direction:column;gap:8px}
+.lm-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border3)}
+.lm-row:last-child{border-bottom:none}
+.lm-lbl{font-size:12px;color:rgba(224,240,255,.5);font-family:var(--mono);display:flex;align-items:center;gap:6px}
+.lm-val{font-family:var(--display);font-size:18px;font-weight:700;color:var(--cyan)}
+.lm-val.green{color:var(--green)}
+.lm-val.amber{color:var(--amber)}
 </style>
 </head>
 <body>
@@ -96,202 +88,326 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     <div class="tb-logo">N</div>
     <span class="tb-name">NCTECH</span>
   </div>
-  <span class="tb-exp">08 / Tablero de Ecosistema</span>
+  <span class="tb-exp">08 / Ecosistema IoT</span>
   <div class="tb-sep"></div>
   <div class="tb-kpi">
-    <span class="tb-kpi-val">5</span>
-    <span class="tb-kpi-lbl">Capas</span>
+    <span class="tb-kpi-val">6</span>
+    <span class="tb-kpi-lbl">Nodos activos</span>
   </div>
   <div class="tb-sep"></div>
   <div class="tb-kpi">
-    <span class="tb-kpi-val green">4</span>
-    <span class="tb-kpi-lbl">Casos de uso</span>
+    <span class="tb-kpi-val green">47</span>
+    <span class="tb-kpi-lbl">Dispositivos</span>
   </div>
   <div class="tb-sep"></div>
   <div class="tb-kpi">
-    <span class="tb-kpi-val">deviceWISE</span>
-    <span class="tb-kpi-lbl">Plataforma</span>
+    <span class="tb-kpi-val amber">12 ms</span>
+    <span class="tb-kpi-lbl">Latencia</span>
   </div>
+  <div class="tb-sep"></div>
+  <div class="tb-live">LIVE</div>
   <span class="tb-time" id="tb-clock">--:--:--</span>
 </div>
 
 <!-- MAIN -->
 <div class="main">
-  <!-- LAYER CARDS -->
-  <div class="layer-col">
-    <div style="margin-bottom:6px">
-      <div class="layer-intro">Arquitectura ISA-95</div>
-      <div class="layer-intro-sub">Selecciona una capa para ver detalles</div>
+
+  <!-- LEFT: Radial Network -->
+  <div class="network-col">
+    <div class="network-title">
+      <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">hub</span>
+      Red IoT — Topología Radial — deviceWISE EDGE
     </div>
-    <div class="layer-card active" onclick="selLayer(0,this)">
-      <span class="layer-num">L5</span>
-      <div class="layer-icon" style="background:rgba(0,229,255,.12)">☁️</div>
-      <div class="layer-info">
-        <div class="layer-name">Cloud / ERP</div>
-        <div class="layer-tag">Nivel empresarial</div>
-      </div>
-      <span class="layer-arrow">▶</span>
-    </div>
-    <div class="layer-card" onclick="selLayer(1,this)">
-      <span class="layer-num">L4</span>
-      <div class="layer-icon" style="background:rgba(0,230,118,.1)">🏭</div>
-      <div class="layer-info">
-        <div class="layer-name">MES</div>
-        <div class="layer-tag">Ejecución de manufactura</div>
-      </div>
-      <span class="layer-arrow">▶</span>
-    </div>
-    <div class="layer-card" onclick="selLayer(2,this)">
-      <span class="layer-num">L3</span>
-      <div class="layer-icon" style="background:rgba(255,179,0,.1)">🖥️</div>
-      <div class="layer-info">
-        <div class="layer-name">HMI / SCADA</div>
-        <div class="layer-tag">Supervisión local</div>
-      </div>
-      <span class="layer-arrow">▶</span>
-    </div>
-    <div class="layer-card" onclick="selLayer(3,this)">
-      <span class="layer-num">L2</span>
-      <div class="layer-icon" style="background:rgba(124,77,255,.1)">⚙️</div>
-      <div class="layer-info">
-        <div class="layer-name">PLC / DCS</div>
-        <div class="layer-tag">Control automático</div>
-      </div>
-      <span class="layer-arrow">▶</span>
-    </div>
-    <div class="layer-card" onclick="selLayer(4,this)">
-      <span class="layer-num">L1</span>
-      <div class="layer-icon" style="background:rgba(255,23,68,.08)">📡</div>
-      <div class="layer-info">
-        <div class="layer-name">Sensores / Field</div>
-        <div class="layer-tag">Instrumentación</div>
-      </div>
-      <span class="layer-arrow">▶</span>
-    </div>
+
+    <svg class="network-svg" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ambient glow circle -->
+      <defs>
+        <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(0,229,255,.15)"/>
+          <stop offset="100%" stop-color="rgba(0,229,255,0)"/>
+        </radialGradient>
+        <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(0,229,255,.04)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <filter id="glow-filter">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      <!-- Background ambient glow -->
+      <ellipse cx="300" cy="240" rx="200" ry="180" fill="url(#bg-glow)"/>
+
+      <!-- Outer orbit ring (decorative) -->
+      <circle cx="300" cy="240" r="175" fill="none" stroke="rgba(0,229,255,.06)" stroke-width="1" stroke-dasharray="4 8"/>
+
+      <!-- Connection lines to each node (drawn before nodes so nodes render on top) -->
+      <!-- Node positions (radius 160): angles 0°, 60°, 120°, 180°, 240°, 300° -->
+      <!-- 0°  → 300+160=460, 240       -->
+      <!-- 60° → 300+80=380, 240-139=101 -->
+      <!-- 120°→ 300-80=220, 240-139=101 -->
+      <!-- 180°→ 300-160=140, 240        -->
+      <!-- 240°→ 300-80=220, 240+139=379 -->
+      <!-- 300°→ 300+80=380, 240+139=379 -->
+
+      <!-- Lines with animated dashes -->
+      <line x1="300" y1="240" x2="460" y2="240" stroke="rgba(0,229,255,.25)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="460" y2="240" stroke="rgba(0,229,255,.5)" stroke-width="1" class="orbit-line"/>
+
+      <line x1="300" y1="240" x2="380" y2="101" stroke="rgba(0,255,170,.2)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="380" y2="101" stroke="rgba(0,255,170,.5)" stroke-width="1" class="orbit-line" style="animation-delay:.4s"/>
+
+      <line x1="300" y1="240" x2="220" y2="101" stroke="rgba(30,144,255,.2)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="220" y2="101" stroke="rgba(30,144,255,.5)" stroke-width="1" class="orbit-line-slow" style="animation-delay:.8s"/>
+
+      <line x1="300" y1="240" x2="140" y2="240" stroke="rgba(255,179,0,.2)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="140" y2="240" stroke="rgba(255,179,0,.5)" stroke-width="1" class="orbit-line" style="animation-delay:1.2s"/>
+
+      <line x1="300" y1="240" x2="220" y2="379" stroke="rgba(124,77,255,.2)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="220" y2="379" stroke="rgba(124,77,255,.5)" stroke-width="1" class="orbit-line-slow" style="animation-delay:1.6s"/>
+
+      <line x1="300" y1="240" x2="380" y2="379" stroke="rgba(255,23,68,.2)" stroke-width="1.5"/>
+      <line x1="300" y1="240" x2="380" y2="379" stroke="rgba(255,23,68,.4)" stroke-width="1" class="orbit-line" style="animation-delay:2s"/>
+
+      <!-- CENTER HUB NODE -->
+      <circle cx="300" cy="240" r="52" fill="url(#hub-glow)"/>
+      <circle cx="300" cy="240" r="44" fill="rgba(0,229,255,.1)" stroke="rgba(0,229,255,.5)" stroke-width="2"/>
+      <circle cx="300" cy="240" r="36" fill="rgba(8,17,32,.9)" stroke="rgba(0,229,255,.3)" stroke-width="1"/>
+      <text x="300" y="233" text-anchor="middle" font-family="Material Symbols Outlined" font-size="22" fill="#00E5FF">hub</text>
+      <text x="300" y="253" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(0,229,255,.8)" letter-spacing="1" text-transform="uppercase">deviceWISE</text>
+      <text x="300" y="264" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="8" fill="rgba(0,229,255,.5)">EDGE HUB</text>
+      <circle cx="300" cy="240" r="52" fill="none" stroke="rgba(0,229,255,.2)" stroke-width="1" stroke-dasharray="6 6" class="orbit-line-slow"/>
+
+      <!-- NODE 1: WiFi Tethering (right, 0°) — 460,240 -->
+      <g onclick="selNode(0)" style="cursor:pointer" class="node-pulse">
+        <circle cx="460" cy="240" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(0,229,255,.4)" stroke-width="2"/>
+        <circle cx="460" cy="240" r="24" fill="rgba(0,229,255,.08)" stroke="rgba(0,229,255,.2)" stroke-width="1"/>
+        <text x="460" y="235" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#00E5FF">wifi_tethering</text>
+        <text x="460" y="274" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">WiFi IIoT</text>
+        <text x="460" y="285" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(0,229,255,.6)">23 devs</text>
+        <!-- status dot -->
+        <circle cx="482" cy="222" r="5" fill="#00ffaa"/>
+      </g>
+
+      <!-- NODE 2: Sensors (upper-right, 60°) — 380,101 -->
+      <g onclick="selNode(1)" style="cursor:pointer" class="node-pulse" style="animation-delay:.5s">
+        <circle cx="380" cy="101" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(0,255,170,.4)" stroke-width="2"/>
+        <circle cx="380" cy="101" r="24" fill="rgba(0,255,170,.08)" stroke="rgba(0,255,170,.2)" stroke-width="1"/>
+        <text x="380" y="96" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#00ffaa">sensors</text>
+        <text x="380" y="135" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">Sensores</text>
+        <text x="380" y="146" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(0,255,170,.6)">127 pts</text>
+        <circle cx="402" cy="83" r="5" fill="#00ffaa"/>
+      </g>
+
+      <!-- NODE 3: Cloud Sync (upper-left, 120°) — 220,101 -->
+      <g onclick="selNode(2)" style="cursor:pointer" class="node-pulse" style="animation-delay:1s">
+        <circle cx="220" cy="101" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(30,144,255,.4)" stroke-width="2"/>
+        <circle cx="220" cy="101" r="24" fill="rgba(30,144,255,.08)" stroke="rgba(30,144,255,.2)" stroke-width="1"/>
+        <text x="220" y="96" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#1e90ff">cloud_sync</text>
+        <text x="220" y="135" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">Cloud Sync</text>
+        <text x="220" y="146" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(30,144,255,.6)">SAP · ERP</text>
+        <circle cx="242" cy="83" r="5" fill="#00ffaa"/>
+      </g>
+
+      <!-- NODE 4: Router (left, 180°) — 140,240 -->
+      <g onclick="selNode(3)" style="cursor:pointer" class="node-pulse" style="animation-delay:1.5s">
+        <circle cx="140" cy="240" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(255,179,0,.4)" stroke-width="2"/>
+        <circle cx="140" cy="240" r="24" fill="rgba(255,179,0,.08)" stroke="rgba(255,179,0,.2)" stroke-width="1"/>
+        <text x="140" y="235" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#FFB300">router</text>
+        <text x="140" y="274" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">Router OT</text>
+        <text x="140" y="285" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(255,179,0,.6)">OPC-UA</text>
+        <circle cx="162" cy="222" r="5" fill="#00ffaa"/>
+      </g>
+
+      <!-- NODE 5: LAN (lower-left, 240°) — 220,379 -->
+      <g onclick="selNode(4)" style="cursor:pointer" class="node-pulse" style="animation-delay:2s">
+        <circle cx="220" cy="379" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(124,77,255,.4)" stroke-width="2"/>
+        <circle cx="220" cy="379" r="24" fill="rgba(124,77,255,.08)" stroke="rgba(124,77,255,.2)" stroke-width="1"/>
+        <text x="220" y="374" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#7C4DFF">lan</text>
+        <text x="220" y="413" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">LAN Planta</text>
+        <text x="220" y="424" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(124,77,255,.6)">Profinet</text>
+        <circle cx="242" cy="361" r="5" fill="#00ffaa"/>
+      </g>
+
+      <!-- NODE 6: Device Hub (lower-right, 300°) — 380,379 -->
+      <g onclick="selNode(5)" style="cursor:pointer" class="node-pulse" style="animation-delay:2.5s">
+        <circle cx="380" cy="379" r="32" fill="rgba(8,17,32,.95)" stroke="rgba(255,23,68,.4)" stroke-width="2"/>
+        <circle cx="380" cy="379" r="24" fill="rgba(255,23,68,.08)" stroke="rgba(255,23,68,.2)" stroke-width="1"/>
+        <text x="380" y="374" text-anchor="middle" font-family="Material Symbols Outlined" font-size="18" fill="#FF6E75">device_hub</text>
+        <text x="380" y="413" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="12" font-weight="700" fill="#e0f0ff">PLCs Hub</text>
+        <text x="380" y="424" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(255,106,117,.6)">4 PLCs</text>
+        <circle cx="402" cy="361" r="5" fill="#FFB300" style="animation:pulse 1.5s infinite"/>
+      </g>
+    </svg>
   </div>
 
-  <!-- DETAIL -->
-  <div class="detail-col" id="detail-col">
-    <!-- Rendered by JS -->
+  <!-- RIGHT: Node info panel -->
+  <div class="info-col">
+    <!-- Selected node detail -->
+    <div class="panel-block">
+      <div class="panel-title">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">hub</span>
+        Nodo Seleccionado
+      </div>
+
+      <!-- HUB default -->
+      <div class="node-detail active" id="nd-hub">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:rgba(0,229,255,.15)">
+            <span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--cyan)">hub</span>
+          </div>
+          <div>
+            <div class="nd-title" style="color:var(--cyan)">deviceWISE EDGE</div>
+            <div class="nd-sub">Centro de integración · Hub principal</div>
+          </div>
+        </div>
+        <div class="nd-desc">Núcleo de la red IoT industrial. Conecta todos los nodos, traduce protocolos en tiempo real y enruta datos hacia el cloud sin middleware adicional.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">47</div><div class="nd-stat-lbl">Dispositivos</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">100%</div><div class="nd-stat-lbl">Uptime</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">12 ms</div><div class="nd-stat-lbl">Latencia</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--amber)">8</div><div class="nd-stat-lbl">Protocolos</div></div>
+        </div>
+      </div>
+
+      <!-- Node 0 -->
+      <div class="node-detail" id="nd-0">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:rgba(0,229,255,.15)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--cyan)">wifi_tethering</span></div>
+          <div><div class="nd-title" style="color:var(--cyan)">WiFi IIoT</div><div class="nd-sub">Red inalámbrica industrial · ISA100.11a</div></div>
+        </div>
+        <div class="nd-desc">Conectividad inalámbrica segura para sensores móviles, robots colaborativos y equipos en zonas de difícil acceso. Cifrado AES-128.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">23</div><div class="nd-stat-lbl">Dispositivos</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">-52 dBm</div><div class="nd-stat-lbl">RSSI</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">802.11n</div><div class="nd-stat-lbl">Estándar</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">OK</div><div class="nd-stat-lbl">Estado</div></div>
+        </div>
+      </div>
+      <!-- Node 1 -->
+      <div class="node-detail" id="nd-1">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:rgba(0,255,170,.12)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--green)">sensors</span></div>
+          <div><div class="nd-title" style="color:var(--green)">Sensores de Campo</div><div class="nd-sub">127 puntos · Temperatura · Vibración · Flujo</div></div>
+        </div>
+        <div class="nd-desc">Red de sensores industriales que monitorean temperatura, presión, vibración y flujo en tiempo real. Protocolo Modbus RTU/TCP.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">127</div><div class="nd-stat-lbl">Puntos</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">47 ms</div><div class="nd-stat-lbl">Ciclo</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">Modbus</div><div class="nd-stat-lbl">Protocolo</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">OK</div><div class="nd-stat-lbl">Estado</div></div>
+        </div>
+      </div>
+      <!-- Node 2 -->
+      <div class="node-detail" id="nd-2">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:rgba(30,144,255,.12)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:#1e90ff">cloud_sync</span></div>
+          <div><div class="nd-title" style="color:#1e90ff">Cloud Sync</div><div class="nd-sub">SAP S/4HANA · Oracle ERP · REST API</div></div>
+        </div>
+        <div class="nd-desc">Sincronización bidireccional con sistemas ERP en la nube. Latencia &lt;2s para KPIs operativos. TLS 1.3 + certificados X.509.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">&lt;2s</div><div class="nd-stat-lbl">Latencia sync</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">100%</div><div class="nd-stat-lbl">SLA uptime</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">REST</div><div class="nd-stat-lbl">API</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">Online</div><div class="nd-stat-lbl">Estado</div></div>
+        </div>
+      </div>
+      <!-- Node 3 -->
+      <div class="node-detail" id="nd-3">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:rgba(255,179,0,.12)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--amber)">router</span></div>
+          <div><div class="nd-title" style="color:var(--amber)">Router OT</div><div class="nd-sub">OPC-UA Server · Red OT/IT</div></div>
+        </div>
+        <div class="nd-desc">Router industrial que segmenta la red OT del IT y provee un servidor OPC-UA para SCADA/HMI. Firewall de nivel OT integrado.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">OPC-UA</div><div class="nd-stat-lbl">Protocolo</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">8 ms</div><div class="nd-stat-lbl">Latencia</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">IEC62443</div><div class="nd-stat-lbl">Seguridad</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">OK</div><div class="nd-stat-lbl">Estado</div></div>
+        </div>
+      </div>
+      <!-- Node 4 -->
+      <div class="node-detail" id="nd-4">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:var(--purple3)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--purple)">lan</span></div>
+          <div><div class="nd-title" style="color:#B39DDB">LAN Planta</div><div class="nd-sub">PROFINET · EtherNet/IP · Gigabit</div></div>
+        </div>
+        <div class="nd-desc">Red LAN industrial Gigabit que conecta PLCs, robots y HMIs en la planta. PROFINET para Siemens, EtherNet/IP para Allen-Bradley.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">1 Gbps</div><div class="nd-stat-lbl">Velocidad</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">&lt;1 ms</div><div class="nd-stat-lbl">Latencia RT</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">PROFINET</div><div class="nd-stat-lbl">Protocolo</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--green)">OK</div><div class="nd-stat-lbl">Estado</div></div>
+        </div>
+      </div>
+      <!-- Node 5 -->
+      <div class="node-detail" id="nd-5">
+        <div class="nd-header">
+          <div class="nd-icon" style="background:var(--red3)"><span style="font-family:'Material Symbols Outlined';font-size:28px;color:var(--red2)">device_hub</span></div>
+          <div><div class="nd-title" style="color:var(--red2)">PLCs Hub</div><div class="nd-sub">4 PLCs · Allen-Bradley · Siemens</div></div>
+        </div>
+        <div class="nd-desc">Concentrador de PLCs industriales. deviceWISE se conecta nativamente sin OPC client a Allen-Bradley, Siemens S7, Schneider y Mitsubishi.</div>
+        <div class="nd-stats">
+          <div class="nd-stat"><div class="nd-stat-val">4</div><div class="nd-stat-lbl">PLCs</div></div>
+          <div class="nd-stat"><div class="nd-stat-val" style="color:var(--amber)">1 alerta</div><div class="nd-stat-lbl">Estado</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">Nativo</div><div class="nd-stat-lbl">Conexión</div></div>
+          <div class="nd-stat"><div class="nd-stat-val">&lt;10 ms</div><div class="nd-stat-lbl">Ciclo</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live metrics -->
+    <div class="panel-block">
+      <div class="panel-title">
+        <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--green)">wifi_tethering</span>
+        Métricas de Red — En Vivo
+      </div>
+      <div class="lm-list">
+        <div class="lm-row">
+          <span class="lm-lbl"><span style="font-family:'Material Symbols Outlined';font-size:14px">sensors</span>Tags/segundo</span>
+          <span class="lm-val" id="lm-tps">1,284</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl"><span style="font-family:'Material Symbols Outlined';font-size:14px">router</span>Latencia promedio</span>
+          <span class="lm-val green" id="lm-lat">12 ms</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl"><span style="font-family:'Material Symbols Outlined';font-size:14px">cloud_sync</span>CPU EDGE</span>
+          <span class="lm-val green" id="lm-cpu">34%</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl"><span style="font-family:'Material Symbols Outlined';font-size:14px">lan</span>Uptime</span>
+          <span class="lm-val">47 días</span>
+        </div>
+        <div class="lm-row">
+          <span class="lm-lbl"><span style="font-family:'Material Symbols Outlined';font-size:14px">device_hub</span>PLCs conectados</span>
+          <span class="lm-val green">4 / 4</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script>
-const layers=[
-  {
-    icon:'☁️',iconBg:'rgba(0,229,255,.15)',color:'var(--cyan)',
-    title:'Cloud / ERP',sub:'Nivel 5 — Planificación empresarial · ISA-95',
-    desc:'El nivel Cloud integra los datos operativos en tiempo real con los sistemas empresariales (SAP, Oracle, Infor). deviceWISE actúa como puente de integración, normalizando los datos de planta y enviándolos al ERP para planificación de materiales, costos y KPIs ejecutivos.',
-    stats:[{v:'100%',l:'Uptime SLA'},{v:'< 2s',l:'Latencia sync'},{v:'12 TB',l:'Datos/año'}],
-    chips:['SAP S/4HANA','Oracle ERP','REST API','HTTPS/TLS','ISO 27001'],
-    chipClass:'fc-cyan',
-    usecases:[
-      {icon:'📊',n:'KPI Ejecutivo',d:'Dashboards de OEE, calidad y costos en tiempo real para directivos.'},
-      {icon:'🔄',n:'Sync materiales',d:'Actualización automática de órdenes y consumo al ERP.'},
-      {icon:'🔔',n:'Alertas críticas',d:'Push notifications al móvil del gerente ante paros no planeados.'},
-      {icon:'📦',n:'Supply chain',d:'Visibilidad de inventario de planta conectado a supply chain.'},
-    ]
-  },
-  {
-    icon:'🏭',iconBg:'rgba(0,230,118,.15)',color:'var(--green)',
-    title:'MES',sub:'Nivel 4 — Ejecución de manufactura · InstantMES',
-    desc:'El Sistema de Ejecución de Manufactura (MES) gestiona en tiempo real las órdenes de producción, trazabilidad, calidad y eficiencia. InstantMES — producto de NCTECH — permite desplegar un MES en horas sobre cualquier infraestructura, con integración nativa al piso de planta via deviceWISE.',
-    stats:[{v:'< 4 h',l:'Despliegue'},{v:'100%',l:'Trazabilidad'},{v:'3 turnos',l:'Visibilidad'}],
-    chips:['InstantMES','Órdenes de trabajo','Trazabilidad','Calidad','Reportes'],
-    chipClass:'fc-green',
-    usecases:[
-      {icon:'📋',n:'Órdenes WO',d:'Creación y seguimiento de órdenes desde ERP hasta línea de producción.'},
-      {icon:'🔍',n:'Trazabilidad',d:'Historial completo de cada pieza: materiales, proceso, operador, calidad.'},
-      {icon:'📈',n:'OEE en vivo',d:'Cálculo automático de OEE por turno, línea y producto.'},
-      {icon:'⚠️',n:'Control calidad',d:'Reglas de calidad ejecutadas en tiempo real por deviceWISE EDGE.'},
-    ]
-  },
-  {
-    icon:'🖥️',iconBg:'rgba(255,179,0,.15)',color:'var(--amber)',
-    title:'HMI / SCADA',sub:'Nivel 3 — Supervisión y monitoreo local',
-    desc:'Las interfaces HMI y los sistemas SCADA proveen al operador visibilidad y control del proceso en tiempo real. deviceWISE EDGE actúa como servidor de datos OPC-UA para alimentar cualquier SCADA (iFIX, Wonderware, FactoryTalk) con datos unificados de toda la planta.',
-    stats:[{v:'< 1s',l:'Refresco HMI'},{v:'OPC-UA',l:'Protocolo'},{v:'∞',l:'Tags/seg'}],
-    chips:['OPC-UA Server','iFIX','Wonderware','FactoryTalk','HTML5 HMI'],
-    chipClass:'fc-amber',
-    usecases:[
-      {icon:'🖥️',n:'Panel operador',d:'Pantallas táctiles con estado de máquinas, alarmas y controles.'},
-      {icon:'📡',n:'SCADA remoto',d:'Monitoreo desde sala de control con SCADA centralizado.'},
-      {icon:'⚡',n:'Alarmas',d:'Sistema de alarmas con escalación y registro de eventos.'},
-      {icon:'📊',n:'Tendencias',d:'Históricos de variables de proceso para análisis de causa raíz.'},
-    ]
-  },
-  {
-    icon:'⚙️',iconBg:'rgba(124,77,255,.15)',color:'var(--purple)',
-    title:'PLC / DCS',sub:'Nivel 2 — Control automático · Lógica de procesos',
-    desc:'Los PLCs y sistemas de control distribuido (DCS) ejecutan la lógica de automatización del proceso. deviceWISE se conecta nativamente a más de 200 tipos de PLCs (Allen-Bradley, Siemens, Schneider, Mitsubishi) sin necesidad de middleware adicional, eliminando silos de datos.',
-    stats:[{v:'+200',l:'Drivers PLC'},{v:'< 10ms',l:'Ciclo lectura'},{v:'Nativo',l:'Sin OPC client'}],
-    chips:['Allen-Bradley','Siemens S7','Schneider','Mitsubishi','Omron'],
-    chipClass:'fc-purple',
-    usecases:[
-      {icon:'🔌',n:'Conexión nativa',d:'Sin OPC client: deviceWISE habla el protocolo nativo de cada PLC.'},
-      {icon:'📥',n:'Lectura masiva',d:'Miles de tags leídos por segundo desde múltiples PLCs en simultáneo.'},
-      {icon:'✍️',n:'Escritura segura',d:'Escritura de setpoints con autenticación y registro de auditoría.'},
-      {icon:'🔄',n:'Bidireccional',d:'Recibe comandos desde MES/ERP y los ejecuta en PLC automáticamente.'},
-    ]
-  },
-  {
-    icon:'📡',iconBg:'rgba(255,23,68,.1)',color:'var(--red2)',
-    title:'Sensores / Field',sub:'Nivel 1 — Instrumentación y actuadores',
-    desc:'El nivel de campo incluye todos los dispositivos físicos: sensores de temperatura, presión, vibración, flujo, cámaras, lectores de código, robots colaborativos y actuadores. deviceWISE unifica todos estos datos en un único bus de datos industrial, independiente del fabricante.',
-    stats:[{v:'+127',l:'Sensores activos'},{v:'47 ms',l:'Latencia promedio'},{v:'12',l:'Protocolos'}],
-    chips:['Modbus RTU/TCP','PROFINET','EtherNet/IP','IO-Link','Wireless ISA100'],
-    chipClass:'fc-amber',
-    usecases:[
-      {icon:'🌡️',n:'Temperatura/Presión',d:'Monitoreo continuo de variables de proceso con alertas de umbral.'},
-      {icon:'📷',n:'Visión industrial',d:'Cámaras de inspección integradas con reglas de calidad en EDGE.'},
-      {icon:'🤖',n:'Cobots',d:'Lectura de estado y producción de brazos robóticos colaborativos.'},
-      {icon:'📶',n:'Wireless',d:'Sensores inalámbricos para equipos móviles o de difícil acceso.'},
-    ]
-  },
-];
-
-let activeLayers=0;
-function selLayer(i,card){
-  activeLayers=i;
-  document.querySelectorAll('.layer-card').forEach(c=>c.classList.remove('active'));
-  card.classList.add('active');
-  renderDetail(layers[i]);
-}
-
-function renderDetail(l){
-  const colorRaw=l.color.replace('var(','').replace(')','');
-  document.getElementById('detail-col').innerHTML=`
-    <div class="detail-header">
-      <div class="detail-icon-big" style="background:${l.iconBg}">${l.icon}</div>
-      <div>
-        <div class="detail-title" style="color:${l.color}">${l.title}</div>
-        <div class="detail-subtitle">${l.sub}</div>
-      </div>
-    </div>
-    <div class="detail-desc">${l.desc}</div>
-    <div class="detail-grid">
-      ${l.stats.map(s=>`<div class="detail-card"><div class="detail-card-val" style="color:${l.color}">${s.v}</div><div class="detail-card-lbl">${s.l}</div></div>`).join('')}
-    </div>
-    <div>
-      <div class="detail-features-title">Tecnologías y protocolos</div>
-      <div class="feature-chips">
-        ${l.chips.map(c=>`<span class="f-chip ${l.chipClass}">${c}</span>`).join('')}
-      </div>
-    </div>
-    <div>
-      <div class="uc-title">Casos de uso</div>
-      <div class="uc-grid">
-        ${l.usecases.map(u=>`<div class="uc-card"><div class="uc-icon">${u.icon}</div><div class="uc-name">${u.n}</div><div class="uc-desc">${u.d}</div></div>`).join('')}
-      </div>
-    </div>
-  `;
-}
-renderDetail(layers[0]);
-
 function updateClock(){
   document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
 }
 updateClock();setInterval(updateClock,1000);
+
+function selNode(i){
+  document.querySelectorAll('.node-detail').forEach(d=>d.classList.remove('active'));
+  document.getElementById('nd-hub').classList.remove('active');
+  document.getElementById('nd-'+i).classList.add('active');
+}
+
+let tps=1284;
+setInterval(()=>{
+  tps=1200+Math.floor(Math.random()*200);
+  document.getElementById('lm-tps').textContent=tps.toLocaleString('es-MX');
+  document.getElementById('lm-lat').textContent=(10+Math.floor(Math.random()*6))+' ms';
+  document.getElementById('lm-cpu').textContent=(28+Math.floor(Math.random()*12))+'%';
+},3000);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>
 </body>

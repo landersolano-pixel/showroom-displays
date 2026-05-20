@@ -9,7 +9,7 @@
 tailwind.config={theme:{extend:{colors:{
   'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44',
   'neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa',
-  'neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'
+  'neon-red':'#ff3b3b','neon-amber':'#f59e0b','text-muted':'#8ca3c4','text-bright':'#ffffff'
 }}}}
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,18 +26,17 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#1e2b44;border-radius:4px}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 .pulse-dot{animation:pulse-dot 2s infinite}
+@keyframes oee-spin{from{stroke-dashoffset:282.7}to{stroke-dashoffset:0}}
 </style>
 </head>
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
 
 <!-- HEADER -->
 <div class="flex items-center justify-between shrink-0 border-b border-card-border pb-4">
-  <div class="flex items-center gap-4">
-    <div class="flex flex-col">
-      <span class="text-[11px] font-mono text-text-muted tracking-widest uppercase">Estación 03 · NCTECH Showroom 2026</span>
-      <h1 class="text-5xl font-extrabold text-white leading-none">InstantMES</h1>
-      <span class="text-[14px] text-text-muted mt-1">Interfaz de operador · Monitoreo · Históricos · Parámetros</span>
-    </div>
+  <div class="flex flex-col">
+    <span class="text-[11px] font-mono text-text-muted tracking-widest uppercase">Estación 03 · NCTECH Showroom 2026</span>
+    <h1 class="text-5xl font-extrabold text-white leading-none">InstantMES</h1>
+    <span class="text-[14px] text-text-muted mt-1">Manufacturing Execution · OEE · Trazabilidad · Alertas</span>
   </div>
   <div class="flex items-center gap-6">
     <div class="flex flex-col items-center">
@@ -45,8 +44,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="text-[11px] text-text-muted uppercase tracking-wider">Unidades / turno</span>
     </div>
     <div class="flex flex-col items-center">
-      <span class="text-[28px] font-extrabold text-yellow-400">86%</span>
-      <span class="text-[11px] text-text-muted uppercase tracking-wider">Eficiencia línea</span>
+      <span class="text-[28px] font-extrabold text-neon-amber glow-amber">86%</span>
+      <span class="text-[11px] text-text-muted uppercase tracking-wider">OEE</span>
     </div>
     <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
       <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
@@ -61,299 +60,271 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
 <!-- KPI CARDS -->
 <div class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Órdenes activas</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">assignment</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">monitoring</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">3</div>
-    <div class="text-[12px] text-text-muted">2 en producción, 1 setup</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan">3</div>
+    <div class="text-[11px] text-text-muted">2 en producción, 1 setup</div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades confirmadas</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
+      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades conf.</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-green">trending_up</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green" id="kpi-units">1,847</div>
-    <div class="text-[12px] text-text-muted">Turno actual</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green" id="kpi-units">1,847</div>
+    <div class="text-[11px] text-text-muted">Turno actual</div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia línea</span>
-      <span class="material-symbols-outlined text-[18px] text-yellow-400">speed</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-amber">show_chart</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-yellow-400 glow-amber">86%</div>
-    <div class="text-[12px] text-text-muted">↑ 2% vs ayer</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-amber glow-amber">86%</div>
+    <div class="text-[11px] text-text-muted">↑ 2% vs ayer</div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Scrap rate</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">delete_sweep</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">data_thresholding</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-cyan glow-cyan">1%</div>
-    <div class="text-[12px] text-neon-green">Meta: &lt;1% ✓</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan">1%</div>
+    <div class="text-[11px] text-neon-green">Meta: &lt;1% ✓</div>
   </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
+  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
     <div class="flex justify-between items-center text-text-muted">
       <span class="text-[12px] font-bold tracking-wider uppercase">Tiempo ciclo</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">timer</span>
+      <span class="material-symbols-outlined text-[18px] text-neon-blue">timeline</span>
     </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-green glow-green">42s</div>
-    <div class="text-[12px] text-text-muted">Nominal: 45s</div>
+    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green">42s</div>
+    <div class="text-[11px] text-text-muted">Nominal: 45s</div>
   </div>
 </div>
 
-<!-- MAIN GRID -->
+<!-- MAIN GRID: 35% / 40% / 25% -->
 <div class="flex-1 grid grid-cols-12 gap-4 min-h-0">
 
-  <!-- COL 1: PLC / Botonera -->
-  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col gap-4 overflow-hidden">
-    <div class="flex items-center gap-2 border-b border-card-border pb-3">
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">memory</span>
-      <span class="text-[13px] font-bold text-white uppercase tracking-wider">PLC Allen Bradley</span>
+  <!-- LEFT 35%: Vertical production pipeline -->
+  <div class="col-span-4 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-blue text-[20px]">sync_alt</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Pipeline de Producción</span>
     </div>
-
-    <!-- Status boxes -->
-    <div class="grid grid-cols-3 gap-2">
-      <div class="bg-[#030712] border border-neon-green/30 rounded-lg p-3 flex flex-col items-center gap-1">
-        <span class="material-symbols-outlined text-[28px] text-neon-green">radio_button_checked</span>
-        <span class="text-[12px] font-bold text-white">Botonera</span>
-        <span class="text-[10px] text-neon-green">Inicio/Paro</span>
-      </div>
-      <div class="bg-[#030712] border border-neon-green/30 rounded-lg p-3 flex flex-col items-center gap-1">
-        <span class="material-symbols-outlined text-[28px] text-yellow-400">warning_amber</span>
-        <span class="text-[12px] font-bold text-white">Torreta</span>
-        <span class="text-[10px] text-neon-green">Verde · Normal</span>
-      </div>
-      <div class="bg-[#030712] border border-neon-cyan/30 rounded-lg p-3 flex flex-col items-center gap-1">
-        <span class="material-symbols-outlined text-[28px] text-neon-cyan">bolt</span>
-        <span class="text-[12px] font-bold text-white">PLC</span>
-        <span class="text-[10px] text-neon-cyan">AB · OK</span>
-      </div>
-    </div>
-
-    <!-- Metrics bars -->
-    <div class="flex-1 flex flex-col gap-3">
-      <span class="text-[12px] font-bold text-white uppercase tracking-wider">Métricas en tiempo real</span>
-      <div class="flex flex-col gap-3">
-        <div>
-          <div class="flex justify-between mb-1">
-            <span class="text-[12px] text-text-muted">Eficiencia de línea</span>
-            <span class="text-[12px] font-mono text-neon-cyan">86%</span>
+    <div class="flex-1 p-4 flex flex-col gap-3 overflow-hidden justify-around">
+      <!-- Stage 1 -->
+      <div class="relative">
+        <div class="flex items-center gap-3 p-3 rounded-lg border border-neon-green/30 bg-neon-green/5">
+          <div class="w-9 h-9 rounded-lg bg-neon-green/20 border border-neon-green/40 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-neon-green text-[18px]">inventory_2</span>
           </div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:86%"></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-bold text-white">Etapa 1 — Recepción MP</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex-1 h-1.5 bg-card-border rounded-full overflow-hidden">
+                <div class="h-full bg-neon-green rounded-full" style="width:100%"></div>
+              </div>
+              <span class="text-[11px] font-mono text-neon-green shrink-0">100%</span>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-green/10 text-neon-green border border-neon-green/30 px-2 py-0.5 rounded uppercase shrink-0">OK</span>
         </div>
-        <div>
-          <div class="flex justify-between mb-1">
-            <span class="text-[12px] text-text-muted">Cumplimiento orden</span>
-            <span class="text-[12px] font-mono text-neon-green">85%</span>
+        <div class="flex justify-center mt-1"><div class="w-0.5 h-3 bg-card-border"></div></div>
+      </div>
+      <!-- Stage 2 -->
+      <div class="relative">
+        <div class="flex items-center gap-3 p-3 rounded-lg border border-neon-green/30 bg-neon-green/5">
+          <div class="w-9 h-9 rounded-lg bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-neon-cyan text-[18px]">monitoring</span>
           </div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:85%"></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-bold text-white">Etapa 2 — Ensamble A</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex-1 h-1.5 bg-card-border rounded-full overflow-hidden">
+                <div class="h-full bg-neon-cyan rounded-full" style="width:92%"></div>
+              </div>
+              <span class="text-[11px] font-mono text-neon-cyan shrink-0">92%</span>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/30 px-2 py-0.5 rounded uppercase shrink-0">OK</span>
         </div>
-        <div>
-          <div class="flex justify-between mb-1">
-            <span class="text-[12px] text-text-muted">Disponibilidad línea</span>
-            <span class="text-[12px] font-mono text-neon-cyan">92%</span>
+        <div class="flex justify-center mt-1"><div class="w-0.5 h-3 bg-card-border"></div></div>
+      </div>
+      <!-- Stage 3 — active -->
+      <div class="relative">
+        <div class="flex items-center gap-3 p-3 rounded-lg border border-neon-amber/40 bg-neon-amber/5 ring-1 ring-neon-amber/20">
+          <div class="w-9 h-9 rounded-lg bg-neon-amber/20 border border-neon-amber/40 flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-neon-amber text-[18px]">trending_up</span>
           </div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:92%"></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-bold text-neon-amber">Etapa 3 — Prueba QA ●</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex-1 h-1.5 bg-card-border rounded-full overflow-hidden">
+                <div class="h-full bg-neon-amber rounded-full transition-all duration-1000" id="stage3-bar" style="width:78%"></div>
+              </div>
+              <span class="text-[11px] font-mono text-neon-amber shrink-0" id="stage3-pct">78%</span>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-neon-amber/10 text-neon-amber border border-neon-amber/30 px-2 py-0.5 rounded uppercase shrink-0 pulse-dot">ACTIVO</span>
         </div>
-        <div>
-          <div class="flex justify-between mb-1">
-            <span class="text-[12px] text-text-muted">Calidad FPY</span>
-            <span class="text-[12px] font-mono text-neon-green">99%</span>
+        <div class="flex justify-center mt-1"><div class="w-0.5 h-3 bg-card-border opacity-40"></div></div>
+      </div>
+      <!-- Stage 4 — pending -->
+      <div>
+        <div class="flex items-center gap-3 p-3 rounded-lg border border-card-border bg-card-bg/50 opacity-60">
+          <div class="w-9 h-9 rounded-lg bg-card-border flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-text-muted text-[18px]">deployed_code</span>
           </div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:99%"></div></div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[13px] font-semibold text-text-muted">Etapa 4 — Empaque</div>
+            <div class="flex items-center gap-2 mt-1">
+              <div class="flex-1 h-1.5 bg-card-border rounded-full overflow-hidden">
+                <div class="h-full bg-card-border rounded-full" style="width:0%"></div>
+              </div>
+              <span class="text-[11px] font-mono text-text-muted shrink-0">—</span>
+            </div>
+          </div>
+          <span class="text-[10px] font-bold bg-card-bg text-text-muted border border-card-border px-2 py-0.5 rounded uppercase shrink-0">PENDIENTE</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- COL 2: Tabs panel -->
-  <div class="col-span-6 bg-card-bg border border-card-border rounded-lg p-5 flex flex-col overflow-hidden">
-    <div class="flex items-center gap-2 border-b border-card-border pb-3 mb-4">
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">view_list</span>
-      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Vista por interfaz</span>
+  <!-- CENTER 40%: OEE Gauge Ring -->
+  <div class="col-span-5 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-cyan text-[20px]">data_thresholding</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">OEE — Overall Equipment Effectiveness</span>
     </div>
-
-    <!-- Tabs -->
-    <div class="flex gap-1 mb-4 bg-[#030712] p-1 rounded-lg border border-card-border">
-      <button id="tab-op" onclick="showTab('op')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all bg-card-border text-white">Operador</button>
-      <button id="tab-mon" onclick="showTab('mon')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Monitoreo</button>
-      <button id="tab-his" onclick="showTab('his')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Históricos</button>
-      <button id="tab-par" onclick="showTab('par')" class="flex-1 py-2 px-3 rounded-md text-[13px] font-semibold transition-all text-text-muted hover:text-white">Parámetros</button>
-    </div>
-
-    <!-- Tab: Operador -->
-    <div id="pane-op" class="flex-1 flex flex-col gap-3 overflow-auto">
-      <span class="text-[12px] text-text-muted">Acciones del operador en línea</span>
-      <div class="flex items-center gap-3 p-4 border border-neon-green/30 rounded-lg bg-neon-green/5">
-        <span class="material-symbols-outlined text-[22px] text-neon-green">circle</span>
-        <div class="flex-1">
-          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-142</div>
-          <div class="text-[12px] text-text-muted">Motor 5HP · 500 pzs · 423/500 completadas</div>
+    <div class="flex-1 flex flex-col items-center justify-center gap-4 p-4">
+      <!-- Large OEE donut -->
+      <div class="relative flex items-center justify-center" style="width:220px;height:220px">
+        <svg width="220" height="220" viewBox="0 0 220 220">
+          <!-- Background rings -->
+          <circle cx="110" cy="110" r="90" fill="none" stroke="#1e2b44" stroke-width="18"/>
+          <!-- Availability ring (outer) -->
+          <circle cx="110" cy="110" r="90" fill="none" stroke="#00ffaa" stroke-width="18"
+            stroke-dasharray="565.5" stroke-dashoffset="50.9"
+            stroke-linecap="round" transform="rotate(-90 110 110)" opacity="0.85"/>
+          <!-- Performance ring (middle) -->
+          <circle cx="110" cy="110" r="68" fill="none" stroke="#1e2b44" stroke-width="16"/>
+          <circle cx="110" cy="110" r="68" fill="none" stroke="#1e90ff" stroke-width="16"
+            stroke-dasharray="427.3" stroke-dashoffset="59.8"
+            stroke-linecap="round" transform="rotate(-90 110 110)" opacity="0.85"/>
+          <!-- Quality ring (inner) -->
+          <circle cx="110" cy="110" r="48" fill="none" stroke="#1e2b44" stroke-width="14"/>
+          <circle cx="110" cy="110" r="48" fill="none" stroke="#00f0ff" stroke-width="14"
+            stroke-dasharray="301.6" stroke-dashoffset="3"
+            stroke-linecap="round" transform="rotate(-90 110 110)" opacity="0.85"/>
+        </svg>
+        <div class="absolute flex flex-col items-center">
+          <span class="text-[44px] font-extrabold text-white leading-none" style="text-shadow:0 0 12px rgba(0,240,255,0.2)">86%</span>
+          <span class="text-[12px] font-bold text-text-muted tracking-widest uppercase mt-1">OEE</span>
         </div>
-        <div class="w-36 mr-2">
-          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-neon-green">85%</span></div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:85%"></div></div>
-        </div>
-        <span class="text-[11px] px-2 py-1 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold uppercase tracking-wider">ACTIVA</span>
       </div>
-      <div class="flex items-center gap-3 p-4 border border-neon-green/30 rounded-lg bg-neon-green/5">
-        <span class="material-symbols-outlined text-[22px] text-neon-green">check_circle</span>
-        <div class="flex-1">
-          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-141</div>
-          <div class="text-[12px] text-text-muted">Motor 3HP · 300 pzs · 300/300 completadas</div>
+      <!-- Legend -->
+      <div class="grid grid-cols-3 gap-3 w-full px-4">
+        <div class="flex flex-col items-center p-3 bg-[#030712] border border-card-border rounded-lg">
+          <div class="flex items-center gap-1.5 mb-1">
+            <div class="w-2.5 h-2.5 rounded-full bg-neon-green"></div>
+            <span class="text-[10px] font-bold text-text-muted uppercase tracking-wider">Disponib.</span>
+          </div>
+          <span class="text-[24px] font-extrabold text-neon-green glow-green">91%</span>
         </div>
-        <div class="w-36 mr-2">
-          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-neon-green">100%</span></div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:100%"></div></div>
+        <div class="flex flex-col items-center p-3 bg-[#030712] border border-card-border rounded-lg">
+          <div class="flex items-center gap-1.5 mb-1">
+            <div class="w-2.5 h-2.5 rounded-full bg-neon-blue"></div>
+            <span class="text-[10px] font-bold text-text-muted uppercase tracking-wider">Rendim.</span>
+          </div>
+          <span class="text-[24px] font-extrabold text-neon-blue glow-blue">86%</span>
         </div>
-        <span class="text-[11px] px-2 py-1 bg-neon-green/10 text-neon-green border border-neon-green/30 rounded font-bold uppercase tracking-wider">CERRADA</span>
+        <div class="flex flex-col items-center p-3 bg-[#030712] border border-card-border rounded-lg">
+          <div class="flex items-center gap-1.5 mb-1">
+            <div class="w-2.5 h-2.5 rounded-full bg-neon-cyan"></div>
+            <span class="text-[10px] font-bold text-text-muted uppercase tracking-wider">Calidad</span>
+          </div>
+          <span class="text-[24px] font-extrabold text-neon-cyan glow-cyan">99%</span>
+        </div>
       </div>
-      <div class="flex items-center gap-3 p-4 border border-yellow-400/30 rounded-lg bg-yellow-400/5">
-        <span class="material-symbols-outlined text-[22px] text-yellow-400">pending</span>
-        <div class="flex-1">
-          <div class="text-[14px] font-semibold text-white">Orden #OT-2026-143</div>
-          <div class="text-[12px] text-text-muted">Motor 10HP · 200 pzs · Setup en proceso</div>
+      <!-- Order progress -->
+      <div class="w-full px-4">
+        <div class="text-[11px] font-bold text-text-muted uppercase tracking-wider mb-2">Orden activa · OT-2026-142</div>
+        <div class="flex items-center gap-3 p-3 bg-[#030712] border border-card-border rounded-lg">
+          <div class="flex-1">
+            <div class="flex justify-between mb-1.5">
+              <span class="text-[12px] text-text-muted">Motor 5HP · 500 pzs</span>
+              <span class="text-[12px] font-mono text-neon-green">85%</span>
+            </div>
+            <div class="h-2 bg-card-border rounded-full overflow-hidden">
+              <div class="h-full bg-neon-green rounded-full" style="width:85%"></div>
+            </div>
+            <div class="text-[11px] text-text-muted mt-1">423 / 500 — ETA: 12:45</div>
+          </div>
         </div>
-        <div class="w-36 mr-2">
-          <div class="flex justify-between mb-1"><span class="text-[11px] text-text-muted">Avance</span><span class="text-[11px] font-mono text-yellow-400">0%</span></div>
-          <div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-yellow-400 rounded-full" style="width:0%"></div></div>
-        </div>
-        <span class="text-[11px] px-2 py-1 bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 rounded font-bold uppercase tracking-wider">SETUP</span>
-      </div>
-    </div>
-
-    <!-- Tab: Monitoreo -->
-    <div id="pane-mon" class="flex-1 flex-col gap-3 overflow-auto hidden">
-      <span class="text-[12px] text-text-muted mb-2 block">Indicadores y alertas en tiempo real</span>
-      <div class="flex items-center gap-3 p-3 border border-neon-green/25 rounded-lg bg-neon-green/5 mb-2">
-        <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
-        <span class="text-[13px] text-neon-green">Línea principal operando dentro de parámetros</span>
-      </div>
-      <div class="flex items-center gap-3 p-3 border border-yellow-400/25 rounded-lg bg-yellow-400/5 mb-2">
-        <span class="material-symbols-outlined text-[18px] text-yellow-400">warning</span>
-        <span class="text-[13px] text-yellow-400">Velocidad de alimentación en Línea 2 al 72% de nominal</span>
-      </div>
-      <div class="flex items-center gap-3 p-3 border border-neon-green/25 rounded-lg bg-neon-green/5 mb-2">
-        <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
-        <span class="text-[13px] text-neon-green">Calidad de soldadura aprobada — 99% FPY</span>
-      </div>
-      <div class="flex items-center gap-3 p-3 border border-yellow-400/25 rounded-lg bg-yellow-400/5">
-        <span class="material-symbols-outlined text-[18px] text-yellow-400">schedule</span>
-        <span class="text-[13px] text-yellow-400">Cambio de turno en 45 min — preparar relevo</span>
-      </div>
-    </div>
-
-    <!-- Tab: Históricos -->
-    <div id="pane-his" class="flex-1 flex-col overflow-auto hidden">
-      <span class="text-[12px] text-text-muted mb-3 block">Histórico de producción por turno</span>
-      <table class="w-full text-[13px]">
-        <thead>
-          <tr class="border-b border-card-border">
-            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Turno</th>
-            <th class="text-left text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Fecha</th>
-            <th class="text-right text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2 pr-4">Unidades</th>
-            <th class="text-right text-[11px] font-bold text-text-muted uppercase tracking-wider pb-2">OEE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
-            <td class="py-3 pr-4 text-white">Matutino</td>
-            <td class="py-3 pr-4 text-text-muted">18/05/26</td>
-            <td class="py-3 pr-4 text-right font-mono text-white">1,847</td>
-            <td class="py-3 text-right font-mono text-neon-cyan">86%</td>
-          </tr>
-          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
-            <td class="py-3 pr-4 text-white">Vespertino</td>
-            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
-            <td class="py-3 pr-4 text-right font-mono text-white">2,312</td>
-            <td class="py-3 text-right font-mono text-neon-green">91%</td>
-          </tr>
-          <tr class="border-b border-card-border/50 hover:bg-white/[.02]">
-            <td class="py-3 pr-4 text-white">Nocturno</td>
-            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
-            <td class="py-3 pr-4 text-right font-mono text-white">1,950</td>
-            <td class="py-3 text-right font-mono text-neon-green">88%</td>
-          </tr>
-          <tr class="hover:bg-white/[.02]">
-            <td class="py-3 pr-4 text-white">Matutino</td>
-            <td class="py-3 pr-4 text-text-muted">17/05/26</td>
-            <td class="py-3 pr-4 text-right font-mono text-white">2,100</td>
-            <td class="py-3 text-right font-mono text-neon-green">89%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Tab: Parámetros -->
-    <div id="pane-par" class="flex-1 flex-col gap-4 overflow-auto hidden">
-      <span class="text-[12px] text-text-muted mb-1 block">Ajuste de parámetros de producción</span>
-      <div class="flex flex-col gap-5">
-        <div class="flex items-center gap-4">
-          <span class="text-[13px] text-text-muted w-52">Vel. nominal (pzs/min)</span>
-          <input type="range" min="60" max="120" value="98" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=this.value">
-          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">98</span>
-        </div>
-        <div class="flex items-center gap-4">
-          <span class="text-[13px] text-text-muted w-52">Temp. soldadura (°C)</span>
-          <input type="range" min="180" max="260" value="220" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=this.value">
-          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">220</span>
-        </div>
-        <div class="flex items-center gap-4">
-          <span class="text-[13px] text-text-muted w-52">Tolerancia scrap (%)</span>
-          <input type="range" min="0" max="5" value="1" step="0.1" class="flex-1 accent-neon-cyan" oninput="this.nextElementSibling.textContent=parseFloat(this.value).toFixed(1)">
-          <span class="font-mono text-[13px] text-neon-cyan w-8 text-right">1.0</span>
-        </div>
-        <button class="self-start mt-2 px-5 py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
-          Aplicar cambios
-        </button>
       </div>
     </div>
   </div>
 
-  <!-- COL 3: AI Copilot -->
+  <!-- RIGHT 25%: Live Alerts -->
   <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="flex items-center justify-between p-5 border-b border-card-border">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-[18px] text-neon-blue">smart_toy</span>
-        <span class="text-[13px] font-bold text-white uppercase tracking-wider">InstantMES AI</span>
-      </div>
-      <div class="flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
-        <span class="text-[11px] text-neon-green">En Vivo</span>
+    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
+      <span class="material-symbols-outlined text-neon-red text-[20px]">show_chart</span>
+      <span class="text-[13px] font-bold text-white uppercase tracking-wider">Alertas</span>
+      <div class="ml-auto flex items-center gap-1.5">
+        <div class="w-2 h-2 rounded-full bg-neon-red pulse-dot"></div>
+        <span class="text-[10px] font-bold text-neon-red">2</span>
       </div>
     </div>
-    <div class="flex-1 p-5 flex flex-col gap-3 overflow-auto">
-      <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
-        <div class="text-[11px] text-text-muted mb-1 uppercase tracking-wider">Análisis turno actual</div>
-        <div class="text-[13px] text-white">Producción +2% vs ayer. Orden OT-2026-142 en 85% de avance. Estimado: completar a las 12:45.</div>
-      </div>
-      <div class="p-3 bg-yellow-400/5 rounded-lg border border-yellow-400/20">
-        <div class="text-[11px] text-yellow-400 mb-1 uppercase tracking-wider flex items-center gap-1">
-          <span class="material-symbols-outlined text-[14px]">warning</span> Alerta
+    <div class="flex-1 overflow-y-auto p-3 flex flex-col gap-2">
+      <div class="p-3 rounded-lg border border-neon-amber/30 bg-neon-amber/5">
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="material-symbols-outlined text-[14px] text-neon-amber">trending_up</span>
+          <span class="text-[10px] font-bold text-neon-amber uppercase tracking-wider">Advertencia</span>
         </div>
-        <div class="text-[13px] text-yellow-300">Línea 2 al 72% de velocidad nominal. Revisar alimentador antes de siguiente turno.</div>
+        <div class="text-[12px] text-white">Línea 2 al 72% de vel. nominal</div>
+        <div class="text-[10px] text-text-muted mt-1">hace 18 min</div>
       </div>
-      <div class="p-3 bg-neon-green/5 rounded-lg border border-neon-green/20">
-        <div class="text-[11px] text-neon-green mb-1 uppercase tracking-wider">Calidad</div>
-        <div class="text-[13px] text-white">FPY 99% — scrap 1%. Parámetros de soldadura estables. Sin acción requerida.</div>
-      </div>
-      <div class="mt-auto grid grid-cols-2 gap-2 text-center">
-        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
-          <div class="text-[22px] font-extrabold text-neon-cyan glow-cyan">42s</div>
-          <div class="text-[10px] text-text-muted uppercase tracking-wider">Ciclo actual</div>
+      <div class="p-3 rounded-lg border border-neon-amber/30 bg-neon-amber/5">
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="material-symbols-outlined text-[14px] text-neon-amber">monitoring</span>
+          <span class="text-[10px] font-bold text-neon-amber uppercase tracking-wider">Info</span>
         </div>
-        <div class="p-3 bg-[#030712] rounded-lg border border-card-border">
-          <div class="text-[22px] font-extrabold text-neon-green glow-green">99%</div>
-          <div class="text-[10px] text-text-muted uppercase tracking-wider">FPY</div>
+        <div class="text-[12px] text-white">Cambio de turno en 45 min</div>
+        <div class="text-[10px] text-text-muted mt-1">hace 32 min</div>
+      </div>
+      <div class="p-3 rounded-lg border border-neon-green/25 bg-neon-green/5">
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="material-symbols-outlined text-[14px] text-neon-green">show_chart</span>
+          <span class="text-[10px] font-bold text-neon-green uppercase tracking-wider">OK</span>
+        </div>
+        <div class="text-[12px] text-white">Calidad FPY 99% — estable</div>
+        <div class="text-[10px] text-text-muted mt-1">hace 1 h</div>
+      </div>
+      <div class="p-3 rounded-lg border border-neon-green/25 bg-neon-green/5">
+        <div class="flex items-center gap-1.5 mb-1">
+          <span class="material-symbols-outlined text-[14px] text-neon-cyan">data_thresholding</span>
+          <span class="text-[10px] font-bold text-neon-cyan uppercase tracking-wider">Análisis</span>
+        </div>
+        <div class="text-[12px] text-white">Prod. +2% vs ayer — tendencia positiva</div>
+        <div class="text-[10px] text-text-muted mt-1">hace 2 h</div>
+      </div>
+      <div class="mt-auto p-3 rounded-lg border border-card-border bg-[#030712]">
+        <div class="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-2">Métricas rápidas</div>
+        <div class="grid grid-cols-2 gap-2 text-center">
+          <div>
+            <div class="text-[20px] font-extrabold text-neon-cyan glow-cyan">42s</div>
+            <div class="text-[9px] text-text-muted uppercase">Ciclo</div>
+          </div>
+          <div>
+            <div class="text-[20px] font-extrabold text-neon-green glow-green">99%</div>
+            <div class="text-[9px] text-text-muted uppercase">FPY</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="p-5 border-t border-card-border">
-      <button class="w-full py-3 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
-        <span class="material-symbols-outlined text-[16px] align-middle mr-1">open_in_new</span>
-        Ver InstantMES
+    <div class="p-3 border-t border-card-border shrink-0">
+      <button class="w-full py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[12px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">
+        Ver InstantMES completo
       </button>
     </div>
   </div>
@@ -362,35 +333,19 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
 <script>
 function tick(){
-  const t=new Date().toLocaleTimeString('es-MX');
-  document.getElementById('clock').textContent=t;
+  document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX');
 }
 setInterval(tick,1000);tick();
 
-function showTab(id){
-  ['op','mon','his','par'].forEach(t=>{
-    const pane=document.getElementById('pane-'+t);
-    const btn=document.getElementById('tab-'+t);
-    if(t===id){
-      pane.classList.remove('hidden');
-      pane.classList.add('flex');
-      btn.classList.add('bg-card-border','text-white');
-      btn.classList.remove('text-text-muted');
-    } else {
-      pane.classList.add('hidden');
-      pane.classList.remove('flex');
-      btn.classList.remove('bg-card-border','text-white');
-      btn.classList.add('text-text-muted');
-    }
-  });
-}
-
-let units=1847;
+let units=1847,s3=78;
 setInterval(()=>{
   units+=Math.floor(Math.random()*2);
   const fmt=units.toLocaleString('es-MX');
   document.getElementById('kpi-units').textContent=fmt;
   document.getElementById('hdr-units').textContent=fmt;
+  if(s3<95){s3+=Math.random()>.6?1:0;}
+  document.getElementById('stage3-bar').style.width=s3+'%';
+  document.getElementById('stage3-pct').textContent=s3+'%';
 },4000);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>

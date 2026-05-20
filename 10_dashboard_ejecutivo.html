@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dashboard Ejecutivo — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 <style>
 :root{
   --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
@@ -24,12 +25,14 @@ body{
   background-size:40px 40px;
 }
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:28px;z-index:1000;backdrop-filter:blur(12px)}
 .tb-brand{display:flex;align-items:center;gap:12px;margin-right:8px}
 .tb-logo{width:34px;height:34px;background:var(--cyan);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:17px;color:#030712}
 .tb-name{font-family:var(--display);font-size:22px;font-weight:700;color:#fff;letter-spacing:.5px}
+.tb-sub{font-size:11px;color:rgba(224,240,255,.4);letter-spacing:1px;font-family:var(--mono)}
 .tb-exp{font-size:14px;color:rgba(0,229,255,.65);background:var(--cyan4);border:1px solid var(--border);padding:3px 14px;border-radius:20px;font-family:var(--mono)}
 .tb-sep{width:1px;height:36px;background:var(--border);margin:0 4px}
 .tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:90px}
@@ -46,9 +49,11 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .main{position:fixed;top:64px;left:0;right:0;bottom:0;display:flex;flex-direction:column;z-index:1;overflow:hidden}
 
 /* VIEW NAV */
-.view-nav{display:flex;align-items:center;gap:0;padding:0 24px;background:rgba(6,14,26,.7);border-bottom:1px solid var(--border3)}
-.view-btn{flex:1;padding:12px 20px;border:none;background:transparent;color:rgba(224,240,255,.45);font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase}
+.view-nav{display:flex;align-items:center;gap:0;padding:0 24px;background:rgba(6,14,26,.7);border-bottom:1px solid var(--border3);flex-shrink:0}
+.view-btn{padding:13px 32px;border:none;background:transparent;color:rgba(224,240,255,.45);font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:.5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.view-btn .material-symbols-outlined{font-size:18px;opacity:.7}
 .view-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);text-shadow:0 0 4px rgba(0,229,255,0.11)}
+.view-btn.active .material-symbols-outlined{opacity:1;color:var(--cyan)}
 .view-btn:hover:not(.active){color:rgba(224,240,255,.7)}
 .auto-indicator{margin-left:auto;display:flex;align-items:center;gap:8px;padding:0 8px}
 .auto-dots{display:flex;gap:5px}
@@ -58,52 +63,84 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .auto-btn:hover{background:var(--cyan4);color:var(--cyan);border-color:var(--border)}
 
 /* VIEWS */
-.view-pane{display:none;flex:1;padding:20px 24px;gap:16px;overflow:hidden}
-.view-pane.active{display:grid}
+.view-pane{display:none;flex:1;overflow:hidden}
+.view-pane.active{display:flex}
 
-/* VIEW 1: Resumen Operativo — 4 big KPIs + chart area + table */
-#view-0{grid-template-columns:repeat(4,1fr);grid-template-rows:auto 1fr;align-content:start;gap:16px}
-.kpi-big{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:14px;padding:22px 24px;position:relative;overflow:hidden;text-align:center}
-.kpi-big::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:14px 14px 0 0}
-.kpi-big.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
-.kpi-big.green::before{background:linear-gradient(90deg,transparent,var(--green),transparent)}
-.kpi-big.amber::before{background:linear-gradient(90deg,transparent,var(--amber),transparent)}
-.kpi-big.red::before{background:linear-gradient(90deg,transparent,var(--red2),transparent)}
-.kpi-big-lbl{font-size:13px;color:rgba(224,240,255,.45);text-transform:uppercase;letter-spacing:1px;font-family:var(--mono);margin-bottom:8px;font-weight:600}
-.kpi-big-val{font-family:var(--display);font-size:56px;font-weight:700;line-height:1;text-shadow:0 0 24px}
-.kpi-big-val.cyan{color:var(--cyan);text-shadow:0 0 10px rgba(0,229,255,0.11)}
-.kpi-big-val.green{color:var(--green);text-shadow:0 0 10px rgba(0,255,170,0.11)}
-.kpi-big-val.amber{color:var(--amber);text-shadow:0 0 10px rgba(255,179,0,0.11)}
-.kpi-big-val.red{color:var(--red2);text-shadow:0 0 10px rgba(255,59,59,0.11)}
-.kpi-big-sub{font-size:14px;color:rgba(224,240,255,.35);margin-top:6px;font-family:var(--mono)}
-.kpi-big-delta{font-size:13px;margin-top:4px;font-weight:600}
-.kpi-big-delta.up{color:var(--green)}
-.kpi-big-delta.dn{color:var(--red2)}
-.kpi-big-delta.nt{color:rgba(224,240,255,.35)}
+/* =========================================
+   VIEW 0: Resumen Operativo — 3-column executive scorecard
+   ========================================= */
+#view-0{flex-direction:column;padding:20px 24px;gap:16px}
 
-.v1-bottom{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.panel-block{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px}
-.panel-title{font-family:var(--display);font-size:15px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
-.mini-kpi-list{display:flex;flex-direction:column;gap:10px}
-.mk-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border3)}
-.mk-row:last-child{border-bottom:none}
-.mk-lbl{font-size:13px;color:rgba(224,240,255,.5);font-family:var(--mono)}
-.mk-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
-.mk-val.green{color:var(--green)}
-.mk-val.amber{color:var(--amber)}
-.mk-val.red{color:var(--red2)}
-.bar-list{display:flex;flex-direction:column;gap:10px}
-.bar-item{display:flex;align-items:center;gap:10px}
-.bar-lbl{font-size:12px;color:rgba(224,240,255,.5);font-family:var(--mono);width:100px;flex-shrink:0}
-.bar-track{flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px}
-.bar-val-txt{font-family:var(--display);font-size:16px;font-weight:700;width:50px;text-align:right}
-.line-chart{width:100%;height:70px;overflow:hidden;position:relative}
-.line-chart svg{width:100%;height:100%}
+.v0-top{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex-shrink:0}
 
-/* VIEW 2: Calidad y Trazabilidad */
-#view-1{grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto 1fr;align-content:start;gap:16px}
-.v2-top{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* Scorecard column */
+.score-col{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
+.score-col-header{padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.score-col-header .material-symbols-outlined{font-size:26px}
+.score-col-title{font-family:var(--display);font-size:20px;font-weight:700;color:#fff;letter-spacing:.3px}
+.score-col-sub{font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;margin-top:1px}
+.score-col-body{flex:1;padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+
+/* Hero metric inside scorecard column */
+.hero-metric{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(3,7,18,.5);border-radius:10px;border:1px solid var(--border3)}
+.hero-metric-left{}
+.hero-metric-lbl{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);font-weight:600}
+.hero-metric-val{font-family:var(--display);font-size:38px;font-weight:700;line-height:1.1}
+.hero-metric-sub{font-size:11px;color:rgba(224,240,255,.35);font-family:var(--mono);margin-top:2px}
+.hero-metric-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.hero-delta{display:flex;align-items:center;gap:4px;font-family:var(--display);font-size:14px;font-weight:700}
+.hero-delta.up{color:var(--green)}
+.hero-delta.dn{color:var(--red2)}
+.hero-delta.nt{color:rgba(224,240,255,.35)}
+.hero-delta .material-symbols-outlined{font-size:16px}
+.hero-target{font-size:11px;color:rgba(224,240,255,.3);font-family:var(--mono)}
+
+/* Bar-style mini KPIs */
+.bar-kpi{display:flex;flex-direction:column;gap:4px;padding:8px 14px;background:rgba(3,7,18,.35);border-radius:8px;border:1px solid var(--border3)}
+.bar-kpi-header{display:flex;justify-content:space-between;align-items:center}
+.bar-kpi-lbl{font-size:11px;color:rgba(224,240,255,.45);font-family:var(--mono)}
+.bar-kpi-val{font-family:var(--display);font-size:17px;font-weight:700}
+.bar-kpi-track{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:2px}
+.bar-kpi-fill{height:100%;border-radius:3px}
+
+/* =========================================
+   VIEW 0 BOTTOM ROW — leaderboard + donut + stacked
+   ========================================= */
+.v0-bottom{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;min-height:0}
+.panel-block{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.panel-title{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:16px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px}
+.panel-title .material-symbols-outlined{font-size:18px;color:var(--cyan)}
+
+/* Leaderboard rows */
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;background:rgba(3,7,18,.4);border:1px solid var(--border3);border-radius:8px}
+.lb-rank{font-family:var(--display);font-size:18px;font-weight:700;width:24px;color:rgba(224,240,255,.3)}
+.lb-rank.first{color:var(--amber)}
+.lb-name{flex:1;font-size:13px;font-family:var(--mono);color:rgba(224,240,255,.7)}
+.lb-bar-track{width:80px;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.lb-bar-fill{height:100%;border-radius:3px}
+.lb-val{font-family:var(--display);font-size:17px;font-weight:700;width:46px;text-align:right}
+
+/* Donut chart */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;flex:1;justify-content:center}
+.donut-legend{display:flex;flex-direction:column;gap:6px;width:100%}
+.donut-leg-row{display:flex;align-items:center;gap:8px}
+.donut-leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.donut-leg-lbl{flex:1;font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.55)}
+.donut-leg-val{font-family:var(--display);font-size:15px;font-weight:700}
+
+/* Stacked bar chart */
+.stk-row{display:flex;flex-direction:column;gap:4px}
+.stk-header{display:flex;justify-content:space-between}
+.stk-lbl{font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.45)}
+.stk-total{font-family:var(--display);font-size:15px;font-weight:700;color:rgba(224,240,255,.7)}
+.stk-track{height:20px;background:rgba(255,255,255,.04);border-radius:5px;overflow:hidden;display:flex}
+.stk-seg{height:100%;transition:width .8s}
+
+/* =========================================
+   VIEW 1: Calidad y Trazabilidad
+   ========================================= */
+#view-1{flex-direction:column;padding:20px 24px;gap:16px}
+.v2-top{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex-shrink:0}
 .kpi-mid{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:18px 20px;text-align:center;position:relative;overflow:hidden}
 .kpi-mid::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
 .kpi-mid.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
@@ -115,11 +152,28 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .kpi-mid-val.green{color:var(--green);text-shadow:0 0 8px rgba(0,255,170,0.11)}
 .kpi-mid-val.amber{color:var(--amber);text-shadow:0 0 8px rgba(255,179,0,0.11)}
 .kpi-mid-sub{font-size:13px;color:rgba(224,240,255,.35);margin-top:5px;font-family:var(--mono)}
+.v2-bottom{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;min-height:0}
+.bar-list{display:flex;flex-direction:column;gap:10px}
+.bar-item{display:flex;align-items:center;gap:10px}
+.bar-lbl{font-size:12px;color:rgba(224,240,255,.5);font-family:var(--mono);width:130px;flex-shrink:0}
+.bar-track{flex:1;height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+.bar-val-txt{font-family:var(--display);font-size:16px;font-weight:700;width:50px;text-align:right}
+.mini-kpi-list{display:flex;flex-direction:column;gap:8px}
+.mk-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border3)}
+.mk-row:last-child{border-bottom:none}
+.mk-lbl{font-size:13px;color:rgba(224,240,255,.5);font-family:var(--mono)}
+.mk-val{font-family:var(--display);font-size:20px;font-weight:700;color:var(--cyan)}
+.mk-val.green{color:var(--green)}
+.mk-val.amber{color:var(--amber)}
+.mk-val.red{color:var(--red2)}
 
-/* VIEW 3: ROI y Digitalización */
-#view-2{grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr;align-content:start;gap:16px}
-.v3-kpi-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.v3-bottom{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* =========================================
+   VIEW 2: ROI y Digitalización
+   ========================================= */
+#view-2{flex-direction:column;padding:20px 24px;gap:16px}
+.v3-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex-shrink:0}
+.v3-bottom{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;min-height:0}
 .roi-card{background:rgba(8,17,32,.9);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;position:relative;overflow:hidden}
 .roi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0}
 .roi-card.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
@@ -139,7 +193,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .mat-pct{font-family:var(--display);font-size:16px;font-weight:700;width:46px;text-align:right}
 .benefit-list{display:flex;flex-direction:column;gap:10px}
 .ben-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(3,7,18,.6);border:1px solid var(--border3);border-radius:8px}
-.ben-icon{font-size:20px;flex-shrink:0}
+.ben-icon .material-symbols-outlined{font-size:22px}
 .ben-name{font-family:var(--display);font-size:15px;font-weight:700;color:#fff}
 .ben-val{font-family:var(--mono);font-size:13px;color:var(--green);margin-top:1px}
 </style>
@@ -150,7 +204,10 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 <div class="topbar">
   <div class="tb-brand">
     <div class="tb-logo">N</div>
-    <span class="tb-name">NCTECH</span>
+    <div>
+      <div class="tb-name">NCTECH</div>
+      <div class="tb-sub">Showroom 2026</div>
+    </div>
   </div>
   <span class="tb-exp">10 / Dashboard Ejecutivo</span>
   <div class="tb-sep"></div>
@@ -177,260 +234,484 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 <div class="main">
   <!-- VIEW NAV -->
   <div class="view-nav">
-    <button class="view-btn active" onclick="showView(0,this)">Resumen Operativo</button>
-    <button class="view-btn" onclick="showView(1,this)">Calidad y Trazabilidad</button>
-    <button class="view-btn" onclick="showView(2,this)">ROI y Digitalización</button>
+    <button class="view-btn active" onclick="showView(0,this)">
+      <span class="material-symbols-outlined">analytics</span>Resumen Operativo
+    </button>
+    <button class="view-btn" onclick="showView(1,this)">
+      <span class="material-symbols-outlined">fact_check</span>Calidad y Trazabilidad
+    </button>
+    <button class="view-btn" onclick="showView(2,this)">
+      <span class="material-symbols-outlined">account_balance</span>ROI y Digitalización
+    </button>
     <div class="auto-indicator">
       <div class="auto-dots">
         <div class="auto-dot active" id="ad0"></div>
         <div class="auto-dot" id="ad1"></div>
         <div class="auto-dot" id="ad2"></div>
       </div>
-      <button class="auto-btn" id="auto-btn" onclick="toggleAuto()">⏸ Pausar</button>
+      <button class="auto-btn" id="auto-btn" onclick="toggleAuto()">&#9646;&#9646; Pausar</button>
     </div>
   </div>
 
-  <!-- VIEW 0: Resumen Operativo -->
+  <!-- ============================================================
+       VIEW 0: Resumen Operativo — 3-column Executive Scorecard
+       ============================================================ -->
   <div class="view-pane active" id="view-0">
-    <div class="kpi-big cyan">
-      <div class="kpi-big-lbl">OEE Global</div>
-      <div class="kpi-big-val cyan">84%</div>
-      <div class="kpi-big-sub">Meta: 80%</div>
-      <div class="kpi-big-delta up">▲ +4.2pp sobre meta</div>
-    </div>
-    <div class="kpi-big green">
-      <div class="kpi-big-lbl">Unidades / turno</div>
-      <div class="kpi-big-val green" id="v1-units">2,847</div>
-      <div class="kpi-big-sub">Meta: 2,700</div>
-      <div class="kpi-big-delta up">▲ +147 uds</div>
-    </div>
-    <div class="kpi-big amber">
-      <div class="kpi-big-lbl">Disponibilidad</div>
-      <div class="kpi-big-val amber">91%</div>
-      <div class="kpi-big-sub">5 líneas activas</div>
-      <div class="kpi-big-delta nt">↔ estable</div>
-    </div>
-    <div class="kpi-big red">
-      <div class="kpi-big-lbl">Resp. Mantenimiento</div>
-      <div class="kpi-big-val red">14 min</div>
-      <div class="kpi-big-sub">MTTR promedio</div>
-      <div class="kpi-big-delta up">▲ -6 min vs mes ant.</div>
-    </div>
-    <div class="v1-bottom">
-      <div class="panel-block">
-        <div class="panel-title">KPIs por línea</div>
-        <div class="mini-kpi-list">
-          <div class="mk-row"><span class="mk-lbl">Línea A — OEE</span><span class="mk-val">88%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea B — OEE</span><span class="mk-val green">91%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea C — OEE</span><span class="mk-val amber">74%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Línea D — OEE</span><span class="mk-val">82%</span></div>
-        </div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-title">Desempeño OEE</div>
-        <div class="bar-list">
-          <div class="bar-item">
-            <span class="bar-lbl">Disponibilidad</span>
-            <div class="bar-track"><div class="bar-fill" style="width:91%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-            <span class="bar-val-txt" style="color:var(--green)">91%</span>
+    <div style="display:flex;flex-direction:column;flex:1;padding:20px 24px;gap:16px;overflow:hidden">
+
+      <!-- TOP: 3 scorecard columns -->
+      <div class="v0-top">
+
+        <!-- COLUMN 1: Producción -->
+        <div class="score-col">
+          <div class="score-col-header">
+            <span class="material-symbols-outlined" style="color:var(--cyan)">trending_up</span>
+            <div>
+              <div class="score-col-title">Producción</div>
+              <div class="score-col-sub">Turno actual · Líneas A–D</div>
+            </div>
           </div>
-          <div class="bar-item">
-            <span class="bar-lbl">Rendimiento</span>
-            <div class="bar-track"><div class="bar-fill" style="width:86%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="bar-val-txt" style="color:var(--cyan)">86%</span>
-          </div>
-          <div class="bar-item">
-            <span class="bar-lbl">Calidad</span>
-            <div class="bar-track"><div class="bar-fill" style="width:99%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-            <span class="bar-val-txt" style="color:var(--green)">99%</span>
-          </div>
-          <div class="bar-item">
-            <span class="bar-lbl">OEE</span>
-            <div class="bar-track"><div class="bar-fill" style="width:84%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="bar-val-txt" style="color:var(--cyan)">84%</span>
+          <div class="score-col-body">
+            <div class="hero-metric">
+              <div class="hero-metric-left">
+                <div class="hero-metric-lbl">Unidades / turno</div>
+                <div class="hero-metric-val" style="color:var(--cyan)" id="v0-units">2,847</div>
+                <div class="hero-metric-sub">Meta: 2,700 uds</div>
+              </div>
+              <div class="hero-metric-right">
+                <div class="hero-delta up">
+                  <span class="material-symbols-outlined">arrow_upward</span>+147
+                </div>
+                <div class="hero-target">+5.4% sobre meta</div>
+              </div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">OEE Global</span>
+                <span class="bar-kpi-val" style="color:var(--cyan)">84%</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:84%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Disponibilidad</span>
+                <span class="bar-kpi-val" style="color:var(--green)">91%</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:91%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Rendimiento</span>
+                <span class="bar-kpi-val" style="color:var(--cyan)">86%</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:86%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            </div>
           </div>
         </div>
+
+        <!-- COLUMN 2: Calidad -->
+        <div class="score-col">
+          <div class="score-col-header">
+            <span class="material-symbols-outlined" style="color:var(--green)">leaderboard</span>
+            <div>
+              <div class="score-col-title">Calidad</div>
+              <div class="score-col-sub">Inspección automática · visión</div>
+            </div>
+          </div>
+          <div class="score-col-body">
+            <div class="hero-metric">
+              <div class="hero-metric-left">
+                <div class="hero-metric-lbl">FPY — First Pass Yield</div>
+                <div class="hero-metric-val" style="color:var(--green)">99%</div>
+                <div class="hero-metric-sub">2,481 piezas inspeccionadas</div>
+              </div>
+              <div class="hero-metric-right">
+                <div class="hero-delta up">
+                  <span class="material-symbols-outlined">arrow_upward</span>+4.2pp
+                </div>
+                <div class="hero-target">Meta: 97%</div>
+              </div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Defectos hoy</span>
+                <span class="bar-kpi-val" style="color:var(--amber)">7</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:7%;background:linear-gradient(90deg,rgba(255,179,0,.4),var(--amber))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Trazabilidad</span>
+                <span class="bar-kpi-val" style="color:var(--green)">100%</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Cobertura inspección</span>
+                <span class="bar-kpi-val" style="color:var(--cyan)">98%</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:98%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMN 3: Operaciones -->
+        <div class="score-col">
+          <div class="score-col-header">
+            <span class="material-symbols-outlined" style="color:var(--amber)">donut_large</span>
+            <div>
+              <div class="score-col-title">Operaciones</div>
+              <div class="score-col-sub">Mantenimiento · alertas · MTTR</div>
+            </div>
+          </div>
+          <div class="score-col-body">
+            <div class="hero-metric">
+              <div class="hero-metric-left">
+                <div class="hero-metric-lbl">MTTR promedio</div>
+                <div class="hero-metric-val" style="color:var(--amber)">14 min</div>
+                <div class="hero-metric-sub">Tiempo de respuesta</div>
+              </div>
+              <div class="hero-metric-right">
+                <div class="hero-delta up">
+                  <span class="material-symbols-outlined">arrow_downward</span>−6 min
+                </div>
+                <div class="hero-target">vs. mes anterior</div>
+              </div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Paros no planeados</span>
+                <span class="bar-kpi-val" style="color:var(--red2)">3</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:21%;background:linear-gradient(90deg,rgba(255,59,59,.3),var(--red))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Órdenes completadas</span>
+                <span class="bar-kpi-val" style="color:var(--green)">14</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:88%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+            </div>
+            <div class="bar-kpi">
+              <div class="bar-kpi-header">
+                <span class="bar-kpi-lbl">Equipos operativos</span>
+                <span class="bar-kpi-val" style="color:var(--cyan)">5 / 6</span>
+              </div>
+              <div class="bar-kpi-track"><div class="bar-kpi-fill" style="width:83%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="panel-block">
-        <div class="panel-title">Alertas del día</div>
-        <div class="mini-kpi-list">
-          <div class="mk-row"><span class="mk-lbl">Paros no planeados</span><span class="mk-val amber">3</span></div>
-          <div class="mk-row"><span class="mk-lbl">Alertas críticas</span><span class="mk-val red">1</span></div>
-          <div class="mk-row"><span class="mk-lbl">Órdenes completadas</span><span class="mk-val green">14</span></div>
-          <div class="mk-row"><span class="mk-lbl">En proceso</span><span class="mk-val">2</span></div>
+
+      <!-- BOTTOM: Leaderboard + Donut + Stacked bars -->
+      <div class="v0-bottom">
+
+        <!-- LEADERBOARD -->
+        <div class="panel-block">
+          <div class="panel-title">
+            <span class="material-symbols-outlined">leaderboard</span>
+            OEE por línea
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;flex:1">
+            <div class="lb-row">
+              <div class="lb-rank first">1</div>
+              <div class="lb-name">Línea B</div>
+              <div class="lb-bar-track"><div class="lb-bar-fill" style="width:91%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+              <div class="lb-val" style="color:var(--green)">91%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank" style="color:rgba(224,240,255,.5)">2</div>
+              <div class="lb-name">Línea A</div>
+              <div class="lb-bar-track"><div class="lb-bar-fill" style="width:88%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <div class="lb-val" style="color:var(--cyan)">88%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank" style="color:rgba(224,240,255,.5)">3</div>
+              <div class="lb-name">Línea D</div>
+              <div class="lb-bar-track"><div class="lb-bar-fill" style="width:82%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <div class="lb-val" style="color:var(--cyan)">82%</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank" style="color:var(--red2)">4</div>
+              <div class="lb-name">Línea C</div>
+              <div class="lb-bar-track"><div class="lb-bar-fill" style="width:74%;background:linear-gradient(90deg,rgba(255,179,0,.3),var(--amber))"></div></div>
+              <div class="lb-val" style="color:var(--amber)">74%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DONUT CHART (SVG) -->
+        <div class="panel-block" style="align-items:center">
+          <div class="panel-title" style="width:100%">
+            <span class="material-symbols-outlined">donut_large</span>
+            Distribución OEE
+          </div>
+          <div class="donut-wrap">
+            <svg viewBox="0 0 160 160" width="130" height="130">
+              <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="18"/>
+              <!-- Disponibilidad 91% = 340deg -->
+              <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(0,255,170,.7)" stroke-width="18"
+                stroke-dasharray="342 44" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+              <!-- Rendimiento overlay ring -->
+              <circle cx="80" cy="80" r="42" fill="none" stroke="rgba(0,229,255,.06)" stroke-width="14"/>
+              <circle cx="80" cy="80" r="42" fill="none" stroke="rgba(0,229,255,.7)" stroke-width="14"
+                stroke-dasharray="228 36" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+              <!-- OEE center -->
+              <text x="80" y="76" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="22" font-weight="700" fill="#00E5FF">84%</text>
+              <text x="80" y="92" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9" fill="rgba(224,240,255,.4)">OEE</text>
+            </svg>
+            <div class="donut-legend">
+              <div class="donut-leg-row">
+                <div class="donut-leg-dot" style="background:var(--green)"></div>
+                <span class="donut-leg-lbl">Disponibilidad</span>
+                <span class="donut-leg-val" style="color:var(--green)">91%</span>
+              </div>
+              <div class="donut-leg-row">
+                <div class="donut-leg-dot" style="background:var(--cyan)"></div>
+                <span class="donut-leg-lbl">Rendimiento</span>
+                <span class="donut-leg-val" style="color:var(--cyan)">86%</span>
+              </div>
+              <div class="donut-leg-row">
+                <div class="donut-leg-dot" style="background:var(--amber)"></div>
+                <span class="donut-leg-lbl">Calidad</span>
+                <span class="donut-leg-val" style="color:var(--amber)">99%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STACKED BAR CHART -->
+        <div class="panel-block">
+          <div class="panel-title">
+            <span class="material-symbols-outlined">stacked_bar_chart</span>
+            Producción semanal
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;flex:1">
+            <div class="stk-row">
+              <div class="stk-header"><span class="stk-lbl">Lunes</span><span class="stk-total" style="color:var(--green)">2,920</span></div>
+              <div class="stk-track">
+                <div class="stk-seg" style="width:60%;background:var(--cyan);opacity:.7"></div>
+                <div class="stk-seg" style="width:25%;background:var(--green);opacity:.7"></div>
+                <div class="stk-seg" style="width:15%;background:var(--amber);opacity:.6"></div>
+              </div>
+            </div>
+            <div class="stk-row">
+              <div class="stk-header"><span class="stk-lbl">Martes</span><span class="stk-total" style="color:var(--cyan)">2,744</span></div>
+              <div class="stk-track">
+                <div class="stk-seg" style="width:58%;background:var(--cyan);opacity:.7"></div>
+                <div class="stk-seg" style="width:27%;background:var(--green);opacity:.7"></div>
+                <div class="stk-seg" style="width:15%;background:var(--amber);opacity:.6"></div>
+              </div>
+            </div>
+            <div class="stk-row">
+              <div class="stk-header"><span class="stk-lbl">Miércoles</span><span class="stk-total" style="color:var(--amber)">2,510</span></div>
+              <div class="stk-track">
+                <div class="stk-seg" style="width:55%;background:var(--cyan);opacity:.7"></div>
+                <div class="stk-seg" style="width:22%;background:var(--green);opacity:.7"></div>
+                <div class="stk-seg" style="width:23%;background:var(--red);opacity:.5"></div>
+              </div>
+            </div>
+            <div class="stk-row">
+              <div class="stk-header"><span class="stk-lbl">Jueves</span><span class="stk-total" style="color:var(--green)">2,830</span></div>
+              <div class="stk-track">
+                <div class="stk-seg" style="width:62%;background:var(--cyan);opacity:.7"></div>
+                <div class="stk-seg" style="width:28%;background:var(--green);opacity:.7"></div>
+                <div class="stk-seg" style="width:10%;background:var(--amber);opacity:.6"></div>
+              </div>
+            </div>
+            <div class="stk-row">
+              <div class="stk-header"><span class="stk-lbl">Hoy</span><span class="stk-total" style="color:var(--cyan)" id="v0-today">2,847</span></div>
+              <div class="stk-track">
+                <div class="stk-seg" style="width:59%;background:var(--cyan);opacity:.85"></div>
+                <div class="stk-seg" style="width:26%;background:var(--green);opacity:.85"></div>
+                <div class="stk-seg" style="width:12%;background:var(--amber);opacity:.7"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- VIEW 1: Calidad y Trazabilidad -->
+  <!-- ============================================================
+       VIEW 1: Calidad y Trazabilidad
+       ============================================================ -->
   <div class="view-pane" id="view-1">
-    <div class="v2-top">
-      <div class="kpi-mid cyan">
-        <div class="kpi-mid-lbl">Piezas inspeccionadas</div>
-        <div class="kpi-mid-val cyan">2,481</div>
-        <div class="kpi-mid-sub">Turno actual</div>
-      </div>
-      <div class="kpi-mid green">
-        <div class="kpi-mid-lbl">Índice de calidad</div>
-        <div class="kpi-mid-val green">99%</div>
-        <div class="kpi-mid-sub">Meta: 97%</div>
-      </div>
-      <div class="kpi-mid amber">
-        <div class="kpi-mid-lbl">Defectos detectados</div>
-        <div class="kpi-mid-val amber">7</div>
-        <div class="kpi-mid-sub">Todos interceptados en línea</div>
-      </div>
-    </div>
-    <div class="panel-block">
-      <div class="panel-title">Cobertura por etapa</div>
-      <div class="bar-list">
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Recepción MP</span>
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-          <span class="bar-val-txt" style="color:var(--green)">100%</span>
+    <div style="display:flex;flex-direction:column;flex:1;padding:20px 24px;gap:16px;overflow:hidden">
+      <div class="v2-top">
+        <div class="kpi-mid cyan">
+          <div class="kpi-mid-lbl">Piezas inspeccionadas</div>
+          <div class="kpi-mid-val cyan">2,481</div>
+          <div class="kpi-mid-sub">Turno actual</div>
         </div>
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">En proceso</span>
-          <div class="bar-track"><div class="bar-fill" style="width:98%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val-txt" style="color:var(--cyan)">98%</span>
+        <div class="kpi-mid green">
+          <div class="kpi-mid-lbl">Índice de calidad</div>
+          <div class="kpi-mid-val green">99%</div>
+          <div class="kpi-mid-sub">Meta: 97%</div>
         </div>
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Producto final</span>
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
-          <span class="bar-val-txt" style="color:var(--green)">100%</span>
-        </div>
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Trazabilidad</span>
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val-txt" style="color:var(--cyan)">100%</span>
+        <div class="kpi-mid amber">
+          <div class="kpi-mid-lbl">Defectos detectados</div>
+          <div class="kpi-mid-val amber">7</div>
+          <div class="kpi-mid-sub">Todos interceptados en línea</div>
         </div>
       </div>
-    </div>
-    <div class="panel-block">
-      <div class="panel-title">Defectos por tipo</div>
-      <div class="bar-list">
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Dimensión</span>
-          <div class="bar-track"><div class="bar-fill" style="width:57%;background:linear-gradient(90deg,rgba(255,59,59,.4),var(--red))"></div></div>
-          <span class="bar-val-txt" style="color:var(--red2)">4 uds</span>
+      <div class="v2-bottom">
+        <div class="panel-block">
+          <div class="panel-title">Cobertura por etapa</div>
+          <div class="bar-list">
+            <div class="bar-item">
+              <span class="bar-lbl">Recepción MP</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+              <span class="bar-val-txt" style="color:var(--green)">100%</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-lbl">En proceso</span>
+              <div class="bar-track"><div class="bar-fill" style="width:98%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <span class="bar-val-txt" style="color:var(--cyan)">98%</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-lbl">Producto final</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,rgba(0,255,170,.4),var(--green))"></div></div>
+              <span class="bar-val-txt" style="color:var(--green)">100%</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-lbl">Trazabilidad</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <span class="bar-val-txt" style="color:var(--cyan)">100%</span>
+            </div>
+          </div>
         </div>
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Superficie</span>
-          <div class="bar-track"><div class="bar-fill" style="width:29%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
-          <span class="bar-val-txt" style="color:var(--amber)">2 uds</span>
+        <div class="panel-block">
+          <div class="panel-title">Defectos por tipo</div>
+          <div class="bar-list">
+            <div class="bar-item">
+              <span class="bar-lbl">Dimensión</span>
+              <div class="bar-track"><div class="bar-fill" style="width:57%;background:linear-gradient(90deg,rgba(255,59,59,.4),var(--red))"></div></div>
+              <span class="bar-val-txt" style="color:var(--red2)">4 uds</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-lbl">Superficie</span>
+              <div class="bar-track"><div class="bar-fill" style="width:29%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+              <span class="bar-val-txt" style="color:var(--amber)">2 uds</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-lbl">Conector</span>
+              <div class="bar-track"><div class="bar-fill" style="width:14%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <span class="bar-val-txt" style="color:var(--cyan)">1 ud</span>
+            </div>
+          </div>
         </div>
-        <div class="bar-item">
-          <span class="bar-lbl" style="width:130px">Conector</span>
-          <div class="bar-track"><div class="bar-fill" style="width:14%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-          <span class="bar-val-txt" style="color:var(--cyan)">1 ud</span>
+        <div class="panel-block">
+          <div class="panel-title">Últimas 5 alertas</div>
+          <div class="mini-kpi-list">
+            <div class="mk-row"><span class="mk-lbl">MX-24-0042 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
+            <div class="mk-row"><span class="mk-lbl">MX-24-0038 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
+            <div class="mk-row"><span class="mk-lbl">MX-24-0031 — Revisión</span><span class="mk-val amber" style="font-size:14px">⚠ Conn</span></div>
+            <div class="mk-row"><span class="mk-lbl">MX-24-0027 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
+            <div class="mk-row"><span class="mk-lbl">MX-24-0021 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel-block">
-      <div class="panel-title">Últimas 5 alertas</div>
-      <div class="mini-kpi-list">
-        <div class="mk-row"><span class="mk-lbl">MX-24-0042 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
-        <div class="mk-row"><span class="mk-lbl">MX-24-0038 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
-        <div class="mk-row"><span class="mk-lbl">MX-24-0031 — Revisión</span><span class="mk-val amber" style="font-size:14px">⚠ Conn</span></div>
-        <div class="mk-row"><span class="mk-lbl">MX-24-0027 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Dim</span></div>
-        <div class="mk-row"><span class="mk-lbl">MX-24-0021 — Rechazado</span><span class="mk-val red" style="font-size:14px">✗ Sup</span></div>
       </div>
     </div>
   </div>
 
-  <!-- VIEW 2: ROI y Digitalización -->
+  <!-- ============================================================
+       VIEW 2: ROI y Digitalización
+       ============================================================ -->
   <div class="view-pane" id="view-2">
-    <div class="v3-kpi-row">
-      <div class="roi-card cyan">
-        <div class="roi-label">ROI proyectado</div>
-        <div class="roi-val cyan">340%</div>
-        <div class="roi-sub">en 24 meses</div>
-      </div>
-      <div class="roi-card green">
-        <div class="roi-label">Ahorro anual</div>
-        <div class="roi-val green">$2.4M</div>
-        <div class="roi-sub">Eficiencia operativa</div>
-      </div>
-      <div class="roi-card amber">
-        <div class="roi-label">Payback</div>
-        <div class="roi-val amber">8 meses</div>
-        <div class="roi-sub">Tiempo de retorno</div>
-      </div>
-    </div>
-    <div class="v3-bottom">
-      <div class="panel-block">
-        <div class="panel-title">Madurez Digital</div>
-        <div class="maturity-stack">
-          <div class="mat-row">
-            <span class="mat-lbl">Conectividad</span>
-            <div class="mat-track"><div class="mat-fill" style="width:90%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="mat-pct" style="color:var(--cyan)">90%</span>
-          </div>
-          <div class="mat-row">
-            <span class="mat-lbl">Visibilidad</span>
-            <div class="mat-track"><div class="mat-fill" style="width:85%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
-            <span class="mat-pct" style="color:var(--cyan)">85%</span>
-          </div>
-          <div class="mat-row">
-            <span class="mat-lbl">Integración</span>
-            <div class="mat-track"><div class="mat-fill" style="width:70%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
-            <span class="mat-pct" style="color:var(--green)">70%</span>
-          </div>
-          <div class="mat-row">
-            <span class="mat-lbl">Predicción</span>
-            <div class="mat-track"><div class="mat-fill" style="width:55%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
-            <span class="mat-pct" style="color:var(--amber)">55%</span>
-          </div>
-          <div class="mat-row">
-            <span class="mat-lbl">Autonomía</span>
-            <div class="mat-track"><div class="mat-fill" style="width:30%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
-            <span class="mat-pct" style="color:var(--amber)">30%</span>
-          </div>
+    <div style="display:flex;flex-direction:column;flex:1;padding:20px 24px;gap:16px;overflow:hidden">
+      <div class="v3-kpi-row">
+        <div class="roi-card cyan">
+          <div class="roi-label">ROI proyectado</div>
+          <div class="roi-val cyan">340%</div>
+          <div class="roi-sub">en 24 meses</div>
+        </div>
+        <div class="roi-card green">
+          <div class="roi-label">Ahorro anual</div>
+          <div class="roi-val green">$2.4M</div>
+          <div class="roi-sub">Eficiencia operativa</div>
+        </div>
+        <div class="roi-card amber">
+          <div class="roi-label">Payback</div>
+          <div class="roi-val amber">8 meses</div>
+          <div class="roi-sub">Tiempo de retorno</div>
         </div>
       </div>
-      <div class="panel-block">
-        <div class="panel-title">Beneficios clave</div>
-        <div class="benefit-list">
-          <div class="ben-item">
-            <span class="ben-icon">⚡</span>
-            <div>
-              <div class="ben-name">Reducción de paros</div>
-              <div class="ben-val">↓ 45% fallas no planeadas</div>
+      <div class="v3-bottom">
+        <div class="panel-block">
+          <div class="panel-title">Madurez Digital</div>
+          <div class="maturity-stack">
+            <div class="mat-row">
+              <span class="mat-lbl">Conectividad</span>
+              <div class="mat-track"><div class="mat-fill" style="width:90%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <span class="mat-pct" style="color:var(--cyan)">90%</span>
             </div>
-          </div>
-          <div class="ben-item">
-            <span class="ben-icon">🎯</span>
-            <div>
-              <div class="ben-name">Calidad mejorada</div>
-              <div class="ben-val">↑ +4.2pp índice de calidad</div>
+            <div class="mat-row">
+              <span class="mat-lbl">Visibilidad</span>
+              <div class="mat-track"><div class="mat-fill" style="width:85%;background:linear-gradient(90deg,var(--cyan2),var(--cyan))"></div></div>
+              <span class="mat-pct" style="color:var(--cyan)">85%</span>
             </div>
-          </div>
-          <div class="ben-item">
-            <span class="ben-icon">🔄</span>
-            <div>
-              <div class="ben-name">Ciclos más rápidos</div>
-              <div class="ben-val">↓ 18% tiempo de ciclo</div>
+            <div class="mat-row">
+              <span class="mat-lbl">Integración</span>
+              <div class="mat-track"><div class="mat-fill" style="width:70%;background:linear-gradient(90deg,rgba(0,255,170,.3),var(--green))"></div></div>
+              <span class="mat-pct" style="color:var(--green)">70%</span>
             </div>
-          </div>
-          <div class="ben-item">
-            <span class="ben-icon">👁️</span>
-            <div>
-              <div class="ben-name">Trazabilidad 100%</div>
-              <div class="ben-val">Auditorías en < 30 seg</div>
+            <div class="mat-row">
+              <span class="mat-lbl">Predicción</span>
+              <div class="mat-track"><div class="mat-fill" style="width:55%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+              <span class="mat-pct" style="color:var(--amber)">55%</span>
+            </div>
+            <div class="mat-row">
+              <span class="mat-lbl">Autonomía</span>
+              <div class="mat-track"><div class="mat-fill" style="width:30%;background:linear-gradient(90deg,var(--amber2),var(--amber))"></div></div>
+              <span class="mat-pct" style="color:var(--amber)">30%</span>
             </div>
           </div>
         </div>
-      </div>
-      <div class="panel-block">
-        <div class="panel-title">vs. Antes de NCTECH</div>
-        <div class="mini-kpi-list">
-          <div class="mk-row"><span class="mk-lbl">OEE anterior</span><span class="mk-val amber">62%</span></div>
-          <div class="mk-row"><span class="mk-lbl">OEE actual</span><span class="mk-val green">84%</span></div>
-          <div class="mk-row"><span class="mk-lbl">Paros/mes antes</span><span class="mk-val red">28</span></div>
-          <div class="mk-row"><span class="mk-lbl">Paros/mes ahora</span><span class="mk-val green">7</span></div>
-          <div class="mk-row"><span class="mk-lbl">MTTR antes</span><span class="mk-val amber">4.2 h</span></div>
-          <div class="mk-row"><span class="mk-lbl">MTTR ahora</span><span class="mk-val green">14 min</span></div>
+        <div class="panel-block">
+          <div class="panel-title">Beneficios clave</div>
+          <div class="benefit-list">
+            <div class="ben-item">
+              <div class="ben-icon"><span class="material-symbols-outlined" style="color:var(--cyan)">trending_up</span></div>
+              <div>
+                <div class="ben-name">Reducción de paros</div>
+                <div class="ben-val">↓ 45% fallas no planeadas</div>
+              </div>
+            </div>
+            <div class="ben-item">
+              <div class="ben-icon"><span class="material-symbols-outlined" style="color:var(--green)">analytics</span></div>
+              <div>
+                <div class="ben-name">Calidad mejorada</div>
+                <div class="ben-val">↑ +4.2pp índice de calidad</div>
+              </div>
+            </div>
+            <div class="ben-item">
+              <div class="ben-icon"><span class="material-symbols-outlined" style="color:var(--amber)">stacked_bar_chart</span></div>
+              <div>
+                <div class="ben-name">Ciclos más rápidos</div>
+                <div class="ben-val">↓ 18% tiempo de ciclo</div>
+              </div>
+            </div>
+            <div class="ben-item">
+              <div class="ben-icon"><span class="material-symbols-outlined" style="color:var(--purple)">account_balance</span></div>
+              <div>
+                <div class="ben-name">Trazabilidad 100%</div>
+                <div class="ben-val">Auditorías en &lt; 30 seg</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-block">
+          <div class="panel-title">vs. Antes de NCTECH</div>
+          <div class="mini-kpi-list">
+            <div class="mk-row"><span class="mk-lbl">OEE anterior</span><span class="mk-val amber">62%</span></div>
+            <div class="mk-row"><span class="mk-lbl">OEE actual</span><span class="mk-val green">84%</span></div>
+            <div class="mk-row"><span class="mk-lbl">Paros/mes antes</span><span class="mk-val red">28</span></div>
+            <div class="mk-row"><span class="mk-lbl">Paros/mes ahora</span><span class="mk-val green">7</span></div>
+            <div class="mk-row"><span class="mk-lbl">MTTR antes</span><span class="mk-val amber">4.2 h</span></div>
+            <div class="mk-row"><span class="mk-lbl">MTTR ahora</span><span class="mk-val green">14 min</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -470,7 +751,7 @@ function toggleAuto(){
   autoPlay=!autoPlay;
   const btn=document.getElementById('auto-btn');
   if(autoPlay){
-    btn.textContent='⏸ Pausar';
+    btn.innerHTML='&#9646;&#9646; Pausar';
     autoTimer=setInterval(advance,6000);
   } else {
     btn.textContent='▶ Auto';
@@ -479,11 +760,13 @@ function toggleAuto(){
 }
 autoTimer=setInterval(advance,6000);
 
-// Unit counter animation
+// Live unit counter
 let units=2847;
 setInterval(()=>{
   units+=Math.floor(Math.random()*3);
-  document.getElementById('v1-units').textContent=units.toLocaleString('es-MX');
+  const s=units.toLocaleString('es-MX');
+  document.getElementById('v0-units').textContent=s;
+  document.getElementById('v0-today').textContent=s;
 },3500);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>
