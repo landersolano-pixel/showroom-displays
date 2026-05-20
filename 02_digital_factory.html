@@ -17,6 +17,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 .box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
+#levels-scroll::-webkit-scrollbar{display:none}
 </style>
 </head>
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
@@ -107,7 +108,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="material-symbols-outlined text-neon-cyan text-[22px]">stairs</span>
       <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Niveles de Madurez</h3>
     </div>
-    <div class="p-3 flex flex-col gap-2 overflow-hidden flex-1">
+    <div id="levels-scroll" class="p-3 flex flex-col gap-2 overflow-y-auto flex-1" style="scrollbar-width:none">
       <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
         <div class="flex justify-between items-center mb-2">
           <span class="text-[15px] font-bold text-white">Nivel 1 — Básico</span>
@@ -300,6 +301,17 @@ setInterval(function(){
   document.getElementById('pipe-ensamble').textContent=pipe+'%';
   document.getElementById('pipe-inspeccion').textContent=_rnd(99,1)+'%';
 },4500);
+// Auto-scroll niveles de madurez
+function initAutoScroll(el,spd,pauseMs){
+  if(!el)return;
+  var paused=false;
+  function tick(){
+    if(!paused){var max=el.scrollHeight-el.clientHeight;if(max>0){el.scrollTop+=(spd||0.35);if(el.scrollTop>=max){el.scrollTop=max;paused=true;setTimeout(function(){el.scrollTop=0;paused=false;},(pauseMs||3000));}}}
+    requestAnimationFrame(tick);
+  }
+  setTimeout(function(){requestAnimationFrame(tick);},2000);
+}
+setTimeout(function(){initAutoScroll(document.getElementById('levels-scroll'),0.4,3000);},2500);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
 // Fade in on load
