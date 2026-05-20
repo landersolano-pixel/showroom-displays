@@ -113,7 +113,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div id="levels-scroll" class="p-3 flex flex-col gap-2 overflow-y-auto flex-1" style="scrollbar-width:none">
       <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 1 — Básico</span>
+          <span class="text-[15px] font-bold text-white">Nivel 1 — Datos Manuales</span>
           <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Inicial</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">Equipos aislados sin conectividad. Datos en papel, reportes manuales.</p>
@@ -121,7 +121,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       </div>
       <div onclick="selLevel(1)" id="lvl1" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 2 — Conectado</span>
+          <span class="text-[15px] font-bold text-white">Nivel 2 — Equipos Conectados</span>
           <span class="text-[14px] font-bold text-neon-blue border border-neon-blue/50 px-2 py-0.5 rounded uppercase">Actual</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">Sensores básicos, datos en tiempo real, visibilidad de KPIs.</p>
@@ -129,7 +129,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       </div>
       <div onclick="selLevel(2)" id="lvl2" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 3 — Integrado</span>
+          <span class="text-[15px] font-bold text-white">Nivel 3 — Enterprise</span>
           <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Meta</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">MES integrado, trazabilidad completa, calidad automatizada.</p>
@@ -137,7 +137,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       </div>
       <div onclick="selLevel(3)" id="lvl3" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
         <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 4 — Autónomo</span>
+          <span class="text-[15px] font-bold text-white">Nivel 4 — IA</span>
           <span class="text-[14px] font-bold text-[#a855f7] border border-[#a855f7]/50 px-2 py-0.5 rounded uppercase">Avanzado</span>
         </div>
         <p class="text-[13px] text-text-muted leading-relaxed">IA predictiva, mantenimiento autónomo, planta auto-optimizante.</p>
@@ -221,7 +221,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <div class="p-4 border-b border-card-border flex justify-between items-center shrink-0">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-neon-blue text-[22px]">info</span>
-        <h3 class="font-bold text-[14px] tracking-widest uppercase text-white" id="detail-title">Nivel 1 — Básico</h3>
+        <h3 class="font-bold text-[14px] tracking-widest uppercase text-white" id="detail-title">Nivel 1 — Datos Manuales</h3>
       </div>
     </div>
     <div class="flex-1 p-4 flex flex-col gap-2 overflow-hidden">
@@ -257,10 +257,10 @@ setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocal
 document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
 
 const levels=[
-  {title:'Nivel 1 — Básico',desc:'Equipos aislados sin conectividad. Los datos se capturan en papel y reportes son manuales. Alta dependencia del operador.',metrics:[['Visibilidad','0%','neon-red'],['Resp. incidentes','> 24h','neon-red'],['ROI potencial','Base','neon-blue']],btn:'Activar Sensores'},
-  {title:'Nivel 2 — Conectado',desc:'Sensores básicos instalados, datos en tiempo real disponibles, KPIs visibles en pantalla. Primer nivel de IIoT activo.',metrics:[['Visibilidad','70%','neon-cyan'],['Resp. incidentes','< 2h','neon-cyan'],['ROI potencial','+120%','neon-green']],btn:'Integrar MES'},
-  {title:'Nivel 3 — Integrado',desc:'MES integrado con ERP, trazabilidad completa de materiales, calidad automatizada con visión artificial.',metrics:[['Visibilidad','90%','neon-green'],['Resp. incidentes','< 15min','neon-green'],['ROI potencial','+250%','neon-green']],btn:'Activar IA Predictiva'},
-  {title:'Nivel 4 — Autónomo',desc:'Planta auto-optimizante con IA predictiva, mantenimiento proactivo y decisiones autónomas basadas en datos.',metrics:[['Visibilidad','100%','neon-green'],['Resp. incidentes','< 30s','neon-green'],['ROI potencial','+340%','neon-green']],btn:'Planta Autónoma'},
+  {title:'Nivel 1 — Datos Manuales',desc:'Equipos aislados sin conectividad. Los datos se capturan en papel y reportes son manuales. Alta dependencia del operador.',metrics:[['Visibilidad','0%','neon-red'],['Resp. incidentes','> 24h','neon-red'],['ROI potencial','Base','neon-blue']],btn:'Activar Sensores'},
+  {title:'Nivel 2 — Equipos Conectados',desc:'Sensores básicos instalados, datos en tiempo real disponibles, KPIs visibles en pantalla. Primer nivel de IIoT activo.',metrics:[['Visibilidad','70%','neon-cyan'],['Resp. incidentes','< 2h','neon-cyan'],['ROI potencial','+120%','neon-green']],btn:'Integrar MES'},
+  {title:'Nivel 3 — Enterprise',desc:'MES integrado con ERP, trazabilidad completa de materiales, calidad automatizada con visión artificial.',metrics:[['Visibilidad','90%','neon-green'],['Resp. incidentes','< 15min','neon-green'],['ROI potencial','+250%','neon-green']],btn:'Activar IA Predictiva'},
+  {title:'Nivel 4 — IA',desc:'Planta auto-optimizante con IA predictiva, mantenimiento proactivo y decisiones autónomas basadas en datos.',metrics:[['Visibilidad','100%','neon-green'],['Resp. incidentes','< 30s','neon-green'],['ROI potencial','+340%','neon-green']],btn:'Planta Autónoma'},
 ];
 
 function selLevel(i){
@@ -279,7 +279,7 @@ function selLevel(i){
       <span class="text-[16px] font-bold text-${color}">${val}</span>
     </div>`).join('');
   // sync KPI Nivel card
-  const lbls=['Básico','Conectado','Integrado','Autónomo'];
+  const lbls=['Datos Manuales','Equipos Conectados','Enterprise','IA'];
   document.getElementById('kpi-nivel-num').textContent=i+1;
   document.getElementById('kpi-nivel-lbl').textContent=lbls[i];
 }
