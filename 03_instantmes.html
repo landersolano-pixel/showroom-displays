@@ -333,14 +333,19 @@ function tick(){
 }
 setInterval(tick,1000);tick();
 
-let units=1847,s3=78;
+let units=1847,s3=78,s3busy=false;
 setInterval(()=>{
   units+=Math.floor(Math.random()*2);
-  const fmt=units.toLocaleString('es-MX');
-  document.getElementById('kpi-units').textContent=fmt;
-  if(s3<95){s3+=Math.random()>.6?1:0;}
-  document.getElementById('stage3-bar').style.width=s3+'%';
-  document.getElementById('stage3-pct').textContent=s3+'%';
+  document.getElementById('kpi-units').textContent=units.toLocaleString('es-MX');
+  if(!s3busy){
+    if(s3<95){s3+=Math.random()>.6?1:0;}
+    else{
+      s3busy=true;
+      setTimeout(function(){s3=Math.floor(Math.random()*8)+62;s3busy=false;},4000);
+    }
+    document.getElementById('stage3-bar').style.width=s3+'%';
+    document.getElementById('stage3-pct').textContent=s3+'%';
+  }
 },4000);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');

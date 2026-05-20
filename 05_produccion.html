@@ -333,11 +333,8 @@ function updateClocks(){
 }
 updateClocks();setInterval(updateClocks,1000);
 
-let p1=312,p2=287,p4=198;
-setInterval(()=>{
-  if(Math.random()>.5&&p1<400)p1+=Math.floor(Math.random()*2)+1;
-  if(Math.random()>.5&&p2<380)p2+=Math.floor(Math.random()*2)+1;
-  if(Math.random()>.6&&p4<280)p4+=Math.floor(Math.random()*2)+1;
+let p1=312,p2=287,p4=198,prodBusy=false;
+function updateProd(){
   const total=p1+p2+p4+450;
   document.getElementById('k-units').textContent=total.toLocaleString('es-MX');
   document.getElementById('units-bar').style.width=Math.min(total/1500*100,100)+'%';
@@ -347,11 +344,21 @@ setInterval(()=>{
   document.getElementById('bv1').textContent=p1;
   document.getElementById('bv2').textContent=p2;
   document.getElementById('bv4').textContent=p4;
-  // bar heights relative to max 400
-  const maxH=400;
-  document.getElementById('m01-bar').style.width=(p1/maxH*100)+'%';
-  document.getElementById('m02-bar').style.width=(p2/380*100)+'%';
-  document.getElementById('m04-bar').style.width=(p4/280*100)+'%';
+  document.getElementById('m01-bar').style.width=Math.min(p1/400*100,100)+'%';
+  document.getElementById('m02-bar').style.width=Math.min(p2/380*100,100)+'%';
+  document.getElementById('m04-bar').style.width=Math.min(p4/280*100,100)+'%';
+}
+setInterval(()=>{
+  if(prodBusy)return;
+  if(Math.random()>.5)p1+=Math.floor(Math.random()*2)+1;
+  if(Math.random()>.5)p2+=Math.floor(Math.random()*2)+1;
+  if(Math.random()>.6)p4+=Math.floor(Math.random()*2)+1;
+  updateProd();
+  // All counters hit target → reset after 5s (new shift cycle)
+  if(p1>=400&&p2>=380&&p4>=280){
+    prodBusy=true;
+    setTimeout(function(){p1=Math.floor(Math.random()*15)+5;p2=Math.floor(Math.random()*12)+4;p4=Math.floor(Math.random()*10)+3;updateProd();prodBusy=false;},5000);
+  }
 },2800);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
