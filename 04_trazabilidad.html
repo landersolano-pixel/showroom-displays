@@ -187,12 +187,12 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <span class="text-[12px] font-bold text-neon-amber uppercase tracking-wider">Inspección</span>
           <div class="w-1.5 h-1.5 rounded-full bg-neon-amber pulse-dot ml-auto"></div>
         </div>
-        <div class="text-[32px] font-extrabold text-neon-amber">189<span class="text-[14px] font-normal text-text-muted ml-1">/ 238</span></div>
+        <div class="text-[32px] font-extrabold text-neon-amber"><span id="insp-count">189</span><span class="text-[14px] font-normal text-text-muted ml-1">/ 238</span></div>
         <div class="h-1.5 bg-card-border rounded-full mt-2 overflow-hidden">
-          <div class="h-full bg-neon-amber rounded-full transition-all" style="width:79%"></div>
+          <div id="insp-bar" class="h-full bg-neon-amber rounded-full transition-all" style="width:79%"></div>
         </div>
         <div class="flex justify-between text-[14px] mt-1">
-          <span class="text-neon-amber font-mono">79%</span>
+          <span id="insp-pct" class="text-neon-amber font-mono">79%</span>
           <span class="text-neon-amber pulse-dot">● activo</span>
         </div>
       </div>
@@ -350,7 +350,22 @@ function srchSerial(){
 
 let traced=2481;
 setInterval(()=>{traced++;document.getElementById('kpi-traced').textContent=traced.toLocaleString('es-MX');},6000);
+
+// Inspection stage: slowly advance units being inspected
+let inspected=189;
+setInterval(function(){
+  if(inspected>=238)return;
+  inspected++;
+  const pct=Math.round(inspected/238*100);
+  document.getElementById('insp-count').textContent=inspected;
+  document.getElementById('insp-pct').textContent=pct+'%';
+  document.getElementById('insp-bar').style.width=pct+'%';
+},3500);
 </script>
-<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+// Fade in on load
+(function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
+// Smooth reload (10s testing / production: 5*60*1000)
+setTimeout(function(){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);},10*1000);</script>
 </body>
 </html>

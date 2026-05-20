@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Digital Factory — NCTECH Showroom 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -59,7 +59,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <path stroke="#1e90ff" stroke-width="3" fill="none" stroke-linecap="round" style="stroke-dasharray:78.4 100;transform:rotate(-90deg);transform-origin:50% 50%" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
         </svg>
       </div>
-      <span class="text-[46px] font-extrabold leading-none text-white">78%</span>
+      <span id="kpi-oee" class="text-[46px] font-extrabold leading-none text-white">78%</span>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -68,8 +68,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
     </div>
     <div>
-      <div class="text-[46px] font-extrabold leading-none text-neon-green glow-green">91%</div>
-      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2"><div class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa]" style="width:91%"></div></div>
+      <div id="kpi-disp" class="text-[46px] font-extrabold leading-none text-neon-green glow-green">91%</div>
+      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2"><div id="kpi-disp-bar" class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa]" style="width:91%"></div></div>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -78,8 +78,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="material-symbols-outlined text-[18px] text-neon-cyan">stars</span>
     </div>
     <div>
-      <div class="text-[46px] font-extrabold leading-none text-neon-cyan">2 <span class="text-[18px] font-semibold text-text-muted">/ 4</span></div>
-      <span class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">Conectado</span>
+      <div class="text-[46px] font-extrabold leading-none text-neon-cyan"><span id="kpi-nivel-num">2</span> <span class="text-[18px] font-semibold text-text-muted">/ 4</span></div>
+      <span id="kpi-nivel-lbl" class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">Conectado</span>
     </div>
   </div>
   <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
@@ -87,7 +87,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia</span>
       <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
     </div>
-    <div class="text-[46px] font-extrabold leading-none text-white">86%</div>
+    <div id="kpi-efic" class="text-[46px] font-extrabold leading-none text-white">86%</div>
   </div>
   <div class="bg-card-bg border border-l-2 border-neon-blue border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
     <div class="flex justify-between items-center">
@@ -157,11 +157,11 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
         <!-- Etapa 1 -->
         <div class="flex flex-col items-center gap-3 text-neon-blue text-center flex-1">
-          <div class="w-24 h-24 border-2 border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[48px]">conveyor_belt</span>
+          <div class="w-36 h-36 border-2 border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[72px]">conveyor_belt</span>
           </div>
           <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Ensamble</span>
-          <span class="text-[16px] font-bold text-neon-blue">88%</span>
+          <span id="pipe-ensamble" class="text-[16px] font-bold text-neon-blue">88%</span>
         </div>
 
         <!-- Flecha -->
@@ -172,11 +172,11 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
         <!-- Etapa 2 -->
         <div class="flex flex-col items-center gap-3 text-neon-cyan text-center flex-1">
-          <div class="w-24 h-24 border-2 border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[48px]">biotech</span>
+          <div class="w-36 h-36 border-2 border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[72px]">biotech</span>
           </div>
           <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Inspección</span>
-          <span class="text-[16px] font-bold text-neon-cyan">99%</span>
+          <span id="pipe-inspeccion" class="text-[16px] font-bold text-neon-cyan">99%</span>
         </div>
 
         <!-- Flecha -->
@@ -187,8 +187,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
         <!-- Etapa 3 -->
         <div class="flex flex-col items-center gap-3 text-neon-red text-center flex-1">
-          <div class="w-24 h-24 border-2 border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[48px]">plumbing</span>
+          <div class="w-36 h-36 border-2 border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[72px]">plumbing</span>
           </div>
           <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Soporte</span>
           <span class="text-[16px] font-bold text-neon-red">Rev. Req.</span>
@@ -202,8 +202,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 
         <!-- Etapa 4 -->
         <div class="flex flex-col items-center gap-3 text-neon-green text-center flex-1">
-          <div class="w-24 h-24 border-2 border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[48px]">package_2</span>
+          <div class="w-36 h-36 border-2 border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[72px]">package_2</span>
           </div>
           <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Despacho</span>
           <span class="text-[16px] font-bold text-neon-green">En Ruta</span>
@@ -275,8 +275,44 @@ function selLevel(i){
       <span class="text-[13px] text-text-muted font-mono uppercase">${lbl}</span>
       <span class="text-[18px] font-bold text-${color}">${val}</span>
     </div>`).join('');
+  // sync KPI Nivel card
+  const lbls=['Básico','Conectado','Integrado','Autónomo'];
+  document.getElementById('kpi-nivel-num').textContent=i+1;
+  document.getElementById('kpi-nivel-lbl').textContent=lbls[i];
 }
+
+// Auto-cycle levels (8s interval) with fade
+let _lvl=1; selLevel(_lvl);
+setInterval(function(){
+  const panel=document.getElementById('detail-title').closest('.col-span-3');
+  if(panel){panel.style.transition='opacity 0.4s';panel.style.opacity='0';}
+  setTimeout(function(){
+    _lvl=(_lvl+1)%4;
+    selLevel(_lvl);
+    if(panel){panel.style.opacity='1';}
+  },420);
+},8000);
+
+// KPI fluctuation
+function _rnd(base,delta){return Math.max(0,Math.min(100,base+Math.round((Math.random()*2-1)*delta)));}
+setInterval(function(){
+  const oee=_rnd(78,3);
+  const disp=_rnd(91,2);
+  const efic=_rnd(86,3);
+  const pipe=_rnd(88,4);
+  document.getElementById('kpi-oee').textContent=oee+'%';
+  document.getElementById('kpi-disp').textContent=disp+'%';
+  const bar=document.getElementById('kpi-disp-bar');
+  if(bar)bar.style.width=disp+'%';
+  document.getElementById('kpi-efic').textContent=efic+'%';
+  document.getElementById('pipe-ensamble').textContent=pipe+'%';
+  document.getElementById('pipe-inspeccion').textContent=_rnd(99,1)+'%';
+},4500);
 </script>
-<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');setTimeout(()=>location.reload(),10*1000);</script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+// Fade in on load
+(function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
+// Smooth reload (10s testing / production: 5*60*1000)
+setTimeout(function(){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);},10*1000);</script>
 </body>
 </html>
