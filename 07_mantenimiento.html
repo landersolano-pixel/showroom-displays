@@ -49,7 +49,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 /* LAYOUT */
 .main{position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:40% 60%;gap:0;overflow:hidden}
 .left-col{display:flex;flex-direction:column;padding:20px 16px 20px 20px;gap:14px;overflow:hidden}
-.right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:14px;overflow-y:auto}
+.right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px 20px 20px 16px;gap:14px;overflow:hidden}
 
 /* WEEK VIEW */
 .week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
@@ -89,7 +89,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .mc-sub{font-size:13px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
 
 /* EQUIPMENT LIST */
-.equip-list{display:flex;flex-direction:column;gap:8px;flex:1;overflow:auto}
+.equip-list{display:flex;flex-direction:column;gap:8px;flex:1;overflow:hidden}
+#equip-scroll,#week-scroll{overflow-y:auto;scrollbar-width:none}
+#equip-scroll::-webkit-scrollbar,#week-scroll::-webkit-scrollbar{display:none}
 .equip-row{display:grid;grid-template-columns:40px 1fr 130px 100px 90px;align-items:center;gap:12px;padding:10px 14px;background:var(--panel);border:1px solid var(--border3);border-radius:8px;transition:background .2s}
 .equip-row:hover{background:var(--panel2);border-color:var(--border)}
 .equip-row.alert{border-color:rgba(255,23,68,.3);background:rgba(255,23,68,.04)}
@@ -173,17 +175,17 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
   <div class="tb-right">
     <div class="tb-sep"></div>
     <div class="tb-kpi">
-      <span class="tb-kpi-val red">2</span>
+      <span class="tb-kpi-val red" id="kpi-alert-tb">2</span>
       <span class="tb-kpi-lbl">Alertas</span>
     </div>
     <div class="tb-sep"></div>
     <div class="tb-kpi">
-      <span class="tb-kpi-val green">92%</span>
+      <span class="tb-kpi-val green" id="kpi-disp-tb">92%</span>
       <span class="tb-kpi-lbl">Disponibilidad</span>
     </div>
     <div class="tb-sep"></div>
     <div class="tb-kpi">
-      <span class="tb-kpi-val">847 h</span>
+      <span class="tb-kpi-val" id="kpi-mtbf-tb">847 h</span>
       <span class="tb-kpi-lbl">MTBF</span>
     </div>
     <div class="tb-sep"></div>
@@ -200,17 +202,17 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     <div class="metrics-row">
       <div class="mc cyan">
         <div class="mc-lbl">MTBF</div>
-        <div class="mc-val">847 h</div>
+        <div class="mc-val" id="kpi-mtbf-mc">847 h</div>
         <div class="mc-sub">Tiempo medio entre fallas</div>
       </div>
       <div class="mc green">
         <div class="mc-lbl">Disponibilidad</div>
-        <div class="mc-val green">92%</div>
+        <div class="mc-val green" id="kpi-disp-mc">92%</div>
         <div class="mc-sub">Equipos operativos</div>
       </div>
       <div class="mc amber">
         <div class="mc-lbl">MTTR</div>
-        <div class="mc-val amber">2.4 h</div>
+        <div class="mc-val amber" id="kpi-mttr-mc">2.4 h</div>
         <div class="mc-sub">Tiempo medio reparación</div>
       </div>
       <div class="mc red">
@@ -225,7 +227,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
       <span style="font-family:'Material Symbols Outlined';font-size:18px;color:var(--cyan)">handyman</span>
       Estado de Equipos
     </div>
-    <div style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
+    <div id="equip-scroll" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
 
       <!-- M-03 CRITICAL -->
       <div class="health-card alert">
@@ -407,7 +409,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         Agenda Semanal de Mantenimientos
         <span style="margin-left:auto;font-family:var(--mono);font-size:10px;color:rgba(224,240,255,.35)">Sem. 20–24 May 2026</span>
       </div>
-      <div class="week-grid" style="flex:1;overflow-y:auto">
+      <div class="week-grid" id="week-scroll" style="flex:1;overflow-y:auto">
         <!-- LUN -->
         <div class="week-col">
           <div class="week-day-hdr today">LUN<br>19 May</div>
@@ -500,6 +502,43 @@ function updateClock(){
   document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
 }
 updateClock();setInterval(updateClock,1000);
+
+// Auto-scroll invisible (scrollbar hidden via CSS)
+function initAutoScroll(el,spd,pauseMs){
+  if(!el)return;
+  var paused=false;
+  function tick(){
+    if(!paused){
+      var max=el.scrollHeight-el.clientHeight;
+      if(max>0){
+        el.scrollTop+=(spd||0.35);
+        if(el.scrollTop>=max){
+          el.scrollTop=max;paused=true;
+          setTimeout(function(){el.scrollTop=0;paused=false;},(pauseMs||3000));
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  setTimeout(function(){requestAnimationFrame(tick);},2000);
+}
+setTimeout(function(){
+  initAutoScroll(document.getElementById('equip-scroll'),0.35,3000);
+  initAutoScroll(document.getElementById('week-scroll'),0.3,3500);
+},2500);
+
+// KPI fluctuations
+function _rm(b,d){return Math.round(b+(Math.random()*2-1)*d);}
+function _rmf(b,d){return (b+(Math.random()*2-1)*d).toFixed(1);}
+setInterval(function(){
+  var disp=Math.max(88,Math.min(97,_rm(92,2)));
+  var mtbf=Math.max(820,Math.min(880,_rm(847,10)));
+  var mttr=Math.max(1.8,Math.min(3.5,parseFloat(_rmf(2.4,0.3))));
+  var el;
+  ['kpi-disp-tb','kpi-disp-mc'].forEach(function(id){el=document.getElementById(id);if(el)el.textContent=disp+'%';});
+  ['kpi-mtbf-tb','kpi-mtbf-mc'].forEach(function(id){el=document.getElementById(id);if(el)el.textContent=mtbf+' h';});
+  el=document.getElementById('kpi-mttr-mc');if(el)el.textContent=mttr+' h';
+},5000);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
 // Fade in on load

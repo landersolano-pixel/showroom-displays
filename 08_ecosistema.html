@@ -58,7 +58,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .network-svg{flex:1;width:100%;max-height:calc(100% - 80px)}
 
 /* INFO PANEL */
-.info-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px;gap:14px;overflow-y:auto}
+.info-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:20px;gap:14px;overflow:hidden}
 .panel-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
 .panel-title{font-family:var(--display);font-size:14px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
 
@@ -414,6 +414,14 @@ setInterval(()=>{
   document.getElementById('lm-lat').textContent=(10+Math.floor(Math.random()*6))+' ms';
   document.getElementById('lm-cpu').textContent=(28+Math.floor(Math.random()*12))+'%';
 },3000);
+
+// Auto-cycle network nodes
+var _curNode=0;
+selNode(_curNode);
+setInterval(function(){
+  _curNode=(_curNode+1)%6;
+  selNode(_curNode);
+},6000);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
 // Fade in on load
