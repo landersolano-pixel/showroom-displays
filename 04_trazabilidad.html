@@ -365,6 +365,6 @@ setInterval(function(){
 // Fade in on load
 (function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
 // Smooth reload (10s testing / production: 5*60*1000)
-setTimeout(function(){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);},10*1000);</script>
+var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},10*1000);</script>
 </body>
 </html>
