@@ -201,59 +201,70 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <!-- Arrow -->
     <div class="flex items-center shrink-0">
       <div class="flex flex-col items-center gap-1">
-        <div class="w-8 h-0.5 bg-card-border relative overflow-hidden opacity-40">
+        <div class="w-8 h-0.5 bg-neon-green/40 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-3 h-full bg-neon-green flow-particle" style="animation-delay:1.6s"></div>
         </div>
-        <span class="material-symbols-outlined text-text-muted text-[18px]">chevron_right</span>
+        <span class="material-symbols-outlined text-neon-green text-[18px]">chevron_right</span>
       </div>
     </div>
 
     <!-- Stage 4: Empaque -->
-    <div class="flex-1 bg-card-bg border border-card-border rounded-xl flex flex-col overflow-hidden opacity-70">
+    <div class="flex-1 bg-card-bg border border-neon-green/30 rounded-xl flex flex-col overflow-hidden">
       <div class="px-4 pt-4 pb-3 border-b border-card-border">
         <div class="flex items-center gap-2 mb-1">
-          <span class="material-symbols-outlined text-text-muted text-[20px]">deployed_code</span>
-          <span class="text-[12px] font-bold text-text-muted uppercase tracking-wider">Empaque</span>
+          <span class="material-symbols-outlined text-neon-green text-[20px]">deployed_code</span>
+          <span class="text-[12px] font-bold text-neon-green uppercase tracking-wider">Empaque</span>
         </div>
-        <div class="text-[32px] font-extrabold text-text-muted">0<span class="text-[14px] font-normal text-text-muted ml-1">uds</span></div>
+        <div class="text-[32px] font-extrabold text-white"><span id="pack-count">182</span><span class="text-[14px] font-normal text-text-muted ml-1">uds</span></div>
         <div class="h-1.5 bg-card-border rounded-full mt-2 overflow-hidden">
-          <div class="h-full bg-card-border rounded-full" style="width:0%"></div>
+          <div id="pack-bar" class="h-full bg-neon-green rounded-full transition-all" style="width:76%"></div>
         </div>
         <div class="flex justify-between text-[14px] mt-1">
-          <span class="text-text-muted font-mono">—</span>
-          <span class="text-text-muted">pendiente</span>
+          <span id="pack-pct" class="text-neon-green font-mono">76%</span>
+          <span class="text-neon-green">↑ en curso</span>
         </div>
       </div>
-      <div class="flex-1 p-3 flex items-center justify-center">
-        <span class="text-[14px] text-text-muted font-mono">Esperando inspección</span>
+      <div class="flex-1 overflow-y-auto p-3 flex flex-col gap-1.5">
+        <div class="text-[14px] font-bold text-text-muted uppercase tracking-wider mb-1">Empacados recientes</div>
+        <div class="font-mono text-[14px] text-neon-green bg-neon-green/5 border border-neon-green/20 rounded px-2 py-1">SN-20260481 ✓</div>
+        <div class="font-mono text-[14px] text-neon-green bg-neon-green/5 border border-neon-green/20 rounded px-2 py-1">SN-20260480 ✓</div>
+        <div class="font-mono text-[14px] text-neon-green bg-neon-green/5 border border-neon-green/20 rounded px-2 py-1">SN-20260478 ✓</div>
+        <div class="font-mono text-[14px] text-text-muted bg-card-bg border border-card-border rounded px-2 py-1">+179 más</div>
       </div>
     </div>
 
     <!-- Arrow -->
     <div class="flex items-center shrink-0">
       <div class="flex flex-col items-center gap-1">
-        <div class="w-8 h-0.5 bg-card-border opacity-30"></div>
-        <span class="material-symbols-outlined text-text-muted text-[18px] opacity-40">chevron_right</span>
+        <div class="w-8 h-0.5 bg-neon-blue/40 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-3 h-full bg-neon-blue flow-particle" style="animation-delay:2.2s"></div>
+        </div>
+        <span class="material-symbols-outlined text-neon-blue text-[18px]">chevron_right</span>
       </div>
     </div>
 
     <!-- Stage 5: Entrega -->
-    <div class="flex-1 bg-card-bg border border-card-border rounded-xl flex flex-col overflow-hidden opacity-50">
+    <div class="flex-1 bg-card-bg border border-neon-blue/30 rounded-xl flex flex-col overflow-hidden">
       <div class="px-4 pt-4 pb-3 border-b border-card-border">
         <div class="flex items-center gap-2 mb-1">
-          <span class="material-symbols-outlined text-text-muted text-[20px]">label</span>
-          <span class="text-[12px] font-bold text-text-muted uppercase tracking-wider">Entrega</span>
+          <span class="material-symbols-outlined text-neon-blue text-[20px]">local_shipping</span>
+          <span class="text-[12px] font-bold text-neon-blue uppercase tracking-wider">Entrega</span>
         </div>
-        <div class="text-[32px] font-extrabold text-text-muted">0<span class="text-[14px] font-normal text-text-muted ml-1">uds</span></div>
+        <div class="text-[32px] font-extrabold text-white"><span id="ship-count">174</span><span class="text-[14px] font-normal text-text-muted ml-1">uds</span></div>
         <div class="h-1.5 bg-card-border rounded-full mt-2 overflow-hidden">
-          <div class="h-full rounded-full" style="width:0%"></div>
+          <div id="ship-bar" class="h-full bg-neon-blue rounded-full transition-all" style="width:73%"></div>
         </div>
         <div class="flex justify-between text-[14px] mt-1">
-          <span class="text-text-muted font-mono">—</span>
-          <span class="text-text-muted">pendiente</span>
+          <span id="ship-pct" class="text-neon-blue font-mono">73%</span>
+          <span class="text-neon-blue">↑ en curso</span>
         </div>
       </div>
-      <div class="flex-1 p-3 flex items-center justify-center">
-        <span class="text-[14px] text-text-muted font-mono">Pendiente</span>
+      <div class="flex-1 overflow-y-auto p-3 flex flex-col gap-1.5">
+        <div class="text-[14px] font-bold text-text-muted uppercase tracking-wider mb-1">Despachados recientes</div>
+        <div class="font-mono text-[14px] text-neon-blue bg-neon-blue/5 border border-neon-blue/20 rounded px-2 py-1">SN-20260482 ✓</div>
+        <div class="font-mono text-[14px] text-neon-blue bg-neon-blue/5 border border-neon-blue/20 rounded px-2 py-1">SN-20260473 ✓</div>
+        <div class="font-mono text-[14px] text-neon-blue bg-neon-blue/5 border border-neon-blue/20 rounded px-2 py-1">SN-20260470 ✓</div>
+        <div class="font-mono text-[14px] text-text-muted bg-card-bg border border-card-border rounded px-2 py-1">+171 más</div>
       </div>
     </div>
   </div>
@@ -345,8 +356,8 @@ function srchSerial(){
 let traced=2481;
 setInterval(()=>{traced++;document.getElementById('kpi-traced').textContent=traced.toLocaleString('es-MX');},6000);
 
-// Inspection stage: slowly advance units being inspected
-let inspected=189;
+// Advance pipeline: inspection → empaque (−7) → entrega (−8 from empaque)
+let inspected=189,packed=182,shipped=174;
 setInterval(function(){
   if(inspected>=238)return;
   inspected++;
@@ -354,6 +365,22 @@ setInterval(function(){
   document.getElementById('insp-count').textContent=inspected;
   document.getElementById('insp-pct').textContent=pct+'%';
   document.getElementById('insp-bar').style.width=pct+'%';
+  // empaque advances every 2 inspection ticks
+  if(inspected%2===0&&packed<231){
+    packed++;
+    const pp=Math.round(packed/238*100);
+    document.getElementById('pack-count').textContent=packed;
+    document.getElementById('pack-pct').textContent=pp+'%';
+    document.getElementById('pack-bar').style.width=pp+'%';
+  }
+  // entrega advances every 3 inspection ticks
+  if(inspected%3===0&&shipped<packed-6){
+    shipped++;
+    const sp=Math.round(shipped/238*100);
+    document.getElementById('ship-count').textContent=shipped;
+    document.getElementById('ship-pct').textContent=sp+'%';
+    document.getElementById('ship-bar').style.width=sp+'%';
+  }
 },3500);
 </script>
 <script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
