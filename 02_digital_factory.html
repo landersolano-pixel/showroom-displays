@@ -281,17 +281,9 @@ function selLevel(i){
   document.getElementById('kpi-nivel-lbl').textContent=lbls[i];
 }
 
-// Auto-cycle levels (8s interval) with fade
+// Auto-cycle levels (8s interval)
 let _lvl=1; selLevel(_lvl);
-setInterval(function(){
-  const panel=document.getElementById('detail-title').closest('.col-span-3');
-  if(panel){panel.style.transition='opacity 0.4s';panel.style.opacity='0';}
-  setTimeout(function(){
-    _lvl=(_lvl+1)%4;
-    selLevel(_lvl);
-    if(panel){panel.style.opacity='1';}
-  },420);
-},8000);
+setInterval(function(){_lvl=(_lvl+1)%4;selLevel(_lvl);},8000);
 
 // KPI fluctuation
 function _rnd(base,delta){return Math.max(0,Math.min(100,base+Math.round((Math.random()*2-1)*delta)));}
