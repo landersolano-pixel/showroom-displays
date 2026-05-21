@@ -139,30 +139,6 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
   <!-- CENTER: Process Map -->
   <div style="display:flex;flex-direction:column;padding:16px 10px;gap:12px;overflow:hidden;border-left:1px solid var(--border)">
-    <!-- Metric Cards Row -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex-shrink:0">
-      <div class="mc white">
-        <div class="mc-lbl">OEE</div>
-        <div class="mc-val white" id="mc-oee">78%</div>
-        <div class="mc-sub">efectividad</div>
-      </div>
-      <div class="mc green">
-        <div class="mc-lbl">Disponib.</div>
-        <div class="mc-val green" id="mc-disp">91%</div>
-        <div class="mc-sub">equipos activos</div>
-      </div>
-      <div class="mc cyan">
-        <div class="mc-lbl">Nivel</div>
-        <div class="mc-val"><span id="mc-nivel">2</span><span style="font-size:20px;color:rgba(224,240,255,.4)">/4</span></div>
-        <div class="mc-sub" id="mc-nivel-lbl">Conectados</div>
-      </div>
-      <div class="mc white">
-        <div class="mc-lbl">Eficiencia</div>
-        <div class="mc-val white" id="mc-efic">86%</div>
-        <div class="mc-sub">rendimiento</div>
-      </div>
-    </div>
-
     <!-- Process Map -->
     <div style="flex:1;background:var(--panel);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden">
       <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
@@ -222,8 +198,31 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
     </div>
   </div>
 
-  <!-- RIGHT: Nivel detalle -->
+  <!-- RIGHT: KPI 2×2 + Nivel detalle -->
   <div style="display:flex;flex-direction:column;padding:16px 16px 16px 10px;gap:12px;overflow:hidden;border-left:1px solid var(--border);background:var(--navy2)">
+    <!-- KPI Cards 2×2 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0">
+      <div class="mc white">
+        <div class="mc-lbl">OEE</div>
+        <div class="mc-val white" id="mc-oee">78%</div>
+        <div class="mc-sub">efectividad</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-lbl">Disponib.</div>
+        <div class="mc-val green" id="mc-disp">91%</div>
+        <div class="mc-sub">equipos activos</div>
+      </div>
+      <div class="mc cyan">
+        <div class="mc-lbl">Nivel</div>
+        <div class="mc-val"><span id="mc-nivel">2</span><span style="font-size:20px;color:rgba(224,240,255,.4)">/4</span></div>
+        <div class="mc-sub" id="mc-nivel-lbl">Conectados</div>
+      </div>
+      <div class="mc white">
+        <div class="mc-lbl">Eficiencia</div>
+        <div class="mc-val white" id="mc-efic">86%</div>
+        <div class="mc-sub">rendimiento</div>
+      </div>
+    </div>
     <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;flex:1;display:flex;flex-direction:column;overflow:hidden">
       <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0">
         <span class="material-symbols-outlined" style="color:#1e90ff;font-size:20px">info</span>
