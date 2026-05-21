@@ -25,6 +25,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 .box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
 .material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
+#serial-scroll,#metrics-scroll{overflow-y:auto;scrollbar-width:none}
+#serial-scroll::-webkit-scrollbar,#metrics-scroll::-webkit-scrollbar{display:none}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 .pulse-dot{animation:pulse-dot 2s infinite}
 @keyframes flow-move{0%{transform:translateX(-100%)}100%{transform:translateX(400%)}}
@@ -281,7 +283,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         <button onclick="srchSerial()" class="px-5 py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">Buscar</button>
       </div>
       <div id="serial-res" class="shrink-0 min-h-[36px]"></div>
-      <div class="flex-1 overflow-auto">
+      <div id="serial-scroll" class="flex-1 overflow-auto">
         <table class="w-full text-[13px]">
           <thead class="sticky top-0 bg-card-bg">
             <tr class="border-b border-card-border">
@@ -297,18 +299,28 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
             <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-amber/10 text-neon-amber border border-neon-amber/25 rounded">SN-20260479</span></td><td class="py-2.5 pr-4 text-white">Inspección</td><td class="py-2.5 pr-4 text-neon-amber font-bold">Revisión</td><td class="py-2.5 text-right font-mono text-text-muted">10:18</td></tr>
             <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-red/10 text-neon-red border border-neon-red/25 rounded">SN-20260476</span></td><td class="py-2.5 pr-4 text-white">Inspección</td><td class="py-2.5 pr-4 text-neon-red font-bold">Defecto</td><td class="py-2.5 text-right font-mono text-text-muted">10:09</td></tr>
             <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260473</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">09:38</td></tr>
-            <tr class="hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260470</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">09:22</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260470</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">09:22</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260467</span></td><td class="py-2.5 pr-4 text-white">Empaque</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">10:31</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260464</span></td><td class="py-2.5 pr-4 text-white">Ensamble 2</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">10:44</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260461</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">09:05</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260458</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">08:57</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-amber/10 text-neon-amber border border-neon-amber/25 rounded">SN-20260455</span></td><td class="py-2.5 pr-4 text-white">Inspección</td><td class="py-2.5 pr-4 text-neon-amber font-bold">Revisión</td><td class="py-2.5 text-right font-mono text-text-muted">08:44</td></tr>
+            <tr class="border-b border-card-border/40 hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260452</span></td><td class="py-2.5 pr-4 text-white">Empaque</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">08:30</td></tr>
+            <tr class="hover:bg-white/[.02]"><td class="py-2.5 pr-4"><span class="font-mono text-[14px] px-2 py-0.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/25 rounded">SN-20260449</span></td><td class="py-2.5 pr-4 text-white">Despacho</td><td class="py-2.5 pr-4 text-neon-green font-bold">OK</td><td class="py-2.5 text-right font-mono text-text-muted">08:15</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="col-span-4 bg-card-bg border border-card-border rounded-lg p-4 flex flex-col gap-3 overflow-auto">
+    <div id="metrics-scroll" class="col-span-4 bg-card-bg border border-card-border rounded-lg p-4 flex flex-col gap-3 overflow-auto">
       <span class="text-[13px] font-bold text-white uppercase tracking-wider">Métricas de Trazabilidad</span>
       <div class="flex flex-col gap-2.5">
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Cobertura seriales</span><span class="text-[14px] font-mono text-neon-green">100%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:100%"></div></div></div>
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">FPY</span><span class="text-[14px] font-mono text-neon-cyan">97%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:97%"></div></div></div>
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Avance turno</span><span class="text-[14px] font-mono text-neon-amber">80%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-amber rounded-full" style="width:80%"></div></div></div>
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Traza completa</span><span class="text-[14px] font-mono text-neon-green">100%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:100%"></div></div></div>
+        <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Tasa de defectos</span><span class="text-[14px] font-mono text-neon-red">0.28%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-red rounded-full" style="width:0.28%"></div></div></div>
+        <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Eficiencia línea</span><span class="text-[14px] font-mono text-neon-cyan">94%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:94%"></div></div></div>
+        <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Registros a tiempo</span><span class="text-[14px] font-mono text-neon-green">98%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:98%"></div></div></div>
       </div>
       <div class="mt-auto p-3 bg-[#030712] rounded-lg border border-neon-red/20">
         <div class="text-[14px] font-bold text-neon-red uppercase tracking-wider mb-1 flex items-center gap-1">
@@ -355,6 +367,29 @@ function srchSerial(){
 
 let traced=2481;
 setInterval(()=>{traced++;document.getElementById('kpi-traced').textContent=traced.toLocaleString('es-MX');},6000);
+
+function initAutoScroll(el,spd,pauseMs){
+  if(!el)return;
+  var paused=false;
+  function tick(){
+    if(!paused){
+      var max=el.scrollHeight-el.clientHeight;
+      if(max>0){
+        el.scrollTop+=(spd||0.35);
+        if(el.scrollTop>=max){
+          el.scrollTop=max;paused=true;
+          setTimeout(function(){el.scrollTop=0;paused=false;},(pauseMs||3000));
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  setTimeout(function(){requestAnimationFrame(tick);},2000);
+}
+setTimeout(function(){
+  initAutoScroll(document.getElementById('serial-scroll'),0.35,3000);
+  initAutoScroll(document.getElementById('metrics-scroll'),0.3,3500);
+},2500);
 
 // Continuous production loop — never stops (showroom kiosk)
 const BATCH=238;
