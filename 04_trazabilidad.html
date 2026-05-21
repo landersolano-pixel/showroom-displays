@@ -322,13 +322,13 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Eficiencia línea</span><span class="text-[14px] font-mono text-neon-cyan">94%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-cyan rounded-full" style="width:94%"></div></div></div>
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Registros a tiempo</span><span class="text-[14px] font-mono text-neon-green">98%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:98%"></div></div></div>
       </div>
-      <div class="mt-auto p-3 bg-[#030712] rounded-lg border border-neon-red/20">
+      <div class="p-3 bg-[#030712] rounded-lg border border-neon-red/20">
         <div class="text-[14px] font-bold text-neon-red uppercase tracking-wider mb-1 flex items-center gap-1">
           <span class="material-symbols-outlined text-[14px]">deployed_code</span> Defecto activo
         </div>
         <div class="text-[12px] text-white">SN-20260476 en cuarentena. Causa: soldadura F3.</div>
       </div>
-      <div class="grid grid-cols-2 gap-2 text-center shrink-0">
+      <div class="grid grid-cols-2 gap-2 text-center">
         <div class="p-3 bg-[#030712] border border-card-border rounded-lg">
           <div class="text-[22px] font-extrabold text-neon-red">7</div>
           <div class="text-[13px] text-text-muted uppercase tracking-wider">Defectos</div>
@@ -388,7 +388,7 @@ function initAutoScroll(el,spd,pauseMs){
 }
 setTimeout(function(){
   initAutoScroll(document.getElementById('serial-scroll'),0.35,3000);
-  initAutoScroll(document.getElementById('metrics-scroll'),0.3,3500);
+  initAutoScroll(document.getElementById('metrics-scroll'),0.35,3000);
 },2500);
 
 // Continuous production loop — never stops (showroom kiosk)
