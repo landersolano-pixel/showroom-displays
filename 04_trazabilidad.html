@@ -272,8 +272,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
   </div>
 
   <!-- Bottom: Serial search + recent log -->
-  <div class="flex-1 grid grid-cols-12 gap-4 min-h-0">
-    <div class="col-span-8 bg-card-bg border border-card-border rounded-lg p-4 flex flex-col gap-3 overflow-hidden">
+  <div style="flex:1;display:flex;gap:16px;min-height:0;overflow:hidden">
+    <div style="flex:1;background:#0a101d;border:1px solid #1e2b44;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
       <div class="flex items-center gap-3 shrink-0">
         <span class="material-symbols-outlined text-neon-blue text-[20px]">qr_code_2</span>
         <span class="text-[13px] font-bold text-white uppercase tracking-wider">Consulta de Serial</span>
@@ -283,7 +283,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         <button onclick="srchSerial()" class="px-5 py-2.5 bg-neon-blue/20 text-neon-cyan border border-neon-blue/40 rounded-lg text-[13px] font-bold uppercase tracking-wider hover:bg-neon-blue/30 transition-colors box-glow-blue">Buscar</button>
       </div>
       <div id="serial-res" class="shrink-0 min-h-[36px]"></div>
-      <div id="serial-scroll" class="flex-1 overflow-auto">
+      <div id="serial-scroll" style="flex:1;overflow-y:auto;scrollbar-width:none;min-height:0">
         <table class="w-full text-[13px]">
           <thead class="sticky top-0 bg-card-bg">
             <tr class="border-b border-card-border">
@@ -317,7 +317,8 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
         </table>
       </div>
     </div>
-    <div id="metrics-scroll" class="col-span-4 bg-card-bg border border-card-border rounded-lg p-4 flex flex-col gap-3 overflow-auto">
+    <div style="width:32%;display:flex;flex-direction:column;min-height:0">
+    <div id="metrics-scroll" style="flex:1;overflow-y:auto;scrollbar-width:none;min-height:0;background:#0a101d;border:1px solid #1e2b44;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px">
       <span class="text-[13px] font-bold text-white uppercase tracking-wider">Métricas de Trazabilidad</span>
       <div class="flex flex-col gap-2.5">
         <div><div class="flex justify-between mb-1"><span class="text-[14px] text-text-muted">Cobertura seriales</span><span class="text-[14px] font-mono text-neon-green">100%</span></div><div class="h-1.5 bg-card-border rounded-full"><div class="h-1.5 bg-neon-green rounded-full" style="width:100%"></div></div></div>
@@ -347,6 +348,7 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
           <div class="text-[13px] text-text-muted uppercase tracking-wider">Cobertura</div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </div>
