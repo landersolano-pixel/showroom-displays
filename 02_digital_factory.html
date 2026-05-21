@@ -45,62 +45,21 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     </div>
   </div>
 
+  <div class="flex items-center gap-4">
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none" id="kpi-oee">78%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">OEE</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none" id="kpi-disp">91%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Disponibilidad</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none"><span id="kpi-nivel-num">2</span><span class="text-[13px] text-text-muted">/4</span></span><span class="text-[10px] text-text-muted uppercase tracking-wider" id="kpi-nivel-lbl">Nivel</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none" id="kpi-efic">86%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Eficiencia</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-blue glow-blue leading-none">5</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Líneas</span></div>
+  </div>
   <div class="w-px h-10 bg-card-border shrink-0"></div>
   <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
 </header>
-
-<!-- KPI CARDS -->
-<section class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">OEE</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">bar_chart</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <div class="relative w-12 h-12 shrink-0">
-        <svg class="w-full h-full" viewBox="0 0 36 36">
-          <path stroke="#1e2b44" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-          <path stroke="#1e90ff" stroke-width="3" fill="none" stroke-linecap="round" style="stroke-dasharray:78.4 100;transform:rotate(-90deg);transform-origin:50% 50%" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-        </svg>
-      </div>
-      <span id="kpi-oee" class="text-[46px] font-extrabold leading-none text-white">78%</span>
-    </div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Disponibilidad</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">check_circle</span>
-    </div>
-    <div>
-      <div id="kpi-disp" class="text-[46px] font-extrabold leading-none text-neon-green glow-green">91%</div>
-      <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-2"><div id="kpi-disp-bar" class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa]" style="width:91%"></div></div>
-    </div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Nivel Madurez</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-cyan">stars</span>
-    </div>
-    <div>
-      <div class="text-[46px] font-extrabold leading-none text-neon-cyan"><span id="kpi-nivel-num">2</span> <span class="text-[18px] font-semibold text-text-muted">/ 4</span></div>
-      <span id="kpi-nivel-lbl" class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">Conectado</span>
-    </div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
-    </div>
-    <div id="kpi-efic" class="text-[46px] font-extrabold leading-none text-white">86%</div>
-  </div>
-  <div class="bg-card-bg border border-l-2 border-neon-blue border-card-border rounded-lg p-5 flex flex-col justify-between h-[130px]">
-    <div class="flex justify-between items-center">
-      <span class="text-[12px] font-bold tracking-wider uppercase text-neon-blue">Líneas activas</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">device_hub</span>
-    </div>
-    <div class="text-[56px] font-extrabold leading-none text-neon-blue glow-blue">5</div>
-  </div>
-</section>
 
 <!-- MAIN -->
 <section class="flex-1 grid grid-cols-12 gap-4 min-h-0">

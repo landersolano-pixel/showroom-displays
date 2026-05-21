@@ -50,52 +50,20 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
       <span class="text-[15px] font-mono text-neon-cyan" id="clock">--:--:--</span>
     </div>
   </div>
+  <div class="flex items-center gap-4">
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none">3</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Órdenes</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none" id="kpi-units">1,847</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Unidades</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-amber glow-amber leading-none">86%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Eficiencia</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none">1%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Scrap</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none">42s</span><span class="text-[10px] text-text-muted uppercase tracking-wider">T. Ciclo</span></div>
+  </div>
   <div class="w-px h-10 bg-card-border shrink-0"></div>
   <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
-</div>
-
-<!-- KPI CARDS -->
-<div class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Órdenes activas</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">monitoring</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan">3</div>
-    <div class="text-[14px] text-text-muted">2 en producción, 1 setup</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades conf.</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">trending_up</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green" id="kpi-units">1,847</div>
-    <div class="text-[14px] text-text-muted">Turno actual</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Eficiencia línea</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-amber">show_chart</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-amber glow-amber">86%</div>
-    <div class="text-[14px] text-text-muted">↑ 2% vs ayer</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Scrap rate</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">data_thresholding</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan">1%</div>
-    <div class="text-[14px] text-neon-green">Meta: &lt;1% ✓</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Tiempo ciclo</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">timeline</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green">42s</div>
-    <div class="text-[14px] text-text-muted">Nominal: 45s</div>
-  </div>
 </div>
 
 <!-- MAIN GRID: 35% / 40% / 25% -->

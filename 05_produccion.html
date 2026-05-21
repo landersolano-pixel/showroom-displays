@@ -52,58 +52,21 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     </div>
   </div>
 
+  <div class="flex items-center gap-4">
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none">84%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">OEE</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none" id="k-units">1,247</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Uds/turno</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none">91%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Disponibilidad</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-amber glow-amber leading-none">76°C</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Temperatura</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-red leading-none">3</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Paros hoy</span></div>
+  </div>
   <div class="w-px h-10 bg-card-border shrink-0"></div>
   <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
 </header>
-
-<!-- KPI CARDS -->
-<section class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">OEE Global</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">speed</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <div class="relative w-10 h-10 shrink-0">
-        <svg class="w-full h-full" viewBox="0 0 36 36">
-          <path stroke="#1e2b44" stroke-width="3" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-          <path stroke="#1e90ff" stroke-width="3" fill="none" stroke-linecap="round" style="stroke-dasharray:84.2 100;stroke-dashoffset:0;transform:rotate(-90deg);transform-origin:50% 50%" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-        </svg>
-      </div>
-      <span class="text-[42px] font-extrabold leading-none text-white glow-blue">84%</span>
-    </div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades / turno</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">cyclone</span>
-    </div>
-    <div><div class="text-[42px] font-extrabold leading-none text-neon-green glow-green" id="k-units">1,247</div>
-    <div class="w-full h-1 bg-[#1e2b44] rounded-full overflow-hidden mt-1"><div id="units-bar" class="h-full bg-neon-green shadow-[0_0_3px_#00ffaa] transition-all duration-1000" style="width:83%"></div></div></div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Disponibilidad</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-cyan">settings_input_antenna</span>
-    </div>
-    <div><div class="text-[42px] font-extrabold leading-none text-white">91%</div>
-    <span class="text-[14px] font-bold text-neon-cyan uppercase tracking-wide">4 líneas activas</span></div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Temperatura</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-amber">thermostat</span>
-    </div>
-    <div class="text-[42px] font-extrabold leading-none text-neon-amber glow-amber">76°C</div>
-  </div>
-  <div class="bg-card-bg border border-l-2 border-neon-red border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center">
-      <span class="text-[12px] font-bold tracking-wider uppercase text-neon-red">Paros hoy</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-red">memory</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-red glow-red">3</div>
-  </div>
-</section>
 
 <!-- MAIN: 55% machines grid / 45% output chart -->
 <section class="flex-1 grid grid-cols-12 gap-4 min-h-0">

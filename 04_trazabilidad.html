@@ -42,62 +42,26 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
     <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 04</span>
     <h1 class="text-white text-5xl font-extrabold tracking-tight leading-none">Trazabilidad</h1>
   </div>
-  <div class="ml-auto flex items-center gap-6">
-    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
+  <div class="ml-auto flex items-center gap-4">
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none" id="kpi-traced">2,481</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Trazadas</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none">100%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Cobertura</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none">97%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">FPY</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-red leading-none">7</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Defectos</span></div>
+    <div class="w-px h-8 bg-card-border"></div>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-3 py-1.5">
       <span class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></span>
-      <span class="text-[13px] text-neon-green font-semibold">EN OPERACIÓN</span>
+      <span class="text-[12px] text-neon-green font-semibold">EN OPERACIÓN</span>
     </div>
-    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-4 py-2">
-      <span class="material-symbols-outlined text-[18px] text-text-muted">schedule</span>
-      <span class="text-[15px] font-mono text-neon-cyan" id="clock">--:--:--</span>
+    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-lg px-3 py-1.5">
+      <span class="material-symbols-outlined text-[16px] text-text-muted">schedule</span>
+      <span class="text-[14px] font-mono text-neon-cyan" id="clock">--:--:--</span>
     </div>
   </div>
   <div class="w-px h-10 bg-card-border shrink-0"></div>
   <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
-</div>
-
-<!-- KPI CARDS -->
-<div class="grid grid-cols-5 gap-4 shrink-0">
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Unidades trazadas</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">barcode_scanner</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan" id="kpi-traced">2,481</div>
-    <div class="text-[14px] text-neon-green">↑ 3% vs ayer</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Seriales reg.</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">qr_code_2</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green">2,469</div>
-    <div class="text-[14px] text-text-muted">12 pendientes</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Defectos</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-red">deployed_code</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-red">7</div>
-    <div class="text-[14px] text-text-muted">0.28% tasa</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">Cobertura</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-green">route</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-green glow-green">100%</div>
-    <div class="text-[14px] text-neon-green">Meta: 99% ✓</div>
-  </div>
-  <div class="bg-card-bg border border-card-border rounded-lg p-5 flex flex-col justify-between h-[120px]">
-    <div class="flex justify-between items-center text-text-muted">
-      <span class="text-[12px] font-bold tracking-wider uppercase">FPY</span>
-      <span class="material-symbols-outlined text-[18px] text-neon-blue">label</span>
-    </div>
-    <div class="text-[52px] font-extrabold leading-none text-neon-cyan glow-cyan">97%</div>
-    <div class="text-[14px] text-text-muted">First Pass Yield</div>
-  </div>
 </div>
 
 <!-- MAIN: Full-width 5-stage traceability chain (kanban) + search below -->
