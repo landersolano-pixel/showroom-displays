@@ -83,29 +83,26 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 
   <!-- LEFT: Vertical production pipeline -->
   <div style="display:flex;flex-direction:column;padding:16px 10px 16px 16px;gap:12px;overflow:hidden">
-    <!-- Metric cards for left col -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0">
-      <div class="mc green">
-        <div class="mc-lbl">Unidades</div>
-        <div class="mc-val green" id="mc-units">1,847</div>
-        <div class="mc-sub">producidas</div>
+    <!-- Scoreboard strip -->
+    <div style="display:flex;align-items:stretch;flex-shrink:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <div style="flex:1;padding:10px 8px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:700;color:var(--green);line-height:1" id="mc-units">1,847</div>
+        <div style="font-size:9px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;margin-top:4px">Unidades</div>
       </div>
-      <div class="mc amber">
-        <div class="mc-lbl">Eficiencia</div>
-        <div class="mc-val amber">86%</div>
-        <div class="mc-sub">rendimiento</div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div style="flex:1;padding:10px 8px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:700;color:var(--amber);line-height:1">86%</div>
+        <div style="font-size:9px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;margin-top:4px">Eficiencia</div>
       </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0">
-      <div class="mc cyan">
-        <div class="mc-lbl">Scrap</div>
-        <div class="mc-val">1%</div>
-        <div class="mc-sub">defectos</div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div style="flex:1;padding:10px 8px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:700;color:var(--cyan);line-height:1">1%</div>
+        <div style="font-size:9px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;margin-top:4px">Scrap</div>
       </div>
-      <div class="mc green">
-        <div class="mc-lbl">T.Ciclo</div>
-        <div class="mc-val green">42s</div>
-        <div class="mc-sub">tiempo ciclo</div>
+      <div style="width:1px;background:var(--border)"></div>
+      <div style="flex:1;padding:10px 8px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:700;color:var(--green);line-height:1">42s</div>
+        <div style="font-size:9px;font-family:var(--mono);color:rgba(224,240,255,.35);text-transform:uppercase;letter-spacing:.8px;margin-top:4px">T.Ciclo</div>
       </div>
     </div>
 

@@ -87,27 +87,27 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
   <!-- LEFT: Metric cards + Machine Status Grid -->
   <div style="display:flex;flex-direction:column;padding:16px 10px 16px 16px;gap:12px;overflow:hidden">
 
-    <!-- Metric Cards Row -->
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;flex-shrink:0">
-      <div class="mc white">
-        <div class="mc-lbl">OEE</div>
-        <div class="mc-val white">84%</div>
-        <div class="mc-sub">efectividad global</div>
+    <!-- Gauge bar metrics -->
+    <div style="display:flex;flex-direction:column;gap:9px;flex-shrink:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">OEE</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--cyan);border-radius:3px;width:84%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--cyan);width:40px;text-align:right;flex-shrink:0">84%</span>
       </div>
-      <div class="mc green">
-        <div class="mc-lbl">Uds/turno</div>
-        <div class="mc-val green" id="mc-units">1,247</div>
-        <div class="mc-sub">producidas</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Uds/turno</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--green);border-radius:3px;width:78%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--green);width:40px;text-align:right;flex-shrink:0" id="mc-units">1,247</span>
       </div>
-      <div class="mc white">
-        <div class="mc-lbl">Disponib.</div>
-        <div class="mc-val white">91%</div>
-        <div class="mc-sub">equipos activos</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Disponib.</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--green);border-radius:3px;width:91%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:#fff;width:40px;text-align:right;flex-shrink:0">91%</span>
       </div>
-      <div class="mc red">
-        <div class="mc-lbl">Paros hoy</div>
-        <div class="mc-val red">3</div>
-        <div class="mc-sub">interrupciones</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Paros</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--red2);border-radius:3px;width:12%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--red2);width:40px;text-align:right;flex-shrink:0">3</span>
       </div>
     </div>
 
