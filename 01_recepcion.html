@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" style="background:#030712">
 <head>
 <meta charset="UTF-8"/>
@@ -6,139 +6,210 @@
 <title>Recepción — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44','neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa','neon-red':'#ff3b3b','neon-amber':'#f59e0b','text-muted':'#8ca3c4','text-bright':'#ffffff'}}}}
-</script>
 <style>
-body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
-.font-extrabold{font-family:'Rajdhani',sans-serif}
-.tracking-wider,.tracking-widest{font-family:'IBM Plex Mono',monospace}
-.glow-green{text-shadow:0 0 4px rgba(0,255,170,0.2)}
-.glow-blue{text-shadow:0 0 4px rgba(30,144,255,0.2)}
-.glow-cyan{text-shadow:0 0 4px rgba(0,240,255,0.2)}
-.glow-red{text-shadow:0 0 4px rgba(255,59,59,0.2)}
-.glow-amber{text-shadow:0 0 4px rgba(245,158,11,0.25)}
-.box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
-.box-glow-green{box-shadow:0 0 8px rgba(0,255,170,0.11)}
-.box-glow-red{box-shadow:0 0 6px rgba(255,59,59,0.08)}
-.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF1744;--red2:#FF6E75;--red3:rgba(255,23,68,.12);
+  --border:rgba(0,229,255,.12);--border3:rgba(0,229,255,.06);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 .pulse-dot{animation:pulse-dot 2s infinite}
 @keyframes slide-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .slide-in{animation:slide-in .4s ease}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:20px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-heading{display:flex;flex-direction:column;gap:2px}
+.tb-station{font-family:var(--font);font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
+.tb-title{font-family:var(--font);font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
+.tb-sep{width:1px;height:32px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:72px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 5px rgba(0,255,170,0.11)}
+.tb-kpi-val.amber{color:var(--amber)}
+.tb-kpi-val.red{color:var(--red2)}
+.tb-kpi-val.white{color:#fff;text-shadow:none}
+.tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
+.tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
+.tb-time{font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
+
+/* METRIC CARDS */
+.mc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0}
+.mc.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.mc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
+.mc.white::before{background:linear-gradient(90deg,#fff,transparent)}
+.mc-lbl{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:7px}
+.mc-val{font-family:var(--display);font-size:48px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 8px rgba(0,229,255,0.11)}
+.mc-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,0.08)}
+.mc-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,0.08)}
+.mc-val.red{color:var(--red2);text-shadow:0 0 6px rgba(255,23,68,0.08)}
+.mc-val.white{color:#fff;text-shadow:none}
+.mc-sub{font-size:11px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
+
+/* MAIN LAYOUT */
+.main{position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:58% 42%;overflow:hidden}
+.left-col{display:flex;flex-direction:column;padding:16px 12px 16px 16px;gap:12px;overflow:hidden}
+.right-col{border-left:1px solid var(--border);background:var(--navy2);display:flex;flex-direction:column;padding:16px 16px 16px 12px;gap:12px;overflow:hidden}
+
+/* PANEL BLOCKS */
+.panel-block{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.panel-header{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0}
+.panel-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px}
 </style>
 </head>
-<body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
+<body>
 
-<!-- HEADER -->
-<header class="flex items-center gap-5 shrink-0 pb-3 border-b border-card-border" style="position:relative">
-<span class="material-symbols-outlined" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(0,229,255,0.72);pointer-events:none">support_agent</span>
-  <div class="flex flex-col leading-tight">
-    <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 01</span>
-    <h1 class="text-white text-5xl font-extrabold tracking-tight leading-none">Recepción</h1>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-heading">
+    <span class="tb-station">Showroom 2026 · Estación 01</span>
+    <span class="tb-title">Recepción</span>
   </div>
-  <div class="ml-auto flex items-center gap-6">
-    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
-      <span class="material-symbols-outlined text-neon-cyan text-[20px]">door_front</span>
-      <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Showroom NCTECH</span>
-    </div>
-    <div class="flex flex-col items-end gap-1">
-      <div class="flex items-center gap-2">
-        <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
-        <span class="text-[14px] font-bold tracking-widest uppercase text-text-muted">Recepción Activa</span>
+  <span class="material-symbols-outlined" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(0,229,255,0.72);pointer-events:none">support_agent</span>
+  <div class="tb-sep" style="height:40px;margin:0 8px;margin-left:20px"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val white" id="k-vis">47</span>
+    <span class="tb-kpi-lbl">Visitantes</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green" id="k-comp">32</span>
+    <span class="tb-kpi-lbl">Accesos OK</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val" id="k-esp">3</span>
+    <span class="tb-kpi-lbl">En Espera</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green">4.8★</span>
+    <span class="tb-kpi-lbl">Satisfacción</span>
+  </div>
+  <div class="tb-right">
+    <div class="tb-live">LIVE</div>
+    <span class="tb-time" id="tb-clock">--:--:--</span>
+    <div class="tb-sep" style="height:40px;margin:0 8px"></div>
+    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT: Metric cards + Visitor Log -->
+  <div class="left-col">
+    <!-- Metric Cards Row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex-shrink:0">
+      <div class="mc white">
+        <div class="mc-lbl">Visitantes hoy</div>
+        <div class="mc-val white" id="mc-vis">47</div>
+        <div class="mc-sub">total acumulado</div>
       </div>
-      <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
+      <div class="mc green">
+        <div class="mc-lbl">Accesos OK</div>
+        <div class="mc-val green" id="mc-comp">32</div>
+        <div class="mc-sub">verificados</div>
+      </div>
+      <div class="mc cyan">
+        <div class="mc-lbl">En espera</div>
+        <div class="mc-val" id="mc-esp">3</div>
+        <div class="mc-sub">en lobby</div>
+      </div>
+      <div class="mc amber">
+        <div class="mc-lbl">T. Atención</div>
+        <div class="mc-val amber">4.2<span style="font-size:20px">min</span></div>
+        <div class="mc-sub">promedio</div>
+      </div>
+    </div>
+
+    <!-- Live Visitor Log -->
+    <div class="panel-block" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+      <div class="panel-header">
+        <span class="material-symbols-outlined" style="color:var(--cyan);font-size:20px">badge</span>
+        <span class="panel-title">Registro de Visitantes — Tiempo Real</span>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
+          <div style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 4px var(--green)" class="pulse-dot"></div>
+          <span style="font-size:12px;font-family:var(--mono);color:var(--green);text-transform:uppercase;letter-spacing:.5px">En vivo</span>
+        </div>
+      </div>
+      <!-- Table header -->
+      <div style="padding:10px 16px 0;flex-shrink:0">
+        <div style="display:grid;grid-template-columns:36px 1fr 1fr 1fr 80px 110px;gap:8px;padding:0 8px 8px;border-bottom:1px solid var(--border)">
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">#</div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Visitante</div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Empresa</div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Acceso</div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Hora</div>
+          <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.6px">Estado</div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:4px 16px 8px" id="visitor-log"></div>
+      <div style="padding:12px 16px;border-top:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:16px;font-size:12px;color:rgba(224,240,255,.4);font-family:var(--mono)">
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Completado</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1e90ff;display:inline-block"></span>En tour</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:var(--cyan);display:inline-block"></span>Recepción</span>
+          <span style="display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:var(--amber);display:inline-block"></span>Espera</span>
+        </div>
+        <button style="background:#1e90ff;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;border:none;border-radius:8px;padding:8px 16px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.8px;cursor:pointer">
+          <span class="material-symbols-outlined" style="font-size:16px">person_add</span>Nuevo
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="flex items-center gap-4">
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none" id="k-vis">47</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Visitantes</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none" id="k-comp">32</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Accesos OK</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none" id="k-esp">3</span><span class="text-[10px] text-text-muted uppercase tracking-wider">En espera</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none">4.2<span class="text-[13px] text-text-muted">min</span></span><span class="text-[10px] text-text-muted uppercase tracking-wider">T. Atención</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none">4.8★</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Satisfacción</span></div>
-  </div>
-  <div class="w-px h-10 bg-card-border shrink-0"></div>
-  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
-</header>
-
-<!-- MAIN — 60/40 split -->
-<section class="flex-1 grid grid-cols-12 gap-4 min-h-0">
-
-  <!-- LEFT 60%: Live Visitor Log -->
-  <div class="col-span-7 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
-      <span class="material-symbols-outlined text-neon-cyan text-[22px]">badge</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Registro de Visitantes — Tiempo Real</h3>
-      <div class="ml-auto flex items-center gap-2">
-        <div class="w-2 h-2 rounded-full bg-neon-green pulse-dot"></div>
-        <span class="text-[14px] font-bold text-neon-green tracking-widest uppercase">En vivo</span>
+  <!-- RIGHT: Access Schedule -->
+  <div class="right-col">
+    <div class="panel-block" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+      <div class="panel-header">
+        <span class="material-symbols-outlined" style="color:var(--amber);font-size:20px">calendar_month</span>
+        <span class="panel-title">Agenda de Accesos</span>
       </div>
-    </div>
-    <!-- Table header -->
-    <div class="px-4 pt-3 shrink-0">
-      <div class="grid grid-cols-12 gap-2 px-3 pb-2 border-b border-card-border">
-        <div class="col-span-1 text-[14px] font-bold tracking-widest uppercase text-text-muted">#</div>
-        <div class="col-span-3 text-[14px] font-bold tracking-widest uppercase text-text-muted">Visitante</div>
-        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Empresa</div>
-        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Acceso</div>
-        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Hora</div>
-        <div class="col-span-2 text-[14px] font-bold tracking-widest uppercase text-text-muted">Estado</div>
-      </div>
-    </div>
-    <div class="flex-1 overflow-y-auto px-4 pb-4" id="visitor-log">
-      <!-- rows injected by JS -->
-    </div>
-    <div class="p-4 border-t border-card-border shrink-0 flex items-center justify-between">
-      <div class="flex items-center gap-4 text-[12px] text-text-muted">
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-green inline-block"></span> Completado</span>
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-blue inline-block"></span> En tour</span>
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-cyan inline-block"></span> En recepción</span>
-        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-neon-amber inline-block"></span> En espera</span>
-      </div>
-      <button class="bg-neon-blue text-white font-bold py-2.5 px-5 rounded-lg flex items-center gap-2 uppercase tracking-widest text-[12px] box-glow-blue hover:brightness-110 transition-all">
-        <span class="material-symbols-outlined text-[18px]">person_add</span>Nuevo
-      </button>
-    </div>
-  </div>
-
-  <!-- RIGHT 40%: Access Schedule -->
-  <div class="col-span-5 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
-      <span class="material-symbols-outlined text-neon-amber text-[22px]">calendar_month</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Agenda de Accesos</h3>
-    </div>
-    <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
-      <!-- Time slots -->
-      <div id="schedule-slots"></div>
+      <div style="flex:1;overflow-y:auto;padding:12px" id="schedule-slots"></div>
     </div>
     <!-- Access control panel -->
-    <div class="p-4 border-t border-card-border shrink-0">
-      <div class="text-[14px] font-bold text-text-muted uppercase tracking-widest mb-3">Control de acceso rápido</div>
-      <div class="grid grid-cols-2 gap-2">
-        <button class="flex items-center justify-center gap-2 bg-neon-green/10 border border-neon-green/30 text-neon-green font-bold py-2.5 rounded-lg text-[12px] uppercase tracking-wider hover:bg-neon-green/20 transition-all box-glow-green">
-          <span class="material-symbols-outlined text-[18px]">meeting_room</span>Abrir puerta
-        </button>
-        <button class="flex items-center justify-center gap-2 bg-neon-red/10 border border-neon-red/30 text-neon-red font-bold py-2.5 rounded-lg text-[12px] uppercase tracking-wider hover:bg-neon-red/20 transition-all">
-          <span class="material-symbols-outlined text-[18px]">no_accounts</span>Bloquear
-        </button>
+    <div class="panel-block" style="flex-shrink:0">
+      <div style="padding:14px 16px">
+        <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Control de acceso rápido</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--green3);border:1px solid rgba(0,255,170,.3);color:var(--green);font-family:var(--mono);font-size:11px;font-weight:700;padding:10px;border-radius:8px;text-transform:uppercase;letter-spacing:.6px;cursor:pointer">
+            <span class="material-symbols-outlined" style="font-size:16px">meeting_room</span>Abrir puerta
+          </button>
+          <button style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--red3);border:1px solid rgba(255,23,68,.3);color:var(--red2);font-family:var(--mono);font-size:11px;font-weight:700;padding:10px;border-radius:8px;text-transform:uppercase;letter-spacing:.6px;cursor:pointer">
+            <span class="material-symbols-outlined" style="font-size:16px">no_accounts</span>Bloquear
+          </button>
+        </div>
       </div>
     </div>
   </div>
 
-</section>
+</div>
 
 <script>
 // Clock
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false})},1000);
-document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+function updateClock(){
+  const t=new Date().toLocaleTimeString('es-MX',{hour12:false});
+  document.getElementById('tb-clock').textContent=t;
+}
+updateClock();setInterval(updateClock,1000);
 
 // Visitor data
 const visitors=[
@@ -152,27 +223,27 @@ const visitors=[
   {id:'V-040',name:'Patricia Vega',company:'Bimbo',access:'Lobby',time:'11:12',status:'reception'},
 ];
 
-const statusMap={
-  'completed':{label:'Completado',color:'text-neon-green',bg:'bg-neon-green/10 border-neon-green/30',dot:'bg-neon-green'},
-  'tour':{label:'En tour',color:'text-neon-blue',bg:'bg-neon-blue/10 border-neon-blue/30',dot:'bg-neon-blue'},
-  'reception':{label:'Recepción',color:'text-neon-cyan',bg:'bg-neon-cyan/10 border-neon-cyan/30',dot:'bg-neon-cyan'},
-  'waiting':{label:'En espera',color:'text-neon-amber',bg:'bg-neon-amber/10 border-neon-amber/30',dot:'bg-neon-amber'},
+const statusColors={
+  'completed':{label:'Completado',color:'var(--green)',bg:'rgba(0,255,170,.08)',border:'rgba(0,255,170,.25)'},
+  'tour':{label:'En tour',color:'#1e90ff',bg:'rgba(30,144,255,.08)',border:'rgba(30,144,255,.25)'},
+  'reception':{label:'Recepción',color:'var(--cyan)',bg:'rgba(0,229,255,.08)',border:'rgba(0,229,255,.2)'},
+  'waiting':{label:'En espera',color:'var(--amber)',bg:'rgba(255,179,0,.08)',border:'rgba(255,179,0,.25)'},
 };
 
 function renderVisitors(){
   const log=document.getElementById('visitor-log');
   log.innerHTML=visitors.map((v,i)=>{
-    const s=statusMap[v.status];
-    return `<div class="grid grid-cols-12 gap-2 items-center px-3 py-3 rounded-lg hover:bg-white/[0.02] transition-colors border-b border-card-border/40 slide-in">
-      <div class="col-span-1 text-[14px] font-mono text-text-muted">${String(i+40).padStart(2,'0')}</div>
-      <div class="col-span-3">
-        <div class="text-[13px] font-semibold text-white">${v.name}</div>
-        <div class="text-[14px] font-mono text-neon-cyan">${v.id}</div>
+    const s=statusColors[v.status];
+    return `<div class="slide-in" style="display:grid;grid-template-columns:36px 1fr 1fr 1fr 80px 110px;gap:8px;align-items:center;padding:10px 8px;border-bottom:1px solid var(--border3)">
+      <div style="font-size:12px;font-family:var(--mono);color:rgba(224,240,255,.35)">${String(i+40).padStart(2,'0')}</div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#fff">${v.name}</div>
+        <div style="font-size:11px;font-family:var(--mono);color:var(--cyan)">${v.id}</div>
       </div>
-      <div class="col-span-2 text-[12px] text-text-muted truncate">${v.company}</div>
-      <div class="col-span-2 text-[14px] text-text-muted truncate">${v.access}</div>
-      <div class="col-span-2 text-[12px] font-mono text-neon-blue">${v.time}</div>
-      <div class="col-span-2"><span class="inline-flex items-center gap-1 text-[14px] font-bold border px-2 py-0.5 rounded ${s.bg} ${s.color}"><span class="w-1.5 h-1.5 rounded-full ${s.dot}"></span>${s.label}</span></div>
+      <div style="font-size:12px;color:rgba(224,240,255,.5)">${v.company}</div>
+      <div style="font-size:12px;color:rgba(224,240,255,.5)">${v.access}</div>
+      <div style="font-size:12px;font-family:var(--mono);color:#1e90ff">${v.time}</div>
+      <div><span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;font-family:var(--mono);border:1px solid ${s.border};background:${s.bg};color:${s.color};padding:2px 8px;border-radius:5px"><span style="width:5px;height:5px;border-radius:50%;background:${s.color};display:inline-block"></span>${s.label}</span></div>
     </div>`;
   }).join('');
 }
@@ -192,23 +263,23 @@ const slots=[
   {time:'17:00',label:'Cierre de recepción',type:'system',icon:'door_front'},
 ];
 const typeStyle={
-  booked:'border-neon-blue/30 bg-neon-blue/5',
-  open:'border-neon-green/30 bg-neon-green/5',
-  break:'border-card-border bg-card-bg',
-  system:'border-[#1e2b44] bg-[#060d1a]',
-  vip:'border-neon-amber/40 bg-neon-amber/5',
+  booked:{border:'rgba(30,144,255,.3)',bg:'rgba(30,144,255,.05)',color:'#1e90ff'},
+  open:{border:'rgba(0,255,170,.3)',bg:'rgba(0,255,170,.05)',color:'var(--green)'},
+  break:{border:'var(--border3)',bg:'transparent',color:'rgba(224,240,255,.35)'},
+  system:{border:'var(--border3)',bg:'rgba(3,7,18,.5)',color:'#4e6b99'},
+  vip:{border:'rgba(255,179,0,.35)',bg:'rgba(255,179,0,.05)',color:'var(--amber)'},
 };
-const typeColor={booked:'text-neon-blue',open:'text-neon-green',break:'text-text-muted',system:'text-[#4e6b99]',vip:'text-neon-amber'};
 
 document.getElementById('schedule-slots').innerHTML=slots.map(s=>{
   const h=parseInt(s.time.split(':')[0]);
   const isCurrent=h===nowH;
   const isPast=h<nowH;
-  return `<div class="flex items-center gap-3 p-3 rounded-lg border ${typeStyle[s.type]} mb-2 ${isCurrent?'ring-1 ring-neon-cyan/40':''}">
-    <div class="text-[12px] font-mono text-text-muted w-12 shrink-0">${s.time}</div>
-    <span class="material-symbols-outlined text-[18px] ${typeColor[s.type]}">${s.icon}</span>
-    <div class="flex-1 text-[13px] font-semibold ${isPast?'text-text-muted line-through':typeColor[s.type]}">${s.label}</div>
-    ${isCurrent?'<div class="w-2 h-2 rounded-full bg-neon-cyan pulse-dot shrink-0"></div>':''}
+  const st=typeStyle[s.type];
+  return `<div style="display:flex;align-items:center;gap:10px;padding:10px;border-radius:8px;border:1px solid ${st.border};background:${st.bg};margin-bottom:6px${isCurrent?';outline:1px solid rgba(0,229,255,.3)':''}">
+    <div style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);width:44px;flex-shrink:0">${s.time}</div>
+    <span class="material-symbols-outlined" style="font-size:16px;color:${st.color};flex-shrink:0">${s.icon}</span>
+    <div style="flex:1;font-size:12px;font-weight:600;color:${isPast?'rgba(224,240,255,.3)':st.color};${isPast?'text-decoration:line-through':''}">${s.label}</div>
+    ${isCurrent?'<div style="width:6px;height:6px;border-radius:50%;background:var(--cyan)" class="pulse-dot"></div>':''}
   </div>`;
 }).join('');
 
@@ -218,6 +289,7 @@ setInterval(()=>{
   if(Math.random()>0.7){
     vCount++;
     document.getElementById('k-vis').textContent=vCount;
+    document.getElementById('mc-vis').textContent=vCount;
   }
 },5000);
 </script>

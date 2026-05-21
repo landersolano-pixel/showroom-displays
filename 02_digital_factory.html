@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es" style="background:#030712">
 <head>
 <meta charset="UTF-8"/>
@@ -6,242 +6,311 @@
 <title>Digital Factory — NCTECH Showroom 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config={theme:{extend:{colors:{'app-bg':'#030712','card-bg':'#0a101d','card-border':'#1e2b44','neon-blue':'#1e90ff','neon-cyan':'#00f0ff','neon-green':'#00ffaa','neon-red':'#ff3b3b','text-muted':'#8ca3c4','text-bright':'#ffffff'}}}}
-</script>
 <style>
-body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px;font-family:'Inter',sans-serif}
-.font-extrabold{font-family:'Rajdhani',sans-serif}
-.tracking-wider,.tracking-widest{font-family:'IBM Plex Mono',monospace}
-.glow-green{text-shadow:0 0 4px rgba(0,255,170,0.2)}
-.glow-blue{text-shadow:0 0 4px rgba(30,144,255,0.2)}
-.box-glow-blue{box-shadow:0 0 8px rgba(30,144,255,0.11)}
-.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF1744;--red2:#FF6E75;--red3:rgba(255,23,68,.12);
+  --border:rgba(0,229,255,.12);--border3:rgba(0,229,255,.06);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
 #levels-scroll::-webkit-scrollbar{display:none}
+#levels-scroll{scrollbar-width:none}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(3,7,18,.96);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:20px;z-index:1000;backdrop-filter:blur(12px)}
+.tb-heading{display:flex;flex-direction:column;gap:2px}
+.tb-station{font-family:var(--font);font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
+.tb-title{font-family:var(--font);font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
+.tb-sep{width:1px;height:32px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:72px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 5px rgba(0,255,170,0.11)}
+.tb-kpi-val.amber{color:var(--amber)}
+.tb-kpi-val.red{color:var(--red2)}
+.tb-kpi-val.white{color:#fff;text-shadow:none}
+.tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
+.tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
+.tb-time{font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
+
+/* METRIC CARDS */
+.mc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0}
+.mc.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.mc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
+.mc.white::before{background:linear-gradient(90deg,#fff,transparent)}
+.mc-lbl{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:7px}
+.mc-val{font-family:var(--display);font-size:48px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 8px rgba(0,229,255,0.11)}
+.mc-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,0.08)}
+.mc-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,0.08)}
+.mc-val.red{color:var(--red2);text-shadow:0 0 6px rgba(255,23,68,0.08)}
+.mc-val.white{color:#fff;text-shadow:none}
+.mc-sub{font-size:11px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
 </style>
 </head>
-<body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
+<body>
 
-<!-- HEADER -->
-<header class="flex items-center gap-5 shrink-0 pb-3 border-b border-card-border" style="position:relative">
-<span class="material-symbols-outlined" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(0,229,255,0.72);pointer-events:none">precision_manufacturing</span>
-  <div class="flex flex-col leading-tight">
-    <span class="text-[12px] font-bold tracking-[0.3em] uppercase text-[#4e6b99]">Showroom 2026 · Estación 02</span>
-    <h1 class="text-white text-5xl font-extrabold tracking-tight leading-none">Digital Factory</h1>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-heading">
+    <span class="tb-station">Showroom 2026 · Estación 02</span>
+    <span class="tb-title">Digital Factory</span>
   </div>
-  <div class="ml-auto flex items-center gap-6">
-    <div class="flex items-center gap-2 bg-card-bg border border-card-border rounded-md px-4 py-2">
-      <span class="material-symbols-outlined text-neon-blue text-[20px]">factory</span>
-      <span class="text-[12px] font-bold tracking-wider uppercase text-text-muted">Maqueta Escala 1:20</span>
-    </div>
-    <div class="flex flex-col items-end gap-1">
-      <div class="flex items-center gap-2">
-        <div class="w-2.5 h-2.5 rounded-full bg-neon-green shadow-[0_0_3px_#00ffaa] animate-pulse"></div>
-        <span class="text-[14px] font-bold tracking-widest uppercase text-text-muted">Interactivo</span>
-      </div>
-      <span id="clock" class="text-[13px] font-bold text-neon-blue tracking-widest">--:--:--</span>
-    </div>
+  <span class="material-symbols-outlined" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(0,229,255,0.72);pointer-events:none">precision_manufacturing</span>
+  <div class="tb-sep" style="height:40px;margin:0 8px;margin-left:20px"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val white" id="kpi-oee">78%</span>
+    <span class="tb-kpi-lbl">OEE</span>
   </div>
-
-  <div class="flex items-center gap-4">
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none" id="kpi-oee">78%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">OEE</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-green glow-green leading-none" id="kpi-disp">91%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Disponibilidad</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-cyan glow-cyan leading-none"><span id="kpi-nivel-num">2</span><span class="text-[13px] text-text-muted">/4</span></span><span class="text-[10px] text-text-muted uppercase tracking-wider" id="kpi-nivel-lbl">Nivel</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-white leading-none" id="kpi-efic">86%</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Eficiencia</span></div>
-    <div class="w-px h-8 bg-card-border"></div>
-    <div class="flex flex-col items-center"><span class="text-[22px] font-extrabold text-neon-blue glow-blue leading-none">5</span><span class="text-[10px] text-text-muted uppercase tracking-wider">Líneas</span></div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val green" id="kpi-disp">91%</span>
+    <span class="tb-kpi-lbl">Disponibilidad</span>
   </div>
-  <div class="w-px h-10 bg-card-border shrink-0"></div>
-  <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" class="h-8 object-contain shrink-0" alt="NCTECH">
-</header>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val"><span id="kpi-nivel-num">2</span><span style="font-size:14px;color:rgba(224,240,255,.4)">/4</span></span>
+    <span class="tb-kpi-lbl" id="kpi-nivel-lbl">Nivel</span>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-kpi">
+    <span class="tb-kpi-val white" id="kpi-efic">86%</span>
+    <span class="tb-kpi-lbl">Eficiencia</span>
+  </div>
+  <div class="tb-right">
+    <div class="tb-live">LIVE</div>
+    <span class="tb-time" id="tb-clock">--:--:--</span>
+    <div class="tb-sep" style="height:40px;margin:0 8px"></div>
+    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
+  </div>
+</div>
 
 <!-- MAIN -->
-<section class="flex-1 grid grid-cols-12 gap-4 min-h-0">
+<div style="position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:26% 48% 26%;overflow:hidden">
 
   <!-- LEFT: Nivel selector -->
-  <div class="col-span-3 bg-card-bg border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex items-center gap-2 shrink-0">
-      <span class="material-symbols-outlined text-neon-cyan text-[22px]">stairs</span>
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Niveles de Madurez</h3>
+  <div style="display:flex;flex-direction:column;padding:16px 10px 16px 16px;gap:12px;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <span class="material-symbols-outlined" style="color:var(--cyan);font-size:20px">stairs</span>
+      <span style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px">Niveles de Madurez</span>
     </div>
-    <div id="levels-scroll" class="p-3 flex flex-col gap-2 overflow-y-auto flex-1" style="scrollbar-width:none">
-      <div onclick="selLevel(0)" id="lvl0" class="bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 1 — Datos Manuales</span>
-          <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Inicial</span>
+    <div id="levels-scroll" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
+      <div onclick="selLevel(0)" id="lvl0" style="background:#121827;border:1px solid rgba(30,144,255,.4);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#fff">Nivel 1 — Datos Manuales</span>
+          <span style="font-size:11px;font-weight:700;color:rgba(224,240,255,.5);border:1px solid var(--border);padding:2px 8px;border-radius:4px;font-family:var(--mono)">INICIAL</span>
         </div>
-        <p class="text-[13px] text-text-muted leading-relaxed">Equipos aislados sin conectividad. Datos en papel, reportes manuales.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Sin sensores</span><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">Manual</span></div>
+        <p style="font-size:12px;color:rgba(224,240,255,.5);line-height:1.5">Equipos aislados sin conectividad. Datos en papel, reportes manuales.</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <span style="font-size:11px;background:rgba(255,255,255,.06);color:rgba(224,240,255,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">Sin sensores</span>
+          <span style="font-size:11px;background:rgba(255,255,255,.06);color:rgba(224,240,255,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">Manual</span>
+        </div>
       </div>
-      <div onclick="selLevel(1)" id="lvl1" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 2 — Equipos Conectados</span>
-          <span class="text-[14px] font-bold text-neon-blue border border-neon-blue/50 px-2 py-0.5 rounded uppercase">Actual</span>
+      <div onclick="selLevel(1)" id="lvl1" style="background:#121827;border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#fff">Nivel 2 — Equipos Conectados</span>
+          <span style="font-size:11px;font-weight:700;color:#1e90ff;border:1px solid rgba(30,144,255,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">ACTUAL</span>
         </div>
-        <p class="text-[13px] text-text-muted leading-relaxed">Sensores básicos, datos en tiempo real, visibilidad de KPIs.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">IoT básico</span><span class="text-[14px] bg-neon-blue/10 text-neon-blue border border-neon-blue/20 px-2 py-0.5 rounded">KPIs live</span></div>
+        <p style="font-size:12px;color:rgba(224,240,255,.5);line-height:1.5">Sensores básicos, datos en tiempo real, visibilidad de KPIs.</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <span style="font-size:11px;background:rgba(30,144,255,.1);color:#1e90ff;border:1px solid rgba(30,144,255,.2);padding:2px 8px;border-radius:4px;font-family:var(--mono)">IoT básico</span>
+          <span style="font-size:11px;background:rgba(30,144,255,.1);color:#1e90ff;border:1px solid rgba(30,144,255,.2);padding:2px 8px;border-radius:4px;font-family:var(--mono)">KPIs live</span>
+        </div>
       </div>
-      <div onclick="selLevel(2)" id="lvl2" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 3 — Enterprise</span>
-          <span class="text-[14px] font-bold text-text-muted border border-card-border px-2 py-0.5 rounded uppercase">Meta</span>
+      <div onclick="selLevel(2)" id="lvl2" style="background:#121827;border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#fff">Nivel 3 — Enterprise</span>
+          <span style="font-size:11px;font-weight:700;color:rgba(224,240,255,.5);border:1px solid var(--border);padding:2px 8px;border-radius:4px;font-family:var(--mono)">META</span>
         </div>
-        <p class="text-[13px] text-text-muted leading-relaxed">MES integrado, trazabilidad completa, calidad automatizada.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">MES</span><span class="text-[14px] bg-card-border/50 text-text-muted px-2 py-0.5 rounded">ERP sync</span></div>
+        <p style="font-size:12px;color:rgba(224,240,255,.5);line-height:1.5">MES integrado, trazabilidad completa, calidad automatizada.</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <span style="font-size:11px;background:rgba(255,255,255,.06);color:rgba(224,240,255,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">MES</span>
+          <span style="font-size:11px;background:rgba(255,255,255,.06);color:rgba(224,240,255,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">ERP sync</span>
+        </div>
       </div>
-      <div onclick="selLevel(3)" id="lvl3" class="bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-[15px] font-bold text-white">Nivel 4 — IA</span>
-          <span class="text-[14px] font-bold text-[#a855f7] border border-[#a855f7]/50 px-2 py-0.5 rounded uppercase">Avanzado</span>
+      <div onclick="selLevel(3)" id="lvl3" style="background:#121827;border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#fff">Nivel 4 — IA</span>
+          <span style="font-size:11px;font-weight:700;color:#a855f7;border:1px solid rgba(168,85,247,.5);padding:2px 8px;border-radius:4px;font-family:var(--mono)">AVANZADO</span>
         </div>
-        <p class="text-[13px] text-text-muted leading-relaxed">IA predictiva, mantenimiento autónomo, planta auto-optimizante.</p>
-        <div class="flex flex-wrap gap-1 mt-2"><span class="text-[14px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">ML/AI</span><span class="text-[14px] bg-[#7c4dff]/10 text-[#b39ddb] border border-[#7c4dff]/20 px-2 py-0.5 rounded">Autónomo</span></div>
+        <p style="font-size:12px;color:rgba(224,240,255,.5);line-height:1.5">IA predictiva, mantenimiento autónomo, planta auto-optimizante.</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <span style="font-size:11px;background:rgba(124,77,255,.1);color:#b39ddb;border:1px solid rgba(124,77,255,.2);padding:2px 8px;border-radius:4px;font-family:var(--mono)">ML/AI</span>
+          <span style="font-size:11px;background:rgba(124,77,255,.1);color:#b39ddb;border:1px solid rgba(124,77,255,.2);padding:2px 8px;border-radius:4px;font-family:var(--mono)">Autónomo</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- CENTER: Process Map -->
-  <div class="col-span-6 bg-card-bg border border-card-border rounded-lg flex flex-col relative overflow-hidden">
-    <div class="p-4 flex justify-between items-center shrink-0 z-10">
-      <h3 class="font-bold text-[14px] tracking-widest uppercase text-white">Mapa de Planta Digital</h3>
-      <div class="flex gap-2">
-        <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">refresh</span></button>
-        <button class="w-8 h-8 flex items-center justify-center border border-card-border rounded-lg hover:bg-white/5"><span class="material-symbols-outlined text-[18px] text-neon-blue">fullscreen</span></button>
+  <div style="display:flex;flex-direction:column;padding:16px 10px;gap:12px;overflow:hidden;border-left:1px solid var(--border)">
+    <!-- Metric Cards Row -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex-shrink:0">
+      <div class="mc white">
+        <div class="mc-lbl">OEE</div>
+        <div class="mc-val white" id="mc-oee">78%</div>
+        <div class="mc-sub">efectividad</div>
+      </div>
+      <div class="mc green">
+        <div class="mc-lbl">Disponib.</div>
+        <div class="mc-val green" id="mc-disp">91%</div>
+        <div class="mc-sub">equipos activos</div>
+      </div>
+      <div class="mc cyan">
+        <div class="mc-lbl">Nivel</div>
+        <div class="mc-val"><span id="mc-nivel">2</span><span style="font-size:20px;color:rgba(224,240,255,.4)">/4</span></div>
+        <div class="mc-sub" id="mc-nivel-lbl">Conectados</div>
+      </div>
+      <div class="mc white">
+        <div class="mc-lbl">Eficiencia</div>
+        <div class="mc-val white" id="mc-efic">86%</div>
+        <div class="mc-sub">rendimiento</div>
       </div>
     </div>
-    <div class="flex-1 flex items-center justify-center px-6">
-      <div class="w-full flex items-center justify-between gap-2">
 
-        <!-- Etapa 1 -->
-        <div class="flex flex-col items-center gap-3 text-neon-blue text-center flex-1">
-          <div class="w-28 h-28 border-2 border-neon-blue/40 rounded-2xl bg-[#0d1627] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[54px]">conveyor_belt</span>
-          </div>
-          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Ensamble</span>
-          <span id="pipe-ensamble" class="text-[16px] font-bold text-neon-blue">88%</span>
-        </div>
-
-        <!-- Flecha -->
-        <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
-          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
-        </div>
-
-        <!-- Etapa 2 -->
-        <div class="flex flex-col items-center gap-3 text-neon-cyan text-center flex-1">
-          <div class="w-28 h-28 border-2 border-neon-cyan/40 rounded-2xl bg-[#0d1a1f] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[54px]">biotech</span>
-          </div>
-          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Inspección</span>
-          <span id="pipe-inspeccion" class="text-[16px] font-bold text-neon-cyan">99%</span>
-        </div>
-
-        <!-- Flecha -->
-        <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
-          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
-        </div>
-
-        <!-- Etapa 3 -->
-        <div class="flex flex-col items-center gap-3 text-neon-red text-center flex-1">
-          <div class="w-28 h-28 border-2 border-neon-red/40 rounded-2xl bg-[#1a1118] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[54px]">plumbing</span>
-          </div>
-          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Soporte</span>
-          <span class="text-[16px] font-bold text-neon-red">Rev. Req.</span>
-        </div>
-
-        <!-- Flecha -->
-        <div class="flex flex-col items-center gap-1 shrink-0">
-          <span class="material-symbols-outlined text-[28px] text-[#2d4066]">arrow_forward</span>
-          <span class="text-[12px] text-[#2d4066] font-mono tracking-wider">OK</span>
-        </div>
-
-        <!-- Etapa 4 -->
-        <div class="flex flex-col items-center gap-3 text-neon-green text-center flex-1">
-          <div class="w-28 h-28 border-2 border-neon-green/40 rounded-2xl bg-[#0d1f17] flex items-center justify-center">
-            <span class="material-symbols-outlined text-[54px]">package_2</span>
-          </div>
-          <span class="text-[14px] text-text-muted font-bold tracking-widest uppercase">Despacho</span>
-          <span class="text-[16px] font-bold text-neon-green">En Ruta</span>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- RIGHT: Nivel detalle + Equipos -->
-  <div class="col-span-3 bg-[#0a101d] border border-card-border rounded-lg flex flex-col overflow-hidden">
-    <div class="p-4 border-b border-card-border flex justify-between items-center shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-neon-blue text-[22px]">info</span>
-        <h3 class="font-bold text-[14px] tracking-widest uppercase text-white" id="detail-title">Nivel 1 — Datos Manuales</h3>
-      </div>
-    </div>
-    <div class="flex-1 p-4 flex flex-col gap-2 overflow-hidden">
-      <p class="text-[13px] text-text-muted leading-snug" id="detail-desc">Equipos aislados sin conectividad. Los datos de producción se capturan en papel y los reportes son manuales. Alta dependencia del operador.</p>
-      <div class="flex flex-col gap-1" id="detail-metrics">
-        <div class="flex justify-between items-center py-1.5 border-b border-card-border/50">
-          <span class="text-[12px] text-text-muted font-mono uppercase">Visibilidad</span>
-          <span class="text-[16px] font-bold text-neon-red">0%</span>
-        </div>
-        <div class="flex justify-between items-center py-1.5 border-b border-card-border/50">
-          <span class="text-[12px] text-text-muted font-mono uppercase">Tiempo respuesta</span>
-          <span class="text-[16px] font-bold text-neon-red">> 24h</span>
-        </div>
-        <div class="flex justify-between items-center py-1.5">
-          <span class="text-[12px] text-text-muted font-mono uppercase">ROI potencial</span>
-          <span class="text-[16px] font-bold text-neon-blue">Base</span>
+    <!-- Process Map -->
+    <div style="flex:1;background:var(--panel);border:1px solid var(--border);border-radius:10px;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+        <span style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px">Mapa de Planta Digital</span>
+        <div style="display:flex;gap:6px">
+          <button style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer"><span class="material-symbols-outlined" style="font-size:16px;color:#1e90ff">refresh</span></button>
+          <button style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:8px;background:transparent;cursor:pointer"><span class="material-symbols-outlined" style="font-size:16px;color:#1e90ff">fullscreen</span></button>
         </div>
       </div>
-      <div class="pt-3 border-t border-card-border">
-        <span class="block text-[12px] font-bold text-text-muted uppercase tracking-widest mb-2">Siguiente paso</span>
-        <button class="w-full bg-neon-blue text-white font-bold py-2.5 rounded-lg flex items-center justify-center gap-2 uppercase tracking-widest text-[12px] box-glow-blue hover:brightness-110 transition-all">
-          <span class="material-symbols-outlined text-[18px]">bolt</span>
-          <span id="detail-btn">Activar Sensores</span>
-        </button>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:20px">
+        <div style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:6px">
+
+          <!-- Etapa 1 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:#1e90ff;text-align:center;flex:1">
+            <div style="width:90px;height:90px;border:2px solid rgba(30,144,255,.4);border-radius:16px;background:rgba(13,22,39,.8);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="font-size:42px">conveyor_belt</span>
+            </div>
+            <span style="font-size:11px;color:rgba(224,240,255,.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px">Ensamble</span>
+            <span id="pipe-ensamble" style="font-size:14px;font-weight:700;color:#1e90ff">88%</span>
+          </div>
+
+          <span class="material-symbols-outlined" style="font-size:22px;color:rgba(45,64,102,.8);flex-shrink:0">arrow_forward</span>
+
+          <!-- Etapa 2 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--cyan);text-align:center;flex:1">
+            <div style="width:90px;height:90px;border:2px solid rgba(0,229,255,.4);border-radius:16px;background:rgba(13,26,31,.8);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="font-size:42px">biotech</span>
+            </div>
+            <span style="font-size:11px;color:rgba(224,240,255,.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px">Inspección</span>
+            <span id="pipe-inspeccion" style="font-size:14px;font-weight:700;color:var(--cyan)">99%</span>
+          </div>
+
+          <span class="material-symbols-outlined" style="font-size:22px;color:rgba(45,64,102,.8);flex-shrink:0">arrow_forward</span>
+
+          <!-- Etapa 3 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--red2);text-align:center;flex:1">
+            <div style="width:90px;height:90px;border:2px solid rgba(255,23,68,.4);border-radius:16px;background:rgba(26,17,24,.8);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="font-size:42px">plumbing</span>
+            </div>
+            <span style="font-size:11px;color:rgba(224,240,255,.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px">Soporte</span>
+            <span style="font-size:14px;font-weight:700;color:var(--red2)">Rev. Req.</span>
+          </div>
+
+          <span class="material-symbols-outlined" style="font-size:22px;color:rgba(45,64,102,.8);flex-shrink:0">arrow_forward</span>
+
+          <!-- Etapa 4 -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--green);text-align:center;flex:1">
+            <div style="width:90px;height:90px;border:2px solid rgba(0,255,170,.4);border-radius:16px;background:rgba(13,31,23,.8);display:flex;align-items:center;justify-content:center">
+              <span class="material-symbols-outlined" style="font-size:42px">package_2</span>
+            </div>
+            <span style="font-size:11px;color:rgba(224,240,255,.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:.8px">Despacho</span>
+            <span style="font-size:14px;font-weight:700;color:var(--green)">En Ruta</span>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
 
-</section>
+  <!-- RIGHT: Nivel detalle -->
+  <div style="display:flex;flex-direction:column;padding:16px 16px 16px 10px;gap:12px;overflow:hidden;border-left:1px solid var(--border);background:var(--navy2)">
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;flex:1;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span class="material-symbols-outlined" style="color:#1e90ff;font-size:20px">info</span>
+        <span style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px" id="detail-title">Nivel 1 — Datos Manuales</span>
+      </div>
+      <div style="flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+        <p style="font-size:12px;color:rgba(224,240,255,.5);line-height:1.6" id="detail-desc">Equipos aislados sin conectividad. Los datos de producción se capturan en papel y los reportes son manuales. Alta dependencia del operador.</p>
+        <div style="display:flex;flex-direction:column;gap:4px" id="detail-metrics">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border3)">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">Visibilidad</span>
+            <span style="font-size:14px;font-weight:700;color:var(--red2)">0%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border3)">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">Tiempo respuesta</span>
+            <span style="font-size:14px;font-weight:700;color:var(--red2)">&gt; 24h</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">ROI potencial</span>
+            <span style="font-size:14px;font-weight:700;color:#1e90ff">Base</span>
+          </div>
+        </div>
+        <div style="padding-top:10px;border-top:1px solid var(--border);margin-top:auto">
+          <span style="display:block;font-size:11px;font-weight:700;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:8px">Siguiente paso</span>
+          <button style="width:100%;background:#1e90ff;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;border:none;border-radius:8px;padding:10px;display:flex;align-items:center;justify-content:center;gap:6px;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;box-shadow:0 0 8px rgba(30,144,255,.11)">
+            <span class="material-symbols-outlined" style="font-size:16px">bolt</span>
+            <span id="detail-btn">Activar Sensores</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 <script>
-setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false})},1000);
-document.getElementById('clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+function updateClock(){
+  document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('es-MX',{hour12:false});
+}
+updateClock();setInterval(updateClock,1000);
 
 const levels=[
-  {title:'Nivel 1 — Datos Manuales',desc:'Equipos aislados sin conectividad. Los datos se capturan en papel y reportes son manuales. Alta dependencia del operador.',metrics:[['Visibilidad','0%','neon-red'],['Resp. incidentes','> 24h','neon-red'],['ROI potencial','Base','neon-blue']],btn:'Activar Sensores'},
-  {title:'Nivel 2 — Equipos Conectados',desc:'Sensores básicos instalados, datos en tiempo real disponibles, KPIs visibles en pantalla. Primer nivel de IIoT activo.',metrics:[['Visibilidad','70%','neon-cyan'],['Resp. incidentes','< 2h','neon-cyan'],['ROI potencial','+120%','neon-green']],btn:'Integrar MES'},
-  {title:'Nivel 3 — Enterprise',desc:'MES integrado con ERP, trazabilidad completa de materiales, calidad automatizada con visión artificial.',metrics:[['Visibilidad','90%','neon-green'],['Resp. incidentes','< 15min','neon-green'],['ROI potencial','+250%','neon-green']],btn:'Activar IA Predictiva'},
-  {title:'Nivel 4 — IA',desc:'Planta auto-optimizante con IA predictiva, mantenimiento proactivo y decisiones autónomas basadas en datos.',metrics:[['Visibilidad','100%','neon-green'],['Resp. incidentes','< 30s','neon-green'],['ROI potencial','+340%','neon-green']],btn:'Planta Autónoma'},
+  {title:'Nivel 1 — Datos Manuales',desc:'Equipos aislados sin conectividad. Los datos se capturan en papel y reportes son manuales. Alta dependencia del operador.',metrics:[['Visibilidad','0%','var(--red2)'],['Resp. incidentes','> 24h','var(--red2)'],['ROI potencial','Base','#1e90ff']],btn:'Activar Sensores'},
+  {title:'Nivel 2 — Equipos Conectados',desc:'Sensores básicos instalados, datos en tiempo real disponibles, KPIs visibles en pantalla. Primer nivel de IIoT activo.',metrics:[['Visibilidad','70%','var(--cyan)'],['Resp. incidentes','< 2h','var(--cyan)'],['ROI potencial','+120%','var(--green)']],btn:'Integrar MES'},
+  {title:'Nivel 3 — Enterprise',desc:'MES integrado con ERP, trazabilidad completa de materiales, calidad automatizada con visión artificial.',metrics:[['Visibilidad','90%','var(--green)'],['Resp. incidentes','< 15min','var(--green)'],['ROI potencial','+250%','var(--green)']],btn:'Activar IA Predictiva'},
+  {title:'Nivel 4 — IA',desc:'Planta auto-optimizante con IA predictiva, mantenimiento proactivo y decisiones autónomas basadas en datos.',metrics:[['Visibilidad','100%','var(--green)'],['Resp. incidentes','< 30s','var(--green)'],['ROI potencial','+340%','var(--green)']],btn:'Planta Autónoma'},
 ];
 
 function selLevel(i){
   [0,1,2,3].forEach(j=>{
-    const el=document.getElementById('lvl'+j);
-    el.className='bg-[#121827] border border-card-border rounded-lg p-4 cursor-pointer hover:border-neon-blue/30 transition-all';
+    document.getElementById('lvl'+j).style.border='1px solid var(--border)';
   });
-  document.getElementById('lvl'+i).className='bg-[#121827] border border-neon-blue/40 bg-neon-blue/5 rounded-lg p-4 cursor-pointer transition-all';
+  document.getElementById('lvl'+i).style.border='1px solid rgba(30,144,255,.4)';
   const l=levels[i];
   document.getElementById('detail-title').textContent=l.title;
   document.getElementById('detail-desc').textContent=l.desc;
   document.getElementById('detail-btn').textContent=l.btn;
   document.getElementById('detail-metrics').innerHTML=l.metrics.map(([lbl,val,color])=>`
-    <div class="flex justify-between items-center py-1.5 border-b border-card-border/50 last:border-b-0">
-      <span class="text-[12px] text-text-muted font-mono uppercase">${lbl}</span>
-      <span class="text-[16px] font-bold text-${color}">${val}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border3)">
+      <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">${lbl}</span>
+      <span style="font-size:14px;font-weight:700;color:${color}">${val}</span>
     </div>`).join('');
   // sync KPI Nivel card
-  const lbls=['Datos Manuales','Equipos Conectados','Enterprise','IA'];
+  const lbls=['Datos Manuales','Conectados','Enterprise','IA'];
   document.getElementById('kpi-nivel-num').textContent=i+1;
   document.getElementById('kpi-nivel-lbl').textContent=lbls[i];
+  document.getElementById('mc-nivel').textContent=i+1;
+  document.getElementById('mc-nivel-lbl').textContent=lbls[i];
 }
 
 // Auto-cycle levels (8s interval)
@@ -257,12 +326,16 @@ setInterval(function(){
   const pipe=_rnd(88,4);
   document.getElementById('kpi-oee').textContent=oee+'%';
   document.getElementById('kpi-disp').textContent=disp+'%';
+  document.getElementById('kpi-efic').textContent=efic+'%';
+  document.getElementById('mc-oee').textContent=oee+'%';
+  document.getElementById('mc-disp').textContent=disp+'%';
+  document.getElementById('mc-efic').textContent=efic+'%';
   const bar=document.getElementById('kpi-disp-bar');
   if(bar)bar.style.width=disp+'%';
-  document.getElementById('kpi-efic').textContent=efic+'%';
   document.getElementById('pipe-ensamble').textContent=pipe+'%';
   document.getElementById('pipe-inspeccion').textContent=_rnd(99,1)+'%';
 },4500);
+
 // Auto-scroll niveles de madurez
 function initAutoScroll(el,spd,pauseMs){
   if(!el)return;
