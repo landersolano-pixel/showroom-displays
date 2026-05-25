@@ -28,9 +28,9 @@ body{background-color:#030712;background-image:linear-gradient(rgba(255,255,255,
 #serial-scroll,#metrics-scroll{overflow-y:auto;scrollbar-width:none}
 #serial-scroll::-webkit-scrollbar,#metrics-scroll::-webkit-scrollbar{display:none}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:1}}
-.pulse-dot{animation:pulse-dot 2s infinite}
+.pulse-dot{animation:none}
 @keyframes flow-move{0%{transform:translateX(-100%)}100%{transform:translateX(400%)}}
-.flow-particle{animation:flow-move 2.5s linear infinite}
+.flow-particle{animation:flow-move 2.5s linear infinite;will-change:transform}
 </style>
 </head>
 <body class="p-5 flex flex-col h-screen gap-4 box-border overflow-hidden">
