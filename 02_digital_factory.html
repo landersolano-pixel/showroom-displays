@@ -270,7 +270,7 @@ const levels=[
   {title:'Nivel 4 — IA',desc:'Planta auto-optimizante con IA predictiva, mantenimiento proactivo y decisiones autónomas basadas en datos.',metrics:[['Visibilidad','100%','var(--green)'],['Resp. incidentes','< 30s','var(--green)'],['ROI potencial','+340%','var(--green)']],btn:'Planta Autónoma'},
 ];
 
-function selLevel(i){
+function selLevel(i,noFade){
   [0,1,2,3].forEach(j=>{
     document.getElementById('lvl'+j).style.border='1px solid var(--border)';
   });
@@ -279,21 +279,21 @@ function selLevel(i){
   document.getElementById('detail-title').textContent=l.title;
   document.getElementById('detail-desc').textContent=l.desc;
   document.getElementById('detail-btn').textContent=l.btn;
-  document.getElementById('detail-metrics').innerHTML=l.metrics.map(([lbl,val,color])=>`
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border3)">
-      <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">${lbl}</span>
-      <span style="font-size:14px;font-weight:700;color:${color}">${val}</span>
-    </div>`).join('');
-  // sync KPI Nivel card
   const lbls=['Datos Manuales','Conectados','Enterprise','IA'];
   document.getElementById('kpi-nivel-num').textContent=i+1;
   document.getElementById('kpi-nivel-lbl').textContent=lbls[i];
   document.getElementById('mc-nivel').textContent=i+1;
   document.getElementById('mc-nivel-lbl').textContent=lbls[i];
+  var dm=document.getElementById('detail-metrics');
+  var html=l.metrics.map(function(m){var lbl=m[0],val=m[1],color=m[2];return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border3)"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase">'+lbl+'</span><span style="font-size:14px;font-weight:700;color:'+color+'">'+val+'</span></div>';}).join('');
+  if(noFade){dm.innerHTML=html;return;}
+  dm.style.transition='opacity 0.22s ease';
+  dm.style.opacity='0';
+  setTimeout(function(){dm.innerHTML=html;dm.style.opacity='1';},230);
 }
 
 // Auto-cycle levels (8s interval)
-let _lvl=1; selLevel(_lvl);
+let _lvl=1; selLevel(_lvl,true);
 setInterval(function(){_lvl=(_lvl+1)%4;selLevel(_lvl);},8000);
 
 // KPI fluctuation
