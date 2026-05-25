@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html lang="es" style="background:#030712">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1920">
+<title>Producción — NCTECH Showroom 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#030712;--navy2:#060e1a;--panel:#081120;--panel2:#0a1929;
+  --cyan:#00E5FF;--cyan2:rgba(0,229,255,.25);--cyan3:rgba(0,229,255,.15);--cyan4:rgba(0,229,255,.08);
+  --green:#00ffaa;--green2:#69F0AE;--green3:rgba(0,255,170,.12);
+  --amber:#FFB300;--amber2:#FFD54F;--amber3:rgba(255,179,0,.12);
+  --red:#FF1744;--red2:#FF6E75;--red3:rgba(255,23,68,.12);
+  --border:rgba(0,229,255,.12);--border3:rgba(0,229,255,.06);
+  --font:'Inter',sans-serif;--display:'Rajdhani',sans-serif;--mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
+body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:1}}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:1}}
+.pulse-dot{animation:pulse-dot 2s infinite}
+@keyframes spin-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.spin-slow{animation:spin-slow 4s linear infinite}
+.material-symbols-outlined{font-family:'Material Symbols Outlined';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';-webkit-font-smoothing:antialiased}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:72px;background:rgba(3,7,18,1);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:20px;z-index:1000}
+.tb-heading{display:flex;flex-direction:column;gap:2px}
+.tb-station{font-family:var(--font);font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
+.tb-title{font-family:var(--font);font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
+.tb-sep{width:1px;height:32px;background:var(--border);margin:0 4px}
+.tb-kpi{display:flex;flex-direction:column;align-items:center;min-width:72px}
+.tb-kpi-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 6px rgba(0,229,255,0.14)}
+.tb-kpi-val.green{color:var(--green);text-shadow:0 0 5px rgba(0,255,170,0.11)}
+.tb-kpi-val.amber{color:var(--amber)}
+.tb-kpi-val.red{color:var(--red2)}
+.tb-kpi-val.white{color:#fff;text-shadow:none}
+.tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
+.tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
+.tb-time{font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
+
+/* METRIC CARDS */
+.mc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.mc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0}
+.mc.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.mc.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.mc.amber::before{background:linear-gradient(90deg,var(--amber),transparent)}
+.mc.red::before{background:linear-gradient(90deg,var(--red),transparent)}
+.mc.white::before{background:linear-gradient(90deg,#fff,transparent)}
+.mc-lbl{font-size:11px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;font-family:var(--mono);margin-bottom:7px}
+.mc-val{font-family:var(--display);font-size:48px;font-weight:700;color:var(--cyan);line-height:1;text-shadow:0 0 8px rgba(0,229,255,0.11)}
+.mc-val.green{color:var(--green);text-shadow:0 0 6px rgba(0,255,170,0.08)}
+.mc-val.amber{color:var(--amber);text-shadow:0 0 6px rgba(255,179,0,0.08)}
+.mc-val.red{color:var(--red2);text-shadow:0 0 6px rgba(255,23,68,0.08)}
+.mc-val.white{color:#fff;text-shadow:none}
+.mc-sub{font-size:11px;color:rgba(224,240,255,.4);margin-top:4px;font-family:var(--mono)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-heading">
+    <span class="tb-station">Showroom 2026 · Estación 05</span>
+    <span class="tb-title">Producción</span>
+  </div>
+  <span class="material-symbols-outlined" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:52px;color:rgba(0,229,255,0.72);pointer-events:none">conveyor_belt</span>
+  <div class="tb-right">
+    <div class="tb-live">LIVE</div>
+    <span class="tb-time" id="tb-clock">--:--:--</span>
+    <div class="tb-sep" style="height:40px;margin:0 8px"></div>
+    <img src="https://nctech.mx/wp-content/themes/NcTech2023/assets/images/brand/logo-nctech-header-white.png" style="height:32px;object-fit:contain;flex-shrink:0" alt="NCTECH">
+  </div>
+</div>
+
+<!-- MAIN: 55% machines grid / 45% output chart -->
+<div style="position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:55% 45%;overflow:hidden">
+
+  <!-- LEFT: Metric cards + Machine Status Grid -->
+  <div style="display:flex;flex-direction:column;padding:16px 10px 16px 16px;gap:12px;overflow:hidden">
+
+    <!-- Gauge bar metrics -->
+    <div style="display:flex;flex-direction:column;gap:9px;flex-shrink:0;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">OEE</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--cyan);border-radius:3px;width:84%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--cyan);width:40px;text-align:right;flex-shrink:0">84%</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Uds/turno</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--green);border-radius:3px;width:78%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--green);width:40px;text-align:right;flex-shrink:0" id="mc-units">1,247</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Disponib.</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--green);border-radius:3px;width:91%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:#fff;width:40px;text-align:right;flex-shrink:0">91%</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:10px;color:rgba(224,240,255,.4);font-family:var(--mono);text-transform:uppercase;letter-spacing:.6px;width:68px;flex-shrink:0">Paros</span>
+        <div style="flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--red2);border-radius:3px;width:12%"></div></div>
+        <span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--red2);width:40px;text-align:right;flex-shrink:0">3</span>
+      </div>
+    </div>
+
+    <!-- Machine status label -->
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <span class="material-symbols-outlined" style="color:#1e90ff;font-size:18px">developer_board</span>
+      <span style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px">Estado de Máquinas</span>
+      <span style="margin-left:auto;font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">4 activas · 1 mant · 1 espera</span>
+    </div>
+
+    <!-- 3×2 Machine Status Cards -->
+    <div style="flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:10px;min-height:0">
+
+      <!-- M-01 -->
+      <div style="background:var(--panel);border:1px solid rgba(0,255,170,.3);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined" style="color:var(--green);font-size:20px">developer_board</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-01</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Ensamble A</div>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;background:rgba(0,255,170,.1);color:var(--green);border:1px solid rgba(0,255,170,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">OK</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--green)" id="m01-out">312</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">uds producidas</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:#fff">92%</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">eficiencia</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--green);border-radius:3px" id="m01-bar" style="width:78%"></div></div>
+      </div>
+
+      <!-- M-02 -->
+      <div style="background:var(--panel);border:1px solid rgba(0,255,170,.3);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined" style="color:var(--cyan);font-size:20px">memory</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-02</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Soldadura B</div>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;background:rgba(0,255,170,.1);color:var(--green);border:1px solid rgba(0,255,170,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">OK</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--green)" id="m02-out">287</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">uds producidas</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:#fff">88%</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">eficiencia</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--cyan);border-radius:3px" id="m02-bar" style="width:75%"></div></div>
+      </div>
+
+      <!-- M-03 — MAINTENANCE -->
+      <div style="background:var(--panel);border:1px solid rgba(124,77,255,.4);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#7c4dff;opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined spin-slow" style="color:#b39ddb;font-size:20px">cyclone</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-03</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Pintura C</div>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;background:rgba(124,77,255,.1);color:#b39ddb;border:1px solid rgba(124,77,255,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">Mant.</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:#b39ddb">0</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">en pausa</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:rgba(224,240,255,.4)">—</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">eficiencia</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:rgba(124,77,255,.4);border-radius:3px;width:0%"></div></div>
+      </div>
+
+      <!-- M-04 -->
+      <div style="background:var(--panel);border:1px solid rgba(30,144,255,.3);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#1e90ff;opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined" style="color:#1e90ff;font-size:20px">settings_input_antenna</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-04</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Prueba D</div>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;background:rgba(30,144,255,.1);color:#1e90ff;border:1px solid rgba(30,144,255,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">OK</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:#1e90ff" id="m04-out">198</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">uds producidas</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:#fff">79%</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">eficiencia</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:#1e90ff;border-radius:3px" id="m04-bar" style="width:70%"></div></div>
+      </div>
+
+      <!-- M-05 — WAIT -->
+      <div style="background:var(--panel);border:1px solid rgba(255,179,0,.3);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber);opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined" style="color:var(--amber);font-size:20px">thermostat</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-05</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Empaque E</div>
+            </div>
+          </div>
+          <span style="font-size:10px;font-weight:700;background:rgba(255,179,0,.1);color:var(--amber);border:1px solid rgba(255,179,0,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">Espera</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--amber)">450</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">uds previas</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:var(--amber)">45%</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">eficiencia</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--amber);border-radius:3px;width:45%"></div></div>
+      </div>
+
+      <!-- QS-01 — QUALITY STATION -->
+      <div style="background:var(--panel);border:1px solid rgba(0,255,170,.25);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan);opacity:.6"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="material-symbols-outlined" style="color:var(--cyan);font-size:20px">speed</span>
+            <div>
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">QS-01</div>
+              <div style="font-size:13px;font-weight:700;color:#fff">Control QA</div>
+            </div>
+          </div>
+          <span class="pulse-dot" style="font-size:10px;font-weight:700;background:rgba(0,229,255,.1);color:var(--cyan);border:1px solid rgba(0,229,255,.3);padding:2px 8px;border-radius:5px;font-family:var(--mono)">Activo</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div>
+            <div style="font-family:var(--display);font-size:24px;font-weight:700;color:var(--cyan)">99%</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">FPY logrado</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:16px;font-weight:700;color:#fff">7</div>
+            <div style="font-size:11px;color:rgba(224,240,255,.4)">defectos</div>
+          </div>
+        </div>
+        <div style="height:3px;background:var(--border);border-radius:3px;overflow:hidden"><div style="height:100%;background:var(--cyan);border-radius:3px;width:99%"></div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RIGHT: Production Output Chart -->
+  <div style="display:flex;flex-direction:column;padding:16px 16px 16px 10px;gap:0;overflow:hidden;border-left:1px solid var(--border);background:var(--navy2)">
+    <div style="background:var(--panel);border:1px solid var(--border);border-radius:10px;flex:1;display:flex;flex-direction:column;overflow:hidden">
+      <div style="padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;flex-shrink:0">
+        <span class="material-symbols-outlined" style="color:var(--cyan);font-size:20px">developer_board</span>
+        <span style="font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.6);text-transform:uppercase;letter-spacing:1px">Producción por Turno</span>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--green)" class="pulse-dot"></div>
+          <span style="font-size:11px;font-weight:700;color:var(--green);font-family:var(--mono)">Live</span>
+        </div>
+      </div>
+      <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+        <!-- Bar chart -->
+        <div style="flex:1;display:flex;align-items:flex-end;gap:10px;min-height:0;padding-bottom:6px">
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <span style="font-size:11px;font-family:var(--mono);color:var(--green);font-weight:700" id="bv1">312</span>
+            <div style="width:100%;background:var(--border);border-radius:4px 4px 0 0;position:relative;overflow:hidden;flex:none;height:78%">
+              <div id="bh1" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,255,170,.8),rgba(0,255,170,.3));border-radius:4px 4px 0 0;transition:height 1s;height:100%"></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-01</div>
+              <div style="font-size:11px;color:rgba(224,240,255,.4)">Ensamble</div>
+            </div>
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <span style="font-size:11px;font-family:var(--mono);color:var(--cyan);font-weight:700" id="bv2">287</span>
+            <div style="width:100%;background:var(--border);border-radius:4px 4px 0 0;position:relative;overflow:hidden;flex:none;height:72%">
+              <div id="bh2" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,229,255,.8),rgba(0,229,255,.3));border-radius:4px 4px 0 0;transition:height 1s;height:100%"></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-02</div>
+              <div style="font-size:11px;color:rgba(224,240,255,.4)">Soldadura</div>
+            </div>
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <span style="font-size:11px;font-family:var(--mono);color:rgba(224,240,255,.4);font-weight:700">0</span>
+            <div style="width:100%;background:var(--border);border-radius:4px 4px 0 0;position:relative;overflow:hidden;flex:none;height:4%">
+              <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(124,77,255,.6),rgba(124,77,255,.2));border-radius:4px 4px 0 0;height:100%"></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-03</div>
+              <div style="font-size:11px;color:rgba(224,240,255,.4)">Pintura</div>
+            </div>
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <span style="font-size:11px;font-family:var(--mono);color:#1e90ff;font-weight:700" id="bv4">198</span>
+            <div style="width:100%;background:var(--border);border-radius:4px 4px 0 0;position:relative;overflow:hidden;flex:none;height:50%">
+              <div id="bh4" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(30,144,255,.8),rgba(30,144,255,.3));border-radius:4px 4px 0 0;transition:height 1s;height:100%"></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-04</div>
+              <div style="font-size:11px;color:rgba(224,240,255,.4)">Prueba</div>
+            </div>
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end">
+            <span style="font-size:11px;font-family:var(--mono);color:var(--amber);font-weight:700">450</span>
+            <div style="width:100%;background:var(--border);border-radius:4px 4px 0 0;position:relative;overflow:hidden;flex:none;height:56%">
+              <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(255,179,0,.8),rgba(255,179,0,.3));border-radius:4px 4px 0 0;height:100%"></div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:11px;font-family:var(--mono);color:#1e90ff">M-05</div>
+              <div style="font-size:11px;color:rgba(224,240,255,.4)">Empaque</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- KPI summary below chart -->
+        <div style="border-top:1px solid var(--border);padding-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;flex-shrink:0">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Calidad (Q)</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--cyan)">92%</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Disponib. (A)</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--amber)">91%</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Rendim. (P)</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--green)">86%</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">T. productivo</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:#fff">6.3 h</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Paros</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--amber)">3</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Scrap</span><span style="font-family:var(--display);font-size:17px;font-weight:700;color:var(--red2)">2%</span></div>
+          </div>
+        </div>
+        <!-- Progress bar -->
+        <div style="flex-shrink:0">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:11px;color:rgba(224,240,255,.4);font-family:var(--mono)">Avance turno</span>
+            <span style="font-size:11px;font-family:var(--mono);color:var(--green)" id="units-pct">83%</span>
+          </div>
+          <div style="height:5px;background:var(--border);border-radius:4px;overflow:hidden">
+            <div style="height:100%;background:linear-gradient(90deg,var(--green),rgba(0,255,170,.4));border-radius:4px;transition:width .5s" id="units-bar" style="width:83%"></div>
+          </div>
+        </div>
+        <button style="width:100%;background:#1e90ff;color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;border:none;border-radius:8px;padding:11px;display:flex;align-items:center;justify-content:center;gap:6px;text-transform:uppercase;letter-spacing:.6px;cursor:pointer;box-shadow:0 0 8px rgba(30,144,255,.11);flex-shrink:0">
+          <span class="material-symbols-outlined" style="font-size:16px">speed</span>Asignar Técnico M-03
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function updateClocks(){
+  const t=new Date().toLocaleTimeString('es-MX',{hour12:false});
+  document.getElementById('tb-clock').textContent=t;
+}
+updateClocks();setInterval(updateClocks,1000);
+
+let p1=312,p2=287,p4=198,prodBusy=false;
+function updateProd(){
+  const total=p1+p2+p4+450;
+  const fmt=total.toLocaleString('es-MX');
+  document.getElementById('k-units').textContent=fmt;
+  document.getElementById('mc-units').textContent=fmt;
+  const bar=document.getElementById('units-bar');
+  const pct=document.getElementById('units-pct');
+  const barPct=Math.min(total/1500*100,100);
+  if(bar)bar.style.width=barPct+'%';
+  if(pct)pct.textContent=Math.round(barPct)+'%';
+  document.getElementById('m01-out').textContent=p1;
+  document.getElementById('m02-out').textContent=p2;
+  document.getElementById('m04-out').textContent=p4;
+  document.getElementById('bv1').textContent=p1;
+  document.getElementById('bv2').textContent=p2;
+  document.getElementById('bv4').textContent=p4;
+  document.getElementById('m01-bar').style.width=Math.min(p1/400*100,100)+'%';
+  document.getElementById('m02-bar').style.width=Math.min(p2/380*100,100)+'%';
+  document.getElementById('m04-bar').style.width=Math.min(p4/280*100,100)+'%';
+}
+setInterval(()=>{
+  if(prodBusy)return;
+  if(Math.random()>.5)p1+=Math.floor(Math.random()*2)+1;
+  if(Math.random()>.5)p2+=Math.floor(Math.random()*2)+1;
+  if(Math.random()>.6)p4+=Math.floor(Math.random()*2)+1;
+  updateProd();
+  if(p1>=400&&p2>=380&&p4>=280){
+    prodBusy=true;
+    setTimeout(function(){p1=Math.floor(Math.random()*15)+5;p2=Math.floor(Math.random()*12)+4;p4=Math.floor(Math.random()*10)+3;updateProd();prodBusy=false;},5000);
+  }
+},2800);
+</script>
+<script>if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+// Fade in on load
+(function(){document.body.style.opacity='0';requestAnimationFrame(function(){document.body.style.transition='opacity 0.5s';document.body.style.opacity='1';});})();
+// Smooth reload (10s testing / production: 5*60*1000)
+var _ver=null;setInterval(function(){fetch('version.json?_='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){if(!_ver){_ver=d.v;return;}if(d.v!==_ver){document.body.style.transition='opacity 0.6s';document.body.style.opacity='0';setTimeout(function(){location.reload();},620);}}).catch(function(){});},5*60*1000);</script>
+</body>
+</html>
