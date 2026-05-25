@@ -381,15 +381,16 @@ setInterval(()=>{traced++;document.getElementById('kpi-traced').textContent=trac
 
 function initAutoScroll(el,spd,pauseMs){
   if(!el)return;
-  var paused=false;
+  var paused=false,pos=0;
   function tick(){
     if(!paused){
       var max=el.scrollHeight-el.clientHeight;
       if(max>0){
-        el.scrollTop+=(spd||0.35);
-        if(el.scrollTop>=max){
-          el.scrollTop=max;paused=true;
-          setTimeout(function(){el.scrollTop=0;paused=false;},(pauseMs||3000));
+        pos+=(spd||0.35);
+        el.scrollTop=pos;
+        if(pos>=max){
+          pos=max;paused=true;
+          setTimeout(function(){pos=0;paused=false;},(pauseMs||3000));
         }
       }
     }
