@@ -40,6 +40,7 @@ New-Item -ItemType Directory -Force -Path $setupDir | Out-Null
 # Copy setup scripts
 Copy-Item (Join-Path $PSScriptRoot 'setup-display.ps1')    $setupDir -Force
 Copy-Item (Join-Path $PSScriptRoot 'launch-dashboard.ps1') $setupDir -Force
+Copy-Item (Join-Path $PSScriptRoot 'cleanup-kiosk.ps1')    $setupDir -Force
 
 # Write dashboard assignment
 @{
@@ -83,6 +84,20 @@ COMPORTAMIENTO
 - Al iniciar: abre el dashboard en pantalla completa automaticamente
 - Online:  carga desde GitHub Pages (siempre la version mas reciente)
 - Offline: carga desde cache local (guardada en C:\Dashboards\)
+
+SI EL KIOSK ESTA TRABADO (pantalla bloqueada)
+----------------------------------------------
+1. Presiona Ctrl+Alt+Del en el PC Stick
+2. Clic en "Administrador de tareas"
+3. Archivo -> Ejecutar nueva tarea
+4. Escribe (marca "con privilegios de administrador"):
+   powershell -ExecutionPolicy Bypass -File ${drive}\dashboard-setup\cleanup-kiosk.ps1
+5. Despues corre setup-display.ps1 para reinstalar
+
+COMO DESACTIVAR EL KIOSK SIN CLEANUP
+--------------------------------------
+Crea un archivo llamado STOP (sin extension) en C:\Dashboards\
+El launcher lo detecta al inicio y sale sin abrir el browser.
 
 ACTUALIZAR DESDE PC PRINCIPAL
 ------------------------------

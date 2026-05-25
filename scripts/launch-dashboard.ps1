@@ -38,6 +38,18 @@ Get-Job -State Completed -ErrorAction SilentlyContinue | Remove-Job -ErrorAction
 
 # Keep dashboard alive indefinitely
 while ($true) {
+
+    # ── ESCAPE HATCH ──────────────────────────────────────────────────────────
+    # Crea el archivo C:\Dashboards\STOP (desde USB u otro PC via red) y el
+    # kiosk se detendra en el proximo ciclo sin reiniciar el browser.
+    # cleanup-kiosk.ps1 lo crea automaticamente.
+    if (Test-Path "$installPath\STOP") {
+        Remove-Item "$installPath\STOP" -Force -ErrorAction SilentlyContinue
+        Write-Host "$(Get-Date -f 'HH:mm:ss') STOP detectado - kiosk desactivado." -ForegroundColor Yellow
+        exit 0
+    }
+    # ─────────────────────────────────────────────────────────────────────────
+
     $url = Resolve-Url
 
     if ($null -eq $url) {
