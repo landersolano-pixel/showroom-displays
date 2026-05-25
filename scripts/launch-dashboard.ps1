@@ -59,9 +59,9 @@ while ($true) {
 
     if ($browser) {
         $args = if ($browser -eq $edgePath) {
-            "--kiosk `"$url`" --edge-kiosk-type=fullscreen --no-first-run --disable-extensions --disable-session-crashed-bubble"
+            "--kiosk `"$url`" --edge-kiosk-type=fullscreen --no-first-run --disable-extensions --disable-session-crashed-bubble --disable-gpu-compositing --disable-gpu-vsync"
         } else {
-            "--kiosk `"$url`" --no-first-run --disable-extensions"
+            "--kiosk `"$url`" --no-first-run --disable-extensions --disable-gpu-compositing --disable-gpu-vsync"
         }
         (Start-Process -FilePath $browser -ArgumentList $args -PassThru).WaitForExit()
     } else {
