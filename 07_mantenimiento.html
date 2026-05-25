@@ -42,9 +42,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-station{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
 .tb-title{font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
-.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.65}}
 
 /* LAYOUT */
 .main{position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:40% 60%;gap:0;overflow:hidden}

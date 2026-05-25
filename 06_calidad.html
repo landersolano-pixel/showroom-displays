@@ -41,8 +41,8 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-station{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
 .tb-title{font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
-.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
 
 /* LAYOUT */
 .main{position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:40% 60%;gap:0;overflow:hidden}
@@ -69,7 +69,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .vision-header{display:flex;justify-content:space-between;align-items:center}
 .vision-title{font-family:var(--display);font-size:13px;font-weight:700;color:rgba(224,240,255,.5);text-transform:uppercase;letter-spacing:1px}
 .vision-status{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--green);font-family:var(--mono)}
-.vision-status::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
+.vision-status::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
 .camera-view{flex:1;background:#030910;border:1px solid var(--border3);border-radius:8px;position:relative;overflow:hidden;min-height:160px}
 .cam-scanline{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.6),transparent);animation:scandown 3s linear infinite;z-index:2}
 @keyframes scandown{0%{top:0}100%{top:100%}}

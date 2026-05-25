@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es" style="background:#030712">
 <head>
 <meta charset="UTF-8"/>
@@ -21,8 +21,8 @@ html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
 body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025)1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025)1px,transparent 1px);background-size:40px 40px}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.65}}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 .pulse-dot{animation:pulse-dot 2s infinite}
 @keyframes slide-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
@@ -44,7 +44,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-kpi-lbl{font-size:9px;color:rgba(224,240,255,.4);text-transform:uppercase;letter-spacing:.8px;margin-top:1px;font-family:var(--mono)}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
 .tb-live{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--green);font-family:var(--mono)}
-.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 1.5s ease-in-out infinite}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
 .tb-time{font-family:var(--mono);font-size:13px;color:rgba(0,229,255,.7);letter-spacing:1px}
 
 /* METRIC CARDS */
