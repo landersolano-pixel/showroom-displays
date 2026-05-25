@@ -47,7 +47,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .tb-station{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#4e6b99;text-transform:uppercase;letter-spacing:.3em}
 .tb-title{font-family:'Inter',sans-serif;font-size:48px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1}
 .tb-right{margin-left:auto;display:flex;align-items:center;gap:20px}
-.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green)}
+.tb-live::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 3px var(--green);animation:pulse 3s ease-in-out infinite}
 
 /* LAYOUT */
 .main{position:fixed;top:72px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 380px;overflow:hidden}
@@ -228,7 +228,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
         <text x="380" y="374" text-anchor="middle" font-family="Material Symbols Outlined" font-size="21" fill="#FF6E75">device_hub</text>
         <text x="380" y="413" text-anchor="middle" font-family="'Rajdhani',sans-serif" font-size="15" font-weight="700" fill="#e0f0ff">PLCs Hub</text>
         <text x="380" y="424" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" fill="rgba(255,106,117,.6)">4 PLCs</text>
-        <circle cx="402" cy="361" r="5" fill="#FFB300" style="opacity:1"/>
+        <circle cx="402" cy="361" r="5" fill="#FFB300" style="animation:pulse 3s infinite"/>
       </g>
     </svg>
   </div>
