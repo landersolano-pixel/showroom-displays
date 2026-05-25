@@ -22,9 +22,9 @@ html,body{height:100%;color:#e0f0ff;font-family:var(--font);overflow:hidden}
 ::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,.2);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(0,229,255,.45)}
 body{background-color:var(--navy);background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:40px 40px}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;z-index:0}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.65}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:1}}
 @keyframes orbit{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-80}}
-@keyframes node-glow{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes node-glow{0%,100%{opacity:1}50%{opacity:1}}
 .node-pulse{animation:node-glow 2.5s ease-in-out infinite}
 .orbit-line{stroke-dasharray:12 6;animation:orbit 3s linear infinite}
 .orbit-line-slow{stroke-dasharray:8 10;animation:orbit 5s linear infinite}
